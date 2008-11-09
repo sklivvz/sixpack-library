@@ -1,0 +1,3870 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>/home/marco/develop/ex-fullsix/src/SixPack/bin/Debug/SixPack</name>
+    </assembly>
+    <members>
+        <member name="T:SixPack.Banking.CreditCard">
+            <summary>
+            Performs validation of credit card numbers
+            </summary>
+        </member>
+        <member name="M:SixPack.Banking.CreditCard.GetType(System.String)">
+            <summary>
+            Gets the type of the credit card with the specified number.
+            </summary>
+            <param name="creditCardNumber">The credit card number.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Banking.CreditCard.IsValid(System.String,SixPack.Banking.CreditCardTypes,System.Boolean)">
+            <summary>
+            Determines whether the specified credit card number is valid.
+            </summary>
+            <param name="creditCardNumber">The credit card number.</param>
+            <param name="validTypes">The valid types.</param>
+            <param name="validateCheckDigit">if set to <c>true</c> validate the check digit.</param>
+            <returns>
+                <c>true</c> if the specified credit card number is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SixPack.Banking.CreditCard.IsValid(System.String,SixPack.Banking.CreditCardTypes)">
+            <summary>
+            Determines whether the specified credit card number is valid. Does not validate the check digit.
+            </summary>
+            <param name="creditCardNumber">The credit card number.</param>
+            <param name="validTypes">The valid types.</param>
+            <returns>
+                <c>true</c> if the specified credit card number is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SixPack.Banking.CreditCard.IsCheckDigitValid(System.String)">
+            <summary>
+            Performs a validation using Luhn's Formula.
+            </summary>
+        </member>
+        <member name="T:SixPack.Banking.CreditCardTypes">
+            <summary>
+            Types of Credit Cards
+            </summary>
+        </member>
+        <member name="F:SixPack.Banking.CreditCardTypes.MasterCard">
+            <summary>
+            MasterCard
+            </summary>
+        </member>
+        <member name="F:SixPack.Banking.CreditCardTypes.Visa">
+            <summary>
+            VISA
+            </summary>
+        </member>
+        <member name="F:SixPack.Banking.CreditCardTypes.AmericanExpress">
+            <summary>
+            American Express
+            </summary>
+        </member>
+        <member name="F:SixPack.Banking.CreditCardTypes.DinersClub">
+            <summary>
+            Diners Club
+            </summary>
+        </member>
+        <member name="F:SixPack.Banking.CreditCardTypes.EnRoute">
+            <summary>
+            en Route
+            </summary>
+        </member>
+        <member name="F:SixPack.Banking.CreditCardTypes.Discover">
+            <summary>
+            Discover
+            </summary>
+        </member>
+        <member name="F:SixPack.Banking.CreditCardTypes.Jcb">
+            <summary>
+            JCB
+            </summary>
+        </member>
+        <member name="F:SixPack.Banking.CreditCardTypes.Unknown">
+            <summary>
+            Unknown Credit Card
+            </summary>
+        </member>
+        <member name="F:SixPack.Banking.CreditCardTypes.All">
+            <summary>
+            All Known Credit Card Types
+            </summary>
+        </member>
+        <member name="F:SixPack.Banking.CreditCardTypes.Any">
+            <summary>
+            Any credit card type
+            </summary>
+        </member>
+        <member name="T:SixPack.Collections.Generic.FullList`1">
+            <summary>
+            Represents a strongly typed list of objects that can be accessed by index. Provides methods to search, sort, and manipulate lists. Implements <see cref="!:IFullList&lt;T&gt;" /></summary>
+        </member>
+        <member name="M:SixPack.Collections.Generic.FullList`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="!:FullList&lt;T&gt;" /> class.
+            </summary>
+        </member>
+        <member name="M:SixPack.Collections.Generic.FullList`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="!:FullList&lt;T&gt;" /> class.
+            </summary>
+            <param name="collection">The collection whose elements are copied to the new list.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="collection" /> is null.</exception>
+        </member>
+        <member name="M:SixPack.Collections.Generic.FullList`1.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="!:FullList&lt;T&gt;" /> class.
+            </summary>
+            <param name="capacity">The capacity.</param>
+        </member>
+        <member name="M:SixPack.Collections.Generic.FullList`1.GetRange(System.Int32,System.Int32)">
+            <summary>
+            Creates a shallow copy of a range of elements in the source <see cref="!:IFullList&lt;T&gt;" />.
+            </summary>
+            <param name="index">The zero-based <see cref="!:IFullList&lt;T&gt;" /> index at which the range starts.</param>
+            <param name="count">The number of elements in the range.</param>
+            <returns>
+            A shallow copy of a range of elements in the source <see cref="!:IFullList&lt;T&gt;" />.
+            </returns>
+        </member>
+        <member name="M:SixPack.Collections.Generic.FullList`1.FindAll(System.Predicate{`0})">
+            <summary>
+            Retrieves all the elements that match the conditions defined by the specified <see cref="!:Predicate{T}" />.
+            </summary>
+            <param name="match">The <see cref="!:Predicate&lt;T&gt;" /> delegate that defines the conditions of the elements to search for.</param>
+            <returns>
+            A <see cref="!:IFullList&lt;T&gt;" /> containing all the elements that match the conditions defined by the specified <see cref="!:Predicate&lt;T&gt;" />, if found; otherwise, an empty <see cref="!:IFullList&lt;T&gt;" />.
+            </returns>
+        </member>
+        <member name="T:SixPack.Collections.Generic.IFullList`1">
+            <summary>
+            Represents a collection of objects that can be individually accessed by index or by query.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+        </member>
+        <member name="M:SixPack.Collections.Generic.IFullList`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds the elements of the specified collection to the end of the <see cref="!:IFullList&lt;T&gt;" />.
+            </summary>
+            <param name="collection">The collection whose elements should be added to the end of the <see cref="!:IFullList&lt;T&gt;" />. The collection itself cannot be null, but it can contain elements that are null, if type T is a reference type.</param>
+        </member>
+        <member name="M:SixPack.Collections.Generic.IFullList`1.Sort(System.Comparison{`0})">
+            <summary>
+            Sorts the elements in the entire <see cref="!:IFullList&lt;T&gt;" /> using the specified <see cref="!:Comparison{T}" />.
+            </summary>
+            <param name="comparison">The <see cref="!:Comparison&lt;T&gt;" /> to use when comparing elements.</param>
+        </member>
+        <member name="M:SixPack.Collections.Generic.IFullList`1.Find(System.Predicate{`0})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified <see cref="!:Predicate&lt;T&gt;" />, and returns the first occurrence within the entire <see cref="!:IFullList&lt;T&gt;" />.
+            </summary>
+            <param name="match">The <see cref="!:Predicate&lt;T&gt;" /> delegate that defines the conditions of the element to search for.</param>
+            <returns>The first element that matches the conditions defined by the specified <see cref="!:Predicate&lt;T&gt;" />, if found; otherwise, the default value for type T.</returns>
+        </member>
+        <member name="M:SixPack.Collections.Generic.IFullList`1.FindAll(System.Predicate{`0})">
+            <summary>
+            Retrieves all the elements that match the conditions defined by the specified <see cref="!:Predicate&lt;T&gt;" />.
+            </summary>
+            <param name="match">The <see cref="!:Predicate&lt;T&gt;" /> delegate that defines the conditions of the elements to search for.</param>
+            <returns>A <see cref="!:IFullList&lt;T&gt;" /> containing all the elements that match the conditions defined by the specified <see cref="!:Predicate&lt;T&gt;" />, if found; otherwise, an empty <see cref="!:IFullList&lt;T&gt;" />.</returns>
+        </member>
+        <member name="M:SixPack.Collections.Generic.IFullList`1.TrueForAll(System.Predicate{`0})">
+            <summary>
+            Determines whether every element in the <see cref="!:IFullList&lt;T&gt;" /> matches the conditions defined by the specified predicate.
+            </summary>
+            <param name="match">The <see cref="!:Predicate&lt;T&gt;" /> delegate that defines the conditions to check against the elements.</param>
+            <returns>true if every element in the <see cref="!:IFullList&lt;T&gt;" /> matches the conditions defined by the specified predicate; otherwise, false. If the list has no elements, the return value is true.</returns>
+        </member>
+        <member name="M:SixPack.Collections.Generic.IFullList`1.ForEach(System.Action{`0})">
+            <summary>
+            Performs the specified action on each element of the <see cref="!:IFullList&lt;T&gt;" />.
+            </summary>
+            <param name="action">The <see cref="!:Action&lt;T&gt;" /> delegate to perform on each element of the <see cref="!:IFullList&lt;T&gt;" />.</param>
+        </member>
+        <member name="M:SixPack.Collections.Generic.IFullList`1.GetRange(System.Int32,System.Int32)">
+            <summary>
+            Creates a shallow copy of a range of elements in the source <see cref="!:IFullList&lt;T&gt;" />.
+            </summary>
+            <param name="index">The zero-based <see cref="!:IFullList&lt;T&gt;" /> index at which the range starts.</param>
+            <param name="count">The number of elements in the range.</param>
+            <returns>A shallow copy of a range of elements in the source <see cref="!:IFullList&lt;T&gt;" />.</returns>
+        </member>
+        <member name="T:SixPack.Collections.Generic.ISet`1">
+            <summary>
+            Interface that represents a collection that contains unique items
+            </summary>
+        </member>
+        <member name="M:SixPack.Collections.Generic.ISet`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds the specified items.
+            </summary>
+            <param name="items">The items.</param>
+        </member>
+        <member name="T:SixPack.Collections.Generic.Pair`2">
+            <summary>
+            A class that holds a pair of objects.
+            </summary>
+            <remarks>
+            This class implements <see cref="M:SixPack.Collections.Generic.Pair{`0,`1}.Equals(System.Object)" /> and <see cref="M:SixPack.Collections.Generic.Pair{`0,`1}.GetHashCode" /> in a
+            way that makes it suitable for usage as a key in an <see cref="!:IDictionary{TKey,TValue}" />.
+            </remarks>
+            <typeparam name="TFirst">The type of the first object.</typeparam>
+            <typeparam name="TSecond">The type of the second object.</typeparam>
+        </member>
+        <member name="M:SixPack.Collections.Generic.Pair`2.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="!:Pair&lt;TFirst, TSecond&gt;" /> class.
+            </summary>
+        </member>
+        <member name="M:SixPack.Collections.Generic.Pair`2.#ctor(`0,`1)">
+            <summary>
+            Initializes a new instance of the <see cref="!:Pair&lt;TFirst, TSecond&gt;" /> class.
+            </summary>
+            <param name="first">The first object.</param>
+            <param name="second">The second object.</param>
+        </member>
+        <member name="P:SixPack.Collections.Generic.Pair`2.First">
+            <summary>
+            Gets or sets the first object.
+            </summary>
+            <value>The first object.</value>
+        </member>
+        <member name="P:SixPack.Collections.Generic.Pair`2.Second">
+            <summary>
+            Gets or sets the second object.
+            </summary>
+            <value>The second object.</value>
+        </member>
+        <member name="M:SixPack.Collections.Generic.Pair`2.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to the current <see cref="T:System.Object" />.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with the current <see cref="T:System.Object" />.</param>
+            <returns>
+            true if the specified <see cref="T:System.Object" /> is equal to the current <see cref="T:System.Object" />; otherwise, false.
+            </returns>
+            <exception cref="T:System.NullReferenceException">The <paramref name="obj" /> parameter is null.</exception>
+        </member>
+        <member name="M:SixPack.Collections.Generic.Pair`2.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns>
+            A hash code for the current <see cref="T:System.Object" />.
+            </returns>
+        </member>
+        <member name="T:SixPack.Collections.Generic.SetBase`1">
+            <summary>
+            Collection that contains unique items
+            </summary>
+            <typeparam name="T">
+            </typeparam>
+        </member>
+        <member name="M:SixPack.Collections.Generic.SetBase`1.#ctor(System.Collections.Generic.IDictionary{`0,System.Object})">
+            <summary>
+            Initializes a new instance of the <see cref="!:SetBase&lt;T&gt;" /> class.
+            </summary>
+        </member>
+        <member name="P:SixPack.Collections.Generic.SetBase`1.Count">
+            <summary>
+            Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.
+            </summary>
+            <value>
+            </value>
+            <returns>The number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.</returns>
+        </member>
+        <member name="P:SixPack.Collections.Generic.SetBase`1.IsReadOnly">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only.
+            </summary>
+            <value>
+            </value>
+            <returns>true if the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only; otherwise, false.</returns>
+        </member>
+        <member name="M:SixPack.Collections.Generic.SetBase`1.IEnumerable.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:SixPack.Collections.Generic.SetBase`1.Add(`0)">
+            <summary>
+            Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1" />.
+            </summary>
+            <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
+            <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only.</exception>
+        </member>
+        <member name="M:SixPack.Collections.Generic.SetBase`1.Clear">
+            <summary>
+            Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1" />.
+            </summary>
+            <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only. </exception>
+        </member>
+        <member name="M:SixPack.Collections.Generic.SetBase`1.Contains(`0)">
+            <summary>
+            Determines whether the <see cref="T:System.Collections.Generic.ICollection`1" /> contains a specific value.
+            </summary>
+            <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
+            <returns>
+            true if <paramref name="item" /> is found in the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:SixPack.Collections.Generic.SetBase`1.CopyTo(T[],System.Int32)">
+            <summary>
+            Copies the elements of the <see cref="T:System.Collections.Generic.ICollection`1" /> to an <see cref="T:System.Array" />, starting at a particular <see cref="T:System.Array" /> index.
+            </summary>
+            <param name="array">The one-dimensional <see cref="T:System.Array" /> that is the destination of the elements copied from <see cref="T:System.Collections.Generic.ICollection`1" />. The <see cref="T:System.Array" /> must have zero-based indexing.</param>
+            <param name="arrayIndex">The zero-based index in <paramref name="array" /> at which copying begins.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="array" /> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <paramref name="arrayIndex" /> is less than 0.</exception>
+            <exception cref="T:System.ArgumentException">
+                <paramref name="array" /> is multidimensional.-or-<paramref name="arrayIndex" /> is equal to or greater than the length of <paramref name="array" />.-or-The number of elements in the source <see cref="T:System.Collections.Generic.ICollection`1" /> is greater than the available space from <paramref name="arrayIndex" /> to the end of the destination <paramref name="array" />.-or-Type <typeparamref name="T" /> cannot be cast automatically to the type of the destination <paramref name="array" />.</exception>
+        </member>
+        <member name="M:SixPack.Collections.Generic.SetBase`1.Remove(`0)">
+            <summary>
+            Removes the first occurrence of a specific object from the <see cref="T:System.Collections.Generic.ICollection`1" />.
+            </summary>
+            <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
+            <returns>
+            true if <paramref name="item" /> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, false. This method also returns false if <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.
+            </returns>
+            <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only.</exception>
+        </member>
+        <member name="M:SixPack.Collections.Generic.SetBase`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:SixPack.Collections.Generic.SetBase`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds the specified items.
+            </summary>
+            <param name="items">The items.</param>
+        </member>
+        <member name="T:SixPack.Collections.Generic.SortedSet`1">
+            <summary>
+            Collection that contains sorted unique items
+            </summary>
+            <typeparam name="T">
+            </typeparam>
+        </member>
+        <member name="M:SixPack.Collections.Generic.SortedSet`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="!:SortedSet&lt;T&gt;" /> class.
+            </summary>
+        </member>
+        <member name="M:SixPack.Collections.Generic.SortedSet`1.#ctor(System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="!:SortedSet&lt;T&gt;" /> class.
+            </summary>
+            <param name="comparer">The comparer to use when comparing elements.</param>
+        </member>
+        <member name="M:SixPack.Collections.Generic.SortedSet`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="!:SortedSet&lt;T&gt;" /> class.
+            </summary>
+            <param name="elements">The elements to add to the set.</param>
+        </member>
+        <member name="M:SixPack.Collections.Generic.SortedSet`1.#ctor(T[])">
+            <summary>
+            Initializes a new instance of the <see cref="!:Set&lt;T&gt;" /> class.
+            </summary>
+            <param name="elements">The elements to add to the set.</param>
+        </member>
+        <member name="M:SixPack.Collections.Generic.SortedSet`1.#ctor(System.Collections.Generic.IComparer{`0},System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="!:Set&lt;T&gt;" /> class.
+            </summary>
+            <param name="comparer">The comparer to use when comparing elements.</param>
+            <param name="elements">The elements to add to the set.</param>
+        </member>
+        <member name="M:SixPack.Collections.Generic.SortedSet`1.#ctor(System.Collections.Generic.IComparer{`0},T[])">
+            <summary>
+            Initializes a new instance of the <see cref="!:Set&lt;T&gt;" /> class.
+            </summary>
+            <param name="comparer">The comparer to use when comparing elements.</param>
+            <param name="elements">The elements to add to the set.</param>
+        </member>
+        <member name="T:SixPack.Collections.Generic.Set`1">
+            <summary>
+            Collection that contains unique items
+            </summary>
+            <typeparam name="T">
+            </typeparam>
+        </member>
+        <member name="M:SixPack.Collections.Generic.Set`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="!:Set&lt;T&gt;" /> class.
+            </summary>
+        </member>
+        <member name="M:SixPack.Collections.Generic.Set`1.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="!:Set&lt;T&gt;" /> class.
+            </summary>
+            <param name="comparer">The comparer to use when comparing elements.</param>
+        </member>
+        <member name="M:SixPack.Collections.Generic.Set`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="!:Set&lt;T&gt;" /> class.
+            </summary>
+            <param name="elements">The elements to add to the set.</param>
+        </member>
+        <member name="M:SixPack.Collections.Generic.Set`1.#ctor(T[])">
+            <summary>
+            Initializes a new instance of the <see cref="!:Set&lt;T&gt;" /> class.
+            </summary>
+            <param name="elements">The elements to add to the set.</param>
+        </member>
+        <member name="M:SixPack.Collections.Generic.Set`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="!:Set&lt;T&gt;" /> class.
+            </summary>
+            <param name="comparer">The comparer to use when comparing elements.</param>
+            <param name="elements">The elements to add to the set.</param>
+        </member>
+        <member name="M:SixPack.Collections.Generic.Set`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},T[])">
+            <summary>
+            Initializes a new instance of the <see cref="!:Set&lt;T&gt;" /> class.
+            </summary>
+            <param name="comparer">The comparer to use when comparing elements.</param>
+            <param name="elements">The elements to add to the set.</param>
+        </member>
+        <member name="T:SixPack.Data.CommandWrapper">
+            <summary>
+            Fa�ade for SqlCommand
+            </summary>
+        </member>
+        <member name="M:SixPack.Data.CommandWrapper.#ctor(System.Data.Common.DbCommand,System.Data.Common.DbProviderFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Data.CommandWrapper" /> class.
+            </summary>
+            <param name="dbCommand">The db command.</param>
+            <param name="dbProviderFactory">The db provider factory.</param>
+        </member>
+        <member name="M:SixPack.Data.CommandWrapper.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:SixPack.Data.CommandWrapper.GetOutputParameter(System.String)">
+            <summary>
+            Gets the value of the specified output parameter.
+            </summary>
+            <param name="name">The name of the parameter.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.CommandWrapper.GetOutputParameters(System.Int32)">
+            <summary>
+            Gets the value of the output parameters.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.CommandWrapper.AddParameter(System.String,System.Object,System.Data.DbType,System.Int32)">
+            <summary>
+            Adds an input parameter.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+            <param name="parType">Type of the par.</param>
+            <param name="size">The size.</param>
+        </member>
+        <member name="M:SixPack.Data.CommandWrapper.AddOutParameter(System.String,System.Data.DbType,System.Int32)">
+            <summary>
+            Adds an output parameter.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="parType">Type of the par.</param>
+            <param name="size">The size.</param>
+        </member>
+        <member name="M:SixPack.Data.CommandWrapper.AddParameter(System.String,System.Object,System.Data.DbType,System.Int32,System.Data.ParameterDirection)">
+            <summary>
+            Adds a parameter.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+            <param name="parType">Type of the par.</param>
+            <param name="size">The size.</param>
+            <param name="direction">The direction.</param>
+        </member>
+        <member name="M:SixPack.Data.CommandWrapper.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"></see> that represents the current <see cref="T:SixPack.Data.CommandWrapper" />.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"></see> that represents the current <see cref="T:SixPack.Data.CommandWrapper" />.
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.CommandWrapper.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+            <param name="disposing">
+                <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="T:SixPack.Data.DataCollection`1">
+            <summary>
+            Collection of Data Transfer Objects
+            </summary>
+            <typeparam name="T">
+            </typeparam>
+        </member>
+        <member name="M:SixPack.Data.DataCollection`1.Load(System.Data.DataTable)">
+            <summary>
+            Loads a DataCollection by parsing a DataTable
+            It does not remove current items.
+            </summary>
+            <param name="dataTable">The data table.</param>
+        </member>
+        <member name="M:SixPack.Data.DataCollection`1.Load(System.Data.DataRow[])">
+            <summary>
+            Loads a DataCollection by parsing a DataRow[]
+            It does not remove current items.
+            </summary>
+            <param name="dataRowArray">The data row array.</param>
+        </member>
+        <member name="T:SixPack.Data.IDataLoader">
+            <summary>
+            Collection of Data Transfer Objects
+            </summary>
+        </member>
+        <member name="M:SixPack.Data.IDataLoader.Load(System.Data.DataTable)">
+            <summary>
+            Loads a DataCollection by parsing a DataTable
+            It does not remove current items.
+            </summary>
+            <param name="dataTable">The data table.</param>
+        </member>
+        <member name="M:SixPack.Data.IDataLoader.Load(System.Data.DataRow[])">
+            <summary>
+            Loads a DataCollection by parsing a DataRow[]
+            It does not remove current items.
+            </summary>
+            <param name="dataRowArray">The data row array.</param>
+        </member>
+        <member name="T:SixPack.Data.IDataObject">
+            <summary>
+            Inferface to be implemented by Data Objects.
+            </summary>
+        </member>
+        <member name="M:SixPack.Data.IDataObject.Load(System.Data.DataRow)">
+            <summary>
+            Loads the contents of the object by parsing a DataRow.
+            </summary>
+            <param name="dr">A DataRow object containing the values to be loaded by the object</param>
+        </member>
+        <member name="T:SixPack.Data.StoredProcedure">
+            <summary>
+            This class is used to wrap and execute stored procedures.
+            </summary>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.#ctor(System.String,SixPack.Data.StoredProcedure.ConnectionInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Data.StoredProcedure" /> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="connectionInfo">The cached connection string information.</param>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Data.StoredProcedure" /> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="connectionStringName">Name of the connection string.</param>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Data.StoredProcedure" /> class using the first connection string as connection.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="T:SixPack.Data.StoredProcedure.ConnectionInfo">
+            <summary>
+            Contains a connection string and a <see cref="T:System.Data.Common.DbProviderFactory" />.
+            </summary>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.ConnectionInfo.#ctor(System.Configuration.ConnectionStringSettings)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Data.StoredProcedure.ConnectionInfo" /> class.
+            </summary>
+            <param name="css">The CSS.</param>
+        </member>
+        <member name="P:SixPack.Data.StoredProcedure.ConnectionInfo.ConnectionString">
+            <summary>
+            Gets the connection string.
+            </summary>
+            <value>The connection string.</value>
+        </member>
+        <member name="P:SixPack.Data.StoredProcedure.ConnectionInfo.ProviderFactory">
+            <summary>
+            Gets the provider factory.
+            </summary>
+            <value>The provider factory.</value>
+        </member>
+        <member name="P:SixPack.Data.StoredProcedure.Command">
+            <summary>
+            Gets the command.
+            </summary>
+            <value>The command.</value>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.InitializeDefaultConnectionString">
+            <summary>
+            Initializes the default connection string.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.GetConnectionString(System.String)">
+            <summary>
+            Gets the connection string with the specified name from the cache.
+            </summary>
+            <param name="name">The name of the connection string.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.GetOutputParameter(System.String)">
+            <summary>
+            Gets the value of the specified output parameter.
+            </summary>
+            <param name="name">The name of the parameter.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.createDbConnection">
+            <summary>
+            Creates the database connection.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.createDbDataAdapter">
+            <summary>
+            Creates the db data adapter.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.Execute``1(System.Data.Common.DbConnection,System.Data.Common.DbTransaction,SixPack.Data.ExecuteDelegate{``0})">
+            <summary>
+            Executes the stoted procedure.
+            </summary>
+            <typeparam name="T">
+            </typeparam>
+            <param name="connection">The connection to use.</param>
+            <param name="transaction">The transaction to use.</param>
+            <param name="executeMethod">The method that actually executes the stored procedure.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.ExecuteInternal``1(SixPack.Data.ExecuteDelegate{``0})">
+            <summary>
+            Executes the stored procedure.
+            </summary>
+            <typeparam name="T">
+            </typeparam>
+            <param name="executeMethod">The method that actually executes the stored procedure.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.ExecuteInternal``1(System.Data.Common.DbTransaction,SixPack.Data.ExecuteDelegate{``0})">
+            <summary>
+            Executes the stored procedure.
+            </summary>
+            <typeparam name="T">
+            </typeparam>
+            <param name="transaction">The transaction to use.</param>
+            <param name="executeMethod">The method that actually executes the stored procedure.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.ExecuteInternal``1(System.Data.Common.DbConnection,SixPack.Data.ExecuteDelegate{``0})">
+            <summary>
+            Executes the stored procedure.
+            </summary>
+            <typeparam name="T">
+            </typeparam>
+            <param name="connection">The connection to use.</param>
+            <param name="executeMethod">The method that actually executes the stored procedure.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.Execute">
+            <summary>
+            Executes this instance, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalExecute" />.
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <returns>Returns the number of rows affected.</returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.Execute(System.Data.Common.DbTransaction)">
+            <summary>
+            Executes this instance, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalExecute" />.
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <param name="transaction">The transaction on which the stored procedure should be executed.</param>
+            <returns>Returns the number of rows affected.</returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.Execute(System.Data.Common.DbConnection)">
+            <summary>
+            Executes this instance, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalExecute" />.
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <param name="connection">The connection to be used.</param>
+            <returns>Returns the number of rows affected.</returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.InternalExecute">
+            <summary>
+            Executes this instance.
+            </summary>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.Execute``1(``0@)">
+            <summary>
+            Executes this instance, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalExecute" />.
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <typeparam name="TParameter">The type of the param.</typeparam>
+            <param name="parameter">The output parameter of the stored procedure.</param>
+            <returns>Returns the number of rows affected.</returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.Execute``1(System.Data.Common.DbTransaction,``0@)">
+            <summary>
+            Executes this instance, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalExecute" />.
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <typeparam name="TParameter">The type of the param.</typeparam>
+            <param name="transaction">The transaction on which the stored procedure should be executed.</param>
+            <param name="parameter">The output parameter of the stored procedure.</param>
+            <returns>Returns the number of rows affected.</returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.Execute``1(System.Data.Common.DbConnection,``0@)">
+            <summary>
+            Executes this instance, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalExecute" />.
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <typeparam name="TParameter">The type of the param.</typeparam>
+            <param name="connection">The connection to be used.</param>
+            <param name="parameter">The output parameter of the stored procedure.</param>
+            <returns>Returns the number of rows affected.</returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.Execute``2(``0@,``1@)">
+            <summary>
+            Executes this instance, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalExecute" />.
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <typeparam name="TFirstParameter">The type of the first param.</typeparam>
+            <typeparam name="TSecondParameter">The type of the second param.</typeparam>
+            <param name="firstParameter">The first output parameter of the stored procedure.</param>
+            <param name="secondParameter">The second output parameter of the stored procedure.</param>
+            <returns>Returns the number of rows affected.</returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.Execute``2(System.Data.Common.DbTransaction,``0@,``1@)">
+            <summary>
+            Executes this instance, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalExecute" />.
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <typeparam name="TFirstParameter">The type of the first param.</typeparam>
+            <typeparam name="TSecondParameter">The type of the second param.</typeparam>
+            <param name="transaction">The transaction on which the stored procedure should be executed.</param>
+            <param name="firstParameter">The first output parameter of the stored procedure.</param>
+            <param name="secondParameter">The second output parameter of the stored procedure.</param>
+            <returns>Returns the number of rows affected.</returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.Execute``2(System.Data.Common.DbConnection,``0@,``1@)">
+            <summary>
+            Executes this instance, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalExecute" />.
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <typeparam name="TFirstParameter">The type of the first param.</typeparam>
+            <typeparam name="TSecondParameter">The type of the second param.</typeparam>
+            <param name="connection">The connection to be used.</param>
+            <param name="firstParameter">The first output parameter of the stored procedure.</param>
+            <param name="secondParameter">The second output parameter of the stored procedure.</param>
+            <returns>Returns the number of rows affected.</returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.Execute``3(``0@,``1@,``2@)">
+            <summary>
+            Executes this instance, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalExecute" />.
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <typeparam name="TFirstParameter">The type of the first param.</typeparam>
+            <typeparam name="TSecondParameter">The type of the second param.</typeparam>
+            <typeparam name="TThirdParameter">The type of the third param.</typeparam>
+            <param name="firstParameter">The first output parameter of the stored procedure.</param>
+            <param name="secondParameter">The second output parameter of the stored procedure.</param>
+            <param name="thirdParameter">The third output parameter of the stored procedure.</param>
+            <returns>Returns the number of rows affected.</returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.Execute``3(System.Data.Common.DbTransaction,``0@,``1@,``2@)">
+            <summary>
+            Executes this instance, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalExecute" />.
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <typeparam name="TFirstParameter">The type of the first param.</typeparam>
+            <typeparam name="TSecondParameter">The type of the second param.</typeparam>
+            <typeparam name="TThirdParameter">The type of the third param.</typeparam>
+            <param name="transaction">The transaction on which the stored procedure should be executed.</param>
+            <param name="firstParameter">The first output parameter of the stored procedure.</param>
+            <param name="secondParameter">The second output parameter of the stored procedure.</param>
+            <param name="thirdParameter">The third output parameter of the stored procedure.</param>
+            <returns>Returns the number of rows affected.</returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.Execute``3(System.Data.Common.DbConnection,``0@,``1@,``2@)">
+            <summary>
+            Executes this instance, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalExecute" />.
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <typeparam name="TFirstParameter">The type of the first param.</typeparam>
+            <typeparam name="TSecondParameter">The type of the second param.</typeparam>
+            <typeparam name="TThirdParameter">The type of the third param.</typeparam>
+            <param name="connection">The connection to be used.</param>
+            <param name="firstParameter">The first output parameter of the stored procedure.</param>
+            <param name="secondParameter">The second output parameter of the stored procedure.</param>
+            <param name="thirdParameter">The third output parameter of the stored procedure.</param>
+            <returns>Returns the number of rows affected.</returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.ExecuteScalar">
+            <summary>
+            Executes this instance returning a scalar, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalExecuteScalar" />.
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.ExecuteScalar(System.Data.Common.DbTransaction)">
+            <summary>
+            Executes this instance returning a scalar, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalExecuteScalar" />.
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <param name="transaction">The transaction on which the stored procedure should be executed.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.ExecuteScalar(System.Data.Common.DbConnection)">
+            <summary>
+            Executes this instance returning a scalar, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalExecuteScalar" />.
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <param name="connection">The connection to be used.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.InternalExecuteScalar">
+            <summary>
+            Executes this instance returning a scalar.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.GetDataSet">
+            <summary>
+            Executes the stored procedure and returns the results as a DataSet, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalGetDataSet" />..
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.GetDataSet(System.Data.Common.DbTransaction)">
+            <summary>
+            Executes the stored procedure and returns the results as a DataSet, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalGetDataSet" />..
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <param name="transaction">The transaction on which the stored procedure should be executed.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.GetDataSet(System.Data.Common.DbConnection)">
+            <summary>
+            Executes the stored procedure and returns the results as a DataSet, by calling <see cref="M:SixPack.Data.StoredProcedure.InternalGetDataSet" />..
+            Handles deadlock retries for Sql Server connections.
+            </summary>
+            <param name="connection">The connection to be used.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.InternalGetDataSet">
+            <summary>
+            Executes the stored procedure and returns the results as a DataSet.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Data.StoredProcedure.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+            <param name="disposing">
+                <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="T:SixPack.Data.StoreProcedureInvokerAttribute">
+            <summary>
+            Methods with this attribute invoke a stored procedure and return a dataset.
+            </summary>
+        </member>
+        <member name="T:SixPack.Diagnostics.Log">
+            <summary>
+            Use this class to log messages for later consumption
+            </summary>
+        </member>
+        <member name="P:SixPack.Diagnostics.Log.CurrentLogFile">
+            <summary>
+            Gets the current log file.
+            </summary>
+            <value>The current log file.</value>
+        </member>
+        <member name="P:SixPack.Diagnostics.Log.Instance">
+            <summary>
+            Gets the instance.
+            </summary>
+            <value>The instance.</value>
+        </member>
+        <member name="M:SixPack.Diagnostics.Log.Finalize">
+            <summary>
+            Releases unmanaged resources and performs other cleanup operations before the
+            <see cref="T:SixPack.Diagnostics.Log" /> is reclaimed by garbage collection.
+            </summary>
+        </member>
+        <member name="M:SixPack.Diagnostics.Log.HandleException(System.Exception)">
+            <summary>
+            Logs an exception
+            </summary>
+            <param name="exception">The exception to log</param>
+        </member>
+        <member name="M:SixPack.Diagnostics.Log.AddFormat(System.String,System.Object)">
+            <summary>
+            Adds a line to the log with format.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="arg0">The object.</param>
+        </member>
+        <member name="M:SixPack.Diagnostics.Log.AddFormat(System.String,System.Object,SixPack.Diagnostics.LogLevel)">
+            <summary>
+            Adds a line to the log with format.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="arg0">The object.</param>
+            <param name="logLevel">The log level.</param>
+        </member>
+        <member name="M:SixPack.Diagnostics.Log.AddFormat(System.String,System.Object,System.Object)">
+            <summary>
+            Adds a line to the log with format.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="arg0">The object.</param>
+            <param name="arg1">Another object.</param>
+        </member>
+        <member name="M:SixPack.Diagnostics.Log.AddFormat(System.String,System.Object,System.Object,SixPack.Diagnostics.LogLevel)">
+            <summary>
+            Adds a line to the log with format.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="arg0">The object.</param>
+            <param name="arg1">Another object.</param>
+            <param name="logLevel">The log level.</param>
+        </member>
+        <member name="M:SixPack.Diagnostics.Log.AddFormat(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            Adds a line to the log with format.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="arg0">The object.</param>
+            <param name="arg1">Another object.</param>
+            <param name="arg2">Yet another object.</param>
+        </member>
+        <member name="M:SixPack.Diagnostics.Log.AddFormat(System.String,System.Object,System.Object,System.Object,SixPack.Diagnostics.LogLevel)">
+            <summary>
+            Adds a line to the log with format.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="arg0">The object.</param>
+            <param name="arg1">Another object.</param>
+            <param name="arg2">Yet another object.</param>
+            <param name="logLevel">The log level.</param>
+        </member>
+        <member name="M:SixPack.Diagnostics.Log.AddFormat(System.String,System.Object[],SixPack.Diagnostics.LogLevel)">
+            <summary>
+            Adds a line to the log with format.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The object array.</param>
+            <param name="logLevel">The log level.</param>
+        </member>
+        <member name="M:SixPack.Diagnostics.Log.AddFormat(System.String,System.Object[])">
+            <summary>
+            Adds a line to the log with format.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The object array.</param>
+        </member>
+        <member name="M:SixPack.Diagnostics.Log.HandleException(System.Exception,SixPack.Diagnostics.LogLevel)">
+            <summary>
+            Logs an exception
+            </summary>
+            <param name="exception">The exception to log</param>
+            <param name="logLevel">The severity of the corresponding message</param>
+        </member>
+        <member name="M:SixPack.Diagnostics.Log.Add(System.String)">
+            <summary>
+            Adds a line to the log
+            </summary>
+            <param name="text">The message to add</param>
+        </member>
+        <member name="M:SixPack.Diagnostics.Log.Add(System.String,SixPack.Diagnostics.LogLevel)">
+            <summary>
+            Adds a line to the log
+            </summary>
+            <param name="text">The message to add</param>
+            <param name="logLevel">The severity of the corresponding message</param>
+        </member>
+        <member name="T:SixPack.Diagnostics.LogLevel">
+            <summary>
+            Specifies the severity of a log message.
+            </summary>
+        </member>
+        <member name="F:SixPack.Diagnostics.LogLevel.None">
+            <summary>
+            Will not be logged.
+            </summary>
+        </member>
+        <member name="F:SixPack.Diagnostics.LogLevel.Debug">
+            <summary>
+            Debug
+            </summary>
+        </member>
+        <member name="F:SixPack.Diagnostics.LogLevel.Info">
+            <summary>
+            Information
+            </summary>
+        </member>
+        <member name="F:SixPack.Diagnostics.LogLevel.Warning">
+            <summary>
+            Warning
+            </summary>
+        </member>
+        <member name="F:SixPack.Diagnostics.LogLevel.Error">
+            <summary>
+            Error
+            </summary>
+        </member>
+        <member name="F:SixPack.Diagnostics.LogLevel.Critical">
+            <summary>
+            Critical error
+            </summary>
+        </member>
+        <member name="T:SixPack.Diagnostics.HighResolutionTimer">
+            <summary>
+            High resolution timer class
+            </summary>
+        </member>
+        <member name="M:SixPack.Diagnostics.HighResolutionTimer.Sample">
+            <summary>
+            Returns a value that can be used to calculate the time interval between two samples.
+            </summary>
+        </member>
+        <member name="M:SixPack.Diagnostics.HighResolutionTimer.Duration(SixPack.Diagnostics.TimerSample,SixPack.Diagnostics.TimerSample)">
+            <summary>
+            Gets the time elapsed between <paramref name="startTime" /> and <paramref name="endTime" />.
+            </summary>
+            <param name="startTime">The start time.</param>
+            <param name="endTime">The end time.</param>
+            <returns>
+            </returns>
+            <remarks>
+            This method is safe for using in a multithreaded environment.
+            </remarks>
+        </member>
+        <member name="M:SixPack.Diagnostics.HighResolutionTimer.Start">
+            <summary>
+            Starts the timer.
+            </summary>
+        </member>
+        <member name="M:SixPack.Diagnostics.HighResolutionTimer.Stop">
+            <summary>
+            Stops the timer.
+            </summary>
+        </member>
+        <member name="M:SixPack.Diagnostics.HighResolutionTimer.Duration(System.Int32)">
+            <summary>
+            Returns the elapsed duration given the number of iterations
+            </summary>
+            <param name="iterations">The iterations.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Diagnostics.HighResolutionTimer.TimeToSeconds(System.Double)">
+            <summary>
+            Converts the specified time to seconds.
+            </summary>
+            <param name="time">The time.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Diagnostics.HighResolutionTimer.TimeToMilliseconds(System.Double)">
+            <summary>
+            Converts the specified time to milliseconds.
+            </summary>
+            <param name="time">The time.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Diagnostics.HighResolutionTimer.TimeToTimeSpan(System.Double)">
+            <summary>
+            Converts the specified time to <see cref="T:System.TimeSpan" />.
+            </summary>
+            <param name="time">The time.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:SixPack.Diagnostics.TimerSample">
+            <summary>
+            Value that can be used to calculate a time interval.
+            </summary>
+        </member>
+        <member name="M:SixPack.Diagnostics.TimerSample.#ctor(System.Int64)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Diagnostics.TimerSample" /> struct.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="T:SixPack.Drawing.CaptchaImage">
+            <summary>
+            Generates CAPTCHA images
+            </summary>
+        </member>
+        <member name="M:SixPack.Drawing.CaptchaImage.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Drawing.CaptchaImage" /> class.
+            </summary>
+            <param name="text">The s.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+        </member>
+        <member name="M:SixPack.Drawing.CaptchaImage.#ctor(System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Drawing.CaptchaImage" /> class.
+            </summary>
+            <param name="text">The s.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+            <param name="familyName">Name of the family.</param>
+        </member>
+        <member name="P:SixPack.Drawing.CaptchaImage.Text">
+            <summary>
+            Gets the text.
+            </summary>
+            <value>The text.</value>
+        </member>
+        <member name="P:SixPack.Drawing.CaptchaImage.Image">
+            <summary>
+            Gets the image.
+            </summary>
+            <value>The image.</value>
+        </member>
+        <member name="P:SixPack.Drawing.CaptchaImage.Width">
+            <summary>
+            Gets the width.
+            </summary>
+            <value>The width.</value>
+        </member>
+        <member name="P:SixPack.Drawing.CaptchaImage.Height">
+            <summary>
+            Gets the height.
+            </summary>
+            <value>The height.</value>
+        </member>
+        <member name="M:SixPack.Drawing.CaptchaImage.Dispose">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+        </member>
+        <member name="M:SixPack.Drawing.CaptchaImage.Finalize">
+            <summary>
+            Releases unmanaged resources and performs other cleanup operations before the
+            <see cref="T:SixPack.Drawing.CaptchaImage" /> is reclaimed by garbage collection.
+            </summary>
+        </member>
+        <member name="M:SixPack.Drawing.CaptchaImage.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+            <param name="disposing">
+                <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="T:SixPack.Drawing.ImageSizing">
+            <summary>
+            This class provides methods for image sizing
+            </summary>
+        </member>
+        <member name="M:SixPack.Drawing.ImageSizing.Resize(System.Drawing.Image,System.Int32,System.Int32,System.Drawing.Color,SixPack.Drawing.ImageResizeMethod)">
+            <summary>
+            Resizes the specified image.
+            </summary>
+            <param name="image">The image.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+            <param name="background">The background color.</param>
+            <param name="imageResizeMethod">The image resize method.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:SixPack.Drawing.ImageResizeMethod">
+            <summary>
+            Represents the resize method to use
+            </summary>
+        </member>
+        <member name="F:SixPack.Drawing.ImageResizeMethod.FullPadding">
+            <summary>
+            Image is scaled proportionally so it is as large as possible while fitting in the destination rectangle.
+            Padding is added where needed so that the final size of the image corresponds to the passed parameters.
+            </summary>
+        </member>
+        <member name="F:SixPack.Drawing.ImageResizeMethod.ScaleAndCrop">
+            <summary>
+            Image is scaled proportionally so it is as large as possible while fitting either horizontally or vertically in the destination rectangle.
+            The image is then cropped to the size corresponding to the passed parameters.
+            </summary>
+        </member>
+        <member name="F:SixPack.Drawing.ImageResizeMethod.HorizontalPadding">
+            <summary>
+            Image is scaled proportionally so it is as large as possible while fitting in the destination rectangle.
+            Padding is added in the horizontal direction if needed so that the final height of the image corresponds to the passed parameters.
+            The final width of the image can be equal or less than the passed width parameter.
+            </summary>
+        </member>
+        <member name="F:SixPack.Drawing.ImageResizeMethod.VerticalPadding">
+            <summary>
+            Image is scaled proportionally so it is as large as possible while fitting in the destination rectangle.
+            Padding is added in the vertical direction if needed so that the final height of the image corresponds to the passed parameters.
+            The final width of the image can be equal or less than the passed width parameter.
+            </summary>
+        </member>
+        <member name="F:SixPack.Drawing.ImageResizeMethod.ByWidth">
+            <summary>
+            Image is scaled proportionally so its width is equal to the passed parameter. Height is ignored.
+            </summary>
+        </member>
+        <member name="F:SixPack.Drawing.ImageResizeMethod.ByHeight">
+            <summary>
+            Image is scaled proportionally so its height is equal to the passed parameter. Width is ignored.
+            </summary>
+        </member>
+        <member name="F:SixPack.Drawing.ImageResizeMethod.NoPadding">
+            <summary>
+            Image is scaled proportionally so it is as large as possible while fitting in the destination rectangle.
+            Height and width are less than or equal to the passwd parameters.
+            </summary>
+        </member>
+        <member name="T:SixPack.Globalization.Portugal.FiscalCode">
+            <summary>
+            Validates portuguese postal codes
+            </summary>
+        </member>
+        <member name="F:SixPack.Globalization.Portugal.FiscalCode.fiscalCodePattern">
+            <summary>
+            Regex expression to validate a Portuguese Postal Code
+            </summary>
+        </member>
+        <member name="M:SixPack.Globalization.Portugal.FiscalCode.IsValid(System.String)">
+            <summary>
+            Determines whether the specified fiscal code is valid.
+            </summary>
+            <param name="fiscalCode">The fiscal code.</param>
+            <returns>
+                <c>true</c> if the specified fiscal code is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:SixPack.Globalization.Portugal.PhoneNumber">
+            <summary>
+            Validates portuguese phone numbers
+            </summary>
+        </member>
+        <member name="M:SixPack.Globalization.Portugal.PhoneNumber.GetType(System.String)">
+            <summary>
+            Gets the type of the specified phone number.
+            </summary>
+            <param name="phoneNumber">The phone number.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Globalization.Portugal.PhoneNumber.IsValid(System.String,SixPack.Globalization.Portugal.PhoneNumberTypes)">
+            <summary>
+            Determines whether the specified phone number is valid.
+            </summary>
+            <param name="phoneNumber">The phone number.</param>
+            <param name="validTypes">The valid types.</param>
+            <returns>
+                <c>true</c> if the specified phone number is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:SixPack.Globalization.Portugal.PhoneNumberTypes">
+            <summary>
+            See http://www.anacom.pt/template12.jsp?categoryId=5344
+            </summary>
+        </member>
+        <member name="F:SixPack.Globalization.Portugal.PhoneNumberTypes.None">
+            <summary>
+            Invalid phone number
+            </summary>
+        </member>
+        <member name="F:SixPack.Globalization.Portugal.PhoneNumberTypes.International">
+            <summary>
+            International access prefix
+            </summary>
+        </member>
+        <member name="F:SixPack.Globalization.Portugal.PhoneNumberTypes.ShortNumber">
+            <summary>
+            Short Numbers
+            </summary>
+        </member>
+        <member name="F:SixPack.Globalization.Portugal.PhoneNumberTypes.FixedService">
+            <summary>
+            Fixed Telephone Service
+            </summary>
+        </member>
+        <member name="F:SixPack.Globalization.Portugal.PhoneNumberTypes.NomadicService">
+            <summary>
+            Nomadic services
+            </summary>
+        </member>
+        <member name="F:SixPack.Globalization.Portugal.PhoneNumberTypes.AudioText">
+            <summary>
+            Audiotext, Data Network Access, etc.
+            </summary>
+        </member>
+        <member name="F:SixPack.Globalization.Portugal.PhoneNumberTypes.PrivateVoiceNetwork">
+            <summary>
+            Private Voice Network and Universal Access Services, etc
+            </summary>
+        </member>
+        <member name="F:SixPack.Globalization.Portugal.PhoneNumberTypes.FreeServices">
+            <summary>
+            Free Services for the Caller, Virtual Call Card Services, Trunk Call Services, Personal Number
+            </summary>
+        </member>
+        <member name="F:SixPack.Globalization.Portugal.PhoneNumberTypes.MobileCommunicationServices">
+            <summary>
+            Mobile Communications Services
+            </summary>
+        </member>
+        <member name="F:SixPack.Globalization.Portugal.PhoneNumberTypes.PersonalNumber">
+            <summary>
+            Numbers that normal people have
+            </summary>
+        </member>
+        <member name="F:SixPack.Globalization.Portugal.PhoneNumberTypes.CompanyNumber">
+            <summary>
+            Numbers that companies have
+            </summary>
+        </member>
+        <member name="T:SixPack.Globalization.Portugal.PostalCode">
+            <summary>
+            Validates portuguese postal codes
+            </summary>
+        </member>
+        <member name="F:SixPack.Globalization.Portugal.PostalCode.postalCodePattern">
+            <summary>
+            Regex expression to validate a Portuguese Postal Code
+            </summary>
+        </member>
+        <member name="M:SixPack.Globalization.Portugal.PostalCode.IsValid(System.String)">
+            <summary>
+            Determines whether the specified postal code is valid.
+            </summary>
+            <param name="postalCode">The postal code.</param>
+            <returns>
+                <c>true</c> if the specified postal code is valid Portuguese postal code; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:SixPack.Globalization.Portugal.VatCode">
+            <summary>
+            Validates portuguese postal codes
+            </summary>
+        </member>
+        <member name="F:SixPack.Globalization.Portugal.VatCode.vatCodePattern">
+            <summary>
+            Regex expression to validate a Portuguese Postal Code
+            </summary>
+        </member>
+        <member name="M:SixPack.Globalization.Portugal.VatCode.IsValid(System.String)">
+            <summary>
+            Determines whether the specified VAT code is valid.
+            </summary>
+            <param name="vatCode">The VAT code.</param>
+            <returns>
+                <c>true</c> if the specified VAT code is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:SixPack.Net.Dns">
+            <summary>
+            Dns provides advanced DNS lookup capabilities.
+            </summary>
+        </member>
+        <member name="M:SixPack.Net.Dns.GetMXRecords(System.String)">
+            <summary>
+            Gets the MX records.
+            </summary>
+            <param name="domain">The domain.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Dns.GetResolvedMXRecords(System.String)">
+            <summary>
+            Gets the resolved MX records.
+            </summary>
+            <param name="domain">The domain.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:SixPack.Net.IPAddressFormat">
+            <summary>
+            Validates IP addresses
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.IPAddressFormat.ipAddressPattern">
+            <summary>
+            Regex expression to validate an IP address
+            </summary>
+        </member>
+        <member name="M:SixPack.Net.IPAddressFormat.IsValid(System.String)">
+            <summary>
+            Determines whether the specified ip address is valid.
+            </summary>
+            <param name="ipAddress">The ip address.</param>
+            <returns>
+                <c>true</c> if the specified ip address is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:SixPack.Net.Mail.EmailAddress">
+            <summary>
+            Validates an email address
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.EmailAddress.rfc2822EmailAddressPattern">
+            <summary>
+            Regex expression to validate an Email address according to RFC 2822
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.EmailAddress.simpleEmailAddressPattern">
+            <summary>
+            Regex expression to validate an Email address in a simple, but efficient manner
+            </summary>
+        </member>
+        <member name="M:SixPack.Net.Mail.EmailAddress.IsValid(System.String,SixPack.Net.Mail.MailSyntaxValidationMode,SixPack.Net.Mail.MailSemanticValidationMode)">
+            <summary>
+            Determines whether the specified email address is valid.
+            </summary>
+            <param name="emailAddress">The email address.</param>
+            <param name="syntaxValidationMode">The syntax validation mode.</param>
+            <param name="semanticValidationMode">The semantic validation mode.</param>
+            <returns>
+                <c>true</c> if the specified email address is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Mail.EmailAddress.IsValid(System.String,SixPack.Net.Mail.MailSyntaxValidationMode)">
+            <summary>
+            Determines whether the specified email address is valid.
+            </summary>
+            <param name="emailAddress">The email address.</param>
+            <param name="syntaxValidationMode">The syntax validation mode.</param>
+            <returns>
+                <c>true</c> if the specified email address is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Mail.EmailAddress.IsValid(System.String,SixPack.Net.Mail.MailSemanticValidationMode)">
+            <summary>
+            Determines whether the specified email address is valid.
+            </summary>
+            <param name="emailAddress">The email address.</param>
+            <param name="semanticValidationMode">The semantic validation mode.</param>
+            <returns>
+                <c>true</c> if the specified email address is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Mail.EmailAddress.IsValid(System.String)">
+            <summary>
+            Determines whether the specified email address is valid.
+            </summary>
+            <param name="emailAddress">The email address.</param>
+            <returns>
+                <c>true</c> if the specified email address is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:SixPack.Net.XmlRpc">
+            <summary>
+            Support class for XML remote procedure calls.
+            </summary>
+        </member>
+        <member name="M:SixPack.Net.XmlRpc.#ctor(System.Uri)">
+            <summary>
+            Creates a new instance of the <see cref="T:SixPack.Net.XmlRpc" /> class.
+            </summary>
+            <param name="requestUri">
+            The <see cref="T:System.Uri" /> that is used for the request.
+            </param>
+            <exception cref="T:System.ArgumentNullException">The "requestUri" parameter was null.</exception>
+            <exception cref="T:System.ArgumentException">The scheme for the "requestUri" must be either http or https.</exception>
+        </member>
+        <member name="P:SixPack.Net.XmlRpc.RequestUri">
+            <value>
+            Gets the <see cref="T:System.Uri" /> that is used for the request.
+            </value>
+        </member>
+        <member name="P:SixPack.Net.XmlRpc.Timeout">
+            <value>
+            Gets or sets the request timeout in milliseconds.
+            </value>
+            <remarks>The default value is 2000 milliseconds.</remarks>
+        </member>
+        <member name="P:SixPack.Net.XmlRpc.Method">
+            <value>
+            Gets or sets the HTTP method that is used for the request.
+            </value>
+            <remarks>The default value is XmlRpcRequestMethod.Get.</remarks>
+        </member>
+        <member name="P:SixPack.Net.XmlRpc.Credentials">
+            <value>
+            Gets or sets the <see cref="T:System.Net.NetworkCredential" /> that is used for the request.
+            </value>
+        </member>
+        <member name="P:SixPack.Net.XmlRpc.UserName">
+            <value>
+            Gets or sets the user name that is used for the request.
+            </value>
+        </member>
+        <member name="P:SixPack.Net.XmlRpc.Password">
+            <value>
+            Gets or sets the password that is used for the request.
+            </value>
+        </member>
+        <member name="P:SixPack.Net.XmlRpc.XslTransform">
+            <summary>
+            Gets or sets a XSL transform that will be applied to the response before further processing.
+            </summary>
+            <value>The XSL transform.</value>
+        </member>
+        <member name="M:SixPack.Net.XmlRpc.GetResponseXml">
+            <summary>
+            Makes a HTTP/HTTPS request and returns the result in a <see cref="T:System.Xml.XmlReader" />.
+            </summary>
+            <returns>
+            A <see cref="T:System.Xml.XmlReader" /> containing the response.
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.XmlRpc.GetResponse">
+            <summary>
+            Makes a HTTP/HTTPS request and returns the result in a <see cref="T:System.Net.HttpWebResponse" />.
+            </summary>
+            <returns>
+            A <see cref="T:System.Net.HttpWebResponse" /> containing the response.
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.XmlRpc.GetResponseDataSet">
+            <summary>
+            Makes a HTTP/HTTPS request and returns the result in a <see cref="T:System.Data.DataSet" />.
+            </summary>
+            <returns>
+            A <see cref="T:System.Data.DataSet" /> containing the response.
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.XmlRpc.GetResponseObject(System.Type)">
+            <summary>
+            Makes a HTTP/HTTPS request and returns the result in a deserialized object.
+            </summary>
+            <param name="type">
+            The <see cref="T:System.Type" /> to use for deserialization.
+            </param>
+            <returns>
+            A <see cref="T:System.Object" /> containing the response deserialized to the specified type.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">The parameter "type" is null.</exception>
+        </member>
+        <member name="M:SixPack.Net.XmlRpc.GetResponseObject(System.Type[])">
+            <summary>
+            Makes a HTTP/HTTPS request and returns the result in a deserialized object.
+            </summary>
+            <param name="types">
+            An array of <see cref="T:System.Type" /> to be used for deserialization. If the first types fails, we will try the
+            second and so on, until a compatible type is found or the array has been completely parsed.
+            </param>
+            <returns>
+            A <see cref="T:System.Object" /> containing the response deserialized to the specified type.
+            </returns>
+            <exception cref="T:System.ArgumentException">The array is empty.</exception>
+            <exception cref="T:System.Xml.XmlException">No compatible type found.</exception>
+        </member>
+        <member name="M:SixPack.Net.XmlRpc.GetResponseObject(System.Xml.Serialization.XmlSerializer)">
+            <summary>
+            Makes a HTTP/HTTPS request and returns the result in a deserialized object.
+            </summary>
+            <param name="serializer">
+            A <see cref="T:System.Xml.Serialization.XmlSerializer" /> to be used for deserialization;
+            </param>
+            <returns>
+            A <see cref="T:System.Object" /> containing the response deserialized with the custom serializer.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">The parameter "serializer" is null.</exception>
+        </member>
+        <member name="T:SixPack.Net.XmlRpcRequestMethod">
+            <summary>
+            Represents the HTTP method to use to make an XML remote procedure call request.
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.XmlRpcRequestMethod.Get">
+            <summary>
+            Make the request using "GET"
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.XmlRpcRequestMethod.Post">
+            <summary>
+            Make the request using "POST"
+            </summary>
+        </member>
+        <member name="T:SixPack.Security.Cryptography.Configuration.RsaSmallCodeParserSection">
+            <summary>
+            Defines the codes configuration section for use in the 'web.config'
+            configuration file, for configuring the codes validators/translators
+            </summary>
+        </member>
+        <member name="P:SixPack.Security.Cryptography.Configuration.RsaSmallCodeParserSection.CodeLength">
+            <summary>
+            Code length used by the translator algorithm
+            </summary>
+        </member>
+        <member name="P:SixPack.Security.Cryptography.Configuration.RsaSmallCodeParserSection.InitialAlphabet">
+            <summary>
+            Incoming alphabet
+            </summary>
+        </member>
+        <member name="P:SixPack.Security.Cryptography.Configuration.RsaSmallCodeParserSection.FinalAlphabet">
+            <summary>
+            Outgoing alphabet
+            </summary>
+        </member>
+        <member name="P:SixPack.Security.Cryptography.Configuration.RsaSmallCodeParserSection.PublicKey">
+            <summary>
+            Public key used to decrypt the codes
+            </summary>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.Configuration.RsaSmallCodeParserSection.PostDeserialize">
+            <summary>
+            Called after deserialization.
+            </summary>
+        </member>
+        <member name="T:SixPack.Security.Cryptography.Configuration.RsaSmallPublicKeySection">
+            <summary>
+            Encapsulates the data necessary to generate an RsaSmallPublicKey
+            </summary>
+        </member>
+        <member name="P:SixPack.Security.Cryptography.Configuration.RsaSmallPublicKeySection.Modulus">
+            <summary>
+            Modulus
+            </summary>
+        </member>
+        <member name="P:SixPack.Security.Cryptography.Configuration.RsaSmallPublicKeySection.Exponent">
+            <summary>
+            Exponent
+            </summary>
+        </member>
+        <member name="P:SixPack.Security.Cryptography.Configuration.RsaSmallPublicKeySection.Value">
+            <summary>
+            Gets or sets the RsaSmallKey value.
+            </summary>
+            <value>The value.</value>
+        </member>
+        <member name="T:SixPack.Security.Cryptography.RsaSmallCodeParser">
+            <summary>
+            Parses an encrypted, translated code and transforms it in a BigInteger using the RsaSmall algorithm.
+            </summary>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.RsaSmallCodeParser.#ctor(System.Int32,SixPack.Security.Cryptography.RsaSmallPublicKey,SixPack.Text.IStringTranslator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.RsaSmallCodeParser" /> class.
+            </summary>
+            <param name="codeLength">Length of the code.</param>
+            <param name="rsaPublicKey">The RSA public key.</param>
+            <param name="translator">The translator.</param>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.RsaSmallCodeParser.#ctor(System.Int32,SixPack.Security.Cryptography.RsaSmallPublicKey,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.RsaSmallCodeParser" /> class.
+            </summary>
+            <param name="codeLength">Length of the code.</param>
+            <param name="rsaPublicKey">The RSA public key.</param>
+            <param name="initialAlphabet">The initial alphabet.</param>
+            <param name="finalAlphabet">The final alphabet.</param>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.RsaSmallCodeParser.Parse(System.String)">
+            <summary>
+            Parses the specified code.
+            </summary>
+            <param name="code">The code.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.RsaSmallCodeParser.TryParse(System.String,SixPack.Security.Cryptography.BigInteger@)">
+            <summary>
+            Tries to parse the code and returns true if successful. The parsed value is passed in result.
+            </summary>
+            <param name="code">The code.</param>
+            <param name="result">The result.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:SixPack.Text.AsciiStringTranslator">
+            <summary>
+            Implementation of the <see cref="T:SixPack.Text.IStringTranslator" /> interface for ASCII-only strings.
+            </summary>
+        </member>
+        <member name="M:SixPack.Text.AsciiStringTranslator.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Text.AsciiStringTranslator" /> class.
+            </summary>
+            <param name="initialAlphabet">The initial alphabet.</param>
+            <param name="finalAlphabet">The final alphabet.</param>
+            <param name="caseInvariant">if set to <c>true</c> the translation will be case invariant.</param>
+            <remarks>Both parameters must have the same length.</remarks>
+        </member>
+        <member name="P:SixPack.Text.AsciiStringTranslator.InitialAlphabet">
+            <summary>
+            Gets the initial alphabet.
+            </summary>
+            <value>The initial alphabet.</value>
+        </member>
+        <member name="P:SixPack.Text.AsciiStringTranslator.FinalAlphabet">
+            <summary>
+            Gets the final alphabet.
+            </summary>
+            <value>The final alphabet.</value>
+        </member>
+        <member name="P:SixPack.Text.AsciiStringTranslator.IsCaseInvariant">
+            <summary>
+            Gets a value indicating whether this instance is case invariant.
+            </summary>
+            <value>
+                <c>true</c> if this instance is case invariant; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:SixPack.Text.AsciiStringTranslator.Translate(System.String)">
+            <summary>
+            Translates the specified text.
+            </summary>
+            <param name="text">The text.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:SixPack.Text.IStringTranslator">
+            <summary>
+            Interface for a class implementing a translation operator a-la Perl tr/// operator.
+            </summary>
+        </member>
+        <member name="P:SixPack.Text.IStringTranslator.InitialAlphabet">
+            <summary>
+            Gets the initial alphabet.
+            </summary>
+            <value>The initial alphabet.</value>
+        </member>
+        <member name="P:SixPack.Text.IStringTranslator.FinalAlphabet">
+            <summary>
+            Gets the final alphabet.
+            </summary>
+            <value>The final alphabet.</value>
+        </member>
+        <member name="M:SixPack.Text.IStringTranslator.Translate(System.String)">
+            <summary>
+            Translates the specified text.
+            </summary>
+            <param name="text">The text.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:SixPack.Xml.Xsl.XslTransformer">
+            <summary>
+            Encapsulates and extends an <see cref="T:System.Xml.Xsl.XslCompiledTransform" />.
+            </summary>
+        </member>
+        <member name="M:SixPack.Xml.Xsl.XslTransformer.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:SixPack.Xml.Xsl.XslTransformer" /> class.
+            </summary>
+        </member>
+        <member name="M:SixPack.Xml.Xsl.XslTransformer.#ctor(System.Xml.Xsl.XslCompiledTransform)">
+            <summary>
+            Creates a new instance of the <see cref="T:SixPack.Xml.Xsl.XslTransformer" /> class.
+            </summary>
+            <param name="transform">
+            A <see cref="T:System.Xml.Xsl.XslCompiledTransform" /> which will be used as a base for the transformation.
+            </param>
+            <exception cref="T:System.ArgumentNullException">The transform parameter is null.</exception>
+        </member>
+        <member name="P:SixPack.Xml.Xsl.XslTransformer.Xslt">
+            <value>
+            Gets the current <see cref="T:System.Xml.Xsl.XslCompiledTransform" /> generated by the class.
+            </value>
+        </member>
+        <member name="M:SixPack.Xml.Xsl.XslTransformer.FromString(System.String)">
+            <summary>
+            Creates an XSLT transform from a string.
+            </summary>
+            <param name="xslt">
+            A <see cref="T:System.String" /> containing the XSLT transformation.
+            </param>
+            <returns>
+            Returns the current instance.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">The "xsltAsString" parameter is null or empty.</exception>
+        </member>
+        <member name="M:SixPack.Xml.Xsl.XslTransformer.FromResource(System.String,System.Reflection.Assembly)">
+            <summary>
+            Creates an XSLT transform from a resource.
+            </summary>
+            <param name="resourceName">
+            The resource name from which to load the XSLT.
+            </param>
+            <param name="assembly">
+            The <see cref="T:System.Reflection.Assembly" /> containing the resource to be loaded.
+            </param>
+            <returns>
+            Returns the current instance.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Either resourceName or assembly is null or empty.</exception>
+            <exception cref="T:System.InvalidOperationException">The resource was not found in the specified assembly.</exception>
+        </member>
+        <member name="M:SixPack.Xml.Xsl.XslTransformer.FromResource(System.String)">
+            <summary>
+            Creates and XSLT transform from a resource
+            </summary>
+            <param name="resourceName">
+            The resource name from which to load the XSLT.
+            </param>
+            <returns>
+            Returns the current instance.
+            </returns>
+            <remarks>The resource is loaded form the calling assembly.</remarks>
+            <exception cref="T:System.ArgumentNullException">Either resourceName or assembly is null or empty.</exception>
+            <exception cref="T:System.InvalidOperationException">The resource was not found in the specified assembly.</exception>
+        </member>
+        <member name="M:SixPack.Xml.Xsl.XslTransformer.FromFile(System.String)">
+            <summary>
+            Creates and XSLT transform from a file
+            </summary>
+            <param name="fileName">
+            The path of the file from which to load the XSLT.
+            </param>
+            <returns>
+            Returns the current instance.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">file name is null or empty.</exception>
+        </member>
+        <member name="T:SixPack.Net.Mail.MailSemanticValidationMode">
+            <summary>
+            Specifies the semantic validation mode for email
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.MailSemanticValidationMode.None">
+            <summary>
+            No validation is performed (default)
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.MailSemanticValidationMode.DnsLookup">
+            <summary>
+            Looks up the DNS records of the email host
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.MailSemanticValidationMode.ServerLookup">
+            <summary>
+            Tries to contact the mail server.
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.MailSemanticValidationMode.UserLookup">
+            <summary>
+            Tries to lookup the user on the mail server.
+            Very strict but with false errors.
+            </summary>
+        </member>
+        <member name="T:SixPack.Net.Mail.MailSyntaxValidationMode">
+            <summary>
+            Specifies the syntax validation mode for email
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.MailSyntaxValidationMode.None">
+            <summary>
+            No validation is performed
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.MailSyntaxValidationMode.Simple">
+            <summary>
+            Simple but efficient (default)
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.MailSyntaxValidationMode.Rfc2822">
+            <summary>
+            RFC compliant
+            </summary>
+        </member>
+        <member name="T:SixPack.Net.NetworkInformation.IPSemantics">
+            <summary>
+            Contains methods to validate the semantics of IPv4 addresses
+            </summary>
+        </member>
+        <member name="M:SixPack.Net.NetworkInformation.IPSemantics.IsValidIP(System.Net.IPAddress)">
+            <summary>
+            Determines whether the specified IP is a valid IP.
+            </summary>
+            <param name="ip">The IP.</param>
+            <returns>
+                <c>true</c> if the specified IP is a valid IP; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.NetworkInformation.IPSemantics.IsValidIP(System.Net.IPAddress,SixPack.Net.NetworkInformation.IPRanges)">
+            <summary>
+            Determines whether the specified IP is a valid IP.
+            </summary>
+            <param name="ip">The IP.</param>
+            <param name="invalidRange">The invalid range.</param>
+            <returns>
+                <c>true</c> if the specified IP is a valid IP; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.NetworkInformation.IPSemantics.GetIPRange(System.Net.IPAddress)">
+            <summary>
+            Gets the IP range to which an IP address belongs.
+            </summary>
+            <param name="ip">The IP.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:SixPack.Net.NetworkInformation.IPRanges">
+            <summary>
+            Flags that indicate well-known IP address ranges (default only HTTP-valid Ips)
+            See http://en.wikipedia.org/wiki/IPv4#Addressing
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.None">
+            <summary>
+            No addresses
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Current">
+            <summary>
+            0.0.0.0/8 - Current network (only valid as source address) - RFC 1700
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Private10">
+            <summary>
+            10.0.0.0/8 - Private network - RFC 1918
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.PublicData">
+            <summary>
+            14.0.0.0/8 - Public data networks - RFC 1700
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Loopback">
+            <summary>
+            127.0.0.0/8 - Loopback - RFC 3330
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Reserved128">
+            <summary>
+            128.0.0.0/16 - Reserved (IANA) - RFC 3330
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.LinkLocal">
+            <summary>
+            169.254.0.0/16 - Link-Local - RFC 3927
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Private172">
+            <summary>
+            172.16.0.0/12 - Private network - RFC 1918
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Reserved191">
+            <summary>
+            191.255.0.0/16 - Reserved (IANA) - RFC 3330
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Reserved192">
+            <summary>
+            192.0.0.0/24 - Reserved (IANA) - RFC 3330
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Documentation">
+            <summary>
+            192.0.2.0/24 - Documentation and example code - RFC 3330
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.IPv6ToIPv4">
+            <summary>
+            192.88.99.0/24 - IPv6 to IPv4 relay - RFC 3068
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Private192">
+            <summary>
+            192.168.0.0/16 - Private network - RFC 1918
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.BenchmarkTest">
+            <summary>
+            198.18.0.0/15 - Network benchmark tests - RFC 2544
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Reserved223">
+            <summary>
+            223.255.255.0/24 - Reserved (IANA) - RFC 3330
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Multicast">
+            <summary>
+            224.0.0.0/4 - Multicasts (former Class D network) - RFC 3171
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Reserved240">
+            <summary>
+            240.0.0.0/4 - Reserved (former Class E network) - RFC 1700
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Broadcast">
+            <summary>
+            255.255.255.255 - Broadcast
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Private">
+            <summary>
+            Private Network IPs
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Reserved">
+            <summary>
+            Reserved IPs
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Cast">
+            <summary>
+            Multicast and Broadcast IPs
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.Internal">
+            <summary>
+            IP-internal addresses
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.HttpInvalid">
+            <summary>
+            Addresses that are invalid for normal HTTP operation (default)
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.NetworkInformation.IPRanges.NotPublic">
+            <summary>
+            All non public addresses
+            </summary>
+        </member>
+        <member name="T:SixPack.Net.Sockets.SmtpClient">
+            <summary>
+            This class provides a simple SMTP client, based on RFC 821
+            See: http://www.ietf.org/rfc/rfc0821.txt
+            </summary>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.#ctor(System.Net.IPAddress)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Net.Sockets.SmtpClient" /> class.
+            </summary>
+            <param name="smtpServer">The SMTP server.</param>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.#ctor(System.Net.IPAddress,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Net.Sockets.SmtpClient" /> class.
+            </summary>
+            <param name="server">The server.</param>
+            <param name="port">The port.</param>
+        </member>
+        <member name="P:SixPack.Net.Sockets.SmtpClient.Server">
+            <summary>
+            Gets or sets the server.
+            </summary>
+            <value>The server.</value>
+        </member>
+        <member name="P:SixPack.Net.Sockets.SmtpClient.Port">
+            <summary>
+            Gets or sets the port.
+            </summary>
+            <value>The port.</value>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.Connect">
+            <summary>
+            Connects this instance to the SMTP server.
+            </summary>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.Hello">
+            <summary>
+            HELLO (HELO)
+            This command is used to identify the sender-SMTP to the
+            receiver-SMTP.  The argument field contains the host name of
+            the sender-SMTP.
+            The receiver-SMTP identifies itself to the sender-SMTP in
+            the connection greeting reply, and in the response to this
+            command.
+            This command and an OK reply to it confirm that both the
+            sender-SMTP and the receiver-SMTP are in the initial state,
+            that is, there is no transaction in progress and all state
+            tables and buffers are cleared.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.Mail(System.String)">
+            <summary>
+            MAIL (MAIL)
+            This command is used to initiate a mail transaction in which
+            the mail data is delivered to one or more mailboxes.  The
+            argument field contains a reverse-path.
+            The reverse-path consists of an optional list of hosts and
+            the sender mailbox.  When the list of hosts is present, it
+            is a "reverse" source route and indicates that the mail was
+            relayed through each host on the list (the first host in the
+            list was the most recent relay).  This list is used as a
+            source route to return non-delivery notices to the sender.
+            As each relay host adds itself to the beginning of the list,
+            it must use its name as known in the IPCE to which it is
+            relaying the mail rather than the IPCE from which the mail
+            came (if they are different).  In some types of error
+            reporting messages (for example, undeliverable mail
+            notifications) the reverse-path may be null (see Example 7).
+            This command clears the reverse-path buffer, the
+            forward-path buffer, and the mail data buffer; and inserts
+            the reverse-path information from this command into the
+            reverse-path buffer.
+            </summary>
+            <param name="from">From parameter.</param>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.Recipient(System.String)">
+            <summary>
+            RECIPIENT (RCPT)
+            This command is used to identify an individual recipient of
+            the mail data; multiple recipients are specified by multiple
+            use of this command.
+            The forward-path consists of an optional list of hosts and a
+            required destination mailbox.  When the list of hosts is
+            present, it is a source route and indicates that the mail
+            must be relayed to the next host on the list.  If the
+            receiver-SMTP does not implement the relay function it may
+            user the same reply it would for an unknown local user
+            (550).
+            When mail is relayed, the relay host must remove itself from
+            the beginning forward-path and put itself at the beginning
+            of the reverse-path.  When mail reaches its ultimate
+            destination (the forward-path contains only a destination
+            mailbox), the receiver-SMTP inserts it into the destination
+            mailbox in accordance with its host mail conventions.
+            </summary>
+            <param name="to">To parameter.</param>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.Data(System.String)">
+            <summary>
+            DATA (DATA)
+            The receiver treats the lines following the command as mail
+            data from the sender.  This command causes the mail data
+            from this command to be appended to the mail data buffer.
+            The mail data may contain any of the 128 ASCII character
+            codes.
+            The mail data is terminated by a line containing only a
+            period, that is the character sequence "&lt;CRLF&gt;.&lt;CRLF&gt;" (see
+            Section 4.5.2 on Transparency).  This is the end of mail
+            data indication.
+            The end of mail data indication requires that the receiver
+            must now process the stored mail transaction information.
+            This processing consumes the information in the reverse-path
+            buffer, the forward-path buffer, and the mail data buffer,
+            and on the completion of this command these buffers are
+            cleared.  If the processing is successful the receiver must
+            send an OK reply.  If the processing fails completely the
+            receiver must send a failure reply.
+            </summary>
+            <param name="text">The text.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.Send(System.String)">
+            <summary>
+            SEND (SEND)
+            This command is used to initiate a mail transaction in which
+            the mail data is delivered to one or more terminals.  The
+            argument field contains a reverse-path.  This command is
+            successful if the message is delivered to a terminal.
+            The reverse-path consists of an optional list of hosts and
+            the sender mailbox.  When the list of hosts is present, it
+            is a "reverse" source route and indicates that the mail was
+            relayed through each host on the list (the first host in the
+            list was the most recent relay).  This list is used as a
+            source route to return non-delivery notices to the sender.
+            As each relay host adds itself to the beginning of the list,
+            it must use its name as known in the IPCE to which it is
+            relaying the mail rather than the IPCE from which the mail
+            came (if they are different).
+            This command clears the reverse-path buffer, the
+            forward-path buffer, and the mail data buffer; and inserts
+            the reverse-path information from this command into the
+            reverse-path buffer.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.SendOrMail(System.String)">
+            <summary>
+            SEND OR MAIL (SOML)
+            This command is used to initiate a mail transaction in which
+            the mail data is delivered to one or more terminals or
+            mailboxes. For each recipient the mail data is delivered to
+            the recipient's terminal if the recipient is active on the
+            host (and accepting terminal messages), otherwise to the
+            recipient's mailbox.  The argument field contains a
+            reverse-path.  This command is successful if the message is
+            delivered to a terminal or the mailbox.
+            The reverse-path consists of an optional list of hosts and
+            the sender mailbox.  When the list of hosts is present, it
+            is a "reverse" source route and indicates that the mail was
+            relayed through each host on the list (the first host in the
+            list was the most recent relay).  This list is used as a
+            source route to return non-delivery notices to the sender.
+            As each relay host adds itself to the beginning of the list,
+            it must use its name as known in the IPCE to which it is
+            relaying the mail rather than the IPCE from which the mail
+            came (if they are different).
+            This command clears the reverse-path buffer, the
+            forward-path buffer, and the mail data buffer; and inserts
+            the reverse-path information from this command into the
+            reverse-path buffer.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.SendAndMail(System.String)">
+            <summary>
+            SEND AND MAIL (SAML)
+            This command is used to initiate a mail transaction in which
+            the mail data is delivered to one or more terminals and
+            mailboxes. For each recipient the mail data is delivered to
+            the recipient's terminal if the recipient is active on the
+            host (and accepting terminal messages), and for all
+            recipients to the recipient's mailbox.  The argument field
+            contains a reverse-path.  This command is successful if the
+            message is delivered to the mailbox.
+            The reverse-path consists of an optional list of hosts and
+            the sender mailbox.  When the list of hosts is present, it
+            is a "reverse" source route and indicates that the mail was
+            relayed through each host on the list (the first host in the
+            list was the most recent relay).  This list is used as a
+            source route to return non-delivery notices to the sender.
+            As each relay host adds itself to the beginning of the list,
+            it must use its name as known in the IPCE to which it is
+            relaying the mail rather than the IPCE from which the mail
+            came (if they are different).
+            This command clears the reverse-path buffer, the
+            forward-path buffer, and the mail data buffer; and inserts
+            the reverse-path information from this command into the
+            reverse-path buffer.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.Reset">
+            <summary>
+            RESET (RSET)
+            This command specifies that the current mail transaction is
+            to be aborted.  Any stored sender, recipients, and mail data
+            must be discarded, and all buffers and state tables cleared.
+            The receiver must send an OK reply.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.Verify(System.String)">
+            <summary>
+            VERIFY (VRFY)
+            This command asks the receiver to confirm that the argument
+            identifies a user.  If it is a user name, the full name of
+            the user (if known) and the fully specified mailbox are
+            returned.
+            This command has no effect on any of the reverse-path
+            buffer, the forward-path buffer, or the mail data buffer.
+            </summary>
+            <param name="argument">The argument.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.Expand(System.String)">
+            <summary>
+            EXPAND (EXPN)
+            This command asks the receiver to confirm that the argument
+            identifies a mailing list, and if so, to return the
+            membership of that list.  The full name of the users (if
+            known) and the fully specified mailboxes are returned in a
+            multiline reply.
+            This command has no effect on any of the reverse-path
+            buffer, the forward-path buffer, or the mail data buffer.
+            </summary>
+            <param name="argument">The argument.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.Help(System.String)">
+            <summary>
+            HELP (HELP)
+            This command causes the receiver to send helpful information
+            to the sender of the HELP command.  The command may take an
+            argument (e.g., any command name) and return more specific
+            information as a response.
+            This command has no effect on any of the reverse-path
+            buffer, the forward-path buffer, or the mail data buffer.
+            </summary>
+            <param name="argument">The argument.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.Noop">
+            <summary>
+            NOOP (NOOP)
+            This command does not affect any parameters or previously
+            entered commands.  It specifies no action other than that
+            the receiver send an OK reply.
+            This command has no effect on any of the reverse-path
+            buffer, the forward-path buffer, or the mail data buffer.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.Quit">
+            <summary>
+            QUIT (QUIT)
+            This command specifies that the receiver must send an OK
+            reply, and then close the transmission channel.
+            The receiver should not close the transmission channel until
+            it receives and replies to a QUIT command (even if there was
+            an error).  The sender should not close the transmission
+            channel until it send a QUIT command and receives the reply
+            (even if there was an error response to a previous command).
+            If the connection is closed prematurely the receiver should
+            act as if a RSET command had been received (canceling any
+            pending transaction, but not undoing any previously
+            completed transaction), the sender should act as if the
+            command or transaction in progress had received a temporary
+            error (4xx).
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.Turn">
+            <summary>
+            TURN (TURN)
+            This command specifies that the receiver must either (1)
+            send an OK reply and then take on the role of the
+            sender-SMTP, or (2) send a refusal reply and retain the role
+            of the receiver-SMTP.
+            If program-A is currently the sender-SMTP and it sends the
+            TURN command and receives an OK reply (250) then program-A
+            becomes the receiver-SMTP.  Program-A is then in the initial
+            state as if the transmission channel just opened, and it
+            then sends the 220 service ready greeting.
+            If program-B is currently the receiver-SMTP and it receives
+            the TURN command and sends an OK reply (250) then program-B
+            becomes the sender-SMTP.  Program-B is then in the initial
+            state as if the transmission channel just opened, and it
+            then expects to receive the 220 service ready greeting.
+            To refuse to change roles the receiver sends the 502 reply.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.Sockets.SmtpClient.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+            <param name="disposing">
+                <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="T:SixPack.Net.Sockets.SmtpResponse">
+            <summary>
+            Encapsulates a SMTP response
+            </summary>
+        </member>
+        <member name="P:SixPack.Net.Sockets.SmtpResponse.ResponseCode">
+            <summary>
+            Gets the response code.
+            </summary>
+            <value>The response code.</value>
+        </member>
+        <member name="P:SixPack.Net.Sockets.SmtpResponse.ResponseText">
+            <summary>
+            Gets the response text as provided from the SMTP server.
+            </summary>
+            <value>The response text.</value>
+        </member>
+        <member name="T:SixPack.Net.Sockets.SmtpResponseCode">
+            <summary>
+            Encapsulates SMTP Response Codes
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.SystemStatus">
+            <summary>
+            System status, or system help reply
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.HelpMessage">
+            <summary>
+            Help message
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.ServiceReady">
+            <summary>
+            &lt;domain&gt; Service ready
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.ServiceClosing">
+            <summary>
+            &lt;domain&gt; Service closing transmission channel
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.Completed">
+            <summary>
+            Requested mail action okay, completed
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.UserNotLocalForward">
+            <summary>
+            User not local; will forward to &lt;forward-path&gt;
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.CannotVerify">
+            <summary>
+            Cannot VRFY user; try RCPT to attempt delivery (or try finger)
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.StartMailInput">
+            <summary>
+            Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt;
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.ServiceNotAvailable">
+            <summary>
+            &lt;domain&gt; Service not available, closing transmission channel
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.MailboxUnavailableMail">
+            <summary>
+            Requested mail action not taken: mailbox unavailable
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.ErrorInProcessing">
+            <summary>
+            Requested action aborted: local error in processing
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.InsufficientSystemStorage">
+            <summary>
+            Requested action not taken: insufficient system storage
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.CommandUnrecognized">
+            <summary>
+            Syntax error, command unrecognized
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.SyntaxError">
+            <summary>
+            Syntax error in parameters or arguments
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.NotImplemented">
+            <summary>
+            Command not implemented
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.BadSequence">
+            <summary>
+            Bad sequence of commands
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.ParameterNotImplemented">
+            <summary>
+            Command parameter not implemented
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.MailboxUnavailable">
+            <summary>
+            Requested action not taken: mailbox unavailable
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.UserNotLocalTry">
+            <summary>
+            User not local; please try &lt;forward-path&gt;
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.ExceededStorageAllocation">
+            <summary>
+            Requested mail action aborted: exceeded storage allocation
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.MailboxNameNotAllowed">
+            <summary>
+            Requested action not taken: mailbox name not allowed
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Sockets.SmtpResponseCode.TransactionFailed">
+            <summary>
+            Transaction failed
+            </summary>
+        </member>
+        <member name="T:SixPack.Net.UriFormat">
+            <summary>
+            Validates an URI
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.UriFormat.rfc2396UriPattern">
+            <summary>
+            Regex expression to validate a URI according to RFC 2396
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.UriFormat.simpleUriPattern">
+            <summary>
+            Regex expression to validate a URI in a simple, but efficient manner
+            </summary>
+        </member>
+        <member name="M:SixPack.Net.UriFormat.IsValid(System.String,SixPack.Net.UriSyntaxValidationMode)">
+            <summary>
+            Determines whether the specified URI is valid.
+            </summary>
+            <param name="uri">The URI.</param>
+            <param name="mode">The mode.</param>
+            <returns>
+                <c>true</c> if the specified URI is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SixPack.Net.UriFormat.IsValid(System.String)">
+            <summary>
+            Determines whether the specified URI is valid.
+            </summary>
+            <param name="uri">The URI.</param>
+            <returns>
+                <c>true</c> if the specified URI is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:SixPack.Net.UriSyntaxValidationMode">
+            <summary>
+            Specifies the syntax validation mode for URIs
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.UriSyntaxValidationMode.Simple">
+            <summary>
+            Simple but efficient (default)
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.UriSyntaxValidationMode.Rfc2396">
+            <summary>
+            RFC compliant
+            </summary>
+        </member>
+        <member name="T:SixPack.ComponentModel.CachedMethodAttribute">
+            <summary>
+            Specifies that the result of the method will be cached for a set amount of time.
+            </summary>
+            <remarks>
+            This attribute does not work on static methods.
+            The <see cref="T:SixPack.ComponentModel.CachedAttribute" /> attribute must be applied to the class that contains this method.
+            </remarks>
+        </member>
+        <member name="M:SixPack.ComponentModel.CachedMethodAttribute.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.ComponentModel.CachedMethodAttribute" /> class.
+            </summary>
+            <param name="cacheTime">The cache time in seconds.</param>
+        </member>
+        <member name="P:SixPack.ComponentModel.CachedMethodAttribute.CacheTime">
+            <summary>
+            Gets the cache time in seconds.
+            </summary>
+            <value>The cache time in seconds.</value>
+        </member>
+        <member name="T:SixPack.ComponentModel.CachedContextProperty">
+            <summary>
+            Experimental
+            </summary>
+        </member>
+        <member name="P:SixPack.ComponentModel.CachedContextProperty.Name">
+            <summary>
+            Gets the name of the property under which it will be added to the context.
+            </summary>
+            <value>
+            </value>
+            <returns>The name of the property.</returns>
+            <PermissionSet>
+                <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="Infrastructure" />
+            </PermissionSet>
+        </member>
+        <member name="M:SixPack.ComponentModel.CachedContextProperty.Freeze(System.Runtime.Remoting.Contexts.Context)">
+            <summary>
+            Called when the context is frozen.
+            </summary>
+            <param name="newContext">The context to freeze.</param>
+            <PermissionSet>
+                <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="Infrastructure" />
+            </PermissionSet>
+        </member>
+        <member name="M:SixPack.ComponentModel.CachedContextProperty.IsNewContextOK(System.Runtime.Remoting.Contexts.Context)">
+            <summary>
+            Returns a Boolean value indicating whether the context property is compatible with the new context.
+            </summary>
+            <param name="newCtx">The new context in which the <see cref="T:System.Runtime.Remoting.Contexts.ContextProperty"></see> has been created.</param>
+            <returns>
+            true if the context property can coexist with the other context properties in the given context; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:SixPack.ComponentModel.CachedContextProperty.GetServerContextSink(System.Runtime.Remoting.Messaging.IMessageSink)">
+            <summary>
+            Takes the first sink in the chain of sinks composed so far, and then chains its message sink in front of the chain already formed.
+            </summary>
+            <param name="nextSink">The chain of sinks composed so far.</param>
+            <returns>The composite sink chain.</returns>
+        </member>
+        <member name="T:SixPack.ComponentModel.CachedSink">
+            <summary>
+            Experimental
+            </summary>
+        </member>
+        <member name="M:SixPack.ComponentModel.CachedSink.#ctor(System.Runtime.Remoting.Messaging.IMessageSink)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.ComponentModel.CachedSink" /> class.
+            </summary>
+            <param name="nextSink">The next sink.</param>
+        </member>
+        <member name="P:SixPack.ComponentModel.CachedSink.NextSink">
+            <summary>
+            Gets the next message sink in the sink chain.
+            </summary>
+            <value>
+            </value>
+            <returns>The next message sink in the sink chain.</returns>
+            <exception cref="T:System.Security.SecurityException">The immediate caller makes the call through a reference to the interface and does not have infrastructure permission. </exception>
+            <PermissionSet>
+                <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="Infrastructure" />
+            </PermissionSet>
+        </member>
+        <member name="M:SixPack.ComponentModel.CachedSink.SyncProcessMessage(System.Runtime.Remoting.Messaging.IMessage)">
+            <summary>
+            Synchronously processes the given message.
+            </summary>
+            <param name="msg">The message to process.</param>
+            <returns>
+            A reply message in response to the request.
+            </returns>
+            <exception cref="T:System.Security.SecurityException">The immediate caller makes the call through a reference to the interface and does not have infrastructure permission. </exception>
+        </member>
+        <member name="M:SixPack.ComponentModel.CachedSink.AsyncProcessMessage(System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Messaging.IMessageSink)">
+            <summary>
+            Asynchronously processes the given message.
+            </summary>
+            <param name="msg">The message to process.</param>
+            <param name="replySink">The reply sink for the reply message.</param>
+            <returns>
+            Returns an <see cref="T:System.Runtime.Remoting.Messaging.IMessageCtrl"></see> interface that provides a way to control asynchronous messages after they have been dispatched.
+            </returns>
+            <exception cref="T:System.Security.SecurityException">The immediate caller makes the call through a reference to the interface and does not have infrastructure permission. </exception>
+        </member>
+        <member name="T:SixPack.ComponentModel.CachedAttribute">
+            <summary>
+            Enables caching on the current class.
+            </summary>
+            <remarks>
+            The methods that are to be cached should be marked with the <see cref="T:SixPack.ComponentModel.CachedMethodAttribute" /> attribute.
+            The current class must inherit from <see cref="T:System.ContextBoundObject" />.
+            </remarks>
+        </member>
+        <member name="M:SixPack.ComponentModel.CachedAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.ComponentModel.CachedAttribute" /> class.
+            </summary>
+        </member>
+        <member name="M:SixPack.ComponentModel.CachedAttribute.GetPropertiesForNewContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+            <summary>
+            Gets the properties for new context.
+            </summary>
+            <param name="ctorMsg">The ctor.</param>
+        </member>
+        <member name="M:SixPack.ComponentModel.CachedAttribute.IsContextOK(System.Runtime.Remoting.Contexts.Context,System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+            <summary>
+            Returns a Boolean value indicating whether the context parameter meets the context attribute's requirements.
+            </summary>
+            <param name="ctx">The context in which to check.</param>
+            <param name="ctorMsg">The <see cref="T:System.Runtime.Remoting.Activation.IConstructionCallMessage"></see> to which to add the context property.</param>
+            <returns>
+            true if the passed in context is okay; otherwise, false.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Either ctx or ctorMsg is null. </exception>
+            <PermissionSet>
+                <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="Infrastructure" />
+            </PermissionSet>
+        </member>
+        <member name="T:SixPack.Security.ActionLimiter">
+            <summary>
+            Helper class to prevent a Web service method from being called too often
+            </summary>
+        </member>
+        <member name="T:SixPack.Security.ActionLimiter.CallTimings">
+            <summary>
+            Keeps track of the last call time of each method
+            </summary>
+        </member>
+        <member name="M:SixPack.Security.ActionLimiter.CallTimings.LimitActionsPerUser(System.String,System.TimeSpan)">
+            <summary>
+            Throws a <see cref="T:System.Security.SecurityException" /> if the specified action is being performed too often.
+            </summary>
+            <param name="action">
+            	Name of the action that is being performed.
+            </param>
+            <param name="minTimeBetweenCalls">
+            </param>
+        </member>
+        <member name="M:SixPack.Security.ActionLimiter.LimitActionsPerUser(System.String,System.TimeSpan)">
+            <summary>
+            Notifies that an action is starting. If not enough time has passed since the current user performed that action, a <see cref="T:System.Security.SecurityException" /> is thrown.
+            </summary>
+            <param name="action">
+            	Name of the action that is being performed. In case of a Web method, this is usually the namespace of the web service plus the name of the method.
+            </param>
+            <param name="minTimeBetweenCalls">The minimum time between calls.</param>
+        </member>
+        <member name="M:SixPack.Security.ActionLimiter.LimitActionsPerUser(System.String)">
+            <summary>
+            Notifies that an action is starting. If not enough time has passed since the current user performed that action, a <see cref="T:System.Security.SecurityException" /> is thrown.
+            </summary>
+            <param name="action">
+            	Name of the action that is being performed. In case of a Web method, this is usually the namespace of the web service plus the name of the method.
+            </param>
+            <remarks>
+            Uses the default time between calls (1 second).
+            </remarks>
+        </member>
+        <member name="M:SixPack.Security.ActionLimiter.LimitActionsPerUser(System.TimeSpan)">
+            <summary>
+            Notifies that an action is starting. If not enough time has passed since the current user performed that action, a <see cref="T:System.Security.SecurityException" /> is thrown.
+            </summary>
+            <param name="minTimeBetweenCalls">The minimum time between calls.</param>
+            <remarks>
+            Uses the name of the calling method as the action name.
+            </remarks>
+        </member>
+        <member name="M:SixPack.Security.ActionLimiter.LimitActionsPerUser">
+            <summary>
+            Notifies that an action is starting. If not enough time has passed since the current user performed that action, a <see cref="T:System.Security.SecurityException" /> is thrown.
+            </summary>
+            <remarks>
+            Uses the default time between calls (1 second) and the name of the calling method as the action name.
+            </remarks>
+        </member>
+        <member name="T:SixPack.Security.Cryptography.BigInteger">
+            <summary>
+            BigInteger Class
+            Version 1.03
+            Copyright (c) 2002 Chew Keong TAN
+            </summary>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.BigInteger" /> class.
+            </summary>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.#ctor(System.Int64)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.BigInteger" /> class.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.#ctor(System.UInt64)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.BigInteger" /> class.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.#ctor(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.BigInteger" /> class.
+            </summary>
+            <param name="bi">The bi.</param>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.BigInteger" /> class.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="radix">The radix.</param>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.BigInteger" /> class.
+            </summary>
+            <param name="inData">The in data.</param>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.#ctor(System.Byte[],System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.BigInteger" /> class.
+            </summary>
+            <param name="inData">The in data.</param>
+            <param name="inLen">The in len.</param>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.#ctor(System.UInt32[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.BigInteger" /> class.
+            </summary>
+            <param name="inData">The in data.</param>
+        </member>
+        <member name="F:SixPack.Security.Cryptography.BigInteger.primesBelow2000">
+            <summary>
+            Primes smaller than 2000 to test the generated prime number
+            </summary>
+        </member>
+        <member name="F:SixPack.Security.Cryptography.BigInteger.dataLength">
+            <summary>
+            Number of actual chars used
+            </summary>
+        </member>
+        <member name="P:SixPack.Security.Cryptography.BigInteger.DataLength">
+            <summary>
+            Number of actual chars used
+            </summary>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Add(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Adds the specified operands.
+            </summary>
+            <param name="operand">The operand.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Increment">
+            <summary>
+            Increments this.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Subtract(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Subtracts the specified operand from this.
+            </summary>
+            <param name="operand">The operand.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Decrement">
+            <summary>
+            Decrements this.
+            </summary>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Multiply(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Multiplies this instance with the specified operand.
+            </summary>
+            <param name="operand">The operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.LeftShift(System.Int32)">
+            <summary>
+            Left shifts this by the specified value
+            </summary>
+            <param name="shiftValue">The shift value.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.RightShift(System.Int32)">
+            <summary>
+            Right shifts this by the specified value
+            </summary>
+            <param name="shiftValue">The shift value.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.OnesComplement">
+            <summary>
+            Returns NOT this (1's complement).
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Negate">
+            <summary>
+            Negates this instance.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Equals(System.Object)">
+            <summary>
+            Returns <c>true</c> if "this" is equal to object o, <c>false</c> otherwise.
+            </summary>
+            <param name="obj">The object to compare to.</param>
+            <returns>
+            true if the specified <see cref="T:System.Object" /> is equal to the current <see cref="T:System.Object" />; otherwise, false.
+            </returns>
+            <exception cref="T:System.NullReferenceException">The <paramref name="obj" /> parameter is null.</exception>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Equals(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Returns <c>true</c> if "this" is equal to <see cref="T:SixPack.Security.Cryptography.BigInteger" /> o, <c>false</c> otherwise.
+            </summary>
+            <param name="obj">The <see cref="T:SixPack.Security.Cryptography.BigInteger" /> to compare to.</param>
+            <returns>
+            true if the specified <see cref="T:System.Object" /> is equal to the current <see cref="T:System.Object" />; otherwise, false.
+            </returns>
+            <exception cref="T:System.NullReferenceException">The <paramref name="obj" /> parameter is null.</exception>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type. <see cref="M:System.Object.GetHashCode"></see> is suitable for use in hashing algorithms and data structures like a hash table.
+            </summary>
+            <returns>
+            A hash code for the current <see cref="T:System.Object"></see>.
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Compare(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Compares this to the specified operand.
+            </summary>
+            <param name="operand">The operand.</param>
+            <returns>Returns <c>true</c> if this &gt; operand, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Divide(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Divides this by the specified operand.
+            </summary>
+            <param name="operand">The operand.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Modulus(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Returns the modulus of the operands.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Mod(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Returns the modulus of the operands.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.BitwiseAnd(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Returns the bitwise and of this and the operator.
+            </summary>
+            <param name="operand">The operand.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.BitwiseOr(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            ORs this and the specified operand.
+            </summary>
+            <param name="operand">The operand.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Xor(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator Xor.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Max(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Returns max(this, bi)
+            </summary>
+            <param name="bi">The BigInteger to compare to.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Min(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Returns min(this, bi)
+            </summary>
+            <param name="bi">The BigInteger to compare to.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Abs">
+            <summary>
+            Returns the absolute value.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"></see> that represents the current <see cref="T:Fullsix.Security.Cryptography.BigInteger"></see> in base 10.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"></see> that represents the current <see cref="T:Fullsix.Security.Cryptography.BigInteger"></see>.
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.ToString(System.Int32)">
+            <summary>
+            Returns a string representing the BigInteger in sign-and-magnitude
+            format in the specified radix.
+            </summary>
+            <param name="radix">The radix.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.ToHexString">
+            <summary>
+            Returns a hex string showing the contains of the BigInteger.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.ModPow(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Modulo Exponentiation
+            </summary>
+            <param name="exponent">The exponent.</param>
+            <param name="modulus">The modulus.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Gcd(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Returns the greatest common denominator of (this, bi)
+            </summary>
+            <param name="bi">bi.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.GenerateRandomBits(System.Int32,System.Random)">
+            <summary>
+            Populates "this" with the specified amount of random bits
+            </summary>
+            <param name="bits">The number of bits.</param>
+            <param name="rand">The random generator.</param>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.BitCount">
+            <summary>
+            Returns the position of the most significant bit in the BigInteger.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.FermatLittleTest(System.Int32)">
+            <summary>
+            Probabilistic prime test based on Fermat's little theorem
+            for any a &lt; p (p does not divide a) if
+            a^(p-1) mod p != 1 then p is not prime.
+            Otherwise, p is probably prime (pseudoprime to the chosen base).
+            </summary>
+            <param name="confidence">The confidence.</param>
+            <returns>
+            True if "this" is a pseudoprime to randomly chosen
+            bases.  The number of chosen bases is given by the "confidence"
+            parameter.
+            False if "this" is definitely NOT prime.
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.RabinMillerTest(System.Int32)">
+            <summary>
+            Probabilistic prime test based on Rabin-Miller's
+            for any p &gt; 0 with p - 1 = 2^s * t
+            p is probably prime (strong pseudoprime) if for any a &lt; p,
+            1) a^t mod p = 1 or
+            2) a^((2^j)*t) mod p = p-1 for some 0 &lt;= j &lt;= s-1
+            Otherwise, p is composite.
+            </summary>
+            <param name="confidence">The confidence.</param>
+            <returns>
+            True if "this" is a strong pseudoprime to randomly chosen
+            bases.  The number of chosen bases is given by the "confidence"
+            parameter.
+            False if "this" is definitely NOT prime.
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.SolovayStrassenTest(System.Int32)">
+            <summary>
+            Probabilistic prime test based on Solovay-Strassen (Euler Criterion)
+            p is probably prime if for any a &lt; p (a is not multiple of p),
+            a^((p-1)/2) mod p = J(a, p)
+            where J is the Jacobi symbol.
+            Otherwise, p is composite.
+            </summary>
+            <param name="confidence">The confidence.</param>
+            <returns>
+            True if "this" is a Euler pseudoprime to randomly chosen
+            bases.  The number of chosen bases is given by the "confidence"
+            parameter.
+            False if "this" is definitely NOT prime.
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.LucasStrongTest">
+            <summary>
+            Implementation of the Lucas Strong Pseudo Prime test.
+            </summary>
+            <returns>
+            Returns True if number is a strong Lucus pseudo prime.
+            Otherwise, returns False indicating that number is composite.
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.IsProbablePrime(System.Int32)">
+            <summary>
+            Determines within the specified confidence if "this" is a probable prime.
+            </summary>
+            <param name="confidence">The confidence.</param>
+            <returns>
+                <c>true</c> if the specified confidence is a probable prime; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.IsProbablePrime">
+            <summary>
+            Determines  if "this" is a probable prime.
+            </summary>
+            <returns>
+                <c>true</c> if the specified confidence is a probable prime; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.IntValue">
+            <summary>
+            Returns the lowest 4 bytes of the BigInteger as an int.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.LongValue">
+            <summary>
+            Returns the lowest 8 bytes of the BigInteger as a long.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Jacobi(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Computes the Jacobi Symbol for a and b.
+            </summary>
+            <param name="a">a.</param>
+            <param name="b">b.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.GeneratePseudoPrime(System.Int32,System.Int32,System.Random)">
+            <summary>
+            Generates a positive BigInteger that is probably prime.
+            </summary>
+            <param name="bits">The bits.</param>
+            <param name="confidence">The confidence.</param>
+            <param name="rand">The random number generator.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.GenerateCoprime(System.Int32,System.Random)">
+            <summary>
+            Generates a random number with the specified number of bits such
+            that gcd(number, this) = 1
+            </summary>
+            <param name="bits">The bits.</param>
+            <param name="rand">The rand.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.ModInverse(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Returns the modulo inverse of this.  Throws ArithmeticException if
+            the inverse does not exist.  (i.e. gcd(this, modulus) != 1)
+            </summary>
+            <param name="modulus">The modulus.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.ToByteArray">
+            <summary>
+            Returns the value of the BigInteger as a byte array.  The lowest
+            index contains the MSB.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.SetBit(System.UInt32)">
+            <summary>
+            Sets the value of the specified bit to 1
+            The Least Significant Bit position is 0.
+            </summary>
+            <param name="bitNumber">The bit num.</param>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.UnsetBit(System.UInt32)">
+            <summary>
+            Sets the value of the specified bit to 0
+            The Least Significant Bit position is 0.
+            </summary>
+            <param name="bitNumber">The bit num.</param>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.Sqrt">
+            <summary>
+            Returns a value that is equivalent to the integer square root
+            of the BigInteger.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.LucasSequence(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Returns the k_th number in the Lucas Sequence reduced modulo n.
+            </summary>
+            <param name="P">P.</param>
+            <param name="Q">Q.</param>
+            <param name="k">k.</param>
+            <param name="n">n.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_Implicit(System.Int64)~SixPack.Security.Cryptography.BigInteger">
+            <summary>
+            Performs an implicit conversion from <see cref="T:System.Int64" /> to <see cref="T:SixPack.Security.Cryptography.BigInteger" />.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_Implicit(System.UInt64)~SixPack.Security.Cryptography.BigInteger">
+            <summary>
+            Performs an implicit conversion from <see cref="T:System.UInt64" /> to <see cref="T:SixPack.Security.Cryptography.BigInteger" />.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_Implicit(System.Int32)~SixPack.Security.Cryptography.BigInteger">
+            <summary>
+            Performs an implicit conversion from <see cref="T:System.Int32" /> to <see cref="T:SixPack.Security.Cryptography.BigInteger" />.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_Implicit(System.UInt32)~SixPack.Security.Cryptography.BigInteger">
+            <summary>
+            Performs an implicit conversion from <see cref="T:System.UInt32" /> to <see cref="T:SixPack.Security.Cryptography.BigInteger" />.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_Addition(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator +.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_Increment(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator ++.
+            </summary>
+            <param name="operand">The operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_Subtraction(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator -.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_Decrement(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator --.
+            </summary>
+            <param name="operand">The operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_Multiply(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator *.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_LeftShift(SixPack.Security.Cryptography.BigInteger,System.Int32)">
+            <summary>
+            Implements the operator &lt;&lt;.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="shiftValue">The shift value.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_RightShift(SixPack.Security.Cryptography.BigInteger,System.Int32)">
+            <summary>
+            Implements the operator &gt;&gt;.
+            </summary>
+            <param name="operand">The operand.</param>
+            <param name="shiftValue">The shift value.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_OnesComplement(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator ~.
+            </summary>
+            <param name="operand">The operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_UnaryNegation(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator -.
+            </summary>
+            <param name="operand">The operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_Equality(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator ==.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_Inequality(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator !=.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_GreaterThan(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator &gt;.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_LessThan(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator &lt;.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_GreaterThanOrEqual(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator &gt;.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_LessThanOrEqual(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator &lt;=.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_Division(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator /.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_Modulus(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator %.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_BitwiseAnd(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator &amp;.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_BitwiseOr(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator |.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.BigInteger.op_ExclusiveOr(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Implements the operator ^.
+            </summary>
+            <param name="operand">The first operand.</param>
+            <param name="secondOperand">The second operand.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="T:SixPack.Security.Cryptography.DataGenerator">
+            <summary>
+            A utility class to generate data.
+            The data generated is not cryptographically secure.
+            </summary>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.DataGenerator.RandomInt32">
+            <summary>
+            Returns a random Int32.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.DataGenerator.RandomInt64">
+            <summary>
+            Returns a random Int64.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.DataGenerator.RandomSimpleString(System.Int32)">
+            <summary>
+            Returns a random simple String.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.DataGenerator.RandomAsciiString(System.Int32)">
+            <summary>
+            Returns a random ASCII String.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.DataGenerator.RandomUnicodeString(System.Int32)">
+            <summary>
+            Returns a random Unicode String.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.DataGenerator.RandomGuid">
+            <summary>
+            Returns a random Guid.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.DataGenerator.RandomBool">
+            <summary>
+            Returns a random bool.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.DataGenerator.RandomDecimal">
+            <summary>
+            Returns a random Decimal.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.DataGenerator.RandomDateTime">
+            <summary>
+            Returns a random DateTime.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.DataGenerator.RandomXmlString(System.Int32)">
+            <summary>
+            Returns a random XML String.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.DataGenerator.RandomSyllables(System.Int32)">
+            <summary>
+            Returns a pronounceable string made up of syllables
+            </summary>
+            <param name="syllables">The number of syllables to generate</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:SixPack.Security.Cryptography.RsaSmall">
+            <summary>
+            Rsa Cryptography for "small" numbers (RSA-small)
+            </summary>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.RsaSmall.#ctor(SixPack.Security.Cryptography.RsaSmallFullKey)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.RsaSmall" /> class.
+            </summary>
+            <param name="key">The key.</param>
+        </member>
+        <member name="P:SixPack.Security.Cryptography.RsaSmall.Key">
+            <summary>
+            Gets the key.
+            </summary>
+            <value>The key.</value>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.RsaSmall.Encrypt(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Encrypts the specified Biginteger.
+            </summary>
+            <param name="decryptedValue">The Biginteger to encrypt.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.RsaSmall.Decrypt(SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Decrypts the specified Biginteger.
+            </summary>
+            <param name="encryptedValue">The BigInteger to decrypt.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.RsaSmall.GenerateKeys(System.Int32)">
+            <summary>
+            Generates the RSA-small key.
+            </summary>
+            <param name="bits">The bits.</param>
+        </member>
+        <member name="T:SixPack.Security.Cryptography.RsaSmallFullKey">
+            <summary>
+            Encapsulates a RSA-small full (private and public) key.
+            </summary>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.RsaSmallFullKey.#ctor(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.RsaSmallFullKey" /> class.
+            </summary>
+            <param name="modulus">The modulus.</param>
+            <param name="privateExponent">The private exponent.</param>
+            <param name="publicExponent">The public exponent.</param>
+        </member>
+        <member name="P:SixPack.Security.Cryptography.RsaSmallFullKey.PrivateKey">
+            <summary>
+            Gets the private key.
+            </summary>
+            <value>The private key.</value>
+        </member>
+        <member name="P:SixPack.Security.Cryptography.RsaSmallFullKey.PublicKey">
+            <summary>
+            Gets the public key.
+            </summary>
+            <value>The public key.</value>
+        </member>
+        <member name="T:SixPack.Security.Cryptography.RsaSmallKey">
+            <summary>
+            Abstract class that encapsulates a RSA-small key.
+            </summary>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.RsaSmallKey.#ctor(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.RsaSmallKey" /> class.
+            </summary>
+            <param name="modulus">The modulus.</param>
+            <param name="exponent">The exponent.</param>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.RsaSmallKey.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.RsaSmallKey" /> class.
+            </summary>
+        </member>
+        <member name="P:SixPack.Security.Cryptography.RsaSmallKey.Exponent">
+            <summary>
+            Gets the exponent.
+            </summary>
+            <value>The exponent.</value>
+        </member>
+        <member name="P:SixPack.Security.Cryptography.RsaSmallKey.Modulus">
+            <summary>
+            Gets the modulus.
+            </summary>
+            <value>The modulus.</value>
+        </member>
+        <member name="T:SixPack.Security.Cryptography.RsaSmallPrivateKey">
+            <summary>
+            Encapsulates a RSA-small private key.
+            </summary>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.RsaSmallPrivateKey.#ctor(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.RsaSmallPrivateKey" /> class.
+            </summary>
+            <param name="modulus">The modulus.</param>
+            <param name="exponent">The exponent.</param>
+        </member>
+        <member name="T:SixPack.Security.Cryptography.RsaSmallPublicKey">
+            <summary>
+            Encapsulates a RSA-small public key.
+            </summary>
+        </member>
+        <member name="M:SixPack.Security.Cryptography.RsaSmallPublicKey.#ctor(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Security.Cryptography.RsaSmallPublicKey" /> class.
+            </summary>
+            <param name="modulus">The modulus.</param>
+            <param name="exponent">The exponent.</param>
+        </member>
+        <member name="T:SixPack.Standards.Base32">
+            <summary>
+            This class provides functions for Base32 encoding and decoding.
+            </summary>
+        </member>
+        <member name="F:SixPack.Standards.Base32.charDigitsBase">
+            <summary>
+            First valid character that can be indexed in decode lookup table
+            </summary>
+        </member>
+        <member name="F:SixPack.Standards.Base32.canonicalChars">
+            <summary>
+            Lookup table used to canonically encode() groups of data bits
+            </summary>
+        </member>
+        <member name="F:SixPack.Standards.Base32.charDigits">
+            <summary>
+            Lookup table used to decode() characters in encoded strings
+            </summary>
+        </member>
+        <member name="M:SixPack.Standards.Base32.Encode(System.Byte[])">
+            <summary>
+            Encode an array of binary bytes into a Base32 string.
+            Should not fail (the only possible exception is that the
+            returned string cannot be allocated in memory).
+            </summary>
+            <param name="value">Array of bytes to encode.</param>
+            <returns>Base32 string corresponding to the byte array passed.</returns>
+        </member>
+        <member name="M:SixPack.Standards.Base32.Decode(System.String)">
+            <summary>
+            Decode a Base32 encoded string into an array of binary bytes.
+            May fail if the parameter is a non canonical Base32 string
+            (the only other possible exception is that the
+            returned array cannot be allocated in memory)
+            </summary>
+            <param name="encoded">The encoded value.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:SixPack.Standards.Mod9710">
+            <summary>
+            This class implements the MOD9010 checksum "check digits" algorythm.
+            </summary>
+        </member>
+        <member name="M:SixPack.Standards.Mod9710.Checksum(System.String)">
+            <summary>
+            Calculates the Check Digits of a digit string.
+            </summary>
+            <param name="digits">The string to be checksummed.</param>
+            <returns>A string containing the check digits.</returns>
+        </member>
+        <member name="T:SixPack.Text.TextUtilities">
+            <summary>
+            This class contains text related utility methods
+            </summary>
+        </member>
+        <member name="M:SixPack.Text.TextUtilities.Clip(System.String,System.Int32,System.String,System.Boolean)">
+            <summary>
+            Clips the text to the specified length, adding a terminator (e.g. "...").
+            </summary>
+            <param name="text">The text.</param>
+            <param name="maxLength">Text length to clip to.</param>
+            <param name="terminator">The terminator.</param>
+            <param name="respectWordBoundaries">if set to <c>true</c> it will respect word boundaries.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Text.TextUtilities.Clip(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Clips the text to the specified length.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="maxLength">Text length to clip to.</param>
+            <param name="respectWordBoundaries">if set to <c>true</c> it will respect word boundaries.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Text.TextUtilities.Clip(System.String,System.Int32)">
+            <summary>
+            Clips the text to the specified length, respecting word boundaries.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="maxLength">Text length to clip to.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Text.TextUtilities.Clip(System.String,System.Int32,System.String)">
+            <summary>
+            Clips the text to the specified length, adding a terminator (e.g. "..."), respecting word boundaries.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="maxLength">Text length to clip to.</param>
+            <param name="terminator">The terminator.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Text.TextUtilities.RemoveHtml(System.String)">
+            <summary>
+            Removes the HTML from a text string.
+            </summary>
+            <param name="text">The text.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Text.TextUtilities.ConvertCamelCaseToSpaceSeparated(System.String)">
+            <summary>
+            Converts camel case text to a space separated string.
+            </summary>
+            <param name="camelCaseText">The camel case text.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.Text.TextUtilities.ToBase64(System.String)">
+            <summary>
+            Converts the specified string to base-64 using UTF-8 encoding.
+            </summary>
+            <param name="plaintext">The text to be converted.</param>
+            <returns>Returns a string with the base-64 representation of the plain text.</returns>
+        </member>
+        <member name="M:SixPack.Text.TextUtilities.FromBase64(System.String)">
+            <summary>
+            Converts the specified base-64 string to plain text using UTF-8 encoding.
+            </summary>
+            <param name="base64Text">The base-64 encoded text.</param>
+            <returns>Returns a string with the decoded text.</returns>
+        </member>
+        <member name="T:SixPack.CodedException">
+            <summary>
+            The abstract parent exception for all exceptions which have a code and a message.
+            </summary>
+        </member>
+        <member name="M:SixPack.CodedException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.CodedException" /> class.
+            </summary>
+        </member>
+        <member name="M:SixPack.CodedException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.CodedException" /> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:SixPack.CodedException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.CodedException" /> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="M:SixPack.CodedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.CodedException" /> class.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="P:SixPack.CodedException.ErrorCode">
+            <summary>
+            Gets the error code.
+            </summary>
+            <value>The error code.</value>
+        </member>
+        <member name="P:SixPack.CodedException.ErrorMessage">
+            <summary>
+            Gets the error message.
+            </summary>
+            <value>The error message.</value>
+        </member>
+        <member name="M:SixPack.CodedException.GetErrorCodeFromResource(System.String)">
+            <summary>
+            Gets the error code from a resource string.
+            </summary>
+            <param name="resource">The resource string.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:SixPack.CodedException.GetErrorMessageFromResource(System.String)">
+            <summary>
+            Gets the error message from a resource string.
+            </summary>
+            <param name="resource">The resource string.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:SixPack.Text.UnicodeRange">
+            <summary>
+            Represents the valid ranges of Unicode
+            </summary>
+        </member>
+        <member name="T:SixPack.Text.UnicodeSemantics">
+            <summary>
+            Validates a <see cref="T:System.UInt32" /> against a set of Unicode ranges.
+            </summary>
+        </member>
+        <member name="M:SixPack.Text.UnicodeSemantics.#ctor(SixPack.Text.UnicodeRange[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Text.UnicodeSemantics" /> class.
+            </summary>
+            <param name="validRanges">
+            A <see cref="T:SixPack.Text.UnicodeRange" /> parameter that defines the range of characters we want to validate.
+            </param>
+        </member>
+        <member name="M:SixPack.Text.UnicodeSemantics.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Text.UnicodeSemantics" /> class.
+            </summary>
+        </member>
+        <member name="P:SixPack.Text.UnicodeSemantics.MinValue">
+            <summary>
+            Represents the smallest possible value of a valid argument for <see cref="M:SixPack.Text.UnicodeSemantics.IsInRange(System.UInt32)" /></summary>
+        </member>
+        <member name="P:SixPack.Text.UnicodeSemantics.MaxValue">
+            <summary>
+            Represents the largest possible value of a valid argument for <see cref="M:SixPack.Text.UnicodeSemantics.IsInRange(System.UInt32)" /></summary>
+        </member>
+        <member name="M:SixPack.Text.UnicodeSemantics.IsInRange(System.UInt32)">
+            <summary>
+            Returns true if the specified uint maps to a valid Unicode character in the ranges specified.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>
+            True if the code is in one of the ranges defined in the creator, False otherwise.
+            </returns>
+        </member>
+        <member name="M:SixPack.Text.UnicodeSemantics.IsInRange(System.UInt32,SixPack.Text.UnicodeRange[])">
+            <summary>
+            Returns true if the specified uint maps to a valid Unicode character in the ranges specified.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="validRanges">A series of <see cref="T:SixPack.Text.UnicodeRange" /> to match the value against.</param>
+            <returns>
+            True if the code is in one of the ranges, False otherwise.
+            </returns>
+        </member>
+    </members>
+</doc>

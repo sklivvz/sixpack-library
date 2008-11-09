@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SixPack.UnitTests", "SixPack.UnitTests\SixPack.UnitTests.csproj", "{2A11C6B7-93BE-494A-8172-D91A6AF34698}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A11C6B7-93BE-494A-8172-D91A6AF34698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A11C6B7-93BE-494A-8172-D91A6AF34698}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A11C6B7-93BE-494A-8172-D91A6AF34698}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A11C6B7-93BE-494A-8172-D91A6AF34698}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B52AA9FD-1398-4507-845D-30B8B31FBDE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B52AA9FD-1398-4507-845D-30B8B31FBDE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B52AA9FD-1398-4507-845D-30B8B31FBDE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B52AA9FD-1398-4507-845D-30B8B31FBDE7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		name = tests
+		version = 0.1
+		StartupItem = SixPack.UnitTests\SixPack.UnitTests.csproj
+	EndGlobalSection
+EndGlobal

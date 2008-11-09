@@ -1,0 +1,6 @@
+Name: SixPack
+Description: SixPack
+Version: 0.1
+
+Requires: 
+Libs: -r:/usr/local/lib/sixpack/Fullsix.dll

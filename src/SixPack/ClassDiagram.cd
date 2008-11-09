@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SixPack.ComponentModel.CacheController" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAgAAAAggACAAAAAAA=</HashCode>
+      <FileName>ComponentModel\CacheController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.ComponentModel.CachedAttribute" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>ComponentModel\CachedAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.ComponentModel.CachedContextProperty" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAQAAAAAAAAAAAAAAQAAAAI=</HashCode>
+      <FileName>ComponentModel\CachedContextProperty.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SixPack.ComponentModel.CachedMethodAttribute" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ComponentModel\CachedMethodAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.ComponentModel.CachedSink" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAgAAAAIAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>ComponentModel\CachedSink.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SixPack.Data.CommandWrapper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAACAAAAAEAAAAAAACAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\CommandWrapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SixPack.Data.StoredProcedure" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAIAAACAAAAwAAAAABAAAAAACAAABAAAAAACAAAQ=</HashCode>
+      <FileName>Data\StoredProcedure.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SixPack.Diagnostics.HighResolutionTimer" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACACAAAgAEAAAAAAAAAgAACAIAAAAAAAAAA=</HashCode>
+      <FileName>Diagnostics\HighResolutionTimer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Diagnostics.Log" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIgCAhBAAQAAAESQAAAEQQAAAAAABAAQAgMEAAAAAg=</HashCode>
+      <FileName>Diagnostics\Log.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Diagnostics.SafeNativeMethods" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Diagnostics\SafeNativeMethods.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Drawing.CaptchaImage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAABCAAAAQAQEAAAEACEAAAABAIAAQACAAIAAA=</HashCode>
+      <FileName>Drawing\CaptchaImage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SixPack.Drawing.ImageSizing" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiEAAAAAABAAAAAAAAAAAAAAAIAAAAAAAgAAEAAEA=</HashCode>
+      <FileName>Drawing\ImageSizing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Net.Dns" Collapsed="true">
+    <Position X="14" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Net\Dns.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Net.UnsafeNativeMethods" Collapsed="true">
+    <Position X="10.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Net\UnsafeNativeMethods.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Net.Mail.EmailSemantics" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAgAAAAAAAAAAAAAAAAABDAAAAA=</HashCode>
+      <FileName>Net\Mail\EmailSemantics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Net.NetworkInformation.IPSemantics" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAABAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Net\NetworkInformation\IPSemantics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Net.Sockets.SmtpClient" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAQAAAAACAIxQABAEACAIAACAACABgAAAEAEwAgAQI=</HashCode>
+      <FileName>Net\Sockets\SmtpClient.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SixPack.Net.Sockets.SmtpResponse" Collapsed="true">
+    <Position X="14" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAggAAAAAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAKA=</HashCode>
+      <FileName>Net\Sockets\SmtpClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Security.Cryptography.BigInteger" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ASMCIKgAAxBAAACG8IWLIoASEkYAoJICKgRWAAAAJyA=</HashCode>
+      <FileName>Security\Cryptography\BigInteger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Security.Cryptography.DataGenerator" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACBABAIAAAQAAAAAAAIAIAAIAAAAAAAAwAEFAAAAA=</HashCode>
+      <FileName>Security\Cryptography\DataGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Security.Cryptography.RsaSmall" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAQQAAAEAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Security\Cryptography\RsaSmall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Security.Cryptography.RsaSmallFullKey" Collapsed="true">
+    <Position X="7" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Security\Cryptography\RsaSmall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Security.Cryptography.RsaSmallKey" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAQAAAQAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Security\Cryptography\RsaSmall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Security.Cryptography.RsaSmallPublicKey" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Security\Cryptography\RsaSmall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Security.Cryptography.RsaSmallPrivateKey" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Security\Cryptography\RsaSmall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Standards.Base32" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgFAAAEAAAAAAAAAAAABAAAAAAgAQAAAQAA=</HashCode>
+      <FileName>Standards\Base32.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Standards.Mod9710" Collapsed="true">
+    <Position X="14" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAQAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Standards\Mod9710.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Text.SemanticValidator" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Text\SemanticValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Text.SyntacticValidator" Collapsed="true">
+    <Position X="7" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQAAAAAEAAAAAABACAAAAQACAEAAGCIAAABAIUAIABA=</HashCode>
+      <FileName>Text\SyntacticValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Text.TextUtilities" Collapsed="true">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAIgAAAAA=</HashCode>
+      <FileName>Text\TextUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="SixPack.Diagnostics.LogLevel" Collapsed="true">
+    <Position X="10.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAYAAAAAAABAAAAAAAAAAAAAAAEEAAAA=</HashCode>
+      <FileName>Diagnostics\Log.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SixPack.Drawing.ImageResizeMethod" Collapsed="true">
+    <Position X="7" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQIAQAAAIAAAAAAAAAABAAAAAAAAAAAAAAAAAAoA=</HashCode>
+      <FileName>Drawing\ImageSizing.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SixPack.Net.Mail.MailSemanticValidationMode" Collapsed="true">
+    <Position X="12.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAABAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Net\Mail\EmailSemantics.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SixPack.Net.NetworkInformation.IPRanges" Collapsed="true">
+    <Position X="8.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIQFAAAAiAACAAIICAgACAEAAEAIAABRCAAAEAggQ=</HashCode>
+      <FileName>Net\NetworkInformation\IPSemantics.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SixPack.Net.Sockets.SmtpResponseCode" Collapsed="true">
+    <Position X="5.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>SIBhAgAAAAAAAAMKAAAAEAAAACAAAAAAAAgAogIEAAI=</HashCode>
+      <FileName>Net\Sockets\SmtpClient.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SixPack.Text.MailSyntaxValidationMode" Collapsed="true">
+    <Position X="14" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Text\SyntacticValidator.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SixPack.Text.UriSyntaxValidationMode" Collapsed="true">
+    <Position X="7" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Text\SyntacticValidator.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SixPack.Text.CreditCardTypes" Collapsed="true">
+    <Position X="5.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAhAAAAAAAQAAAAIAAEAAACBg=</HashCode>
+      <FileName>Text\SyntacticValidator.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

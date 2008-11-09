@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SixPack.Web.Services.PublishMethodAttribute">
+    <Position X="3" Y="0.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAEICAABAAhAAAAIAAAAAAAAAAAAAAgAAAAIAEAACA=</HashCode>
+      <FileName>PublishMethodAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Web.Services.PublishServiceAttribute">
+    <Position X="6" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAIAAAAAQAAAAEIAAAgAAAAAAAAAA=</HashCode>
+      <FileName>PublishServiceAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Web.Services.ServiceResult">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAgIAAAIAAAAAgAIAAAACA=</HashCode>
+      <FileName>ServiceResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Web.Services.ServiceResult&lt;T&gt;">
+    <Position X="0.5" Y="3" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ServiceResultOfT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SixPack.Web.Services.WebServiceException">
+    <Position X="3" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WebServiceException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

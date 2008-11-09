@@ -1,0 +1,6 @@
+Name: SixPack.Web.Services
+Description: SixPack.Web.Services
+Version: 0.1
+
+Requires: 
+Libs: -r:/usr/local/lib/sixpack/SixPack.Web.Services.dll

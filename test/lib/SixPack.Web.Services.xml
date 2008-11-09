@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>/home/marco/develop/ex-fullsix/src/SixPack.Web.Services/bin/Debug/SixPack.Web.Services</name>
+    </assembly>
+    <members>
+        <member name="T:SixPack.Web.Services.PublishMethodAttribute">
+            <summary>
+            Methods with this attribute will be published as webmethods by wserv.
+            </summary>
+        </member>
+        <member name="M:SixPack.Web.Services.PublishMethodAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Web.Services.PublishMethodAttribute" /> class.
+            </summary>
+        </member>
+        <member name="M:SixPack.Web.Services.PublishMethodAttribute.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Web.Services.PublishMethodAttribute" /> class.
+            </summary>
+            <param name="enableSession">if set to <c>true</c> enable session.</param>
+        </member>
+        <member name="M:SixPack.Web.Services.PublishMethodAttribute.#ctor(System.Boolean,System.EnterpriseServices.TransactionOption)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Web.Services.PublishMethodAttribute" /> class.
+            </summary>
+            <param name="enableSession">if set to <c>true</c> enable session.</param>
+            <param name="transactionOption">The transaction option.</param>
+        </member>
+        <member name="M:SixPack.Web.Services.PublishMethodAttribute.#ctor(System.Boolean,System.EnterpriseServices.TransactionOption,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Web.Services.PublishMethodAttribute" /> class.
+            </summary>
+            <param name="enableSession">if set to <c>true</c> enable session.</param>
+            <param name="transactionOption">The transaction option.</param>
+            <param name="cacheDuration">The cache duration.</param>
+        </member>
+        <member name="M:SixPack.Web.Services.PublishMethodAttribute.#ctor(System.Boolean,System.EnterpriseServices.TransactionOption,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Web.Services.PublishMethodAttribute" /> class.
+            </summary>
+            <param name="enableSession">if set to <c>true</c> enable session.</param>
+            <param name="transactionOption">The transaction option.</param>
+            <param name="cacheDuration">The cache duration.</param>
+            <param name="bufferResponse">if set to <c>true</c> buffer response.</param>
+        </member>
+        <member name="P:SixPack.Web.Services.PublishMethodAttribute.BufferResponse">
+            <summary>
+            Gets or sets a value indicating whether to buffer response.
+            </summary>
+            <value>
+                <c>true</c> if buffering response; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:SixPack.Web.Services.PublishMethodAttribute.CacheDuration">
+            <summary>
+            Gets or sets the cache duration.
+            </summary>
+            <value>The cache duration.</value>
+        </member>
+        <member name="P:SixPack.Web.Services.PublishMethodAttribute.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:SixPack.Web.Services.PublishMethodAttribute.EnableSession">
+            <summary>
+            Gets or sets a value indicating whether to enable session.
+            </summary>
+            <value>
+                <c>true</c> if session enabled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:SixPack.Web.Services.PublishMethodAttribute.MessageName">
+            <summary>
+            Gets or sets the name of the message.
+            </summary>
+            <value>The name of the message.</value>
+        </member>
+        <member name="P:SixPack.Web.Services.PublishMethodAttribute.TransactionOption">
+            <summary>
+            Gets or sets the transaction option.
+            </summary>
+            <value>The transaction option.</value>
+        </member>
+        <member name="T:SixPack.Web.Services.PublishServiceAttribute">
+            <summary>
+            Classes with this attribute will be published as webservices by wserv.
+            </summary>
+        </member>
+        <member name="P:SixPack.Web.Services.PublishServiceAttribute.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:SixPack.Web.Services.PublishServiceAttribute.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:SixPack.Web.Services.PublishServiceAttribute.Namespace">
+            <summary>
+            Gets or sets the namespace.
+            </summary>
+            <value>The namespace.</value>
+        </member>
+        <member name="T:SixPack.Web.Services.ServiceResult">
+            <summary>
+            Provides a wrapper result class for webservices (functions with void return type).
+            </summary>
+        </member>
+        <member name="P:SixPack.Web.Services.ServiceResult.Code">
+            <summary>
+            Gets or sets the status code.
+            </summary>
+            <value>The code.</value>
+        </member>
+        <member name="P:SixPack.Web.Services.ServiceResult.Message">
+            <summary>
+            Gets or sets the status message.
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="P:SixPack.Web.Services.ServiceResult.FullException">
+            <summary>
+            Gets or sets the full exception in case one occurred.
+            </summary>
+            <value>The full exception.</value>
+        </member>
+        <member name="M:SixPack.Web.Services.ServiceResult.HandleException(System.Exception)">
+            <summary>
+            Helper method to handle an exception.
+            </summary>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="T:SixPack.Web.Services.ServiceResult`1">
+            <summary>
+            Provides a wrapper result class for webservices (functions with return type T).
+            </summary>
+            <typeparam name="T">The return type to be handled.</typeparam>
+        </member>
+        <member name="M:SixPack.Web.Services.ServiceResult`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="!:SixPack.Web.Services.ServiceResult{T}" /> class.
+            </summary>
+        </member>
+        <member name="M:SixPack.Web.Services.ServiceResult`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="!:SixPack.Web.Services.ServiceResult{T}" /> class.
+            </summary>
+            <param name="result">The result.</param>
+        </member>
+        <member name="P:SixPack.Web.Services.ServiceResult`1.Result">
+            <summary>
+            Gets or sets the result.
+            </summary>
+            <value>The result.</value>
+        </member>
+        <member name="T:SixPack.Web.Services.WebServiceException">
+            <summary>
+            The abstract parent exception for all fullsix web service exceptions.
+            </summary>
+        </member>
+        <member name="M:SixPack.Web.Services.WebServiceException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Web.Services.WebServiceException" /> class.
+            </summary>
+        </member>
+        <member name="M:SixPack.Web.Services.WebServiceException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Web.Services.WebServiceException" /> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:SixPack.Web.Services.WebServiceException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Web.Services.WebServiceException" /> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="M:SixPack.Web.Services.WebServiceException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Web.Services.WebServiceException" /> class.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+    </members>
+</doc>

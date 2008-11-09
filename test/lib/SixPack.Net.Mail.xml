@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>/home/marco/develop/ex-fullsix/src/SixPack.Net.Mail/bin/Debug/SixPack.Net.Mail</name>
+    </assembly>
+    <members>
+        <member name="T:SixPack.Net.Mail.MailMessage">
+            <summary>
+            Façade for CDO.Message.
+            </summary>
+            <example>
+            // Create new order
+            Order o = new Order(UserCart,PageUser,0,Language);
+            // Define basic email properties
+            MailMessage mm = new MailMessage();
+            mm.Subject="test";
+            mm.From="marco.cecconi@fullsix.com";
+            mm.To="tas@fullsix.com";
+            mm.SMTPServer="beinteractive04";
+            mm.SMTPPort=25;
+            mm.Subject="New Mail Message XML XSL class test email :-P";
+            // Let's use an xml/xsl transformation - not compulsory
+            // XSL
+            StreamReader sr_stylesheet = new StreamReader(Server.MapPath("xsl/EN/MailOrder.xsl"));
+            XPathNavigator xpn_stylesheet = new XPathDocument(sr_stylesheet).CreateNavigator();
+            // XML
+            XmlTextReader xtr_content = new XmlTextReader(new StringReader(o.ToXMLDocument()));
+            XPathDocument xpd_content = new XPathDocument(xtr_content);
+            // Output of the process
+            MemoryStream ms_output = new MemoryStream();
+            XmlTextWriter xw_output = new XmlTextWriter(ms_output,System.Text.Encoding.UTF8);
+            // Do the transformation
+            XslTransform xslt = new XslTransform();
+            xslt.Load(xpn_stylesheet,null,null);
+            xslt.Transform(xpd_content, null, xw_output, null);
+            // Create the email body
+            ms_output.Position=0;
+            mm.CreateMHTMLBody(ms_output,MHTMLFlags.SuppressNone);
+            // Close the streams
+            xtr_content.Close();
+            sr_stylesheet.Close();
+            xw_output.Close();
+            // Create a call back image in the message (the HTMLBody has "[$TAG]" somewhere...)
+            Hashtable foo = new Hashtable();
+            foo["TAG"] = @"<img src="http://www.fullsix.com/User-Open-Mail.aspx" />";
+            mm.ApplyTemplate(foo);
+            // Add an attachment
+            mm.AttachFile(new Uri(@"http://www.downloadcoolspyware.com/fullsix-user-tracker.zip"));
+            // Send the message
+            mm.Send();
+            </example>
+        </member>
+        <member name="M:SixPack.Net.Mail.MailMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SixPack.Net.Mail.MailMessage" /> class.
+            </summary>
+        </member>
+        <member name="P:SixPack.Net.Mail.MailMessage.From">
+            <summary>
+            Gets or sets the From address.
+            </summary>
+            <value>From.</value>
+        </member>
+        <member name="P:SixPack.Net.Mail.MailMessage.Subject">
+            <summary>
+            Gets or sets the subject.
+            </summary>
+            <value>The subject.</value>
+        </member>
+        <member name="P:SixPack.Net.Mail.MailMessage.To">
+            <summary>
+            Gets or sets the to address.
+            </summary>
+            <value>To.</value>
+        </member>
+        <member name="P:SixPack.Net.Mail.MailMessage.CC">
+            <summary>
+            Gets or sets the CC address.
+            </summary>
+            <value>The CC.</value>
+        </member>
+        <member name="P:SixPack.Net.Mail.MailMessage.BCC">
+            <summary>
+            Gets or sets the BCC address.
+            </summary>
+            <value>The BCC.</value>
+        </member>
+        <member name="P:SixPack.Net.Mail.MailMessage.AutoGenerateTextBody">
+            <summary>
+            Gets or sets a value indicating whether to auto generate the text body.
+            </summary>
+            <value>
+                <c>true</c> if you want the class to auto generate the text body; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:SixPack.Net.Mail.MailMessage.SmtpServer">
+            <summary>
+            Gets or sets the SMTP server.
+            </summary>
+            <value>The SMTP server.</value>
+        </member>
+        <member name="P:SixPack.Net.Mail.MailMessage.SmtpPort">
+            <summary>
+            Gets or sets the SMTP port.
+            </summary>
+            <value>The SMTP port.</value>
+        </member>
+        <member name="P:SixPack.Net.Mail.MailMessage.TemplateTagFormat">
+            <summary>
+            Gets or sets the template tag format.
+            </summary>
+            <value>The template tag format.</value>
+        </member>
+        <member name="P:SixPack.Net.Mail.MailMessage.HtmlBody">
+            <summary>
+            Gets or sets the HTML body.
+            </summary>
+            <value>The HTML body.</value>
+        </member>
+        <member name="P:SixPack.Net.Mail.MailMessage.TextBody">
+            <summary>
+            Gets or sets the text body.
+            </summary>
+            <value>The text body.</value>
+        </member>
+        <member name="P:SixPack.Net.Mail.MailMessage.CharSet">
+            <summary>
+            Gets or sets the charset of the message.
+            </summary>
+            <value>The char set.</value>
+        </member>
+        <member name="M:SixPack.Net.Mail.MailMessage.CreateMhtmlBody(System.Uri,SixPack.Net.Mail.MhtmlSuppress)">
+            <summary>
+            Creates the MHTML body of the message by spidering a URL.
+            </summary>
+            <param name="uri">The URI of the source page.</param>
+            <param name="flags">A MHTMLFlag specifing the kind of spidering.</param>
+        </member>
+        <member name="M:SixPack.Net.Mail.MailMessage.CreateMhtmlBody(System.IO.Stream,SixPack.Net.Mail.MhtmlSuppress)">
+            <summary>
+            Creates the MHTML body of the message by spidering a page passed via Stream.
+            </summary>
+            <param name="bodyStream">The Stream containing the page.</param>
+            <param name="flags">A MHTMLFlag specifing the kind of spidering.</param>
+        </member>
+        <member name="M:SixPack.Net.Mail.MailMessage.AttachFile(System.IO.Stream,System.String)">
+            <summary>
+            Attaches a file to the message.
+            </summary>
+            <param name="attachStream">The Stream containing the file to be attached.</param>
+            <param name="fileName">The destination filename</param>
+        </member>
+        <member name="M:SixPack.Net.Mail.MailMessage.AttachFile(System.Uri)">
+            <summary>
+            Attaches a file to the message.
+            </summary>
+            <param name="uri">The URI pointing to the file to be attached.</param>
+        </member>
+        <member name="M:SixPack.Net.Mail.MailMessage.ApplyTemplate(System.Collections.IDictionary)">
+            <summary>
+            Applies the contents to a template loaded in the body of the message.
+            </summary>
+            <param name="tagData">
+            </param>
+        </member>
+        <member name="M:SixPack.Net.Mail.MailMessage.Send">
+            <summary>
+            Sends the message.
+            </summary>
+        </member>
+        <member name="T:SixPack.Net.Mail.MhtmlSuppress">
+            <summary>
+            These flags specify how the spidering of a page should be done.
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.MhtmlSuppress.None">
+            <summary>
+            Download all resources from the Web page (default).
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.MhtmlSuppress.Images">
+            <summary>
+            Do not download resources from &lt;IMG [DYN]SRC=...&gt; or &lt;BODY BACKGROUND=...&gt; tags.
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.MhtmlSuppress.BackgroundSounds">
+            <summary>
+            Do not download resources from &lt;BGSOUND SRC=...&gt; tags.
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.MhtmlSuppress.Frames">
+            <summary>
+            Do not download resources from &lt;FRAME SRC=...&gt; tags.
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.MhtmlSuppress.Objects">
+            <summary>
+            Do not download resources from &lt;OBJECT CODEBASE=...&gt; tags.
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.MhtmlSuppress.StyleSheets">
+            <summary>
+            Do not download resources from &lt;LINK HREF=...&gt; tags.
+            </summary>
+        </member>
+        <member name="F:SixPack.Net.Mail.MhtmlSuppress.All">
+            <summary>
+            Do not download any resources referred to from within the page.
+            </summary>
+        </member>
+    </members>
+</doc>

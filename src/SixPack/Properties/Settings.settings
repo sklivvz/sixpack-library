@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SixPack.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Globalization_Portugal_PhoneNumber_PhonePattern_International" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">^(\+|00)\d+$</Value>
+    </Setting>
+    <Setting Name="Globalization_Portugal_PhoneNumber_PhonePattern_ShortNumber" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">^1\d+$</Value>
+    </Setting>
+    <Setting Name="Globalization_Portugal_PhoneNumber_PhonePattern_FixedService" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">^2[1-9]\d{8}$</Value>
+    </Setting>
+    <Setting Name="Globalization_Portugal_PhoneNumber_PhonePattern_NomadicService" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">^3\d$+</Value>
+    </Setting>
+    <Setting Name="Globalization_Portugal_PhoneNumber_PhonePattern_AudioText" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">^6\d+$</Value>
+    </Setting>
+    <Setting Name="Globalization_Portugal_PhoneNumber_PhonePattern_PrivateVoiceNetwork" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">^7\d+$</Value>
+    </Setting>
+    <Setting Name="Globalization_Portugal_PhoneNumber_PhonePattern_FreeServices" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">^8\d+$</Value>
+    </Setting>
+    <Setting Name="Globalization_Portugal_PhoneNumber_PhonePattern_MobileCommunicationServices" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">^9(1|2|6|3)\d+$</Value>
+    </Setting>
+    <Setting Name="Globalization_Portugal_PostalCode_PostalCodePattern" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">^\d{4}-\d{3}$</Value>
+    </Setting>
+    <Setting Name="Globalization_Portugal_FiscalCode_FiscalCodePattern" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">^\d{9}$</Value>
+    </Setting>
+    <Setting Name="Globalization_Portugal_VatCode_VatCodePattern" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">^(PT){0,1}[0-9]{9}$</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

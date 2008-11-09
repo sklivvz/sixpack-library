@@ -1,0 +1,6 @@
+Name: SixPack.Net.Mail
+Description: SixPack.Net.Mail
+Version: 0.1
+
+Requires: 
+Libs: -r:/usr/local/lib/sixpack/SixPack.Net.Mail.dll
