@@ -26,12 +26,6 @@ Global
 		{C6C6FFCE-B88B-453B-9DE1-8C8D37684260}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6C6FFCE-B88B-453B-9DE1-8C8D37684260}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		name = SixPack
-		description = The SixPack library.
-		version = 1.0
-		StartupItem = SixPack\SixPack.csproj
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

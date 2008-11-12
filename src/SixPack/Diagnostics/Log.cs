@@ -398,10 +398,10 @@ Message:
 				string message =
 					String.Format(CultureInfo.InvariantCulture, FileLogFormat,
 								  new object[] { DateTime.Now, logLevel, text, CurrentServer, CurrentAppDomain, ip, callerMethod });
-				using (FileStream fileStream = new FileStream(logFile, FileMode.Append, FileAccess.Write, FileShare.ReadWrite))
-				using (StreamWriter writer = new StreamWriter(fileStream))
+				lock (syncObject)
 				{
-					lock (syncObject)
+					using (FileStream fileStream = new FileStream(logFile, FileMode.Append, FileAccess.Write, FileShare.ReadWrite))
+					using (StreamWriter writer = new StreamWriter(fileStream))
 					{
 						writer.WriteLine(message);
 						writer.Flush();

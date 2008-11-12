@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SixPack.Web.Services</RootNamespace>
     <AssemblyName>SixPack.Web.Services</AssemblyName>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>SixPack.Web.Services.pfx</AssemblyOriginatorKeyFile>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -68,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SixPack.Web.Services.cd" />
-    <None Include="SixPack.Web.Services.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SixPack\SixPack.csproj">
@@ -106,5 +106,6 @@ COPY /Y $(TargetDir)*.xml $(SolutionDir)bin\$(ConfigurationName)</PostBuildEvent
         </MonoDevelop.Autotools.MakefileInfo>
       </Properties>
     </MonoDevelop>
+    <VisualStudio />
   </ProjectExtensions>
 </Project>
