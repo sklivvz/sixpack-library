@@ -28,7 +28,7 @@ using System.Globalization;
 namespace SixPack.Data
 {
 	/// <summary>
-	/// Fa�ade for SqlCommand
+	/// Façade for SqlCommand
 	/// </summary>
 	public class CommandWrapper : IDisposable
 	{

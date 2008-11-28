@@ -823,5 +823,45 @@ namespace SixPack.Data
 			// free native resources
 		}
 		#endregion
+
+		#region Flow interface
+		/// <summary>
+		/// Adds an input parameter.
+		/// </summary>
+		/// <param name="name">The name.</param>
+		/// <param name="value">The value.</param>
+		/// <param name="parType">Type of the parameter.</param>
+		/// <param name="size">The size.</param>
+		public StoredProcedure AddParameter(string name, object value, DbType parType, int size)
+		{
+			Command.AddParameter(name, value, parType, size);
+			return this;
+		}
+		/// <summary>
+		/// Adds a parameter.
+		/// </summary>
+		/// <param name="name">The name.</param>
+		/// <param name="value">The value.</param>
+		/// <param name="parType">Type of the parameter.</param>
+		/// <param name="size">The size.</param>
+		/// <param name="direction">The direction.</param>
+		public StoredProcedure AddParameter(string name, object value, DbType parType, int size, ParameterDirection direction)
+		{
+			Command.AddParameter(name, value, parType, size, direction);
+			return this;
+		}
+		/// <summary>
+		/// Adds an output parameter.
+		/// </summary>
+		/// <param name="name">The name.</param>
+		/// <param name="parType">Type of the par.</param>
+		/// <param name="size">The size.</param>
+		public StoredProcedure AddOutParameter(string name, DbType parType, int size)
+		{
+			Command.AddOutParameter(name, parType, size);
+			return this;
+		}
+
+		#endregion
 	}
 }
