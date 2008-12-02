@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -89,7 +89,7 @@ COPY /Y $(TargetDir)*.xml $(SolutionDir)bin\$(ConfigurationName)</PostBuildEvent
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
-        <GtkDesignInfo gtkVersion="2.12.1" />
+        <GtkDesignInfo />
         <MonoDevelop.Autotools.MakefileInfo RelativeMakefileName="Makefile.am" SyncReferences="true" IsAutotoolsProject="true" RelativeConfigureInPath="..">
           <BuildFilesVar Sync="true" Name="FILES" />
           <DeployFilesVar />

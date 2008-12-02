@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SixPack.Net.Mail", "SixPack
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SixPack.Web.Services", "SixPack.Web.Services\SixPack.Web.Services.csproj", "{C6C6FFCE-B88B-453B-9DE1-8C8D37684260}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SixPack.Caching", "SixPack.Caching\SixPack.Caching.csproj", "{FA5E8F74-1753-4D74-A221-2DE7E00B8C97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,15 @@ Global
 		{C6C6FFCE-B88B-453B-9DE1-8C8D37684260}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6C6FFCE-B88B-453B-9DE1-8C8D37684260}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6C6FFCE-B88B-453B-9DE1-8C8D37684260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA5E8F74-1753-4D74-A221-2DE7E00B8C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA5E8F74-1753-4D74-A221-2DE7E00B8C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA5E8F74-1753-4D74-A221-2DE7E00B8C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA5E8F74-1753-4D74-A221-2DE7E00B8C97}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		name = SixPack
+		version = 0.1
+		StartupItem = SixPack\SixPack.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
