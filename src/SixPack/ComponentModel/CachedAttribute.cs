@@ -38,6 +38,7 @@ namespace SixPack.ComponentModel
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CachedAttribute"/> class.
 		/// </summary>
+		[SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
 		public CachedAttribute()
 			: base("CachedEnabled")
 		{

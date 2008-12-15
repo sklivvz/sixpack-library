@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Security.Permissions;
 
 namespace SixPack.Net
 {
@@ -36,6 +37,7 @@ namespace SixPack.Net
 		/// </summary>
 		/// <param name="domain">The domain.</param>
 		/// <returns></returns>
+		[SecurityPermission(SecurityAction.LinkDemand, Flags=SecurityPermissionFlag.UnmanagedCode)]
 		public static string[] GetMXRecords(string domain)
 		{
 			IntPtr MXRecordsPointer = IntPtr.Zero;
@@ -77,6 +79,7 @@ namespace SixPack.Net
 		/// </summary>
 		/// <param name="domain">The domain.</param>
 		/// <returns></returns>
+		[SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
 		public static IPAddress[] GetResolvedMXRecords(string domain)
 		{
 			string[] mxRecords = GetMXRecords(domain);

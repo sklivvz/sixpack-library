@@ -21,6 +21,7 @@
 using System;
 using System.ComponentModel;
 using System.Net;
+using System.Security.Permissions;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using SixPack.Diagnostics;
@@ -291,6 +292,7 @@ namespace SixPack.Net.Mail
 
 		private static readonly Regex emailParser = new Regex("^(?<user>.+)@(?<server>.+)$", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
+		[SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.UnmanagedCode)]
 		private static bool emailUserLookup(string server, string email)
 		{
 			IPAddress[] mx;
@@ -328,6 +330,7 @@ namespace SixPack.Net.Mail
 			return false;
 		}
 
+		[SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.UnmanagedCode)]
 		private static bool emailServerLookup(string server)
 		{
 			IPAddress[] mx;
@@ -359,6 +362,7 @@ namespace SixPack.Net.Mail
 			return false;
 		}
 
+		[SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.UnmanagedCode)]
 		private static bool emailDNSLookup(string server)
 		{
 			IPAddress[] mx;

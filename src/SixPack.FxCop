@@ -1,0 +1,2194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FxCopProject Version="1.36" Name="SixPack">
+ <ProjectOptions>
+  <SharedProject>True</SharedProject>
+  <Stylesheet Apply="False">c:\program files\microsoft fxcop 1.36\Xml\FxCopReport.xsl</Stylesheet>
+  <SaveMessages>
+   <Project Status="Active, Excluded" NewOnly="False" />
+   <Report Status="Active" NewOnly="False" />
+  </SaveMessages>
+  <ProjectFile Compress="True" DefaultTargetCheck="True" DefaultRuleCheck="True" SaveByRuleGroup="" Deterministic="True" />
+  <EnableMultithreadedLoad>True</EnableMultithreadedLoad>
+  <EnableMultithreadedAnalysis>True</EnableMultithreadedAnalysis>
+  <SourceLookup>True</SourceLookup>
+  <AnalysisExceptionsThreshold>10</AnalysisExceptionsThreshold>
+  <RuleExceptionsThreshold>1</RuleExceptionsThreshold>
+  <Spelling Locale="en-US" />
+  <OverrideRuleVisibilities>False</OverrideRuleVisibilities>
+  <CustomDictionaries SearchFxCopDir="True" SearchUserProfile="True" SearchProjectDir="True" />
+  <SearchGlobalAssemblyCache>False</SearchGlobalAssemblyCache>
+  <DeadlockDetectionTimeout>120</DeadlockDetectionTimeout>
+  <IgnoreGeneratedCode>False</IgnoreGeneratedCode>
+ </ProjectOptions>
+ <Targets>
+  <Target Name="$(ProjectDir)/bin/Release/SixPack.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/bin/Release/SixPack.Net.Mail.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/bin/Release/SixPack.Web.Services.dll" Analyze="True" AnalyzeAllChildren="True" />
+ </Targets>
+ <Rules>
+  <RuleFiles>
+   <RuleFile Name="$(FxCopDir)\Rules\DesignRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\GlobalizationRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\InteroperabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\MobilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\NamingRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PerformanceRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PortabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\UsageRules.dll" Enabled="True" AllRulesEnabled="True" />
+  </RuleFiles>
+  <Groups />
+  <Settings />
+ </Rules>
+ <FxCopReport Version="1.36">
+  <Namespaces>
+   <Namespace Name="SixPack">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2008-12-15 19:53:42Z">
+      <Issue>
+       <Item>SixPack</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="SixPack.Banking">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2008-12-15 19:53:42Z">
+      <Issue>
+       <Item>SixPack.Banking</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="SixPack.ComponentModel">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2008-12-15 19:53:42Z">
+      <Issue>
+       <Item>SixPack.ComponentModel</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="SixPack.Diagnostics">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2008-12-15 19:53:42Z">
+      <Issue>
+       <Item>SixPack.Diagnostics</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="SixPack.Drawing">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2008-12-15 19:53:42Z">
+      <Issue>
+       <Item>SixPack.Drawing</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="SixPack.Net.NetworkInformation">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2008-12-15 19:53:42Z">
+      <Issue>
+       <Item>SixPack.Net.NetworkInformation</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="SixPack.Net.Sockets">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2008-12-15 19:53:42Z">
+      <Issue>
+       <Item>SixPack.Net.Sockets</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="SixPack.Security">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2008-12-15 19:53:42Z">
+      <Issue>
+       <Item>SixPack.Security</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="SixPack.Standards">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2008-12-15 19:53:42Z">
+      <Issue>
+       <Item>SixPack.Standards</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="SixPack.Xml.Xsl">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2008-12-15 19:53:42Z">
+      <Issue>
+       <Item>SixPack.Xml.Xsl</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+  </Namespaces>
+  <Targets>
+   <Target Name="$(ProjectDir)/bin/Release/SixPack.dll">
+    <Modules>
+     <Module Name="sixpack.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2008-12-15 19:53:42Z">
+        <Issue Name="NoStrongName">
+         <Item>'SixPack.dll'</Item>
+        </Issue>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="SixPack.Banking">
+        <Types>
+         <Type Name="CreditCardTypes">
+          <Members>
+           <Member Name="#EnRoute">
+            <Messages>
+             <Message Id="En" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>En</Item>
+               <Item>'CreditCardTypes.EnRoute'</Item>
+               <Item>EN</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="4" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Jcb">
+            <Messages>
+             <Message Id="Jcb" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Jcb</Item>
+               <Item>'CreditCardTypes.Jcb'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="SixPack.Collections.Generic">
+        <Types>
+         <Type Name="FullList`1">
+          <Messages>
+           <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2008-12-15 19:53:42Z">
+            <Issue>
+             <Item>'FullList&lt;T&gt;'</Item>
+             <Item>Collection</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="IFullList`1">
+          <Messages>
+           <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2008-12-15 19:53:42Z">
+            <Issue>
+             <Item>'IFullList&lt;T&gt;'</Item>
+             <Item>Collection</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="ISet`1">
+          <Messages>
+           <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2008-12-15 19:53:42Z">
+            <Issue>
+             <Item>'ISet&lt;T&gt;'</Item>
+             <Item>Collection</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="Set`1">
+          <Messages>
+           <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2008-12-15 19:53:42Z">
+            <Issue>
+             <Item>'Set&lt;T&gt;'</Item>
+             <Item>Collection</Item>
+            </Issue>
+           </Message>
+           <Message Id="Set" TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716" Created="2008-12-15 19:53:42Z">
+            <Issue Name="Type">
+             <Item>'Set&lt;T&gt;'</Item>
+             <Item>Set</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="SetBase`1">
+          <Messages>
+           <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2008-12-15 19:53:42Z">
+            <Issue>
+             <Item>'SetBase&lt;T&gt;'</Item>
+             <Item>Collection</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="SortedSet`1">
+          <Messages>
+           <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2008-12-15 19:53:42Z">
+            <Issue>
+             <Item>'SortedSet&lt;T&gt;'</Item>
+             <Item>Collection</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="SixPack.Data">
+        <Types>
+         <Type Name="StoredProcedure">
+          <Members>
+           <Member Name="#Execute`1(!!0&amp;)">
+            <Messages>
+             <Message Id="0#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'parameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Execute`1(System.Data.Common.DbConnection,!!0&amp;)">
+            <Messages>
+             <Message Id="1#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'parameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Execute`1(System.Data.Common.DbTransaction,!!0&amp;)">
+            <Messages>
+             <Message Id="1#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'parameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Execute`2(!!0&amp;,!!1&amp;)">
+            <Messages>
+             <Message Id="0#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'firstParameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="1#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'secondParameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Execute`2(System.Data.Common.DbConnection,!!0&amp;,!!1&amp;)">
+            <Messages>
+             <Message Id="1#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'firstParameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="2#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'secondParameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Execute`2(System.Data.Common.DbTransaction,!!0&amp;,!!1&amp;)">
+            <Messages>
+             <Message Id="1#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'firstParameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="2#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'secondParameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Execute`3(!!0&amp;,!!1&amp;,!!2&amp;)">
+            <Messages>
+             <Message Id="0#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'firstParameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="1#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'secondParameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="2#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'thirdParameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Execute`3(System.Data.Common.DbConnection,!!0&amp;,!!1&amp;,!!2&amp;)">
+            <Messages>
+             <Message Id="1#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'firstParameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="2#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'secondParameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="3#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'thirdParameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Execute`3(System.Data.Common.DbTransaction,!!0&amp;,!!1&amp;,!!2&amp;)">
+            <Messages>
+             <Message Id="1#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'firstParameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="2#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'secondParameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="3#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'thirdParameter'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="SixPack.Diagnostics">
+        <Types>
+         <Type Name="LogLevel">
+          <Messages>
+           <Message TypeName="MarkEnumsWithFlags" Category="Microsoft.Design" CheckId="CA1027" Created="2008-12-15 19:53:42Z">
+            <Issue>
+             <Item>'LogLevel'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="7" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="SixPack.Drawing">
+        <Types>
+         <Type Name="CaptchaImage">
+          <Messages>
+           <Message Id="Captcha" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+            <Issue Name="Type">
+             <Item>Captcha</Item>
+             <Item>'CaptchaImage'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="SixPack.Net">
+        <Types>
+         <Type Name="UriFormat">
+          <Members>
+           <Member Name="#IsValid(System.String)">
+            <Messages>
+             <Message Id="0#" TypeName="UriParametersShouldNotBeStrings" Category="Microsoft.Design" CheckId="CA1054" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'uri'</Item>
+               <Item>'UriFormat.IsValid(string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#IsValid(System.String,SixPack.Net.UriSyntaxValidationMode)">
+            <Messages>
+             <Message Id="0#" TypeName="UriParametersShouldNotBeStrings" Category="Microsoft.Design" CheckId="CA1054" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'uri'</Item>
+               <Item>'UriFormat.IsValid(string, UriSyntaxValidationMode)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="UriSyntaxValidationMode">
+          <Members>
+           <Member Name="#Rfc2396">
+            <Messages>
+             <Message Id="Rfc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Rfc</Item>
+               <Item>'UriSyntaxValidationMode.Rfc2396'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="XmlRpc">
+          <Members>
+           <Member Name="#GetResponse()">
+            <Messages>
+             <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'XmlRpc.GetResponse()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#GetResponseDataSet()">
+            <Messages>
+             <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Created="2008-12-15 19:53:42Z">
+              <Issue Certainty="50">
+               <Item>'XmlRpc.GetResponseDataSet()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#GetResponseXml()">
+            <Messages>
+             <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Created="2008-12-15 19:53:42Z">
+              <Issue Certainty="50">
+               <Item>'XmlRpc.GetResponseXml()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="SixPack.Net.Mail">
+        <Types>
+         <Type Name="MailSyntaxValidationMode">
+          <Members>
+           <Member Name="#Rfc2822">
+            <Messages>
+             <Message Id="Rfc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Rfc</Item>
+               <Item>'MailSyntaxValidationMode.Rfc2822'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="SixPack.Net.NetworkInformation">
+        <Types>
+         <Type Name="IPRanges">
+          <Members>
+           <Member Name="#IPv6ToIPv4">
+            <Messages>
+             <Message Id="Pv" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Pv</Item>
+               <Item>'IPRanges.IPv6ToIPv4'</Item>
+               <Item>PV</Item>
+              </Issue>
+              <Issue Name="Member">
+               <Item>Pv</Item>
+               <Item>'IPRanges.IPv6ToIPv4'</Item>
+               <Item>PV</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="6" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Reserved">
+            <Messages>
+             <Message TypeName="DoNotNameEnumValuesReserved" Category="Microsoft.Naming" CheckId="CA1700" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'IPRanges.Reserved'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="1" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Reserved128">
+            <Messages>
+             <Message TypeName="DoNotNameEnumValuesReserved" Category="Microsoft.Naming" CheckId="CA1700" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'IPRanges.Reserved128'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="1" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Reserved191">
+            <Messages>
+             <Message TypeName="DoNotNameEnumValuesReserved" Category="Microsoft.Naming" CheckId="CA1700" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'IPRanges.Reserved191'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="1" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Reserved192">
+            <Messages>
+             <Message TypeName="DoNotNameEnumValuesReserved" Category="Microsoft.Naming" CheckId="CA1700" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'IPRanges.Reserved192'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="1" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Reserved223">
+            <Messages>
+             <Message TypeName="DoNotNameEnumValuesReserved" Category="Microsoft.Naming" CheckId="CA1700" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'IPRanges.Reserved223'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="1" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Reserved240">
+            <Messages>
+             <Message TypeName="DoNotNameEnumValuesReserved" Category="Microsoft.Naming" CheckId="CA1700" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue>
+               <Item>'IPRanges.Reserved240'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="1" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="SixPack.Net.Sockets">
+        <Types>
+         <Type Name="SmtpClient">
+          <Members>
+           <Member Name="#Noop()">
+            <Messages>
+             <Message Id="Noop" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Noop</Item>
+               <Item>'SmtpClient.Noop()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="SmtpResponseCode">
+          <Messages>
+           <Message TypeName="EnumsShouldHaveZeroValue" Category="Microsoft.Design" CheckId="CA1008" Created="2008-12-15 19:53:42Z" FixCategory="NonBreaking">
+            <Issue Name="NotFlagsNoZeroValue">
+             <Item>'SmtpResponseCode'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="SixPack.Security.Cryptography">
+        <Types>
+         <Type Name="BigInteger">
+          <Members>
+           <Member Name="#Gcd(SixPack.Security.Cryptography.BigInteger)">
+            <Messages>
+             <Message Id="Gcd" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Gcd</Item>
+               <Item>'BigInteger.Gcd(BigInteger)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#GenerateCoprime(System.Int32,System.Random)">
+            <Messages>
+             <Message Id="Coprime" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Coprime</Item>
+               <Item>'BigInteger.GenerateCoprime(int, Random)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#IntValue()">
+            <Messages>
+             <Message Id="int" TypeName="IdentifiersShouldNotContainTypeNames" Category="Microsoft.Naming" CheckId="CA1720" Created="2008-12-15 19:53:42Z">
+              <Issue Name="LanguageSpecificMember">
+               <Item>Int</Item>
+               <Item>'BigInteger.IntValue()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Jacobi(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <Messages>
+             <Message Id="a" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="MemberParameterMoreMeaningfulName">
+               <Item>'BigInteger.Jacobi(BigInteger, BigInteger)'</Item>
+               <Item>'a'</Item>
+              </Issue>
+             </Message>
+             <Message Id="b" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="MemberParameterMoreMeaningfulName">
+               <Item>'BigInteger.Jacobi(BigInteger, BigInteger)'</Item>
+               <Item>'b'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#LongValue()">
+            <Messages>
+             <Message Id="long" TypeName="IdentifiersShouldNotContainTypeNames" Category="Microsoft.Naming" CheckId="CA1720" Created="2008-12-15 19:53:42Z">
+              <Issue Name="LanguageSpecificMember">
+               <Item>Long</Item>
+               <Item>'BigInteger.LongValue()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#LucasSequence(SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger,SixPack.Security.Cryptography.BigInteger)">
+            <Messages>
+             <Message Id="P" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="MemberParameterMoreMeaningfulName">
+               <Item>'BigInteger.LucasSequence(BigInteger, BigInteger, BigInteger, BigInteger)'</Item>
+               <Item>'P'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Q" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="MemberParameterMoreMeaningfulName">
+               <Item>'BigInteger.LucasSequence(BigInteger, BigInteger, BigInteger, BigInteger)'</Item>
+               <Item>'Q'</Item>
+              </Issue>
+             </Message>
+             <Message Id="k" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="MemberParameterMoreMeaningfulName">
+               <Item>'BigInteger.LucasSequence(BigInteger, BigInteger, BigInteger, BigInteger)'</Item>
+               <Item>'k'</Item>
+              </Issue>
+             </Message>
+             <Message Id="n" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="MemberParameterMoreMeaningfulName">
+               <Item>'BigInteger.LucasSequence(BigInteger, BigInteger, BigInteger, BigInteger)'</Item>
+               <Item>'n'</Item>
+              </Issue>
+             </Message>
+             <Message Id="P" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="MemberParameter">
+               <Item>'BigInteger.LucasSequence(BigInteger, BigInteger, BigInteger, BigInteger)'</Item>
+               <Item>P</Item>
+               <Item>'P'</Item>
+               <Item>p</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="5" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="Q" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="MemberParameter">
+               <Item>'BigInteger.LucasSequence(BigInteger, BigInteger, BigInteger, BigInteger)'</Item>
+               <Item>Q</Item>
+               <Item>'Q'</Item>
+               <Item>q</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="5" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SolovayStrassenTest(System.Int32)">
+            <Messages>
+             <Message Id="Solovay" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Solovay</Item>
+               <Item>'BigInteger.SolovayStrassenTest(int)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Strassen" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Strassen</Item>
+               <Item>'BigInteger.SolovayStrassenTest(int)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Sqrt()">
+            <Messages>
+             <Message Id="Sqrt" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Sqrt</Item>
+               <Item>'BigInteger.Sqrt()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="DataGenerator">
+          <Members>
+           <Member Name="#RandomBool()">
+            <Messages>
+             <Message Id="bool" TypeName="IdentifiersShouldNotContainTypeNames" Category="Microsoft.Naming" CheckId="CA1720" Created="2008-12-15 19:53:42Z">
+              <Issue Name="LanguageSpecificMember">
+               <Item>Bool</Item>
+               <Item>'DataGenerator.RandomBool()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="RsaSmall">
+          <Messages>
+           <Message Id="Rsa" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+            <Issue Name="Type">
+             <Item>Rsa</Item>
+             <Item>'RsaSmall'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="RsaSmallCodeParser">
+          <Messages>
+           <Message Id="Rsa" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+            <Issue Name="Type">
+             <Item>Rsa</Item>
+             <Item>'RsaSmallCodeParser'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="#.ctor(System.Int32,SixPack.Security.Cryptography.RsaSmallPublicKey,SixPack.Text.IStringTranslator)">
+            <Messages>
+             <Message Id="rsa" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="MemberParameter">
+               <Item>'RsaSmallCodeParser.RsaSmallCodeParser(int, RsaSmallPublicKey, IStringTranslator)'</Item>
+               <Item>rsa</Item>
+               <Item>'rsaPublicKey'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(System.Int32,SixPack.Security.Cryptography.RsaSmallPublicKey,System.String,System.String)">
+            <Messages>
+             <Message Id="rsa" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="MemberParameter">
+               <Item>'RsaSmallCodeParser.RsaSmallCodeParser(int, RsaSmallPublicKey, string, string)'</Item>
+               <Item>rsa</Item>
+               <Item>'rsaPublicKey'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="RsaSmallFullKey">
+          <Messages>
+           <Message Id="Rsa" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+            <Issue Name="Type">
+             <Item>Rsa</Item>
+             <Item>'RsaSmallFullKey'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="RsaSmallKey">
+          <Messages>
+           <Message Id="Rsa" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+            <Issue Name="Type">
+             <Item>Rsa</Item>
+             <Item>'RsaSmallKey'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="RsaSmallPrivateKey">
+          <Messages>
+           <Message Id="Rsa" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+            <Issue Name="Type">
+             <Item>Rsa</Item>
+             <Item>'RsaSmallPrivateKey'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="RsaSmallPublicKey">
+          <Messages>
+           <Message Id="Rsa" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+            <Issue Name="Type">
+             <Item>Rsa</Item>
+             <Item>'RsaSmallPublicKey'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="SixPack.Security.Cryptography.Configuration">
+        <Types>
+         <Type Name="RsaSmallCodeParserSection">
+          <Messages>
+           <Message Id="Rsa" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+            <Issue Name="Type">
+             <Item>Rsa</Item>
+             <Item>'RsaSmallCodeParserSection'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="RsaSmallPublicKeySection">
+          <Messages>
+           <Message Id="Rsa" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+            <Issue Name="Type">
+             <Item>Rsa</Item>
+             <Item>'RsaSmallPublicKeySection'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="SixPack.Text">
+        <Types>
+         <Type Name="UnicodeRange">
+          <Messages>
+           <Message TypeName="MarkEnumsWithFlags" Category="Microsoft.Design" CheckId="CA1027" Created="2008-12-15 19:53:42Z">
+            <Issue>
+             <Item>'UnicodeRange'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="#Buginese">
+            <Messages>
+             <Message Id="Buginese" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Buginese</Item>
+               <Item>'UnicodeRange.Buginese'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Buhid">
+            <Messages>
+             <Message Id="Buhid" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Buhid</Item>
+               <Item>'UnicodeRange.Buhid'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#CJKCompatibility">
+            <Messages>
+             <Message Id="CJK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>CJK</Item>
+               <Item>'UnicodeRange.CJKCompatibility'</Item>
+               <Item>Cjk</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#CJKCompatibilityForms">
+            <Messages>
+             <Message Id="CJK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>CJK</Item>
+               <Item>'UnicodeRange.CJKCompatibilityForms'</Item>
+               <Item>Cjk</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#CJKCompatibilityIdeographs">
+            <Messages>
+             <Message Id="CJK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>CJK</Item>
+               <Item>'UnicodeRange.CJKCompatibilityIdeographs'</Item>
+               <Item>Cjk</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#CJKRadicalsSupplement">
+            <Messages>
+             <Message Id="CJK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>CJK</Item>
+               <Item>'UnicodeRange.CJKRadicalsSupplement'</Item>
+               <Item>Cjk</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#CJKStrokes">
+            <Messages>
+             <Message Id="CJK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>CJK</Item>
+               <Item>'UnicodeRange.CJKStrokes'</Item>
+               <Item>Cjk</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#CJKSymbolsandPunctuation">
+            <Messages>
+             <Message Id="Symbolsand" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Symbolsand</Item>
+               <Item>'UnicodeRange.CJKSymbolsandPunctuation'</Item>
+              </Issue>
+             </Message>
+             <Message Id="CJK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>CJK</Item>
+               <Item>'UnicodeRange.CJKSymbolsandPunctuation'</Item>
+               <Item>Cjk</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#CJKUnifiedIdeographs">
+            <Messages>
+             <Message Id="CJK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>CJK</Item>
+               <Item>'UnicodeRange.CJKUnifiedIdeographs'</Item>
+               <Item>Cjk</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#CJKUnifiedIdeographsExtensionA">
+            <Messages>
+             <Message Id="CJK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>CJK</Item>
+               <Item>'UnicodeRange.CJKUnifiedIdeographsExtensionA'</Item>
+               <Item>Cjk</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#CombiningDiacriticalMarksforSymbols">
+            <Messages>
+             <Message Id="Marksfor" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Marksfor</Item>
+               <Item>'UnicodeRange.CombiningDiacriticalMarksforSymbols'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Devanagari">
+            <Messages>
+             <Message Id="Devanagari" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Devanagari</Item>
+               <Item>'UnicodeRange.Devanagari'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#EnclosedAlphanumerics">
+            <Messages>
+             <Message Id="Alphanumerics" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Alphanumerics</Item>
+               <Item>'UnicodeRange.EnclosedAlphanumerics'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#EnclosedCJKLettersandMonths">
+            <Messages>
+             <Message Id="Lettersand" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Lettersand</Item>
+               <Item>'UnicodeRange.EnclosedCJKLettersandMonths'</Item>
+              </Issue>
+             </Message>
+             <Message Id="CJK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>CJK</Item>
+               <Item>'UnicodeRange.EnclosedCJKLettersandMonths'</Item>
+               <Item>Cjk</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Glagolitic">
+            <Messages>
+             <Message Id="Glagolitic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Glagolitic</Item>
+               <Item>'UnicodeRange.Glagolitic'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#GreekandCoptic">
+            <Messages>
+             <Message Id="Greekand" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Greekand</Item>
+               <Item>'UnicodeRange.GreekandCoptic'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Gurmukhi">
+            <Messages>
+             <Message Id="Gurmukhi" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Gurmukhi</Item>
+               <Item>'UnicodeRange.Gurmukhi'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#HalfwidthandFullwidthForms">
+            <Messages>
+             <Message Id="Fullwidth" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Fullwidth</Item>
+               <Item>'UnicodeRange.HalfwidthandFullwidthForms'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Halfwidthand" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Halfwidthand</Item>
+               <Item>'UnicodeRange.HalfwidthandFullwidthForms'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#HangulCompatibilityJamo">
+            <Messages>
+             <Message Id="Jamo" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Jamo</Item>
+               <Item>'UnicodeRange.HangulCompatibilityJamo'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#HangulJamo">
+            <Messages>
+             <Message Id="Jamo" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Jamo</Item>
+               <Item>'UnicodeRange.HangulJamo'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Hanunoo">
+            <Messages>
+             <Message Id="Hanunoo" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Hanunoo</Item>
+               <Item>'UnicodeRange.Hanunoo'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#IPAExtensions">
+            <Messages>
+             <Message Id="IPA" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>IPA</Item>
+               <Item>'UnicodeRange.IPAExtensions'</Item>
+               <Item>Ipa</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Kanbun">
+            <Messages>
+             <Message Id="Kanbun" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Kanbun</Item>
+               <Item>'UnicodeRange.Kanbun'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#KangxiRadicals">
+            <Messages>
+             <Message Id="Kangxi" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Kangxi</Item>
+               <Item>'UnicodeRange.KangxiRadicals'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#LetterlikeSymbols">
+            <Messages>
+             <Message Id="Letterlike" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Letterlike</Item>
+               <Item>'UnicodeRange.LetterlikeSymbols'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Limbu">
+            <Messages>
+             <Message Id="Limbu" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Limbu</Item>
+               <Item>'UnicodeRange.Limbu'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#MiscellaneousSymbolsandArrows">
+            <Messages>
+             <Message Id="Symbolsand" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Symbolsand</Item>
+               <Item>'UnicodeRange.MiscellaneousSymbolsandArrows'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#NewTaiLue">
+            <Messages>
+             <Message Id="Lue" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Lue</Item>
+               <Item>'UnicodeRange.NewTaiLue'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#NKo">
+            <Messages>
+             <Message Id="Ko" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Ko</Item>
+               <Item>'UnicodeRange.NKo'</Item>
+               <Item>KO</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Ogham">
+            <Messages>
+             <Message Id="Ogham" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Ogham</Item>
+               <Item>'UnicodeRange.Ogham'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Phagspa">
+            <Messages>
+             <Message Id="Phagspa" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Phagspa</Item>
+               <Item>'UnicodeRange.Phagspa'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaAreaConlangbrieCirth">
+            <Messages>
+             <Message Id="Cirth" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Cirth</Item>
+               <Item>'UnicodeRange.PrivateUseAreaAreaConlangbrieCirth'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Conlangbrie" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlangbrie</Item>
+               <Item>'UnicodeRange.PrivateUseAreaAreaConlangbrieCirth'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangAiha">
+            <Messages>
+             <Message Id="Aiha" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Aiha</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangAiha'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangAiha'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangAlzetjan">
+            <Messages>
+             <Message Id="Alzetjan" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Alzetjan</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangAlzetjan'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangAlzetjan'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangEwellic">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangEwellic'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Ewellic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Ewellic</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangEwellic'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangFerengi">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangFerengi'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Ferengi" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Ferengi</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangFerengi'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangGargoyle">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangGargoyle'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangKazatakkorou">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangKazatakkorou'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Kazatakkorou" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Kazatakkorou</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangKazatakkorou'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangKazvarad">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangKazvarad'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Kazvarad" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Kazvarad</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangKazvarad'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangKelwathi">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangKelwathi'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Kelwathi" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Kelwathi</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangKelwathi'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangKlingon">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangKlingon'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Klingon" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Klingon</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangKlingon'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangMizarian">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangMizarian'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Mizarian" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Mizarian</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangMizarian'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangMonofon">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangMonofon'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Monofon" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Monofon</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangMonofon'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangNiskloz">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangNiskloz'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Niskloz" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Niskloz</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangNiskloz'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangOlaetyan">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangOlaetyan'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Olaetyan" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Olaetyan</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangOlaetyan'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangOphidian">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangOphidian'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangPhaistosDisc">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangPhaistosDisc'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Phaistos" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Phaistos</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangPhaistosDisc'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangRozhxh">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangRozhxh'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Rozhxh" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Rozhxh</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangRozhxh'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangRynnan">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangRynnan'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Rynnan" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Rynnan</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangRynnan'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangSaklor">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangSaklor'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Saklor" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Saklor</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangSaklor'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangSarkai">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangSarkai'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Sarkai" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Sarkai</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangSarkai'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangSerivelna">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangSerivelna'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Serivelna" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Serivelna</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangSerivelna'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangSeussianLatinExtensions">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangSeussianLatinExtensions'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Seussian" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Seussian</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangSeussianLatinExtensions'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangSolresol">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangSolresol'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Solresol" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Solresol</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangSolresol'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangSsuraki">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangSsuraki'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Ssuraki" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Ssuraki</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangSsuraki'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangTelarasso">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangTelarasso'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Telarasso" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Telarasso</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangTelarasso'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangTengwar">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangTengwar'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Tengwar" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Tengwar</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangTengwar'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangThelwik">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangThelwik'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Thelwik" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Thelwik</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangThelwik'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangUnifon">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangUnifon'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Unifon" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Unifon</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangUnifon'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangVisibleSpeech">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangVisibleSpeech'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangXaini">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangXaini'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Xaini" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Xaini</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangXaini'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangZarkhand">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangZarkhand'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Zarkhand" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Zarkhand</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangZarkhand'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#PrivateUseAreaConlangZirinka">
+            <Messages>
+             <Message Id="Conlang" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Conlang</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangZirinka'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Zirinka" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Zirinka</Item>
+               <Item>'UnicodeRange.PrivateUseAreaConlangZirinka'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SuperscriptsandSubscripts">
+            <Messages>
+             <Message Id="Superscriptsand" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Superscriptsand</Item>
+               <Item>'UnicodeRange.SuperscriptsandSubscripts'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SylotiNagri">
+            <Messages>
+             <Message Id="Nagri" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Nagri</Item>
+               <Item>'UnicodeRange.SylotiNagri'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Syloti" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Syloti</Item>
+               <Item>'UnicodeRange.SylotiNagri'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Syriac">
+            <Messages>
+             <Message Id="Syriac" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Syriac</Item>
+               <Item>'UnicodeRange.Syriac'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Tagalog">
+            <Messages>
+             <Message Id="Tagalog" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Tagalog</Item>
+               <Item>'UnicodeRange.Tagalog'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Tagbanwa">
+            <Messages>
+             <Message Id="Tagbanwa" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Tagbanwa</Item>
+               <Item>'UnicodeRange.Tagbanwa'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#TaiLe">
+            <Messages>
+             <Message Id="Le" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Le</Item>
+               <Item>'UnicodeRange.TaiLe'</Item>
+               <Item>LE</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Tifinagh">
+            <Messages>
+             <Message Id="Tifinagh" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Tifinagh</Item>
+               <Item>'UnicodeRange.Tifinagh'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#YijingHexagramSymbols">
+            <Messages>
+             <Message Id="Yijing" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Yijing</Item>
+               <Item>'UnicodeRange.YijingHexagramSymbols'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#YiRadicals">
+            <Messages>
+             <Message Id="Yi" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Yi</Item>
+               <Item>'UnicodeRange.YiRadicals'</Item>
+               <Item>YI</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#YiSyllables">
+            <Messages>
+             <Message Id="Yi" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Yi</Item>
+               <Item>'UnicodeRange.YiSyllables'</Item>
+               <Item>YI</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/bin/Release/SixPack.Net.Mail.dll">
+    <Modules>
+     <Module Name="sixpack.net.mail.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2008-12-15 19:53:42Z">
+        <Issue Name="NoStrongName">
+         <Item>'SixPack.Net.Mail.dll'</Item>
+        </Issue>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="SixPack.Net.Mail">
+        <Types>
+         <Type Name="MailMessage">
+          <Members>
+           <Member Name="#BCC">
+            <Messages>
+             <Message Id="BCC" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>BCC</Item>
+               <Item>'MailMessage.BCC'</Item>
+               <Item>Bcc</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#CreateMhtmlBody(System.IO.Stream,SixPack.Net.Mail.MhtmlSuppress)">
+            <Messages>
+             <Message Id="Mhtml" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Mhtml</Item>
+               <Item>'MailMessage.CreateMhtmlBody(Stream, MhtmlSuppress)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="flags" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Created="2008-12-15 19:53:42Z">
+              <Issue Name="MemberParameterNoAlternate">
+               <Item>'MailMessage.CreateMhtmlBody(Stream, MhtmlSuppress)'</Item>
+               <Item>flags</Item>
+               <Item>'flags'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#CreateMhtmlBody(System.Uri,SixPack.Net.Mail.MhtmlSuppress)">
+            <Messages>
+             <Message Id="Mhtml" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+              <Issue Name="Member">
+               <Item>Mhtml</Item>
+               <Item>'MailMessage.CreateMhtmlBody(Uri, MhtmlSuppress)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="flags" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Created="2008-12-15 19:53:42Z">
+              <Issue Name="MemberParameterNoAlternate">
+               <Item>'MailMessage.CreateMhtmlBody(Uri, MhtmlSuppress)'</Item>
+               <Item>flags</Item>
+               <Item>'flags'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="MhtmlSuppress">
+          <Messages>
+           <Message Id="Mhtml" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2008-12-15 19:53:42Z">
+            <Issue Name="Type">
+             <Item>Mhtml</Item>
+             <Item>'MhtmlSuppress'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/bin/Release/SixPack.Web.Services.dll">
+    <Modules>
+     <Module Name="sixpack.web.services.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2008-12-15 19:53:42Z">
+        <Issue Name="NoStrongName">
+         <Item>'SixPack.Web.Services.dll'</Item>
+        </Issue>
+       </Message>
+      </Messages>
+     </Module>
+    </Modules>
+   </Target>
+  </Targets>
+  <Notes>
+   <User Name="antoine.aubry">
+    <Note Id="0" Modified="2008-12-15 19:55:39Z">Output parameters map to the stored procedure's output parameters. Therefore, they feel natural. There is an alternative way to obtain the value of the parameters that does not relies on output parameters,</Note>
+    <Note Id="1" Modified="2008-12-15 20:06:51Z">This name matches the name used in the specification on which this code is based.</Note>
+    <Note Id="2" Modified="2008-12-15 20:07:17Z">This name matches the name used in the underlying API.</Note>
+    <Note Id="3" Modified="2008-12-15 20:07:32Z">This name matches the name used in the specification on which this code is based.</Note>
+    <Note Id="4" Modified="2008-12-15 20:08:25Z">'En' is part of the name of the credit-card provider, and does not mean 'English'.</Note>
+    <Note Id="5" Modified="2008-12-15 20:09:04Z">This name matches the name used in the mathematical theory on which this code is based.</Note>
+    <Note Id="6" Modified="2008-12-15 20:09:34Z">IPv4 and IPv6 are the names that are commonly used in this case.</Note>
+    <Note Id="7" Modified="2008-12-15 20:12:59Z">This one is tricky. It is used as flags when specifying the log level in the configuration, but when a message is logged, it can't have multiple log levels. I think that the current design is ok.</Note>
+   </User>
+  </Notes>
+  <Rules>
+   <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
+    <Resolution Name="NoStrongName">Sign {0} with a strong name key.</Resolution>
+   </Rule>
+   <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
+    <Resolution Name="Default">Consider merging the types defined in '{0}' with another namespace.</Resolution>
+   </Rule>
+   <Rule TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021">
+    <Resolution Name="Default">Consider a design that does not require that {0} be an out parameter.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotNameEnumValuesReserved" Category="Microsoft.Naming" CheckId="CA1700">
+    <Resolution Name="Default">If {0} is not used in the current implementation, remove it. Otherwise give it a meaningful name.</Resolution>
+   </Rule>
+   <Rule TypeName="EnumsShouldHaveZeroValue" Category="Microsoft.Design" CheckId="CA1008">
+    <Resolution Name="NotFlagsNoZeroValue">Add a member to {0} that has a value of zero with a suggested name of 'None'.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709">
+    <Resolution Name="Member">Correct the casing of '{0}' in member name {1} by changing it to '{2}'.</Resolution>
+    <Resolution Name="MemberParameter">In member {0}, correct the casing of '{1}' in parameter name {2} by changing it to '{3}'.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+    <Resolution Name="Member">Correct the spelling of '{0}' in member name {1} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+    <Resolution Name="MemberParameter">In method {0}, correct the spelling of '{1}' in parameter name {2} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+    <Resolution Name="MemberParameterMoreMeaningfulName">In method {0}, consider providing a more meaningful name than parameter name {1}.</Resolution>
+    <Resolution Name="Type">Correct the spelling of '{0}' in type name {1}.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710">
+    <Resolution Name="Default">Rename {0} to end in '{1}'.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldNotContainTypeNames" Category="Microsoft.Naming" CheckId="CA1720">
+    <Resolution Name="LanguageSpecificMember">Consider replacing the language-specific data type identifier '{0}' in member name {1} with either a language-independent equivalent or a more generic term, such as 'value'.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716">
+    <Resolution Name="Type">Rename type {0} so that it no longer conflicts with the reserved language keyword '{1}'. Using a reserved keyword as the name of a type makes it harder for consumers in other languages to use the type.</Resolution>
+   </Rule>
+   <Rule TypeName="MarkEnumsWithFlags" Category="Microsoft.Design" CheckId="CA1027">
+    <Resolution Name="Default">The constituent members of {0} appear to represent flags that can be combined rather than discrete values. If this is correct, mark the enumeration with FlagsAttribute.</Resolution>
+   </Rule>
+   <Rule TypeName="UriParametersShouldNotBeStrings" Category="Microsoft.Design" CheckId="CA1054">
+    <Resolution Name="Default">Change the type of parameter {0} of method {1} from string to System.Uri, or provide an overload of {1}, that allows {0} to be passed as a System.Uri object.</Resolution>
+   </Rule>
+   <Rule TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726">
+    <Resolution Name="MemberParameterNoAlternate">In member {0}, replace the term '{1}' in parameter name {2} with an appropriate alternate or remove it entirely.</Resolution>
+   </Rule>
+   <Rule TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024">
+    <Resolution Name="Default">Change {0} to a property if appropriate.</Resolution>
+   </Rule>
+  </Rules>
+ </FxCopReport>
+</FxCopProject>
