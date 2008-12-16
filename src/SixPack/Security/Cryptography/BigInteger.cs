@@ -2994,7 +2994,7 @@ namespace SixPack.Security.Cryptography
 						break;
 
 					BigInteger resultNum = thisVal % divisor;
-					if (resultNum.IntValue() == 0)
+					if (resultNum.Int32Value() == 0)
 					{
 						/*
 						Console.WriteLine("Not prime!  Divisible by {0}\n",
@@ -3073,7 +3073,7 @@ namespace SixPack.Security.Cryptography
 						break;
 
 					BigInteger resultNum = thisVal % divisor;
-					if (resultNum.IntValue() == 0)
+					if (resultNum.Int32Value() == 0)
 					{
 						//Console.WriteLine("Not prime!  Divisible by {0}\n",
 						//                  primesBelow2000[p]);
@@ -3142,7 +3142,16 @@ namespace SixPack.Security.Cryptography
 		/// Returns the lowest 4 bytes of the BigInteger as an int.
 		/// </summary>
 		/// <returns></returns>
+		[Obsolete("Use the Int32Value method instead. This method is kept for backwards compatibility.")]
 		public int IntValue()
+		{
+			return Int32Value();
+		}
+
+		/// <summary>
+		/// Returns the lowest 4 bytes of the BigInteger as an <see cref="int"/>.
+		/// </summary>
+		public int Int32Value()
 		{
 			return (int) data[0];
 		}
@@ -3154,14 +3163,20 @@ namespace SixPack.Security.Cryptography
 		/// <summary>
 		/// Returns the lowest 8 bytes of the BigInteger as a long.
 		/// </summary>
-		/// <returns></returns>
+		[Obsolete("Use the Int64Value method instead. This method is kept for backwards compatibility.")]
 		public long LongValue()
+		{
+			return Int64Value();
+		}
+
+		/// <summary>
+		/// Returns the lowest 8 bytes of the BigInteger as a long.
+		/// </summary>
+		public long Int64Value()
 		{
 			unchecked
 			{
-				long val;
-
-				val = data[0];
+				long val = data[0];
 				try
 				{
 					// exception if maxLength = 1

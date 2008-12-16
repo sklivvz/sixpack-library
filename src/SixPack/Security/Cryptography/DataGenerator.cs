@@ -149,8 +149,16 @@ namespace SixPack.Security.Cryptography
 		/// <summary>
 		/// Returns a random bool.
 		/// </summary>
-		/// <returns></returns>
+		[Obsolete("Use the RandomBoolean method instead. This method is kept for backwards compatibility.")]
 		public static bool RandomBool()
+		{
+			return RandomBoolean();
+		}
+
+		/// <summary>
+		/// Returns a random <see cref="bool"/>.
+		/// </summary>
+		public static bool RandomBoolean()
 		{
 			return (random.Next(0, 2) == 1);
 		}

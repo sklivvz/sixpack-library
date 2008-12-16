@@ -553,6 +553,10 @@ namespace SixPack.Net.Sockets
 	/// </summary>
 	public enum SmtpResponseCode : int
 	{
+		/// <summary>
+		/// No result code
+		/// </summary>
+		None = 0,
 		///<summary>
 		/// System status, or system help reply
 		///</summary>

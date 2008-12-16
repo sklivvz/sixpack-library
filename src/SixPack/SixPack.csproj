@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -86,6 +86,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Banking\CreditCard.cs" />
     <Compile Include="Banking\CreditCardTypes.cs" />
     <Compile Include="Collections\Generic\FullListOfT.cs" />
@@ -94,7 +97,7 @@
     <Compile Include="Collections\Generic\Pair.cs" />
     <Compile Include="Collections\Generic\SetBaseOfT.cs" />
     <Compile Include="Collections\Generic\SortedSetOfT.cs" />
-    <Compile Include="Collections\Generic\SetOfT.cs" />
+    <Compile Include="Collections\Generic\HashSetOfT.cs" />
     <Compile Include="Data\CommandWrapper.cs" />
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Data\IDataLoader.cs" />
@@ -178,12 +181,8 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>@ECHO OFF
-MKDIR $(SolutionDir)bin\$(ConfigurationName)
-COPY /Y $(TargetDir)*.dll $(SolutionDir)bin\$(ConfigurationName)
-COPY /Y $(TargetDir)*.pdb $(SolutionDir)bin\$(ConfigurationName)
-COPY /Y $(TargetDir)*.xml $(SolutionDir)bin\$(ConfigurationName)
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
     <ProjectGuid>{15BBEAE6-E198-4680-B1CB-C73BE12B359E}</ProjectGuid>
     <RootNamespace>SixPack</RootNamespace>
   </PropertyGroup>

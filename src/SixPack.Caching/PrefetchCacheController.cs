@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
 using SixPack.Diagnostics;
 
 namespace SixPack.Caching
@@ -38,7 +37,7 @@ namespace SixPack.Caching
 			Log.Instance.Add("[PrefetchCache] Starting.", LogLevel.Info);
 		}
 		
-		internal static TReturn GetFromCache<TReturn>(string cacheName, Function<TReturn> del, int cacheTime, PrefetchCacheOptions prefetchCacheOptions)
+		internal static TReturn GetFromCache<TReturn>(string cacheName, RefreshFunction<TReturn> del, int cacheTime, PrefetchCacheOptions prefetchCacheOptions)
 		{
 			if (!agents.ContainsKey(cacheName))
 			{

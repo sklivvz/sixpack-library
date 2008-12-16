@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -62,6 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="MailMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,6 +72,7 @@
     <ProjectReference Include="..\SixPack\SixPack.csproj">
       <Project>{15BBEAE6-E198-4680-B1CB-C73BE12B359E}</Project>
       <Name>SixPack</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -80,11 +84,8 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>@ECHO OFF
-MKDIR $(SolutionDir)bin\$(ConfigurationName)
-COPY /Y $(TargetDir)*.dll $(SolutionDir)bin\$(ConfigurationName)
-COPY /Y $(TargetDir)*.pdb $(SolutionDir)bin\$(ConfigurationName)
-COPY /Y $(TargetDir)*.xml $(SolutionDir)bin\$(ConfigurationName)</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <ProjectExtensions>
     <MonoDevelop>

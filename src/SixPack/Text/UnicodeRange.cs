@@ -33,6 +33,7 @@ namespace SixPack.Text
 	/// </summary>
 	public enum UnicodeRange
 	{
+		// ... is not documented
 #pragma warning disable 1591
 		BasicLatin = 0,
 		Latin1Supplement = 1,

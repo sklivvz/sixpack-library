@@ -20,9 +20,7 @@
 //
 
 using System;
-using System.Globalization;
 using System.Runtime.Serialization;
-using SixPack.Diagnostics;
 
 namespace SixPack.Caching
 {

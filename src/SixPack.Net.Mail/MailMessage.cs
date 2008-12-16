@@ -238,25 +238,25 @@ namespace SixPack.Net.Mail
 		/// Creates the MHTML body of the message by spidering a URL.
 		/// </summary>
 		/// <param name="uri">The URI of the source page.</param>
-		/// <param name="flags">A MHTMLFlag specifing the kind of spidering.</param>
-		public void CreateMhtmlBody(Uri uri, MhtmlSuppress flags)
+		/// <param name="suppressionOptions">Specifies the kind of spidering.</param>
+		public void CreateMhtmlBody(Uri uri, MhtmlSuppress suppressionOptions)
 		{
 			if (uri == null)
 				throw new ArgumentNullException("uri");
-			msg.CreateMHTMLBody(uri.ToString(), (CdoMHTMLFlags)(int)flags, string.Empty, string.Empty);
+			msg.CreateMHTMLBody(uri.ToString(), (CdoMHTMLFlags)(int)suppressionOptions, string.Empty, string.Empty);
 		}
 
 		/// <summary>
 		/// Creates the MHTML body of the message by spidering a page passed via Stream.
 		/// </summary>
 		/// <param name="bodyStream">The Stream containing the page.</param>
-		/// <param name="flags">A MHTMLFlag specifing the kind of spidering.</param>
-		public void CreateMhtmlBody(Stream bodyStream, MhtmlSuppress flags)
+		/// <param name="suppressionOptions">Specifies the kind of spidering.</param>
+		public void CreateMhtmlBody(Stream bodyStream, MhtmlSuppress suppressionOptions)
 		{
 			string tempfile = dumpStreamToTempFile(bodyStream, ".html");
 			try
 			{
-				CreateMhtmlBody(new Uri(String.Format(CultureInfo.InvariantCulture, "file://{0}", tempfile)), flags);
+				CreateMhtmlBody(new Uri(String.Format(CultureInfo.InvariantCulture, "file://{0}", tempfile)), suppressionOptions);
 			}
 			catch (ApplicationException exception)
 			{

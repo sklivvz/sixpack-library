@@ -28,11 +28,11 @@ namespace SixPack.Caching
 	internal class PrefetchCacheTimer
 	{
 		bool fetching;
-		object fetchingLock;
+		readonly object fetchingLock;
 		
 		volatile int idleFetches;
 		readonly int maxIdleFetches;
-		object idleLock;
+		readonly object idleLock;
 		
 		public event EventHandler Fetching;
 		
@@ -51,7 +51,7 @@ namespace SixPack.Caching
 		}
 		
 #if DEBUG
-		string sig;
+		readonly string sig;
 #endif
 		
 		internal PrefetchCacheTimer(int maxIdleFetches)
@@ -61,10 +61,8 @@ namespace SixPack.Caching
 			sig = ((byte)r.Next()).ToString("X");
 			Log.Instance.AddFormat("PrefetchCacheTimer ctor invoked, id <{0}>", sig);
 #endif
-			fetching = false;
 			fetchingLock = new object();
 			
-			idleFetches = 0;
 			idleLock = new object();
 			
 			this.maxIdleFetches = maxIdleFetches;

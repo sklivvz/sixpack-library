@@ -26,64 +26,64 @@ namespace SixPack.Collections.Generic
     /// Collection that contains unique items
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Set<T> : SetBase<T>
+    public class HashSet<T> : SetBase<T>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Set&lt;T&gt;"/> class.
+        /// Initializes a new instance of the <see cref="HashSet&lt;T&gt;"/> class.
         /// </summary>
-        public Set()
+        public HashSet()
             : base(new Dictionary<T, object>())
         {
             // Nothing to be done 
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Set&lt;T&gt;"/> class.
+		/// Initializes a new instance of the <see cref="HashSet&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="comparer">The comparer to use when comparing elements.</param>
-        public Set(IEqualityComparer<T> comparer)
+        public HashSet(IEqualityComparer<T> comparer)
             : base(new Dictionary<T, object>(comparer))
         {
             // Nothing to be done 
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Set&lt;T&gt;"/> class.
+		/// Initializes a new instance of the <see cref="HashSet&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="elements">The elements to add to the set.</param>
-        public Set(IEnumerable<T> elements)
+        public HashSet(IEnumerable<T> elements)
             : this()
         {
             AddRange(elements);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Set&lt;T&gt;"/> class.
+		/// Initializes a new instance of the <see cref="HashSet&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="elements">The elements to add to the set.</param>
-        public Set(params T[] elements)
+        public HashSet(params T[] elements)
             : this((IEnumerable<T>) elements)
         {
             // Nothing to be done 
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Set&lt;T&gt;"/> class.
+		/// Initializes a new instance of the <see cref="HashSet&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="comparer">The comparer to use when comparing elements.</param>
         /// <param name="elements">The elements to add to the set.</param>
-        public Set(IEqualityComparer<T> comparer, IEnumerable<T> elements)
+        public HashSet(IEqualityComparer<T> comparer, IEnumerable<T> elements)
             : this(comparer)
         {
             AddRange(elements);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Set&lt;T&gt;"/> class.
+		/// Initializes a new instance of the <see cref="HashSet&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="comparer">The comparer to use when comparing elements.</param>
         /// <param name="elements">The elements to add to the set.</param>
-        public Set(IEqualityComparer<T> comparer, params T[] elements)
+        public HashSet(IEqualityComparer<T> comparer, params T[] elements)
             : this(comparer, (IEnumerable<T>) elements)
         {
             // Nothing to be done 

@@ -58,7 +58,7 @@ namespace SixPack.Collections.Generic
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Set&lt;T&gt;"/> class.
+		/// Initializes a new instance of the <see cref="SortedSet&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="elements">The elements to add to the set.</param>
         public SortedSet(params T[] elements)
@@ -68,7 +68,7 @@ namespace SixPack.Collections.Generic
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Set&lt;T&gt;"/> class.
+		/// Initializes a new instance of the <see cref="SortedSet&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="comparer">The comparer to use when comparing elements.</param>
         /// <param name="elements">The elements to add to the set.</param>
@@ -79,7 +79,7 @@ namespace SixPack.Collections.Generic
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Set&lt;T&gt;"/> class.
+		/// Initializes a new instance of the <see cref="SortedSet&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="comparer">The comparer to use when comparing elements.</param>
         /// <param name="elements">The elements to add to the set.</param>

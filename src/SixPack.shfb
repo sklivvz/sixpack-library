@@ -1,0 +1,70 @@
+﻿<project schemaVersion="1.6.0.7">
+    <assemblies>
+        <assembly assemblyPath=".\SixPack.Caching\bin\Release\SixPack.Caching.dll" xmlCommentsPath=".\SixPack.Caching\bin\Release\SixPack.Caching.xml" commentsOnly="False" />
+        <assembly assemblyPath=".\SixPack\bin\Release\SixPack.dll" xmlCommentsPath=".\SixPack\bin\Release\SixPack.xml" commentsOnly="False" />
+        <assembly assemblyPath=".\SixPack.Net.Mail\bin\Release\SixPack.Net.Mail.dll" xmlCommentsPath=".\SixPack.Net.Mail\bin\Release\SixPack.Net.Mail.XML" commentsOnly="False" />
+        <assembly assemblyPath=".\SixPack.Web.Services\bin\Release\SixPack.Web.Services.dll" xmlCommentsPath=".\SixPack.Web.Services\bin\Release\SixPack.Web.Services.xml" commentsOnly="False" />
+    </assemblies>
+    <namespaceSummaries>
+        <namespaceSummaryItem name="" isDocumented="False" />
+        <namespaceSummaryItem name="SixPack" isDocumented="True" />
+        <namespaceSummaryItem name="SixPack.ComponentModel" isDocumented="True">This namespace provides classes that are used to implement the run-time and design-time behavior of components and controls</namespaceSummaryItem>
+        <namespaceSummaryItem name="SixPack.Data" isDocumented="True">This namespace provides access to classes that encapsulate the ADO.NET architecture and provide support for the sproc code generator. Sproc generates the Data Access Layer and relative support classes like DataObjects.
+In a disconnected scenario such as the Internet, ADO.NET provides the tools to request, update, and reconcile data in multiple tier systems. The generated Data Access Layer depends on ADO.NET and this namespace to provide automatic handling of stored procedures and more data related activities.</namespaceSummaryItem>
+        <namespaceSummaryItem name="SixPack.Diagnostics" isDocumented="True">This namespace contains classes for interacting with system resources like event logs, processes, and performance counters.</namespaceSummaryItem>
+        <namespaceSummaryItem name="SixPack.Drawing" isDocumented="True">This namespace contains classes that extend the System.Drawing namespace with new functionalities.</namespaceSummaryItem>
+        <namespaceSummaryItem name="SixPack.Net" isDocumented="True">This namespace provides a simple programming interface for many of the protocols used on networks today.</namespaceSummaryItem>
+        <namespaceSummaryItem name="SixPack.Net.Mail" isDocumented="True">This namespace contains classes used to send electronic mail to a Simple Mail Transfer Protocol (SMTP) server for delivery.</namespaceSummaryItem>
+        <namespaceSummaryItem name="SixPack.Net.NetworkInformation" isDocumented="True">This namespace provides access to network traffic data, network address information, and notification of address changes for the local computer.</namespaceSummaryItem>
+        <namespaceSummaryItem name="SixPack.Net.Sockets" isDocumented="True">This namespace contains classes that extend the System.Net.Sockets namespace with new functionalities.</namespaceSummaryItem>
+        <namespaceSummaryItem name="SixPack.Security.Cryptography" isDocumented="True">This namespace provides cryptographic services, including secure encoding and decoding of data, as well as many other operations, such as hashing, random number generation, and message authentication.</namespaceSummaryItem>
+        <namespaceSummaryItem name="SixPack.Standards" isDocumented="True">This namespace provides a simple programming interface to allow application to use international standards for creation and validation of data (ISO, RFC, etc.)</namespaceSummaryItem>
+        <namespaceSummaryItem name="SixPack.Text" isDocumented="True">This namespace contains text validation classes including semantic and syntactic validators; it also includes other text manipulation utilities like clipping.</namespaceSummaryItem>
+        <namespaceSummaryItem name="SixPack.Web.Services" isDocumented="True">This namespace consists of the classes that enable you to generate XML Web services using the wserv application..</namespaceSummaryItem>
+    </namespaceSummaries>
+    <dependencies>
+        <dependencyItem depPath=".\SixPack.Net.Mail\bin\Release\Interop.ADODB.dll" />
+        <dependencyItem depPath=".\SixPack.Net.Mail\bin\Release\Interop.CDO.dll" />
+    </dependencies>
+    <ProjectSummary>The SixPack Common Runtime is a common set of classes build to streamline the development of websites. The Namespaces are strucured in a similar manner to the .NET System hierarchy for ease of use.</ProjectSummary>
+    <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace, TypeParameter</MissingTags>
+    <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Protected, SealedProtected</VisibleItems>
+    <HtmlHelp1xCompilerPath path="" />
+    <HtmlHelp2xCompilerPath path="" />
+    <OutputPath>..\HelpTmp\</OutputPath>
+    <SandcastlePath path="" />
+    <WorkingPath path="" />
+    <CleanIntermediates>True</CleanIntermediates>
+    <KeepLogFile>True</KeepLogFile>
+    <BuildLogFile path="" />
+    <HelpFileFormat>Help1xAndWebsite</HelpFileFormat>
+    <CppCommentsFixup>False</CppCommentsFixup>
+    <FrameworkVersion>2.0.50727</FrameworkVersion>
+    <IndentHtml>False</IndentHtml>
+    <Preliminary>False</Preliminary>
+    <RootNamespaceContainer>False</RootNamespaceContainer>
+    <RootNamespaceTitle />
+    <HelpTitle>SixPack Library Documentation</HelpTitle>
+    <HtmlHelpName>SixPack</HtmlHelpName>
+    <Language>en-US</Language>
+    <CopyrightHref>http://code.google.com/p/sixpack-library/</CopyrightHref>
+    <CopyrightText>All code and documentation Copyright © 2007, 2008.</CopyrightText>
+    <FeedbackEMailAddress />
+    <FeedbackEMailLinkText />
+    <HeaderText />
+    <FooterText />
+    <ProjectLinkType>Local</ProjectLinkType>
+    <SdkLinkType>Msdn</SdkLinkType>
+    <SdkLinkTarget>Blank</SdkLinkTarget>
+    <PresentationStyle>vs2005</PresentationStyle>
+    <NamingMethod>MemberName</NamingMethod>
+    <SyntaxFilters>Standard</SyntaxFilters>
+    <ShowFeedbackControl>False</ShowFeedbackControl>
+    <BinaryTOC>True</BinaryTOC>
+    <IncludeFavorites>False</IncludeFavorites>
+    <CollectionTocStyle>Hierarchical</CollectionTocStyle>
+    <IncludeStopWordList>True</IncludeStopWordList>
+    <PlugInNamespaces>ms.vsipcc+, ms.vsexpresscc+</PlugInNamespaces>
+    <HelpFileVersion>1.0.0.0</HelpFileVersion>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
+</project>

@@ -20,7 +20,6 @@
 //
 
 using System;
-using System.Runtime.Remoting.Messaging;
 
 namespace SixPack.Caching
 {
