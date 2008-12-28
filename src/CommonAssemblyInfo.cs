@@ -1,8 +1,8 @@
 // AssemblyInfo.cs 
 //
 //  Copyright (C) 2008 Fullsix Marketing Interactivo LDA
-//  Copyright (C) 2008 Marco Cecconi
-//  Copyright (C) 2008 Antoine Aubry
+//  Author: Marco Cecconi <marco.cecconi@gmail.com>
+//  Author: Antoine Aubry <aaubry@gmail.com>
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
