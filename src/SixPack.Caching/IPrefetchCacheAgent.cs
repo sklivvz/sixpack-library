@@ -18,7 +18,6 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
 //
-
 using System;
 
 namespace SixPack.Caching
@@ -29,11 +28,8 @@ namespace SixPack.Caching
 		IPrefetchCacheContent Content { get; }
 		Exception Exception { get; }
 		string Name { get; }
-		
 		event EventHandler Idling;
-		
 		void WaitForNotNullContent(int millisecondMaxWait);
 		void WaitForFreshContent(int millisecondMaxWait);
-		
 	}
 }

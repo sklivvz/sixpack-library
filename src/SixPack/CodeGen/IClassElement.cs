@@ -1,8 +1,7 @@
-// AssemblyInfo.cs 
+// IClassElement.cs 
 //
-//  Copyright (C) 2008 Fullsix Marketing Interactivo LDA
+//  Copyright (C) 2009 Marco Cecconi
 //  Author: Marco Cecconi <marco.cecconi@gmail.com>
-//  Author: Antoine Aubry <aaubry@gmail.com>
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -18,22 +17,17 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
-
-using System;
-using System.Reflection;
-using System.Resources;
-using System.Runtime.InteropServices;
-
-#if DEBUG
-[assembly : AssemblyConfiguration("Debug")]
-#else
-[assembly : AssemblyConfiguration("Release")]
-#endif
-[assembly : AssemblyCompany("SixPack")]
-[assembly : AssemblyProduct("SixPack Library")]
-[assembly : AssemblyCopyright("Copyright © 2007, 2008, 2009")]
-[assembly : AssemblyTrademark("")]
-[assembly : AssemblyCulture("")]
-[assembly : CLSCompliant(true)]
-[assembly : ComVisible(false)]
-[assembly : NeutralResourcesLanguage("en")]
+namespace SixPack.CodeGen
+{
+	/// <summary>
+	/// Classes implementing this interface will accept a Class Visitor for rendering
+	/// </summary>
+	public interface IClassElement
+	{
+		/// <summary>
+		/// Accepts the specified visitor.
+		/// </summary>
+		/// <param name="visitor">The visitor.</param>
+		void Accept(IClassVisitor visitor);
+	}
+}

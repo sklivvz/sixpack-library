@@ -1,8 +1,7 @@
-// AssemblyInfo.cs 
+// IAbstractAccessor.cs 
 //
-//  Copyright (C) 2008 Fullsix Marketing Interactivo LDA
+//  Copyright (C) 2009 Marco Cecconi
 //  Author: Marco Cecconi <marco.cecconi@gmail.com>
-//  Author: Antoine Aubry <aaubry@gmail.com>
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -18,22 +17,25 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
+using System.Collections.Generic;
 
-using System;
-using System.Reflection;
-using System.Resources;
-using System.Runtime.InteropServices;
+namespace SixPack.CodeGen
+{
+	/// <summary>
+	/// An interface that represents an accessor
+	/// </summary>
+	public interface IAbstractAccessor
+	{
+		/// <summary>
+		/// Gets the body.
+		/// </summary>
+		/// <value>The body.</value>
+		ICollection<string> Body { get; }
 
-#if DEBUG
-[assembly : AssemblyConfiguration("Debug")]
-#else
-[assembly : AssemblyConfiguration("Release")]
-#endif
-[assembly : AssemblyCompany("SixPack")]
-[assembly : AssemblyProduct("SixPack Library")]
-[assembly : AssemblyCopyright("Copyright © 2007, 2008, 2009")]
-[assembly : AssemblyTrademark("")]
-[assembly : AssemblyCulture("")]
-[assembly : CLSCompliant(true)]
-[assembly : ComVisible(false)]
-[assembly : NeutralResourcesLanguage("en")]
+		/// <summary>
+		/// Gets the prefix.
+		/// </summary>
+		/// <value>The prefix.</value>
+		string Prefix { get; }
+	}
+}

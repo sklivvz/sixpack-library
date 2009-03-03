@@ -169,5 +169,51 @@ namespace SixPack.Text
 			byte[] encodedText = Convert.FromBase64String(base64Text);
 			return Encoding.UTF8.GetString(encodedText);
 		}
+
+		/// <summary>
+		/// Sanitizes the specified text.
+		/// </summary>
+		/// <param name="text">The text.</param>
+		/// <param name="sanitationMode">The sanitation mode.</param>
+		/// <returns></returns>
+		public static string Sanitize(string text, TextSanitationMode sanitationMode)
+		{
+			switch (sanitationMode)
+			{
+				case TextSanitationMode.Alphanumeric:
+					return Regex.Replace(text, "[^a-z0-9]+", string.Empty, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+				default:
+					throw new NotImplementedException("The requested sanitation mode has not been implemented.");
+			}
+		}
+
+		/// <summary>
+		/// Normalizes a string for use in code.
+		/// </summary>
+		/// <param name="text">The text to be normalized.</param>
+		/// <param name="normalizationType">Type of the normalization.</param>
+		/// <returns></returns>
+		public static string NormalizeForCode(string text, TextNormalizationType normalizationType)
+		{
+			if (string.IsNullOrEmpty(text))
+				throw new ArgumentNullException("text", "Null or empty strings cannot be normalized for code.");
+
+			string work = Regex.Replace(text, "[^a-z0-9_]+", "_", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+
+			if (work == "_")
+				throw new ArgumentException("A correct name cannot be created from the text specified.", "text");
+
+			switch (normalizationType)
+			{
+				case TextNormalizationType.Field:
+					if (work.Length == 1)
+						return work.ToLowerInvariant();
+					return work.ToLowerInvariant()[0] + work.Substring(1);
+				default:
+					if (work.Length == 1)
+						return work.ToUpperInvariant();
+					return work.ToUpperInvariant()[0] + work.Substring(1);
+			}
+		}
 	}
 }

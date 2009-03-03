@@ -127,6 +127,24 @@
      </Message>
     </Messages>
    </Namespace>
+   <Namespace Name="SixPack.Web.UI">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2009-03-03 12:00:07Z">
+      <Issue>
+       <Item>SixPack.Web.UI</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="SixPack.Xml.Serializers">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2009-03-03 12:00:07Z">
+      <Issue>
+       <Item>SixPack.Xml.Serializers</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
    <Namespace Name="SixPack.Xml.Xsl">
     <Messages>
      <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2008-12-16 11:52:22Z">
@@ -141,13 +159,6 @@
    <Target Name="$(ProjectDir)/SixPack.Caching/bin/Release/SixPack.Caching.dll">
     <Modules>
      <Module Name="sixpack.caching.dll">
-      <Messages>
-       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2008-12-16 11:52:22Z">
-        <Issue Name="NoStrongName">
-         <Item>'SixPack.Caching.dll'</Item>
-        </Issue>
-       </Message>
-      </Messages>
       <Namespaces>
        <Namespace Name="SixPack.Caching">
         <Types>
@@ -165,24 +176,6 @@
             </Notes>
            </Message>
           </Messages>
-          <Members>
-           <Member Name="#Get`1(SixPack.Caching.RefreshFunction`1&lt;!!0&gt;,System.Int32,SixPack.Caching.PrefetchCacheOptions,System.Object[])">
-            <Messages>
-             <Message Id="prefetch" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2008-12-16 11:50:50Z">
-              <Issue Name="MemberParameter">
-               <Item>'PrefetchCache.Get&lt;TReturn&gt;(RefreshFunction&lt;TReturn&gt;, int, PrefetchCacheOptions, params object[])'</Item>
-               <Item>prefetch</Item>
-               <Item>'prefetchCacheOptions'</Item>
-              </Issue>
-              <Notes>
-               <User Name="antoine.aubry">
-                <Note Id="29" />
-               </User>
-              </Notes>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
          </Type>
          <Type Name="PrefetchCacheAgent`1">
           <Members>
@@ -245,13 +238,6 @@
    <Target Name="$(ProjectDir)/SixPack.Net.Mail/bin/Release/SixPack.Net.Mail.dll">
     <Modules>
      <Module Name="sixpack.net.mail.dll">
-      <Messages>
-       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2008-12-16 11:52:22Z">
-        <Issue Name="NoStrongName">
-         <Item>'SixPack.Net.Mail.dll'</Item>
-        </Issue>
-       </Message>
-      </Messages>
       <Namespaces>
        <Namespace Name="SixPack.Net.Mail">
         <Types>
@@ -326,29 +312,9 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/SixPack.Web.Services/bin/Release/SixPack.Web.Services.dll">
-    <Modules>
-     <Module Name="sixpack.web.services.dll">
-      <Messages>
-       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2008-12-16 11:52:22Z">
-        <Issue Name="NoStrongName">
-         <Item>'SixPack.Web.Services.dll'</Item>
-        </Issue>
-       </Message>
-      </Messages>
-     </Module>
-    </Modules>
-   </Target>
    <Target Name="$(ProjectDir)/SixPack/bin/Release/SixPack.dll">
     <Modules>
      <Module Name="sixpack.dll">
-      <Messages>
-       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2008-12-16 11:52:22Z">
-        <Issue Name="NoStrongName">
-         <Item>'SixPack.dll'</Item>
-        </Issue>
-       </Message>
-      </Messages>
       <Namespaces>
        <Namespace Name="SixPack.Banking">
         <Types>
@@ -1353,6 +1319,24 @@
        </Namespace>
        <Namespace Name="SixPack.Text">
         <Types>
+         <Type Name="TextUtilities">
+          <Members>
+           <Member Name="#NormalizeForCode(System.String,SixPack.Text.TextNormalizationType)">
+            <Messages>
+             <Message TypeName="NormalizeStringsToUppercase" Category="Microsoft.Globalization" CheckId="CA1308" Created="2009-03-03 12:00:07Z">
+              <Issue Name="ToUpperInvariant">
+               <Item>'TextUtilities.NormalizeForCode(string, TextNormalizationType)'</Item>
+               <Item>'string.ToLowerInvariant()'</Item>
+              </Issue>
+              <Issue Name="ToUpperInvariant">
+               <Item>'TextUtilities.NormalizeForCode(string, TextNormalizationType)'</Item>
+               <Item>'string.ToLowerInvariant()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
          <Type Name="UnicodeRange">
           <Messages>
            <Message TypeName="MarkEnumsWithFlags" Category="Microsoft.Design" CheckId="CA1027" Status="Excluded" Created="2008-12-15 19:53:42Z">
@@ -2877,13 +2861,9 @@
     <Note Id="25" Modified="2008-12-16 10:28:23Z">The members of this enum are not flags.</Note>
     <Note Id="26" Modified="2008-12-16 11:36:08Z">Prefetch is correctly spelled.</Note>
     <Note Id="27" Modified="2008-12-16 11:39:30Z">The static constructor is required because of logging, and the field is being initialized when declared.</Note>
-    <Note Id="29" Modified="2008-12-16 11:51:11Z">'prefetch' is correctly spelled.</Note>
    </User>
   </Notes>
   <Rules>
-   <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
-    <Resolution Name="NoStrongName">Sign {0} with a strong name key.</Resolution>
-   </Rule>
    <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
     <Resolution Name="Default">Consider merging the types defined in '{0}' with another namespace.</Resolution>
    </Rule>
@@ -2917,6 +2897,9 @@
    </Rule>
    <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
     <Resolution Name="Default">The 'this' parameter (or 'Me' in Visual Basic) of {0} is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Resolution>
+   </Rule>
+   <Rule TypeName="NormalizeStringsToUppercase" Category="Microsoft.Globalization" CheckId="CA1308">
+    <Resolution Name="ToUpperInvariant">In method {0}, replace the call to {1} with String.ToUpperInvariant().</Resolution>
    </Rule>
    <Rule TypeName="UriParametersShouldNotBeStrings" Category="Microsoft.Design" CheckId="CA1054">
     <Resolution Name="Default">Change the type of parameter {0} of method {1} from string to System.Uri, or provide an overload of {1}, that allows {0} to be passed as a System.Uri object.</Resolution>

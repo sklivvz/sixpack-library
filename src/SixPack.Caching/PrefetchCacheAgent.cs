@@ -18,75 +18,26 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
 //
-
 using System;
 using System.Threading;
-
 using SixPack.Diagnostics;
 
 namespace SixPack.Caching
 {
-	internal class PrefetchCacheAgent<TReturn> : IDisposable, IPrefetchCacheAgent
+	internal class PrefetchCacheAgent<TReturn>: IDisposable, IPrefetchCacheAgent
 	{
-
-		readonly PrefetchCacheContent<TReturn> content;
-		readonly Timer timer;
-		readonly RefreshFunction<TReturn> myDelegate;
-		readonly int cacheTime;
-		readonly PrefetchCacheTimer timerFunction;
-		readonly string name;
+		private readonly int cacheTime;
+		private readonly PrefetchCacheContent<TReturn> content;
+		private readonly FetchingExecutor<TReturn> myExecutor;
+		private readonly string name;
 #if DEBUG
-		readonly string sig;
+		private readonly string sig;
 #endif
+		private readonly Timer timer;
+		private readonly PrefetchCacheTimer timerFunction;
 		private bool disposed;
 		private Exception exception;
 
-		/// <value>
-		/// Fired when the content has been refreshed 20 times without access.
-		/// </value>
-		public event EventHandler Idling;
-
-		/// <value>
-		/// Indicates whether the cache has any content.
-		/// </value>
-		public bool HasContent
-		{
-			get
-			{
-				return content.ReturnMessage != null;
-			}
-		}
-		/// <value>
-		/// The content of the cache.
-		/// </value>
-		public IPrefetchCacheContent Content
-		{
-			get
-			{
-				timerFunction.ResetIdleFetches();
-				return content;
-			}
-		}
-		/// <value>
-		/// The exception which occurred, if any.
-		/// </value>
-		public Exception Exception
-		{
-			get
-			{
-				return exception;
-			}
-		}
-		/// <value>
-		/// The name of this Agent in cache.
-		/// </value>
-		public string Name
-		{
-			get
-			{
-				return name;
-			}
-		}
 		/// <summary>
 		/// Creates a new instance of <see cref="PrefetchCacheAgent{TReturn}"/>
 		/// </summary>
@@ -94,19 +45,19 @@ namespace SixPack.Caching
 		/// The name of this agent in cache
 		/// </param>
 		/// <param name="del">
-		/// A <see cref="RefreshFunction{TReturn}"/> which will be executed repeatedly each interval
+		/// A <see cref="FetchingExecutor{TReturn}"/> which will be executed repeatedly each interval
 		/// to refresh the content.
 		/// </param>
 		/// <param name="cacheTime">
 		/// The length of time between attempts to refresh the content
 		/// </param>		
-		public PrefetchCacheAgent(string name, RefreshFunction<TReturn> del, int cacheTime)
+		public PrefetchCacheAgent(string name, FetchingExecutor<TReturn> del, int cacheTime)
 		{
 #if DEBUG
 			sig = name;
 			Log.Instance.AddFormat("PrefetchCacheAgent - ctor invoked, id <{0}>, spawning...", sig);
 #endif
-			myDelegate = del;
+			myExecutor = del;
 			this.cacheTime = cacheTime;
 			this.name = name;
 
@@ -122,6 +73,62 @@ namespace SixPack.Caching
 #if DEBUG
 			Log.Instance.AddFormat("PrefetchCacheAgent - ...timer for '{0}' spawned!", sig);
 #endif
+		}
+
+		#region IDisposable Members
+
+		/// <summary>
+		/// Disposes this instance.
+		/// </summary>
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		#endregion
+
+		#region IPrefetchCacheAgent Members
+
+		/// <value>
+		/// Fired when the content has been refreshed 20 times without access.
+		/// </value>
+		public event EventHandler Idling;
+
+		/// <value>
+		/// Indicates whether the cache has any content.
+		/// </value>
+		public bool HasContent
+		{
+			get { return content.ReturnMessage != null; }
+		}
+
+		/// <value>
+		/// The content of the cache.
+		/// </value>
+		public IPrefetchCacheContent Content
+		{
+			get
+			{
+				timerFunction.ResetIdleFetches();
+				return content;
+			}
+		}
+
+		/// <value>
+		/// The exception which occurred, if any.
+		/// </value>
+		public Exception Exception
+		{
+			get { return exception; }
+		}
+
+		/// <value>
+		/// The name of this Agent in cache.
+		/// </value>
+		public string Name
+		{
+			get { return name; }
 		}
 
 		/// <summary>
@@ -184,19 +191,12 @@ namespace SixPack.Caching
 #endif
 		}
 
+		#endregion
+
 		protected void OnIdling(EventArgs e)
 		{
 			if (Idling != null)
 				Idling(this, e);
-		}
-
-		/// <summary>
-		/// Disposes this instance.
-		/// </summary>
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
 		}
 
 		private void Dispose(bool disposing)
@@ -226,7 +226,7 @@ namespace SixPack.Caching
 		{
 			try
 			{
-				TReturn res = myDelegate();
+				TReturn res = myExecutor();
 #if DEBUG
 				Log.Instance.AddFormat("PrefetchCacheAgent: {0} Acquiring lock...", sig);
 #endif
@@ -244,15 +244,15 @@ namespace SixPack.Caching
 #endif
 				}
 			}
-			// we are catching exceptions because we are in a separate thread.
-			// the exception is then stored in the main class so it can be
-			// handled after the pulse all is executed.
-			catch (Exception err)
+				// we are catching exceptions because we are in a separate thread.
+				// the exception is then stored in the main class so it can be
+				// handled after the pulse all is executed.
+			catch (Exception exception)
 			{
 #if DEBUG
-				Log.Instance.HandleException(err);
+				Log.Instance.HandleException(exception);
 #endif
-				exception = err;
+				this.exception = exception;
 				lock (content)
 				{
 #if DEBUG

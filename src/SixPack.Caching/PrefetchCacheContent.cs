@@ -18,32 +18,29 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
 //
-
 using System;
 
 namespace SixPack.Caching
 {
 	internal class PrefetchCacheContent<TReturn>: IPrefetchCacheContent
 	{
-		
-		public DateTime ExpiryDate
-		{
-			get; set;
-		}
-		
-		TReturn returnMessage;
-		
+		private DateTime expiryDate;
+		private TReturn returnMessage;
+
+		#region IPrefetchCacheContent Members
+
 		public object ReturnMessage
 		{
-			get
-			{
-				return returnMessage;
-			}
-			
-			set
-			{
-				returnMessage = (TReturn) value;
-			}
+			get { return returnMessage; }
+			set { returnMessage = (TReturn) value; }
 		}
+
+		public DateTime ExpiryDate
+		{
+			get { return expiryDate; }
+			set { expiryDate = value; }
+		}
+
+		#endregion
 	}
 }

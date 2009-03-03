@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C6C6FFCE-B88B-453B-9DE1-8C8D37684260}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -11,8 +11,7 @@
     <RootNamespace>SixPack.Web.Services</RootNamespace>
     <AssemblyName>SixPack.Web.Services</AssemblyName>
     <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>SixPack.pfx</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -71,6 +70,7 @@
     <Compile Include="WebServiceException.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="SixPack.pfx" />
     <None Include="SixPack.Web.Services.cd" />
   </ItemGroup>
   <ItemGroup>

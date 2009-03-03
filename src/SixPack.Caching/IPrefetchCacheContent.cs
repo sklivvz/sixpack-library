@@ -18,21 +18,13 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
 //
-
 using System;
 
 namespace SixPack.Caching
 {
 	internal interface IPrefetchCacheContent
 	{
-		DateTime ExpiryDate
-		{
-			get; set;
-		}
-		
-		object ReturnMessage
-		{
-			get; set;
-		}
+		DateTime ExpiryDate { get; set; }
+		object ReturnMessage { get; set; }
 	}
 }

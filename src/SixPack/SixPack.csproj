@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{15BBEAE6-E198-4680-B1CB-C73BE12B359E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -11,8 +11,7 @@
     <RootNamespace>SixPack</RootNamespace>
     <AssemblyName>SixPack</AssemblyName>
     <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>SixPack.pfx</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -91,6 +90,33 @@
     </Compile>
     <Compile Include="Banking\CreditCard.cs" />
     <Compile Include="Banking\CreditCardTypes.cs" />
+    <Compile Include="CodeGen\AbstractClass.cs" />
+    <Compile Include="CodeGen\AbstractConstructor.cs" />
+    <Compile Include="CodeGen\AbstractField.cs" />
+    <Compile Include="CodeGen\AbstractGetter.cs" />
+    <Compile Include="CodeGen\AbstractMethod.cs" />
+    <Compile Include="CodeGen\AbstractNamespace.cs" />
+    <Compile Include="CodeGen\AbstractParameter.cs" />
+    <Compile Include="CodeGen\AbstractProperty.cs" />
+    <Compile Include="CodeGen\AbstractSetter.cs" />
+    <Compile Include="CodeGen\AbstractUsingClause.cs" />
+    <Compile Include="CodeGen\AbstractVariable.cs" />
+    <Compile Include="CodeGen\CSharpClassVisitor.cs" />
+    <Compile Include="CodeGen\DataTableClass.cs" />
+    <Compile Include="CodeGen\IAbstractAccessor.cs" />
+    <Compile Include="CodeGen\IClassElement.cs" />
+    <Compile Include="CodeGen\IClassVisitor.cs" />
+    <Compile Include="CodeGen\SimpleClass.cs" />
+    <Compile Include="CodeGen\SimpleConstructor.cs" />
+    <Compile Include="CodeGen\SimpleField.cs" />
+    <Compile Include="CodeGen\SimpleGetter.cs" />
+    <Compile Include="CodeGen\SimpleMethod.cs" />
+    <Compile Include="CodeGen\SimpleNamespace.cs" />
+    <Compile Include="CodeGen\SimpleParameter.cs" />
+    <Compile Include="CodeGen\SimpleProperty.cs" />
+    <Compile Include="CodeGen\SimpleSetter.cs" />
+    <Compile Include="CodeGen\SimpleUsingClause.cs" />
+    <Compile Include="CodeGen\SimpleVariable.cs" />
     <Compile Include="Collections\Generic\FullListOfT.cs" />
     <Compile Include="Collections\Generic\IFullListOfT.cs" />
     <Compile Include="Collections\Generic\ISetOfT.cs" />
@@ -125,6 +151,11 @@
     <Compile Include="Security\Cryptography\RsaSmallCodeParser.cs" />
     <Compile Include="Text\AsciiStringTranslator.cs" />
     <Compile Include="Text\IStringTranslator.cs" />
+    <Compile Include="Text\TextNormalizationType.cs" />
+    <Compile Include="Text\TextSanitationMode.cs" />
+    <Compile Include="Text\TextSearchOptions.cs" />
+    <Compile Include="Web\UI\ControlFinder.cs" />
+    <Compile Include="Xml\Serializers\SimpleSerializer.cs" />
     <Compile Include="Xml\Xsl\XslTransformer.cs" />
     <Compile Include="Net\Mail\MailSemanticValidationMode.cs" />
     <Compile Include="Net\Mail\MailSyntaxValidationMode.cs" />
@@ -160,6 +191,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings" />
+    <None Include="SixPack.pfx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">

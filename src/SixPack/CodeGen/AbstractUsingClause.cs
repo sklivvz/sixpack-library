@@ -1,8 +1,7 @@
-// AssemblyInfo.cs 
+// AbstractUsingClause.cs 
 //
-//  Copyright (C) 2008 Fullsix Marketing Interactivo LDA
+//  Copyright (C) 2009 Marco Cecconi
 //  Author: Marco Cecconi <marco.cecconi@gmail.com>
-//  Author: Antoine Aubry <aaubry@gmail.com>
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -18,22 +17,31 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
+namespace SixPack.CodeGen
+{
+	/// <summary>
+	/// A class that represents a using clause
+	/// </summary>
+	public abstract class AbstractUsingClause: IClassElement
+	{
+		/// <summary>
+		/// Gets the name of the name space.
+		/// </summary>
+		/// <value>The name of the name space.</value>
+		public abstract string NamespaceName { get; }
 
-using System;
-using System.Reflection;
-using System.Resources;
-using System.Runtime.InteropServices;
+		#region IClassElement Members
 
-#if DEBUG
-[assembly : AssemblyConfiguration("Debug")]
-#else
-[assembly : AssemblyConfiguration("Release")]
-#endif
-[assembly : AssemblyCompany("SixPack")]
-[assembly : AssemblyProduct("SixPack Library")]
-[assembly : AssemblyCopyright("Copyright © 2007, 2008, 2009")]
-[assembly : AssemblyTrademark("")]
-[assembly : AssemblyCulture("")]
-[assembly : CLSCompliant(true)]
-[assembly : ComVisible(false)]
-[assembly : NeutralResourcesLanguage("en")]
+		/// <summary>
+		/// Accepts the specified visitor.
+		/// </summary>
+		/// <param name="visitor">The visitor.</param>
+		public void Accept(IClassVisitor visitor)
+		{
+			if (visitor != null)
+				visitor.Visit(this);
+		}
+
+		#endregion
+	}
+}

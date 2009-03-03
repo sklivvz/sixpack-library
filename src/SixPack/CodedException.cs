@@ -66,6 +66,7 @@ namespace SixPack
 		{
 		}
 
+
 		/// <summary>
 		/// Gets the error code.
 		/// </summary>
