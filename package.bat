@@ -66,7 +66,8 @@ XCOPY /I /E /Q /EXCLUDE:exclusions ..\HelpTmp doc
 
 ..\support\windows\7zip\7z.exe a ..\SixPack-doc-html-1.%1.zip doc
 
-COPY ..\HelpTmp\SixPack.chm ..\SixPack-1.%1.chm
+REM changed number style from 1.x to 1-x because apparently some users were having problems...
+COPY ..\HelpTmp\SixPack.chm ..\SixPack-1-%1.chm
 
 POPD
 RD /S /Q tmp
