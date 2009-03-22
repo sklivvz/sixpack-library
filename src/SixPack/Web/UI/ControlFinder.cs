@@ -41,6 +41,61 @@ namespace SixPack.Web.UI
 		{
 			root = rootControl;
 		}
+		
+		/// <summary>
+		/// Searches the control tree recursively and returns the first 
+		/// case insensitive partial match of the expression 
+		/// </summary>
+		/// <param name="expression">
+		/// The search expression <see cref="System.String"/>
+		/// </param>
+		/// <returns>
+		/// A <see cref="Control"/> that matches the expression
+		/// </returns>
+		public Control FindFirst(string expression)
+		{
+			return FindFirst(expression, TextSearchOptions.CaseInsensitive | TextSearchOptions.Partial);
+		}
+		
+		/// <summary>
+		/// Searches the control tree recursively and returns the first match 
+		/// </summary>
+		/// <param name="expression">
+		/// The search expression <see cref="System.String"/>
+		/// </param>
+		/// <param name="searchOptions">
+		/// The <see cref="TextSearchOptions"/>
+		/// </param>
+		/// <returns>
+		/// A <see cref="Control"/> that matches the expression
+		/// </returns>		
+		public Control FindFirst(string expression, TextSearchOptions searchOptions)
+		{
+			return FindFirst(expression, searchOptions, true);
+		}
+		
+		/// <summary>
+		/// Searches the control tree and returns the first match 
+		/// </summary>
+		/// <param name="expression">
+		/// The search expression <see cref="System.String"/>
+		/// </param>
+		/// <param name="searchOptions">
+		/// The <see cref="TextSearchOptions"/>
+		/// </param>
+		/// <param name="recursive">
+		/// Search in all the subtree if true
+		/// </param>
+		/// <returns>
+		/// A <see cref="Control"/> that matches the expression
+		/// </returns>
+		public Control FindFirst(string expression, TextSearchOptions searchOptions, bool recursive)
+		{
+			IFullList<Control> res = Find(expression, searchOptions, recursive, true);
+			if (res.Count > 0)
+				return res[0];
+			return null;
+		}
 
 		/// <summary>
 		/// Finds the specified expression.
@@ -72,6 +127,11 @@ namespace SixPack.Web.UI
 		/// <returns></returns>
 		public IFullList<Control> Find(string expression, TextSearchOptions searchOptions, bool recursive)
 		{
+			return Find(expression, searchOptions, recursive, false);
+		}
+		
+		private IFullList<Control> Find(string expression, TextSearchOptions searchOptions, bool recursive, bool stopAtFirst)
+		{
 			bool caseInsensitive = (searchOptions & TextSearchOptions.CaseInsensitive) != 0;
 
 			IFullList<Control> result = new FullList<Control>();
@@ -95,14 +155,14 @@ namespace SixPack.Web.UI
 						                     			return false;
 						                     		test = test.ToUpperInvariant();
 						                     		return (test.Contains(expression));
-						                     	}, recursive);
+						                     	}, recursive, stopAtFirst);
 					}
 					else
 					{
 						// case insensitive exact text
 						doFind(root, result,
 						       delegate(Control c) { return (string.Compare(c.ID, expression, StringComparison.OrdinalIgnoreCase) == 0); },
-						       recursive);
+						       recursive, stopAtFirst);
 					}
 				}
 				else
@@ -111,14 +171,14 @@ namespace SixPack.Web.UI
 					if (partial)
 					{
 						// case sensitive partial text
-						doFind(root, result, delegate(Control c) { return (c.ID.Contains(expression)); }, recursive);
+						doFind(root, result, delegate(Control c) { return (c.ID.Contains(expression)); }, recursive, stopAtFirst);
 					}
 					else
 					{
 						// case sensitive exact text
 						doFind(root, result,
 						       delegate(Control c) { return (string.Compare(c.ID, expression, StringComparison.Ordinal) == 0); },
-						       recursive);
+						       recursive, stopAtFirst);
 					}
 				}
 			}
@@ -127,35 +187,151 @@ namespace SixPack.Web.UI
 				// regex
 				// we silently ignore the partial flag
 				RegexOptions opts = caseInsensitive ? RegexOptions.IgnoreCase : RegexOptions.None;
-				doFind(root, result, delegate(Control c) { return (Regex.IsMatch(c.ID, expression, opts)); }, recursive);
+				doFind(root, result, delegate(Control c) { return (Regex.IsMatch(c.ID, expression, opts)); }, recursive, stopAtFirst);
 			}
 
 			return result;
 		}
 
-		/// <summary>
-		/// Does the find.
-		/// </summary>
-		/// <param name="target">The target.</param>
-		/// <param name="result">The result.</param>
-		/// <param name="matches">The matches.</param>
-		/// <param name="recursive">if set to <c>true</c> [recursive].</param>
-		private static void doFind(Control target, ICollection<Control> result, ControlSieve matches, bool recursive)
+		private static void doFind(Control target, ICollection<Control> result, ControlSieve matches, bool recursive, bool stopAtFirst)
 		{
 			if (target == null || !target.HasControls())
 				return;
 			foreach (Control c in target.Controls)
 			{
+				if (stopAtFirst && result.Count > 0)
+					break;
 				if (matches(c))
 				{
 					result.Add(c);
+					if (stopAtFirst)
+						break;
 				}
 				if (recursive)
 				{
-					doFind(c, result, matches, true);
+					doFind(c, result, matches, true, stopAtFirst);
 				}
 			}
 		}
+
+		/// <summary>
+		/// Finds all controls matching the specified expression 
+		/// using case insensitive partial matching
+		/// in the specified control and its subtree. 
+		/// </summary>
+		/// <param name="rootControl">
+		/// The root <see cref="Control"/>
+		/// </param>
+		/// <param name="expression">
+		/// The expression
+		/// </param>
+		/// <returns>
+		/// </returns>
+		public static IFullList<Control> FindInControl(Control rootControl, string expression)
+		{
+			return FindInControl(rootControl, expression, TextSearchOptions.CaseInsensitive | TextSearchOptions.Partial);
+		}
+		
+		/// <summary>
+		/// Finds all controls matching the specified expression 
+		/// in the specified control and its subtree. 
+		/// </summary>
+		/// <param name="rootControl">
+		/// The root <see cref="Control"/>
+		/// </param>
+		/// <param name="expression">
+		/// The expression
+		/// </param>
+		/// <param name="searchOptions">
+		/// The <see cref="TextSearchOptions"/>
+		/// </param>
+		/// <returns>
+		/// </returns>
+		public static IFullList<Control> FindInControl(Control rootControl, string expression, TextSearchOptions searchOptions)
+		{
+			return FindInControl(rootControl, expression, searchOptions, true);
+		}
+		
+		/// <summary>
+		/// Finds all controls matching the specified expression 
+		/// </summary>
+		/// <param name="rootControl">
+		/// The root <see cref="Control"/>
+		/// </param>
+		/// <param name="expression">
+		/// The expression
+		/// </param>
+		/// <param name="searchOptions">
+		/// The <see cref="TextSearchOptions"/>
+		/// </param>
+		/// <param name="recursive">
+		/// Recurse subtree if true
+		/// </param>
+		/// <returns>
+		/// </returns>
+		public static IFullList<Control> FindInControl(Control rootControl, string expression, TextSearchOptions searchOptions, bool recursive)
+		{
+			return new ControlFinder(rootControl).Find(expression, searchOptions, recursive);
+		}
+
+		/// <summary>
+		/// Searches the control tree recursively and returns the first 
+		/// case insensitive partial match of the expression 
+		/// </summary>
+		/// <param name="rootControl">
+		/// The root <see cref="Control"/>
+		/// </param>
+		/// <param name="expression">
+		/// The search expression <see cref="System.String"/>
+		/// </param>
+		/// <returns>
+		/// </returns>
+		public static Control FindFirstInControl(Control rootControl, string expression)
+		{
+			return FindFirstInControl(rootControl, expression, TextSearchOptions.CaseInsensitive | TextSearchOptions.Partial);
+		}
+		
+		/// <summary>
+		/// Searches the control tree recursively and returns the first match 
+		/// </summary>
+		/// <param name="rootControl">
+		/// The root <see cref="Control"/>
+		/// </param>
+		/// <param name="expression">
+		/// The search expression <see cref="System.String"/>
+		/// </param>
+		/// <param name="searchOptions">
+		/// The <see cref="TextSearchOptions"/>
+		/// </param>
+		/// <returns>
+		/// </returns>		
+		public static Control FindFirstInControl(Control rootControl, string expression, TextSearchOptions searchOptions)
+		{
+			return FindFirstInControl(rootControl, expression, searchOptions, true);
+		}
+		
+		/// <summary>
+		/// Searches the control tree and returns the first match 
+		/// </summary>
+		/// <param name="rootControl">
+		/// The root <see cref="Control"/>
+		/// </param>
+		/// <param name="expression">
+		/// The search expression <see cref="System.String"/>
+		/// </param>
+		/// <param name="searchOptions">
+		/// The <see cref="TextSearchOptions"/>
+		/// </param>
+		/// <param name="recursive">
+		/// Search in all the subtree if true
+		/// </param>
+		/// <returns>
+		/// </returns>
+		public static Control FindFirstInControl(Control rootControl, string expression, TextSearchOptions searchOptions, bool recursive)
+		{
+			return new ControlFinder(rootControl).FindFirst(expression, searchOptions, recursive);
+		}
+
 	}
 
 	/// <summary>
