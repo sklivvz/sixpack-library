@@ -2041,13 +2041,32 @@ namespace SixPack.Security.Cryptography
 		/// <returns></returns>
 		public string ToString(int radix)
 		{
+			if (radix < 2 || radix > 36)
+				throw (new ArgumentException("Radix must be >= 2 and <= 36"));
+
+			return ToString("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".Substring(0, radix));
+		}
+
+		/// <summary>
+		/// Returns a string representing the BigInteger in sign-and-magnitude
+		/// format in the specified character set.
+		/// </summary>
+		/// <param name="charSet">The character set will be used to represent the value.</param>
+		/// <returns></returns>
+		public string ToString(string charSet)
+		{
+			if(string.IsNullOrEmpty(charSet))
+			{
+				throw new ArgumentNullException("charSet");
+			}
+
 			unchecked
 			{
-				if (radix < 2 || radix > 36)
-					throw (new ArgumentException("Radix must be >= 2 and <= 36"));
-
-				string charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-				StringBuilder result = new StringBuilder();
+				int radix = charSet.Length;
+				if (radix < 2)
+				{
+					throw (new ArgumentException("Radix must be >= 2"));
+				}
 
 				BigInteger a = this;
 
@@ -2069,25 +2088,23 @@ namespace SixPack.Security.Cryptography
 				BigInteger biRadix = new BigInteger(radix);
 
 				if (a.dataLength == 1 && a.data[0] == 0)
-					return "0";
+					return charSet.Substring(0, 1);
 				else
 				{
+					StringBuilder result = new StringBuilder();
 					while (a.dataLength > 1 || (a.dataLength == 1 && a.data[0] != 0))
 					{
 						singleByteDivide(a, biRadix, quotient, remainder);
 
-						if (remainder.data[0] < 10)
-							result.Insert(0, remainder.data[0]);
-						else
-							result.Insert(0, charSet[(int)remainder.data[0] - 10]);
+						result.Insert(0, charSet[(int)remainder.data[0]]);
 
 						a = quotient;
 					}
 					if (negative)
 						result.Insert(0, "-");
-				}
 
-				return result.ToString();
+					return result.ToString();
+				}
 			}
 		}
 

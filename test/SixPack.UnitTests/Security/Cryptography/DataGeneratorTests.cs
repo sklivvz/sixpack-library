@@ -180,7 +180,7 @@ namespace SixPack.UnitTests.Security.Cryptography
 		[Test]
 		public void RandomDateTime_AllMonthsAreGenerated()
 		{
-			Set<int> months = new Set<int>();
+			HashSet<int> months = new HashSet<int>();
 
 			for (int i = 0; i < 1000; i++)
 			{
@@ -203,7 +203,7 @@ namespace SixPack.UnitTests.Security.Cryptography
 		[Test]
 		public void RandomDateTime_AllDaysAreGenerated()
 		{
-			Set<int> days = new Set<int>();
+			HashSet<int> days = new HashSet<int>();
 
 			for (int i = 0; i < 10000; i++)
 			{

@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Text;
+using System.Globalization;
 
 namespace SixPack.Text
 {
@@ -170,6 +171,52 @@ namespace SixPack.Text
 			return Encoding.UTF8.GetString(encodedText);
 		}
 
+		/// <summary>
+		/// Converts the specified array to an hexadecimal string.
+		/// </summary>
+		/// <param name="data">The array to convert.</param>
+		/// <returns></returns>
+		public static string ToHex(byte[] data)
+		{
+			if(data == null)
+			{
+				throw new ArgumentNullException("data");
+			}
+
+			StringBuilder hexadecimal = new StringBuilder(data.Length * 2);
+			foreach (byte part in data)
+			{
+				hexadecimal.AppendFormat(CultureInfo.InvariantCulture, "{0:X02}", part);
+			}
+			return hexadecimal.ToString();
+		}
+
+		/// <summary>
+		/// Converts the specified hexadimal string to an array.
+		/// </summary>
+		/// <param name="hexadecimal">The hexadecimal string to be converted.</param>
+		/// <returns></returns>
+		public static byte[] FromHex(string hexadecimal)
+		{
+			if (hexadecimal == null)
+			{
+				throw new ArgumentNullException("hexadecimal");
+			}
+
+			if ((hexadecimal.Length % 2) != 0)
+			{
+				throw new ArgumentException("The string to convert must contain an even number of hexadecimal digits.", "hexadecimal");
+			}
+
+			byte[] data = new byte[hexadecimal.Length / 2];
+			for(int i = 0; i < data.Length; ++i)
+			{
+				string part = hexadecimal.Substring(i * 2, 2);
+				data[i] = byte.Parse(part, NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+			}
+			return data;
+		}
+		
 		/// <summary>
 		/// Sanitizes the specified text.
 		/// </summary>

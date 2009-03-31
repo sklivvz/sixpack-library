@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{2A11C6B7-93BE-494A-8172-D91A6AF34698}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -72,18 +72,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\MbUnit.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="SixPack, Version=1.0.0.30556, Culture=neutral, PublicKeyToken=null">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\SixPack.dll</HintPath>
-    </Reference>
-    <Reference Include="SixPack.Net.Mail, Version=1.0.0.30557, Culture=neutral, PublicKeyToken=null">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\SixPack.Net.Mail.dll</HintPath>
-    </Reference>
-    <Reference Include="SixPack.Web.Services, Version=1.0.0.30557, Culture=neutral, PublicKeyToken=null">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\SixPack.Web.Services.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base32EncoderDecoderValidator.cs" />
@@ -131,6 +119,20 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\SixPack.Net.Mail\SixPack.Net.Mail.csproj">
+      <Project>{7788DEE6-1C76-40D1-99EA-9DB403647738}</Project>
+      <Name>SixPack.Net.Mail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\SixPack.Web.Services\SixPack.Web.Services.csproj">
+      <Project>{C6C6FFCE-B88B-453B-9DE1-8C8D37684260}</Project>
+      <Name>SixPack.Web.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\SixPack\SixPack.csproj">
+      <Project>{15BBEAE6-E198-4680-B1CB-C73BE12B359E}</Project>
+      <Name>SixPack</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -145,5 +147,6 @@
         <GtkDesignInfo />
       </Properties>
     </MonoDevelop>
+    <VisualStudio />
   </ProjectExtensions>
 </Project>

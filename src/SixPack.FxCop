@@ -159,6 +159,13 @@
    <Target Name="$(ProjectDir)/SixPack.Caching/bin/Release/SixPack.Caching.dll">
     <Modules>
      <Module Name="sixpack.caching.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2009-03-31 06:35:53Z">
+        <Issue Name="NoStrongName">
+         <Item>'SixPack.Caching.dll'</Item>
+        </Issue>
+       </Message>
+      </Messages>
       <Namespaces>
        <Namespace Name="SixPack.Caching">
         <Types>
@@ -176,6 +183,24 @@
             </Notes>
            </Message>
           </Messages>
+          <Members>
+           <Member Name="#Get`1(SixPack.Caching.FetchingExecutor`1&lt;!!0&gt;,System.Int32,SixPack.Caching.PrefetchCacheOptions,System.Object[])">
+            <Messages>
+             <Message Id="prefetch" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-03-31 06:35:53Z">
+              <Issue Name="MemberParameter">
+               <Item>'PrefetchCache.Get&lt;TReturn&gt;(FetchingExecutor&lt;TReturn&gt;, int, PrefetchCacheOptions, params object[])'</Item>
+               <Item>prefetch</Item>
+               <Item>'prefetchCacheOptions'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="28" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
          <Type Name="PrefetchCacheAgent`1">
           <Members>
@@ -238,6 +263,13 @@
    <Target Name="$(ProjectDir)/SixPack.Net.Mail/bin/Release/SixPack.Net.Mail.dll">
     <Modules>
      <Module Name="sixpack.net.mail.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2009-03-31 06:35:53Z">
+        <Issue Name="NoStrongName">
+         <Item>'SixPack.Net.Mail.dll'</Item>
+        </Issue>
+       </Message>
+      </Messages>
       <Namespaces>
        <Namespace Name="SixPack.Net.Mail">
         <Types>
@@ -312,9 +344,29 @@
      </Module>
     </Modules>
    </Target>
+   <Target Name="$(ProjectDir)/SixPack.Web.Services/bin/Release/SixPack.Web.Services.dll">
+    <Modules>
+     <Module Name="sixpack.web.services.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2009-03-31 06:35:53Z">
+        <Issue Name="NoStrongName">
+         <Item>'SixPack.Web.Services.dll'</Item>
+        </Issue>
+       </Message>
+      </Messages>
+     </Module>
+    </Modules>
+   </Target>
    <Target Name="$(ProjectDir)/SixPack/bin/Release/SixPack.dll">
     <Modules>
      <Module Name="sixpack.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2009-03-31 06:35:53Z">
+        <Issue Name="NoStrongName">
+         <Item>'SixPack.dll'</Item>
+        </Issue>
+       </Message>
+      </Messages>
       <Namespaces>
        <Namespace Name="SixPack.Banking">
         <Types>
@@ -371,6 +423,36 @@
             </Notes>
            </Message>
           </Messages>
+         </Type>
+         <Type Name="GenericComparer">
+          <Members>
+           <Member Name="#Compare`1(!!0,!!0,SixPack.Collections.Generic.ComparisonOrder)">
+            <Messages>
+             <Message Id="x" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-03-31 06:35:53Z">
+              <Issue Name="MemberParameterMoreMeaningfulName">
+               <Item>'GenericComparer.Compare&lt;TCompared&gt;(TCompared, TCompared, ComparisonOrder)'</Item>
+               <Item>'x'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="7" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="y" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-03-31 06:35:53Z">
+              <Issue Name="MemberParameterMoreMeaningfulName">
+               <Item>'GenericComparer.Compare&lt;TCompared&gt;(TCompared, TCompared, ComparisonOrder)'</Item>
+               <Item>'y'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="7" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
          <Type Name="HashSet`1">
           <Messages>
@@ -715,6 +797,96 @@
             </Notes>
            </Message>
           </Messages>
+          <Members>
+           <Member Name="#SetDimensions(System.Int32,System.Int32)">
+            <Messages>
+             <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Created="2009-03-31 06:35:53Z">
+              <Issue Name="MemberParameter">
+               <Item>'CaptchaImage.SetDimensions(int, int)'</Item>
+               <Item>'_height'</Item>
+              </Issue>
+              <Issue Name="MemberParameter">
+               <Item>'CaptchaImage.SetDimensions(int, int)'</Item>
+               <Item>'_width'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SetFamilyName(System.String)">
+            <Messages>
+             <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Created="2009-03-31 06:35:53Z">
+              <Issue Name="MemberParameter">
+               <Item>'CaptchaImage.SetFamilyName(string)'</Item>
+               <Item>'_familyName'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="TangoPalette">
+          <Members>
+           <Member Name="#Aluminium1">
+            <Messages>
+             <Message Id="Aluminium" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-31 06:35:53Z">
+              <Issue Name="Member">
+               <Item>Aluminium</Item>
+               <Item>'TangoPalette.Aluminium1'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Aluminium2">
+            <Messages>
+             <Message Id="Aluminium" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-31 06:35:53Z">
+              <Issue Name="Member">
+               <Item>Aluminium</Item>
+               <Item>'TangoPalette.Aluminium2'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Aluminium3">
+            <Messages>
+             <Message Id="Aluminium" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-31 06:35:53Z">
+              <Issue Name="Member">
+               <Item>Aluminium</Item>
+               <Item>'TangoPalette.Aluminium3'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Aluminium4">
+            <Messages>
+             <Message Id="Aluminium" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-31 06:35:53Z">
+              <Issue Name="Member">
+               <Item>Aluminium</Item>
+               <Item>'TangoPalette.Aluminium4'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Aluminium5">
+            <Messages>
+             <Message Id="Aluminium" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-31 06:35:53Z">
+              <Issue Name="Member">
+               <Item>Aluminium</Item>
+               <Item>'TangoPalette.Aluminium5'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Aluminium6">
+            <Messages>
+             <Message Id="Aluminium" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-31 06:35:53Z">
+              <Issue Name="Member">
+               <Item>Aluminium</Item>
+               <Item>'TangoPalette.Aluminium6'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
         </Types>
        </Namespace>
@@ -2841,6 +3013,7 @@
     <Note Id="4" Modified="2008-12-15 20:08:25Z">'En' is part of the name of the credit-card provider, and does not mean 'English'.</Note>
     <Note Id="5" Modified="2008-12-15 20:09:04Z">This name matches the name used in the mathematical theory on which this code is based.</Note>
     <Note Id="6" Modified="2008-12-15 20:09:34Z">IPv4 and IPv6 are the names that are commonly used in this case.</Note>
+    <Note Id="7" Modified="2009-03-31 06:37:07Z">This name is the same as used in IComparable&lt;T&gt;</Note>
     <Note Id="8" Modified="2008-12-16 10:00:29Z">MHTML is the name that is used on the underlying objects. It is retained to make it easier for someone coming from CDO.</Note>
     <Note Id="9" Modified="2008-12-16 10:01:34Z">This name follows the UNICODE specification.</Note>
     <Note Id="10" Modified="2008-12-16 10:02:06Z">This name matches the SMTP specification.</Note>
@@ -2861,9 +3034,13 @@
     <Note Id="25" Modified="2008-12-16 10:28:23Z">The members of this enum are not flags.</Note>
     <Note Id="26" Modified="2008-12-16 11:36:08Z">Prefetch is correctly spelled.</Note>
     <Note Id="27" Modified="2008-12-16 11:39:30Z">The static constructor is required because of logging, and the field is being initialized when declared.</Note>
+    <Note Id="28" Modified="2009-03-31 06:37:28Z">"prefetch" is correctly spelled.</Note>
    </User>
   </Notes>
   <Rules>
+   <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
+    <Resolution Name="NoStrongName">Sign {0} with a strong name key.</Resolution>
+   </Rule>
    <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
     <Resolution Name="Default">Consider merging the types defined in '{0}' with another namespace.</Resolution>
    </Rule>
@@ -2888,6 +3065,9 @@
    </Rule>
    <Rule TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710">
     <Resolution Name="Default">Rename {0} to end in '{1}'.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707">
+    <Resolution Name="MemberParameter">In member {0}, remove the underscores from parameter name {1}.</Resolution>
    </Rule>
    <Rule TypeName="InitializeReferenceTypeStaticFieldsInline" Category="Microsoft.Performance" CheckId="CA1810">
     <Resolution Name="Default">Initialize all static fields in {0} when those fields are declared and remove the explicit static constructor.</Resolution>
