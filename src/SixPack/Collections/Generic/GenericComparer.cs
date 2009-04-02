@@ -34,6 +34,28 @@ namespace SixPack.Collections.Generic
 			return GenericComparer.Compare(x, y, order);
 		}
 		#endregion
+
+		/// <summary>
+		/// Gets an <see cref="IComparer{T}"/> that order elements in natural order.
+		/// </summary>
+		public static IComparer<TCompared> Natural
+		{
+			get
+			{
+				return new GenericComparer<TCompared>(ComparisonOrder.Natural);
+			}
+		}
+
+		/// <summary>
+		/// Gets an <see cref="IComparer{T}"/> that order elements in inverse order.
+		/// </summary>
+		public static IComparer<TCompared> Reverse
+		{
+			get
+			{
+				return new GenericComparer<TCompared>(ComparisonOrder.Natural);
+			}
+		}
 	}
 
 	/// <summary>
