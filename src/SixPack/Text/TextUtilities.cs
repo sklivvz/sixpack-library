@@ -23,6 +23,8 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Text;
 using System.Globalization;
+using System.Security.Cryptography;
+using System.IO;
 
 namespace SixPack.Text
 {
@@ -261,6 +263,32 @@ namespace SixPack.Text
 						return work.ToUpperInvariant();
 					return work.ToUpperInvariant()[0] + work.Substring(1);
 			}
+		}
+
+		/// <summary>
+		/// Hashes the specified values and returns a string representation of the result.
+		/// </summary>
+		/// <param name="values">The values to be hashed.</param>
+		/// <returns></returns>
+		/// <remarks>
+		/// The resulting string is guaranteed to be a valid file name.
+		/// It will only contain the following characters: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-
+		/// </remarks>
+		public static string Hash(params string[] values)
+		{
+			MemoryStream buffer = new MemoryStream();
+			using(var writer = new StreamWriter(buffer))
+			{
+				foreach(var value in values)
+				{
+					writer.Write(value);
+					writer.Write('\0');
+				}
+			}
+			buffer.Position = 0;
+
+			var algorithm = HashAlgorithm.Create();
+			return Convert.ToBase64String(algorithm.ComputeHash(buffer)).Replace('/', '-').TrimEnd('=');
 		}
 	}
 }
