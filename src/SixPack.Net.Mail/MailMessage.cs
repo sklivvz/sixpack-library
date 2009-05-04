@@ -21,6 +21,9 @@ using System;
 using System.Collections;
 using System.Globalization;
 using System.IO;
+using System.Net.Configuration;
+using System.Web;
+using System.Web.Configuration;
 using ADODB;
 using CDO;
 using SixPack.Diagnostics;
@@ -375,29 +378,49 @@ namespace SixPack.Net.Mail
 			oFields = iConfg.Fields;
 			oField = oFields[CDOSENDUSINGMETHOD];
 			oField.Value = CDOSENDUSING;
-			oField = oFields[CDOSMTPSERVER];
-			oField.Value = smtpServer;
-			oField = oFields[CDOSMTPSERVERPORT];
-			oField.Value = smtpPort;
-			oFields.Update();
-			msg.Configuration = iConfg;
 
-			Log.Instance.AddFormat(
-				"[MailMessage] Sending from: \"{0}\", to \"{1}\", CC \"{2}\", BCC \"{3}\" using server \"{4}:{5}\" with charset: \"{6}\"",
-				new object[]
-					{
-						msg.From,
-						msg.To,
-						msg.CC,
-						msg.BCC,
-						oFields[CDOSMTPSERVER].Value,
-						oFields[CDOSMTPSERVERPORT].Value,
-						CharSet
-					},
-				LogLevel.Debug);
+            
+            //These can be empty so let´s check and get information from web.config, if needed
+            System.Configuration.Configuration config = WebConfigurationManager.OpenWebConfiguration(HttpContext.Current.Request.ApplicationPath);
+            MailSettingsSectionGroup settings = (MailSettingsSectionGroup)config.GetSectionGroup("system.net/mailSettings");
 
-			// Send the message
-			msg.Send();
+            //We have to guarantee that at least it's possible to read from the properties or get information from system.net settings
+            if (
+                (!String.IsNullOrEmpty(smtpServer) && !String.IsNullOrEmpty(smtpPort))
+                ||
+                (settings != null && settings.Smtp != null && settings.Smtp.Network != null && settings.Smtp.Network.Host != null)
+            )
+            {
+                oField = oFields[CDOSMTPSERVER];
+                oField.Value = smtpServer ?? settings.Smtp.Network.Host;
+                oField = oFields[CDOSMTPSERVERPORT];
+                oField.Value = smtpPort ?? settings.Smtp.Network.Port.ToString(CultureInfo.InvariantCulture);
+
+                oFields.Update();
+                msg.Configuration = iConfg;
+
+                Log.Instance.AddFormat(
+                    "[MailMessage] Sending from: \"{0}\", to \"{1}\", CC \"{2}\", BCC \"{3}\" using server \"{4}:{5}\" with charset: \"{6}\"",
+                    new object[]
+                        {
+                            msg.From,
+                            msg.To,
+                            msg.CC,
+                            msg.BCC,
+                            oFields[CDOSMTPSERVER].Value,
+                            oFields[CDOSMTPSERVERPORT].Value,
+                            CharSet
+                        },
+                    LogLevel.Debug);
+
+                // Send the message
+                msg.Send();
+            }
+            else
+            {
+                throw new ArgumentException(
+                    "Missing SMTP configuration.\n Check if SMTP properties are set or have a valid System.Net configuration in web.config");
+            }
 		}
 	}
 

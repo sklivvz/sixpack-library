@@ -277,14 +277,14 @@ namespace SixPack.Text
 		public static string Hash(params string[] values)
 		{
 			MemoryStream buffer = new MemoryStream();
-			using(var writer = new StreamWriter(buffer))
+			var writer = new StreamWriter(buffer);
+			foreach(var value in values)
 			{
-				foreach(var value in values)
-				{
-					writer.Write(value);
-					writer.Write('\0');
-				}
+				writer.Write(value);
+				writer.Write('\0');
 			}
+			writer.Flush();
+
 			buffer.Position = 0;
 
 			var algorithm = HashAlgorithm.Create();

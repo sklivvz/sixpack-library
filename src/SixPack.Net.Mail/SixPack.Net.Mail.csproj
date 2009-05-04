@@ -49,7 +49,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Interop.ADODB, Version=2.8.0.0, Culture=neutral, PublicKeyToken=4ddfd1721e1e48a0">
       <SpecificVersion>False</SpecificVersion>
