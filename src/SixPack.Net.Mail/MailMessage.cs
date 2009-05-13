@@ -409,7 +409,7 @@ namespace SixPack.Net.Mail
                             msg.BCC,
                             oFields[CDOSMTPSERVER].Value,
                             oFields[CDOSMTPSERVERPORT].Value,
-                            CharSet
+                            string.Empty // CharSet
                         },
                     LogLevel.Debug);
 
