@@ -27,8 +27,10 @@ namespace SixPack.Web.Services
 	/// </summary>
 	/// <typeparam name="T">The return type to be handled.</typeparam>
 	[Serializable]
-	public sealed class ServiceResult<T> : ServiceResult
+	public sealed class ServiceResult<T>
 	{
+		private readonly ServiceResult innerResult = new ServiceResult();
+
 		private T result;
 
 		/// <summary>
@@ -48,13 +50,76 @@ namespace SixPack.Web.Services
 		}
 
 		/// <summary>
+		/// Gets or sets the status code.
+		/// </summary>
+		/// <value>The code.</value>
+		public int Code
+		{
+			get
+			{
+				return innerResult.Code;
+			}
+			set
+			{
+				innerResult.Code = value;
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the status message.
+		/// </summary>
+		/// <value>The message.</value>
+		public string Message
+		{
+			get
+			{
+				return innerResult.Message;
+			}
+			set
+			{
+				innerResult.Message = value;
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the full exception in case one occurred.
+		/// </summary>
+		/// <value>The full exception.</value>
+		public string FullException
+		{
+			get
+			{
+				return innerResult.FullException;
+			}
+			set
+			{
+				innerResult.FullException = value;
+			}
+		}
+
+		/// <summary>
+		/// Helper method to handle an exception.
+		/// </summary>
+		/// <param name="exception">The exception.</param>
+		public void HandleException(Exception exception)
+		{
+			innerResult.HandleException(exception);
+		}
+
+		/// <summary>
 		/// Gets or sets the result.
 		/// </summary>
 		/// <value>The result.</value>
 		public T Result
 		{
-			get { return result; }
-			set { result = value; }
+			get
+			{
+				return result;
+			}
+			set
+			{
+				result = value;
+			}
 		}
 	}
 }

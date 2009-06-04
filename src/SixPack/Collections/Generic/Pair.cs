@@ -132,4 +132,23 @@ namespace SixPack.Collections.Generic
 			return firstHashCode ^ secondHashCode;
 		}
 	}
+
+	/// <summary>
+	/// Helper class that creates instances of pairs.
+	/// </summary>
+	public static class Pair
+	{
+		/// <summary>
+		/// Creates a new <see cref="Pair{TFirst,TSecond}"/>.
+		/// </summary>
+		/// <typeparam name="TFirst">The type of the first object.</typeparam>
+		/// <typeparam name="TSecond">The type of the second object.</typeparam>
+		/// <param name="first">The first object.</param>
+		/// <param name="second">The second object.</param>
+		/// <returns>Returns the <see cref="Pair{TFirst,TSecond}"/> that was created.</returns>
+		public static Pair<TFirst, TSecond> New<TFirst, TSecond>(TFirst first, TSecond second)
+		{
+			return new Pair<TFirst, TSecond>(first, second);
+		}
+	}
 }
