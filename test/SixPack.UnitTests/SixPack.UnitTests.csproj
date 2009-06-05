@@ -87,6 +87,7 @@
     <Compile Include="Security\Cryptography\Configuration\RsaSmallCodeParserSectionTests.cs" />
     <Compile Include="Security\Cryptography\Configuration\RsaSmallPublicKeySectionTests.cs" />
     <Compile Include="Security\Cryptography\DataGeneratorTests.cs" />
+    <Compile Include="Security\Cryptography\SecureTokenBuilderTests.cs" />
     <Compile Include="TextUtilitiesValidationTests.cs" />
   </ItemGroup>
   <ItemGroup>

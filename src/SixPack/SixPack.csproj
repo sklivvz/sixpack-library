@@ -139,6 +139,8 @@
     <Compile Include="Security\Cryptography\Configuration\RsaSmallCodeParserSection.cs" />
     <Compile Include="Security\Cryptography\Configuration\RsaSmallPublicKeySection.cs" />
     <Compile Include="Security\Cryptography\RsaSmallCodeParser.cs" />
+    <Compile Include="Security\Cryptography\SecureTokenBuilder.cs" />
+    <Compile Include="Security\Cryptography\TokenType.cs" />
     <Compile Include="Text\AsciiStringTranslator.cs" />
     <Compile Include="Text\IStringTranslator.cs" />
     <Compile Include="Text\RegularExpressionPatterns.cs" />
@@ -182,7 +184,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Properties\Settings.settings" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
     <None Include="SixPack.pfx" />
   </ItemGroup>
   <ItemGroup>

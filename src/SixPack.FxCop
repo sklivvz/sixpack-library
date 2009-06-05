@@ -1487,6 +1487,26 @@
            </Message>
           </Messages>
          </Type>
+         <Type Name="SecureTokenBuilder">
+          <Members>
+           <Member Name="#.ctor(System.String,SixPack.Security.Cryptography.TokenTypes,System.String,System.String)">
+            <Messages>
+             <Message Id="hmac" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-06-05 13:20:12Z">
+              <Issue Name="MemberParameter">
+               <Item>'SecureTokenBuilder.SecureTokenBuilder(string, TokenTypes, string, string)'</Item>
+               <Item>hmac</Item>
+               <Item>'hmacAlgorithmName'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="30" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
         </Types>
        </Namespace>
        <Namespace Name="SixPack.Security.Cryptography.Configuration">
@@ -3070,6 +3090,7 @@
     <Note Id="27" Modified="2008-12-16 11:39:30Z">The static constructor is required because of logging, and the field is being initialized when declared.</Note>
     <Note Id="28" Modified="2009-03-31 06:37:28Z">"prefetch" is correctly spelled.</Note>
     <Note Id="29" Modified="2009-04-02 19:05:17Z">This property is a shorthand for using the constructor, which also requires passing the same generic parameter, therefore there is no increase in complexity.</Note>
+    <Note Id="30" Modified="2009-06-05 13:21:05Z">HMAC is a common acronym for "Hash Message Authentication Code".</Note>
    </User>
   </Notes>
   <Rules>
