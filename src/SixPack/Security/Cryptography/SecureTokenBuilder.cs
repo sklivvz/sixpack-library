@@ -3,6 +3,8 @@ using System.Text;
 using System.Security.Cryptography;
 using System.IO;
 using System.Security.Authentication;
+using System.Text.RegularExpressions;
+using SixPack.Text;
 
 namespace SixPack.Security.Cryptography
 {
@@ -114,7 +116,8 @@ namespace SixPack.Security.Cryptography
 				bytes = Concatenate(bytes, mac);
 			}
 
-			return Convert.ToBase64String(bytes);
+			string base64 = Convert.ToBase64String(bytes);
+			return base64.TrimEnd('=').Replace('+', '-').Replace('/', '_');
 		}
 
 		/// <summary>
@@ -129,7 +132,9 @@ namespace SixPack.Security.Cryptography
 				throw new ArgumentNullException("token");
 			}
 
-			byte[] bytes = Convert.FromBase64String(token);
+			string base64 = token.Replace('-', '+').Replace('_', '/').PadRight(((token.Length - 1) | 0x3) + 1, '=');
+
+			byte[] bytes = Convert.FromBase64String(base64);
 			int dataLength = bytes.Length;
 
 			if (signingAlgorithm != null)
