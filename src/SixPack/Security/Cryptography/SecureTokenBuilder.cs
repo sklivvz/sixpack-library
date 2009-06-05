@@ -88,7 +88,7 @@ namespace SixPack.Security.Cryptography
 		/// </summary>
 		/// <param name="data">The data.</param>
 		/// <returns></returns>
-		public string MakeToken(string data)
+		public string EncodeToken(string data)
 		{
 			if(string.IsNullOrEmpty(data))
 			{

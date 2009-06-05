@@ -15,7 +15,7 @@ namespace SixPack.UnitTests.Security.Cryptography
 		public void Roundtrip(string text, TokenTypes types)
 		{
 			SecureTokenBuilder builder = new SecureTokenBuilder("p@ssw0rd", types);
-			string token = builder.MakeToken(text);
+			string token = builder.EncodeToken(text);
 			string decoded = builder.DecodeToken(token);
 
 			Assert.AreEqual(text, decoded);
@@ -26,7 +26,7 @@ namespace SixPack.UnitTests.Security.Cryptography
 		public void TamperWithAuthenticator()
 		{
 			SecureTokenBuilder builder = new SecureTokenBuilder("p@ssw0rd", TokenTypes.Hashed);
-			string token = builder.MakeToken("Hello world");
+			string token = builder.EncodeToken("Hello world");
 
 			token = token.Substring(0, 4) + token.Substring(4, 8) + token.Substring(8);
 			
