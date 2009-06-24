@@ -85,7 +85,7 @@ namespace SixPack.Drawing
 				fW = width;
 			}
 
-			Bitmap b = new Bitmap(fW, fH, PixelFormat.Format24bppRgb);
+			Bitmap b = new Bitmap(fW, fH, PixelFormat.Format32bppArgb);
 			b.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
 			Graphics g = Graphics.FromImage(b);
@@ -109,7 +109,7 @@ namespace SixPack.Drawing
 			fH = height;
 			fW = (int) (oW*verRatio) + 1;
 
-			Bitmap b = new Bitmap(fW, fH, PixelFormat.Format24bppRgb);
+			Bitmap b = new Bitmap(fW, fH, PixelFormat.Format32bppArgb);
 			b.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
 			Graphics g = Graphics.FromImage(b);
@@ -131,7 +131,7 @@ namespace SixPack.Drawing
 			fH = (int) (oH*horRatio) + 1;
 			fW = width;
 
-			Bitmap b = new Bitmap(fW, fH, PixelFormat.Format24bppRgb);
+			Bitmap b = new Bitmap(fW, fH, PixelFormat.Format32bppArgb);
 			b.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
 			Graphics g = Graphics.FromImage(b);
@@ -164,7 +164,7 @@ namespace SixPack.Drawing
 				fW = width;
 			}
 
-			Bitmap b = new Bitmap(fW, height, PixelFormat.Format24bppRgb);
+			Bitmap b = new Bitmap(fW, height, PixelFormat.Format32bppArgb);
 			b.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
 			Graphics g = Graphics.FromImage(b);
@@ -197,7 +197,7 @@ namespace SixPack.Drawing
 				fW = width;
 			}
 
-			Bitmap b = new Bitmap(width, fH, PixelFormat.Format24bppRgb);
+			Bitmap b = new Bitmap(width, fH, PixelFormat.Format32bppArgb);
 			b.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
 			Graphics g = Graphics.FromImage(b);
@@ -230,7 +230,7 @@ namespace SixPack.Drawing
 				fW = width;
 			}
 
-			Bitmap b = new Bitmap(width, height, PixelFormat.Format24bppRgb);
+			Bitmap b = new Bitmap(width, height, PixelFormat.Format32bppArgb);
 			b.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
 			Graphics g = Graphics.FromImage(b);
@@ -264,7 +264,7 @@ namespace SixPack.Drawing
 				fW = width;
 			}
 
-			Bitmap b = new Bitmap(width, height, PixelFormat.Format24bppRgb);
+			Bitmap b = new Bitmap(width, height, PixelFormat.Format32bppArgb);
 			b.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
 			Graphics g = Graphics.FromImage(b);
