@@ -360,9 +360,10 @@ namespace SixPack.Security.Cryptography
 		/// Initializes a new instance of the <see cref="BigInteger"/> class.
 		/// </summary>
 		/// <param name="value">The value.</param>
-		/// <param name="radix">The radix.</param>
-		public BigInteger(string value, int radix)
+		/// <param name="charSet">The character set used to represent the value.</param>
+		public BigInteger(string value, string charSet)
 		{
+			int radix = charSet.Length;
 			unchecked
 			{
 				if (value == null)
@@ -378,16 +379,9 @@ namespace SixPack.Security.Cryptography
 
 				for (int i = value.Length - 1; i >= limit; i--)
 				{
-					int posVal = value[i];
+					int posVal = charSet.IndexOf(value[i]);
 
-					if (posVal >= '0' && posVal <= '9')
-						posVal -= '0';
-					else if (posVal >= 'A' && posVal <= 'Z')
-						posVal = (posVal - 'A') + 10;
-					else
-						posVal = 9999999; // arbitrary large
-
-					if (posVal >= radix)
+                    if (posVal < 0)
 						throw (new ArithmeticException("Invalid string in constructor."));
 					else
 					{
@@ -418,6 +412,16 @@ namespace SixPack.Security.Cryptography
 
 				dataLength = result.dataLength;
 			}
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="BigInteger"/> class.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <param name="radix">The radix.</param>
+		public BigInteger(string value, int radix)
+			: this(value, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".Substring(0, radix))
+		{
 		}
 
 		//***********************************************************************
@@ -2051,7 +2055,7 @@ namespace SixPack.Security.Cryptography
 		/// Returns a string representing the BigInteger in sign-and-magnitude
 		/// format in the specified character set.
 		/// </summary>
-		/// <param name="charSet">The character set will be used to represent the value.</param>
+		/// <param name="charSet">The character set that will be used to represent the value.</param>
 		/// <returns></returns>
 		public string ToString(string charSet)
 		{
