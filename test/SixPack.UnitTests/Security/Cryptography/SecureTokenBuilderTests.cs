@@ -32,5 +32,36 @@ namespace SixPack.UnitTests.Security.Cryptography
 			
 			builder.DecodeToken(token);
 		}
+
+		[Row(TokenTypes.Encrypted)]
+		[Row(TokenTypes.Hashed)]
+		[Row(TokenTypes.Encrypted | TokenTypes.Hashed)]
+		[RowTest]
+		public void RoundtripObject(TokenTypes types)
+		{
+			var value = new MyClass
+			{
+				MyString = DataGenerator.RandomAsciiString(20),
+				MyDate = DateTime.Now,
+			};
+
+
+			SecureTokenBuilder builder = new SecureTokenBuilder("p@ssw0rd", types);
+			string token = builder.EncodeObject(value);
+			object decoded = builder.DecodeObject(token);
+
+			Assert.IsAssignableFrom(typeof(MyClass), decoded, "The deserialized object has the wrong type.");
+
+			MyClass decodedObject = (MyClass)decoded;
+			Assert.AreEqual(value.MyString, decodedObject.MyString, "The property MyString is incorrect.");
+			Assert.AreEqual(value.MyDate, decodedObject.MyDate, "The property MyDate is incorrect.");
+		}
+
+		[Serializable]
+		private class MyClass
+		{
+			public string MyString;
+			public DateTime MyDate;
+		}
 	}
 }

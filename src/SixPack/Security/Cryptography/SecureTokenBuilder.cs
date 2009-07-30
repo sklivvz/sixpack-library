@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 using System.Security.Cryptography;
 using System.IO;
 using System.Security.Authentication;
 using System.Text.RegularExpressions;
 using SixPack.Text;
+using System.Web.UI;
 
 namespace SixPack.Security.Cryptography
 {
@@ -90,19 +92,75 @@ namespace SixPack.Security.Cryptography
 		/// </summary>
 		/// <param name="data">The data.</param>
 		/// <returns></returns>
+		/// <remarks>
+		/// This class supports serializing any object graph, but is optimized for those containing strings, arrays, and hash tables.
+		/// It offers second order optimization for many of the .NET Framework primitive types.
+		/// </remarks>
+		public string EncodeObject(object data)
+		{
+			using (StringWriter encodedData = new StringWriter(CultureInfo.InvariantCulture))
+			{
+				LosFormatter serializer = new LosFormatter();
+				serializer.Serialize(encodedData, data);
+
+				byte[] serializedData = Convert.FromBase64String(encodedData.ToString());
+				return EncodeBytes(serializedData);
+			}
+		}
+
+		/// <summary>
+		/// Decodes the token.
+		/// </summary>
+		/// <param name="token">The token.</param>
+		/// <returns>Returns the data of the token.</returns>
+		public object DecodeObject(string token)
+		{
+			int dataLength;
+			byte[] bytes = DecodeBytes(token, out dataLength);
+
+			string base64Bytes = Convert.ToBase64String(bytes, 0, dataLength);
+			LosFormatter serializer = new LosFormatter();
+			using (var data = new StringReader(base64Bytes))
+			{
+				return serializer.Deserialize(data);
+			}
+		}
+
+		/// <summary>
+		/// Makes a token with the specified data.
+		/// </summary>
+		/// <param name="data">The data.</param>
+		/// <returns></returns>
 		public string EncodeToken(string data)
 		{
-			if(string.IsNullOrEmpty(data))
+			if (string.IsNullOrEmpty(data))
 			{
 				throw new ArgumentNullException("data");
 			}
 
 			byte[] bytes = Encoding.UTF8.GetBytes(data);
 
-			if(encryptionAlgorithm != null)
+			return EncodeBytes(bytes);
+		}
+
+		/// <summary>
+		/// Decodes the token.
+		/// </summary>
+		/// <param name="token">The token.</param>
+		/// <returns>Returns the data of the token.</returns>
+		public string DecodeToken(string token)
+		{
+			int dataLength;
+			byte[] bytes = DecodeBytes(token, out dataLength);
+			return Encoding.UTF8.GetString(bytes, 0, dataLength);
+		}
+
+		private string EncodeBytes(byte[] bytes)
+		{
+			if (encryptionAlgorithm != null)
 			{
 				MemoryStream buffer = new MemoryStream();
-				using(var crypt = new CryptoStream(buffer, encryptionAlgorithm.CreateEncryptor(), CryptoStreamMode.Write))
+				using (var crypt = new CryptoStream(buffer, encryptionAlgorithm.CreateEncryptor(), CryptoStreamMode.Write))
 				{
 					crypt.Write(BitConverter.GetBytes(bytes.Length), 0, 4);
 					crypt.Write(bytes, 0, bytes.Length);
@@ -120,12 +178,7 @@ namespace SixPack.Security.Cryptography
 			return base64.TrimEnd('=').Replace('+', '-').Replace('/', '_');
 		}
 
-		/// <summary>
-		/// Decodes the token.
-		/// </summary>
-		/// <param name="token">The token.</param>
-		/// <returns>Returns the data of the token.</returns>
-		public string DecodeToken(string token)
+		private byte[] DecodeBytes(string token, out int dataLength)
 		{
 			if (string.IsNullOrEmpty(token))
 			{
@@ -135,16 +188,16 @@ namespace SixPack.Security.Cryptography
 			string base64 = token.Replace('-', '+').Replace('_', '/').PadRight(((token.Length - 1) | 0x3) + 1, '=');
 
 			byte[] bytes = Convert.FromBase64String(base64);
-			int dataLength = bytes.Length;
+			dataLength = bytes.Length;
 
 			if (signingAlgorithm != null)
 			{
 				int macOffset = bytes.Length - signingAlgorithm.HashSize / 8;
 				byte[] mac = signingAlgorithm.ComputeHash(bytes, 0, macOffset);
 
-				for(int i = 0; i < mac.Length; ++i)
+				for (int i = 0; i < mac.Length; ++i)
 				{
-					if(mac[i] != bytes[macOffset + i])
+					if (mac[i] != bytes[macOffset + i])
 					{
 						throw new AuthenticationException("The token has an invalid MAC.");
 					}
@@ -153,9 +206,9 @@ namespace SixPack.Security.Cryptography
 				dataLength = macOffset;
 			}
 
-			if(encryptionAlgorithm != null)
+			if (encryptionAlgorithm != null)
 			{
-				MemoryStream buffer = new MemoryStream(bytes);
+				MemoryStream buffer = new MemoryStream(bytes, 0, dataLength);
 				using (var crypt = new CryptoStream(buffer, encryptionAlgorithm.CreateDecryptor(), CryptoStreamMode.Read))
 				{
 					byte[] lengthBytes = new byte[4];
@@ -167,8 +220,7 @@ namespace SixPack.Security.Cryptography
 					bytes = data;
 				}
 			}
-
-			return Encoding.UTF8.GetString(bytes, 0, dataLength);
+			return bytes;
 		}
 	}
 }
