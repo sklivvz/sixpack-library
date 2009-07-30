@@ -68,10 +68,27 @@ namespace SixPack.Web.Services
 		/// Helper method to handle an exception.
 		/// </summary>
 		/// <param name="exception">The exception.</param>
+		[Obsolete("This method is deprecated. You should use HandleException(Exception, bool) instead.")]
 		public void HandleException(Exception exception)
 		{
+			HandleException(exception, true);
+		}
+
+		/// <summary>
+		/// Helper method to handle an exception.
+		/// </summary>
+		/// <param name="exception">The exception.</param>
+		/// <param name="includeException">if set to <c>true</c> include the full exception.</param>
+		/// <remarks>
+		/// Setting <paramref name="includeException"/> to true can introduce a security vulnerability
+		/// because an attacker can use it to gather information about the system.
+		/// </remarks>
+		public void HandleException(Exception exception, bool includeException)
+		{
 			if (exception == null)
+			{
 				throw new ArgumentNullException("exception");
+			}
 			Log.Instance.HandleException(exception);
 			CodedException ce = exception as CodedException;
 			if (ce != null)
@@ -84,7 +101,10 @@ namespace SixPack.Web.Services
 				code = -1;
 				message = exception.Message;
 			}
-			fullException = exception.ToString();
+			if (includeException)
+			{
+				fullException = exception.ToString();
+			}
 		}
 	}
 }
