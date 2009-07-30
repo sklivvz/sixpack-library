@@ -96,6 +96,30 @@ namespace SixPack.Security.Cryptography
 		/// This class supports serializing any object graph, but is optimized for those containing strings, arrays, and hash tables.
 		/// It offers second order optimization for many of the .NET Framework primitive types.
 		/// </remarks>
+		public string EncodeArray(params object[] data)
+		{
+			return EncodeObject(data);
+		}
+
+		/// <summary>
+		/// Decodes the token.
+		/// </summary>
+		/// <param name="token">The token.</param>
+		/// <returns>Returns the data of the token.</returns>
+		public object[] DecodeArray(string token)
+		{
+			return (object[])DecodeObject(token);
+		}
+
+		/// <summary>
+		/// Makes a token with the specified data.
+		/// </summary>
+		/// <param name="data">The data.</param>
+		/// <returns></returns>
+		/// <remarks>
+		/// This class supports serializing any object graph, but is optimized for those containing strings, arrays, and hash tables.
+		/// It offers second order optimization for many of the .NET Framework primitive types.
+		/// </remarks>
 		public string EncodeObject(object data)
 		{
 			using (StringWriter encodedData = new StringWriter(CultureInfo.InvariantCulture))
