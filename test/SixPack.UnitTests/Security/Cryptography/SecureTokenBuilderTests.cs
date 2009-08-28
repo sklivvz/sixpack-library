@@ -2,6 +2,7 @@
 using MbUnit.Framework;
 using SixPack.Security.Cryptography;
 using System.Security.Authentication;
+using System.Collections.Generic;
 
 namespace SixPack.UnitTests.Security.Cryptography
 {
@@ -19,6 +20,36 @@ namespace SixPack.UnitTests.Security.Cryptography
 			string decoded = builder.DecodeToken(token);
 
 			Assert.AreEqual(text, decoded);
+		}
+
+		[Row(TokenTypes.Encrypted)]
+		[Row(TokenTypes.Hashed)]
+		[Row(TokenTypes.Encrypted | TokenTypes.Hashed)]
+		[RowTest]
+		public void Roundtrip_BugWithPath(TokenTypes types)
+		{
+			var parameters = new Dictionary<string, string>
+			{
+				{ "template", "thumbnailUrl" },
+				{ "url", "C:\\Work\\Samsung\\InMotion\\InMotion.Frontend\\media\\1594\\jazz-initiative.jpg" },
+			};
+
+			List<string> keysAndValues = new List<string>(parameters.Count * 2);
+			foreach (var keyValuePair in parameters)
+			{
+				keysAndValues.Add(keyValuePair.Key);
+				keysAndValues.Add(keyValuePair.Value);
+			}
+
+			SecureTokenBuilder tokenBuilder = new SecureTokenBuilder("2z!6Wd0vghEQtkalNS9a", types);
+			string token = tokenBuilder.EncodeObject(keysAndValues.ToArray());
+
+			string[] values = (string[])tokenBuilder.DecodeObject(token);
+
+			for(int i = 0; i < keysAndValues.Count; ++i)
+			{
+				Assert.AreEqual(keysAndValues[i], values[i]);
+			}
 		}
 
 		[Test]

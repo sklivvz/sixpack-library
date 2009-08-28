@@ -183,10 +183,12 @@ namespace SixPack.Net
         public XmlReader GetResponseXml()
         {
             makeRequest();
-            if (xslTransform == null)
-                return new XmlTextReader(new StreamReader(response.GetResponseStream()));
 
-            XmlReader originalXml = new XmlTextReader(new StreamReader(response.GetResponseStream()));
+			XmlReader originalXml = XmlReader.Create(response.GetResponseStream());
+
+            if (xslTransform == null)
+				return originalXml;
+
             StringWriter transformedXml = new StringWriter(CultureInfo.InvariantCulture);
 
             xslTransform.Transform(originalXml, null, new XmlTextWriter(transformedXml));
