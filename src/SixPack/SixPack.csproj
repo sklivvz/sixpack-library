@@ -136,6 +136,11 @@
     <Compile Include="Net\Mail\EmailAddress.cs" />
     <Compile Include="Net\XmlRpc.cs" />
     <Compile Include="Net\XmlRpcRequestMethod.cs" />
+    <Compile Include="Properties\Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Security\Cryptography\Configuration\RsaSmallCodeParserSection.cs" />
     <Compile Include="Security\Cryptography\Configuration\RsaSmallPublicKeySection.cs" />
     <Compile Include="Security\Cryptography\RsaSmallCodeParser.cs" />
@@ -163,9 +168,6 @@
     <Compile Include="ComponentModel\CachedContextProperty.cs" />
     <Compile Include="ComponentModel\CachedSink.cs" />
     <Compile Include="ComponentModel\CachedAttribute.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Include="Security\ActionLimiter.cs" />
     <Compile Include="Security\Cryptography\BigInteger.cs" />
     <Compile Include="Security\Cryptography\DataGenerator.cs" />

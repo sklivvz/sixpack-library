@@ -9,7 +9,7 @@
       <Value Profile="(Default)">^1\d+$</Value>
     </Setting>
     <Setting Name="Globalization_Portugal_PhoneNumber_PhonePattern_FixedService" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">^2[1-9]\d{8}$</Value>
+      <Value Profile="(Default)">^2[1-9]\d{7,}$</Value>
     </Setting>
     <Setting Name="Globalization_Portugal_PhoneNumber_PhonePattern_NomadicService" Type="System.String" Scope="Application">
       <Value Profile="(Default)">^3\d$+</Value>
@@ -24,7 +24,7 @@
       <Value Profile="(Default)">^8\d+$</Value>
     </Setting>
     <Setting Name="Globalization_Portugal_PhoneNumber_PhonePattern_MobileCommunicationServices" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">^9(1|2|6|3)\d+$</Value>
+      <Value Profile="(Default)">^9[1263]\d{7,}$</Value>
     </Setting>
     <Setting Name="Globalization_Portugal_PostalCode_PostalCodePattern" Type="System.String" Scope="Application">
       <Value Profile="(Default)">^\d{4}-\d{3}$</Value>
