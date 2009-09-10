@@ -785,6 +785,46 @@
              </Message>
             </Messages>
            </Member>
+           <Member Name="#GetList`1()">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2009-09-10 14:20:20Z">
+              <Issue>
+               <Item>'StoredProcedure.GetList&lt;T&gt;()'</Item>
+               <Item>'T'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#GetList`1(System.Data.Common.DbConnection)">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2009-09-10 14:20:20Z">
+              <Issue>
+               <Item>'StoredProcedure.GetList&lt;T&gt;(DbConnection)'</Item>
+               <Item>'T'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#GetList`1(System.Data.Common.DbTransaction)">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2009-09-10 14:20:20Z">
+              <Issue>
+               <Item>'StoredProcedure.GetList&lt;T&gt;(DbTransaction)'</Item>
+               <Item>'T'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#InternalGetList`1()">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2009-09-10 14:20:20Z">
+              <Issue>
+               <Item>'StoredProcedure.InternalGetList&lt;T&gt;()'</Item>
+               <Item>'T'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
           </Members>
          </Type>
         </Types>
@@ -3111,6 +3151,9 @@
    </Rule>
    <Rule TypeName="DoNotNameEnumValuesReserved" Category="Microsoft.Naming" CheckId="CA1700">
     <Resolution Name="Default">If {0} is not used in the current implementation, remove it. Otherwise give it a meaningful name.</Resolution>
+   </Rule>
+   <Rule TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004">
+    <Resolution Name="Default">Consider a design where {0} doesn't require explicit type parameter {1} in any call to it.</Resolution>
    </Rule>
    <Rule TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709">
     <Resolution Name="Member">Correct the casing of '{0}' in member name {1} by changing it to '{2}'.</Resolution>

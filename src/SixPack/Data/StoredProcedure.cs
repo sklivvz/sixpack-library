@@ -245,7 +245,6 @@ namespace SixPack.Data
 		}
 
 		#region IDisposable Members
-
 		/// <summary>
 		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
 		/// </summary>
@@ -255,6 +254,19 @@ namespace SixPack.Data
 			GC.SuppressFinalize(this);
 		}
 
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // dispose managed resources
+                commandWrapper.Dispose();
+            }
+            // free native resources
+        }
 		#endregion
 
 		#region Common execute code
@@ -808,21 +820,73 @@ namespace SixPack.Data
 
 			return result;
 		}
-
-		/// <summary>
-		/// Releases unmanaged and - optionally - managed resources
-		/// </summary>
-		/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-		protected virtual void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				// dispose managed resources
-				commandWrapper.Dispose();
-			}
-			// free native resources
-		}
 		#endregion
+
+        #region GetList
+        /// <summary>
+        /// Executes the stored procedure and returns the results as an <see cref="IList{T}"/>, by calling <see cref="InternalGetList{T}" />..
+        /// Handles deadlock retries for Sql Server connections.
+        /// </summary>
+        /// <returns></returns>
+        public IList<T> GetList<T>() where T : IDataObject, new()
+        {
+#if (DEBUG)
+            Log.Instance.AddFormat("[StoredProcedure] GetList() on \"{0}\"", commandWrapper, LogLevel.Debug);
+#endif
+            return Execute<IList<T>>(null, null, InternalGetList<T>);
+        }
+
+        /// <summary>
+        /// Executes the stored procedure and returns the results as an <see cref="IList{T}"/>, by calling <see cref="InternalGetList{T}" />..
+        /// Handles deadlock retries for Sql Server connections.
+        /// </summary>
+        /// <param name="transaction">The transaction on which the stored procedure should be executed.</param>
+        /// <returns></returns>
+        public IList<T> GetList<T>(DbTransaction transaction) where T : IDataObject, new()
+        {
+#if (DEBUG)
+            Log.Instance.AddFormat("[StoredProcedure] GetList(DbTransaction) on \"{0}\"", commandWrapper, LogLevel.Debug);
+#endif
+            return Execute<IList<T>>(null, transaction, InternalGetList<T>);
+        }
+
+        /// <summary>
+        /// Executes the stored procedure and returns the results as an <see cref="IList{T}"/>, by calling <see cref="InternalGetList{T}" />..
+        /// Handles deadlock retries for Sql Server connections.
+        /// </summary>
+        /// <param name="connection">The connection to be used.</param>
+        /// <returns></returns>
+        public IList<T> GetList<T>(DbConnection connection) where T : IDataObject, new()
+        {
+#if (DEBUG)
+            Log.Instance.AddFormat("[StoredProcedure] GetList(DbConnection) on \"{0}\"", commandWrapper, LogLevel.Debug);
+#endif
+            return Execute<IList<T>>(connection, null, InternalGetList<T>);
+        }
+
+        /// <summary>
+        /// Executes the stored procedure and returns the results as an <see cref="IList{T}"/>.
+        /// </summary>
+        /// <returns></returns>
+        protected IList<T> InternalGetList<T>() where T : IDataObject, new()
+        {
+            DataSet set = InternalGetDataSet();
+            if(set.Tables.Count > 0)
+            {
+                IList<T> result = new List<T>();
+                foreach (DataRow row in set.Tables[0].Rows)
+                {
+                    T item = new T();
+                    item.Load(row);
+                    result.Add(item);
+                }
+
+                return result;
+            }
+
+            return null;
+        }
+        #endregion
 
 		#region Flow interface
 		/// <summary>
