@@ -120,8 +120,12 @@
     <Compile Include="Data\IDataObject.cs" />
     <Compile Include="Data\StoredProcedure.cs" />
     <Compile Include="Data\StoreProcedureInvokerAttribute.cs" />
+    <Compile Include="Diagnostics\ILog.cs" />
     <Compile Include="Diagnostics\Log.cs" />
     <Compile Include="Diagnostics\HighResolutionTimer.cs" />
+    <Compile Include="Diagnostics\LogBase.cs" />
+    <Compile Include="Diagnostics\LogLevel.cs" />
+    <Compile Include="Diagnostics\NullLog.cs" />
     <Compile Include="Diagnostics\SafeNativeMethods.cs" />
     <Compile Include="Diagnostics\TimerSample.cs" />
     <Compile Include="Drawing\CaptchaImage.cs" />

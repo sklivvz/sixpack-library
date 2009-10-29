@@ -36,7 +36,13 @@ namespace SixPack.Diagnostics
 	/// <summary>
 	/// Use this class to log messages for later consumption
 	/// </summary>
-	public sealed class Log
+	/// <remarks>
+	/// If the appSettings configuration section contains a key named SixPackLogImplementation, and
+	/// that entry contains the name of a type, the code uses that implementation instead of
+	/// the default one. That implementation must implement the <see cref="ILog"/> interface and have
+	/// a parameterless constructor.
+	/// </remarks>
+	public sealed class Log : LogBase
 	{
 		private const string COPYRIGHT = "(c) SixPack";
 		private const string DEFAULT_FILELOGFORMAT = @"{0:yyyyMMddTHHmmss.ff} - {3} - {4} - {5} - {1} - {6} - {2}";
@@ -82,7 +88,7 @@ Message:
 		private static volatile string MailLogSMTPServer;
 		private static volatile string MailLogSubject;
 #endif
-		private static volatile Log SoleInstance;
+		private static volatile ILog SoleInstance;
 #if DEBUG
 		private readonly bool EnableCallingMethodName;
 #endif
@@ -193,7 +199,7 @@ Message:
 		/// Gets the instance.
 		/// </summary>
 		/// <value>The instance.</value>
-		public static Log Instance
+		public static ILog Instance
 		{
 			get
 			{
@@ -202,7 +208,18 @@ Message:
 					lock (syncRoot)
 					{
 						if (SoleInstance == null)
-							SoleInstance = new Log();
+						{
+							string logImplementation = ConfigurationManager.AppSettings["SixPackLogImplementation"];
+							if (!string.IsNullOrEmpty(logImplementation))
+							{
+								Type logType = Type.GetType(logImplementation, true);
+								SoleInstance = (ILog)Activator.CreateInstance(logType);
+							}
+							else
+							{
+								SoleInstance = new Log();
+							}
+						}
 					}
 				}
 				return SoleInstance;
@@ -219,151 +236,11 @@ Message:
 		}
 
 		/// <summary>
-		/// Logs an exception
-		/// </summary>
-		/// <param name="exception">The exception to log</param>
-		public void HandleException(Exception exception)
-		{
-			HandleException(exception, LogLevel.Error);
-		}
-
-		/// <summary>
-		/// Adds a line to the log with format.
-		/// </summary>
-		/// <param name="format">The format.</param>
-		/// <param name="arg0">The object.</param>
-		public void AddFormat(string format, object arg0)
-		{
-			AddFormat(format, new object[1] { arg0 });
-		}
-
-		/// <summary>
-		/// Adds a line to the log with format.
-		/// </summary>
-		/// <param name="format">The format.</param>
-		/// <param name="arg0">The object.</param>
-		/// <param name="logLevel">The log level.</param>
-		public void AddFormat(string format, object arg0, LogLevel logLevel)
-		{
-			AddFormat(format, new object[1] { arg0 }, logLevel);
-		}
-
-		/// <summary>
-		/// Adds a line to the log with format.
-		/// </summary>
-		/// <param name="format">The format.</param>
-		/// <param name="arg0">The object.</param>
-		/// <param name="arg1">Another object.</param>
-		public void AddFormat(string format, object arg0, object arg1)
-		{
-			AddFormat(format, new object[2] { arg0, arg1 });
-		}
-
-		/// <summary>
-		/// Adds a line to the log with format.
-		/// </summary>
-		/// <param name="format">The format.</param>
-		/// <param name="arg0">The object.</param>
-		/// <param name="arg1">Another object.</param>
-		/// <param name="logLevel">The log level.</param>
-		public void AddFormat(string format, object arg0, object arg1, LogLevel logLevel)
-		{
-			AddFormat(format, new object[2] { arg0, arg1 }, logLevel);
-		}
-
-		/// <summary>
-		/// Adds a line to the log with format.
-		/// </summary>
-		/// <param name="format">The format.</param>
-		/// <param name="arg0">The object.</param>
-		/// <param name="arg1">Another object.</param>
-		/// <param name="arg2">Yet another object.</param>
-		public void AddFormat(string format, object arg0, object arg1, object arg2)
-		{
-			AddFormat(format, new object[3] { arg0, arg1, arg2 });
-		}
-
-		/// <summary>
-		/// Adds a line to the log with format.
-		/// </summary>
-		/// <param name="format">The format.</param>
-		/// <param name="arg0">The object.</param>
-		/// <param name="arg1">Another object.</param>
-		/// <param name="arg2">Yet another object.</param>
-		/// <param name="logLevel">The log level.</param>
-		public void AddFormat(string format, object arg0, object arg1, object arg2, LogLevel logLevel)
-		{
-			AddFormat(format, new object[3] { arg0, arg1, arg2 }, logLevel);
-		}
-
-		/// <summary>
-		/// Adds a line to the log with format.
-		/// </summary>
-		/// <param name="format">The format.</param>
-		/// <param name="args">The object array.</param>
-		/// <param name="logLevel">The log level.</param>
-		public void AddFormat(string format, object[] args, LogLevel logLevel)
-		{
-			try
-			{
-				Add(String.Format(CultureInfo.InvariantCulture, format, args), logLevel);
-			}
-			catch (FormatException fe)
-			{
-				HandleException(fe, LogLevel.Critical);
-			}
-			catch (ArgumentNullException ane)
-			{
-				HandleException(ane, LogLevel.Critical);
-			}
-		}
-
-		/// <summary>
-		/// Adds a line to the log with format.
-		/// </summary>
-		/// <param name="format">The format.</param>
-		/// <param name="args">The object array.</param>
-		public void AddFormat(string format, object[] args)
-		{
-			try
-			{
-				Add(String.Format(CultureInfo.InvariantCulture, format, args));
-			}
-			catch (FormatException fe)
-			{
-				HandleException(fe, LogLevel.Critical);
-			}
-			catch (ArgumentNullException ane)
-			{
-				HandleException(ane, LogLevel.Critical);
-			}
-		}
-
-		/// <summary>
-		/// Logs an exception
-		/// </summary>
-		/// <param name="exception">The exception to log</param>
-		/// <param name="logLevel">The severity of the corresponding message</param>
-		public void HandleException(Exception exception, LogLevel logLevel)
-		{
-			Add("Exception occurred:\n" + exception, logLevel);
-		}
-
-		/// <summary>
-		/// Adds a line to the log
-		/// </summary>
-		/// <param name="text">The message to add</param>
-		public void Add(string text)
-		{
-			Add(text, LogLevel.Debug);
-		}
-
-		/// <summary>
 		/// Adds a line to the log
 		/// </summary>
 		/// <param name="text">The message to add</param>
 		/// <param name="logLevel">The severity of the corresponding message</param>
-		public void Add(string text, LogLevel logLevel)
+		public override void Add(string text, LogLevel logLevel)
 		{
 			string ip;
 			if (HttpContext.Current != null && HttpContext.Current.Request != null)
@@ -433,36 +310,5 @@ Message:
 			}
 #endif
 		}
-	}
-
-	/// <summary>
-	/// Specifies the severity of a log message.
-	/// </summary>
-	public enum LogLevel
-	{
-		/// <summary>
-		/// Will not be logged.
-		/// </summary>
-		None = 0,
-		/// <summary>
-		/// Debug
-		/// </summary>
-		Debug = 1,
-		/// <summary>
-		/// Information
-		/// </summary>
-		Info = 2,
-		/// <summary>
-		/// Warning
-		/// </summary>
-		Warning = 4,
-		/// <summary>
-		/// Error
-		/// </summary>
-		Error = 8,
-		/// <summary>
-		/// Critical error
-		/// </summary>
-		Critical = 16
 	}
 }

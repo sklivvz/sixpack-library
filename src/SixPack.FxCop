@@ -73,15 +73,6 @@
      </Message>
     </Messages>
    </Namespace>
-   <Namespace Name="SixPack.Diagnostics">
-    <Messages>
-     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2008-12-16 11:52:22Z">
-      <Issue>
-       <Item>SixPack.Diagnostics</Item>
-      </Issue>
-     </Message>
-    </Messages>
-   </Namespace>
    <Namespace Name="SixPack.Drawing">
     <Messages>
      <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2008-12-16 11:52:22Z">
@@ -831,19 +822,6 @@
        </Namespace>
        <Namespace Name="SixPack.Diagnostics">
         <Types>
-         <Type Name="Log">
-          <Members>
-           <Member Name="#Add(System.String,SixPack.Diagnostics.LogLevel)">
-            <Messages>
-             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2008-12-16 11:52:22Z" FixCategory="DependsOnFix">
-              <Issue>
-               <Item>'Log.Add(string, LogLevel)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
          <Type Name="LogLevel">
           <Messages>
            <Message TypeName="MarkEnumsWithFlags" Category="Microsoft.Design" CheckId="CA1027" Created="2008-12-16 11:52:22Z">
@@ -3176,9 +3154,6 @@
    </Rule>
    <Rule TypeName="MarkEnumsWithFlags" Category="Microsoft.Design" CheckId="CA1027">
     <Resolution Name="Default">The constituent members of {0} appear to represent flags that can be combined rather than discrete values. If this is correct, mark the enumeration with FlagsAttribute.</Resolution>
-   </Rule>
-   <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
-    <Resolution Name="Default">The 'this' parameter (or 'Me' in Visual Basic) of {0} is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Resolution>
    </Rule>
    <Rule TypeName="NormalizeStringsToUppercase" Category="Microsoft.Globalization" CheckId="CA1308">
     <Resolution Name="ToUpperInvariant">In method {0}, replace the call to {1} with String.ToUpperInvariant().</Resolution>
