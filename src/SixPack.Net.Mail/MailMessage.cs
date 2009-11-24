@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections;
+using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Net.Configuration;
@@ -27,6 +28,7 @@ using System.Web.Configuration;
 using ADODB;
 using CDO;
 using SixPack.Diagnostics;
+using Configuration=CDO.Configuration;
 using Stream=System.IO.Stream;
 
 namespace SixPack.Net.Mail
@@ -89,21 +91,23 @@ namespace SixPack.Net.Mail
 	public class MailMessage
 	{
 		#region Constants
-
+		private const string CDOPROXYPORT = @"http://schemas.microsoft.com/cdo/configuration/proxyserverport";
+		private const string CDOPROXYSERVER = @"http://schemas.microsoft.com/cdo/configuration/urlproxyserver";
 		private const int CDOSENDUSING = 2;
 		private const string CDOSENDUSINGMETHOD = @"http://schemas.microsoft.com/cdo/configuration/sendusing";
 		private const string CDOSMTPSERVER = @"http://schemas.microsoft.com/cdo/configuration/smtpserver";
 		private const string CDOSMTPSERVERPORT = @"http://schemas.microsoft.com/cdo/configuration/smtpserverport";
-
 		#endregion
 
 		private readonly Message msg;
+		private string charSet;
+		private string httpProxy;
+		private int? httpProxyPort;
 		private string smtpPort;
 		private string smtpServer;
 		private string templateTagFormat = "[${0}]";
 
 		#region Properties
-
 		/// <summary>
 		/// Gets or sets the From address.
 		/// </summary>
@@ -138,7 +142,8 @@ namespace SixPack.Net.Mail
 		/// Gets or sets the CC address.
 		/// </summary>
 		/// <value>The CC.</value>
-		public string CC
+		// ReSharper disable InconsistentNaming
+		public string CC // ReSharper restore InconsistentNaming
 		{
 			get { return msg.CC; }
 			set { msg.CC = value; }
@@ -148,7 +153,8 @@ namespace SixPack.Net.Mail
 		/// Gets or sets the BCC address.
 		/// </summary>
 		/// <value>The BCC.</value>
-		public string BCC
+		// ReSharper disable InconsistentNaming
+		public string BCC // ReSharper restore InconsistentNaming
 		{
 			get { return msg.BCC; }
 			set { msg.BCC = value; }
@@ -223,10 +229,60 @@ namespace SixPack.Net.Mail
 		/// <value>The char set.</value>
 		public string CharSet
 		{
-			get { return msg.HTMLBodyPart.Charset; }
-			set { msg.HTMLBodyPart.Charset = value; }
+			get { return charSet; }
+			set { charSet = value; }
 		}
 
+		/// <summary>
+		/// Gets or sets the HTTP proxy.
+		/// </summary>
+		/// <value>The HTTP proxy.</value>
+		public string HttpProxy
+		{
+			get { return httpProxy; }
+			set { httpProxy = value; }
+		}
+
+		/// <summary>
+		/// Gets or sets the HTTP proxy port.
+		/// </summary>
+		/// <value>The HTTP proxy port.</value>
+		/// <remarks>Only values between 1 and 65535 are allowed.</remarks>
+		public int? HttpProxyPort
+		{
+			get { return httpProxyPort; }
+			set
+			{
+				if (value.HasValue &&
+				    (value < 1 || value > 65535))
+				{
+					throw new ArgumentOutOfRangeException("value", "Port must be null or between 0 and 65535");
+				}
+				httpProxyPort = value;
+			}
+		}
+
+		/// <summary>
+		/// Gets a value indicating whether this instance has text part.
+		/// </summary>
+		/// <value>
+		/// 	<c>true</c> if this instance has text part; otherwise, <c>false</c>.
+		/// </value>
+		public bool HasTextPart
+		{
+			get { return !String.IsNullOrEmpty(msg.TextBody) ; }
+		}
+
+		/// <summary>
+		/// Gets a value indicating whether this instance has HTML part.
+		/// </summary>
+		/// <value>
+		/// 	<c>true</c> if this instance has HTML part; otherwise, <c>false</c>.
+		/// </value>
+		public bool HasHtmlPart
+		{
+			get { return !String.IsNullOrEmpty(msg.HTMLBody); }
+		}
 		#endregion
 
 		/// <summary>
@@ -245,8 +301,10 @@ namespace SixPack.Net.Mail
 		public void CreateMhtmlBody(Uri uri, MhtmlSuppress suppressionOptions)
 		{
 			if (uri == null)
+			{
 				throw new ArgumentNullException("uri");
-			msg.CreateMHTMLBody(uri.ToString(), (CdoMHTMLFlags)(int)suppressionOptions, string.Empty, string.Empty);
+			}
+			msg.CreateMHTMLBody(uri.ToString(), (CdoMHTMLFlags) (int) suppressionOptions, string.Empty, string.Empty);
 		}
 
 		/// <summary>
@@ -256,7 +314,7 @@ namespace SixPack.Net.Mail
 		/// <param name="suppressionOptions">Specifies the kind of spidering.</param>
 		public void CreateMhtmlBody(Stream bodyStream, MhtmlSuppress suppressionOptions)
 		{
-			string tempfile = dumpStreamToTempFile(bodyStream, ".html");
+			string tempfile = DumpStreamToTempFile(bodyStream, ".html");
 			try
 			{
 				CreateMhtmlBody(new Uri(String.Format(CultureInfo.InvariantCulture, "file://{0}", tempfile)), suppressionOptions);
@@ -271,7 +329,7 @@ namespace SixPack.Net.Mail
 			}
 		}
 
-		private static string dumpStreamToTempFile(Stream stream, string extension)
+		private static string DumpStreamToTempFile(Stream stream, string extension)
 		{
 			string tempfile = Path.GetTempFileName();
 			if (!string.IsNullOrEmpty(extension))
@@ -281,12 +339,14 @@ namespace SixPack.Net.Mail
 			}
 			Stream outputStream = File.OpenWrite(tempfile);
 			//Log.Instance.Add(String.Format("Sending new order email (Dumping stream to tempfile (file opened) ({0})) ", tempfile),LogLevel.Info);
-			BufferedStream inputBuffer = new BufferedStream(stream);
-			BufferedStream outputBuffer = new BufferedStream(outputStream);
-			byte[] buf = new byte[4096];
+			var inputBuffer = new BufferedStream(stream);
+			var outputBuffer = new BufferedStream(outputStream);
+			var buf = new byte[4096];
 			int read;
 			while ((read = inputBuffer.Read(buf, 0, buf.Length)) > 0)
+			{
 				outputBuffer.Write(buf, 0, read);
+			}
 
 			//Log.Instance.Add(String.Format("Sending new order email (Dumping stream to tempfile (file written) ({0})) ", tempfile),LogLevel.Info);
 			outputBuffer.Flush();
@@ -297,9 +357,9 @@ namespace SixPack.Net.Mail
 			return tempfile;
 		}
 
-		private static string dumpStreamToTempFile(Stream stream)
+		private static string DumpStreamToTempFile(Stream stream)
 		{
-			return dumpStreamToTempFile(stream, null);
+			return DumpStreamToTempFile(stream, null);
 		}
 
 		/// <summary>
@@ -310,16 +370,20 @@ namespace SixPack.Net.Mail
 		public void AttachFile(Stream attachStream, string fileName)
 		{
 			if (attachStream == null)
+			{
 				throw new ArgumentNullException("attachStream");
+			}
 
-			string tempfile = dumpStreamToTempFile(attachStream);
+			string tempfile = DumpStreamToTempFile(attachStream);
 			if (!string.IsNullOrEmpty(fileName))
 			{
 				string fullPath = Path.Combine(Path.GetDirectoryName(tempfile), fileName);
 
 				// If the destination file exists, delete it first
 				if (File.Exists(fullPath))
+				{
 					File.Delete(fullPath);
+				}
 				File.Move(tempfile, fullPath);
 				tempfile = fullPath;
 			}
@@ -340,7 +404,9 @@ namespace SixPack.Net.Mail
 		public void AttachFile(Uri uri)
 		{
 			if (uri == null)
+			{
 				throw new ArgumentNullException("uri");
+			}
 			msg.AddAttachment(uri.ToString(), string.Empty, string.Empty);
 		}
 
@@ -351,7 +417,9 @@ namespace SixPack.Net.Mail
 		public void ApplyTemplate(IDictionary tagData)
 		{
 			if (tagData == null)
+			{
 				throw new ArgumentNullException("tagData");
+			}
 			string bar = msg.TextBody;
 			string baz = msg.HTMLBody;
 
@@ -361,8 +429,15 @@ namespace SixPack.Net.Mail
 				bar = bar.Replace(tag, tagData[foo].ToString());
 				baz = baz.Replace(tag, tagData[foo].ToString());
 			}
-			msg.HTMLBody = baz;
-			msg.TextBody = bar;
+
+			if (HasHtmlPart)
+			{
+				msg.HTMLBody = baz;
+			}
+			if (HasTextPart)
+			{
+				msg.TextBody = bar;
+			}
 		}
 
 		/// <summary>
@@ -371,56 +446,72 @@ namespace SixPack.Net.Mail
 		public void Send()
 		{
 			// Configure the mail server
-			Configuration iConfg;
-			Fields oFields;
-			Field oField;
-			iConfg = msg.Configuration;
-			oFields = iConfg.Fields;
-			oField = oFields[CDOSENDUSINGMETHOD];
+			Configuration iConfg = msg.Configuration;
+			Fields oFields = iConfg.Fields;
+			Field oField = oFields[CDOSENDUSINGMETHOD];
 			oField.Value = CDOSENDUSING;
 
-            
-            //These can be empty so let´s check and get information from web.config, if needed
-            System.Configuration.Configuration config = WebConfigurationManager.OpenWebConfiguration(HttpContext.Current.Request.ApplicationPath);
-            MailSettingsSectionGroup settings = (MailSettingsSectionGroup)config.GetSectionGroup("system.net/mailSettings");
+			// Set Proxy properties
+			// From http://support.microsoft.com/kb/310233
 
-            //We have to guarantee that at least it's possible to read from the properties or get information from system.net settings
-            if (
-                (!String.IsNullOrEmpty(smtpServer) && !String.IsNullOrEmpty(smtpPort))
-                ||
-                (settings != null && settings.Smtp != null && settings.Smtp.Network != null && settings.Smtp.Network.Host != null)
-            )
-            {
-                oField = oFields[CDOSMTPSERVER];
-                oField.Value = smtpServer ?? settings.Smtp.Network.Host;
-                oField = oFields[CDOSMTPSERVERPORT];
-                oField.Value = smtpPort ?? settings.Smtp.Network.Port.ToString(CultureInfo.InvariantCulture);
+			// TODO: what happens if only one is set?
+			if (!String.IsNullOrEmpty(httpProxy))
+			{
+				oField = oFields[CDOPROXYSERVER];
+				oField.Value = httpProxy;
+			}
+			if (httpProxyPort.HasValue)
+			{
+				oField = oFields[CDOPROXYPORT];
+				oField.Value = httpProxyPort.Value;
+			}
 
-                oFields.Update();
-                msg.Configuration = iConfg;
+			//These can be empty so let´s check and get information from web.config, if needed
+			System.Configuration.Configuration config =
+				WebConfigurationManager.OpenWebConfiguration(HttpContext.Current.Request.ApplicationPath);
+			var settings = (MailSettingsSectionGroup) config.GetSectionGroup("system.net/mailSettings");
 
-                Log.Instance.AddFormat(
-                    "[MailMessage] Sending from: \"{0}\", to \"{1}\", CC \"{2}\", BCC \"{3}\" using server \"{4}:{5}\" with charset: \"{6}\"",
-                    new object[]
-                        {
-                            msg.From,
-                            msg.To,
-                            msg.CC,
-                            msg.BCC,
-                            oFields[CDOSMTPSERVER].Value,
-                            oFields[CDOSMTPSERVERPORT].Value,
-                            string.Empty // CharSet
-                        },
-                    LogLevel.Debug);
+			//We have to guarantee that at least it's possible to read from the properties or get information from system.net settings
+			if ((!String.IsNullOrEmpty(smtpServer) && !String.IsNullOrEmpty(smtpPort)) ||
+			    (settings != null && settings.Smtp != null && settings.Smtp.Network != null && settings.Smtp.Network.Host != null))
+			{
+				if (settings != null)
+				{
+					oField = oFields[CDOSMTPSERVER];
+					oField.Value = smtpServer ?? settings.Smtp.Network.Host;
+					oField = oFields[CDOSMTPSERVERPORT];
+					oField.Value = smtpPort ?? settings.Smtp.Network.Port.ToString(CultureInfo.InvariantCulture);
+				}
 
-                // Send the message
-                msg.Send();
-            }
-            else
-            {
-                throw new ArgumentException(
-                    "Missing SMTP configuration.\n Check if SMTP properties are set or have a valid System.Net configuration in web.config");
-            }
+				oFields.Update();
+				msg.Configuration = iConfg;
+
+				Log.Instance.AddFormat(
+					"[MailMessage] Sending from: \"{0}\", to \"{1}\", CC \"{2}\", BCC \"{3}\" using server \"{4}:{5}\" with charset: \"{6}\"",
+					new[]
+					{
+						msg.From, msg.To, msg.CC, msg.BCC, oFields[CDOSMTPSERVER].Value, oFields[CDOSMTPSERVERPORT].Value, CharSet
+					},
+					LogLevel.Debug);
+
+				if (HasHtmlPart)
+				{
+					msg.HTMLBodyPart.Charset = charSet;
+				}
+
+				if (HasTextPart)
+				{
+					msg.TextBodyPart.Charset = charSet;
+				}
+
+				// Send the message
+				msg.Send();
+			}
+			else
+			{
+				throw new ConfigurationErrorsException(
+					"Missing SMTP configuration.\n Check if SMTP properties are set or have a valid System.Net configuration in web.config");
+			}
 		}
 	}
 
