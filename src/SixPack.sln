@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SixPack.Web.Services", "Six
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SixPack.Caching", "SixPack.Caching\SixPack.Caching.csproj", "{FD22E642-F094-4B83-A5F3-9E4C5E546DC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SixPack.Samples", "..\samples\SixPack.Samples\SixPack.Samples.csproj", "{73CA0AF0-5024-464E-9A94-3213D40C7CA5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +31,6 @@ Global
 		{FD22E642-F094-4B83-A5F3-9E4C5E546DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD22E642-F094-4B83-A5F3-9E4C5E546DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD22E642-F094-4B83-A5F3-9E4C5E546DC6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{73CA0AF0-5024-464E-9A94-3213D40C7CA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73CA0AF0-5024-464E-9A94-3213D40C7CA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73CA0AF0-5024-464E-9A94-3213D40C7CA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73CA0AF0-5024-464E-9A94-3213D40C7CA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
