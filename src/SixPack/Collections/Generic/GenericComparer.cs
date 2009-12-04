@@ -53,7 +53,7 @@ namespace SixPack.Collections.Generic
 		{
 			get
 			{
-				return new GenericComparer<TCompared>(ComparisonOrder.Natural);
+				return new GenericComparer<TCompared>(ComparisonOrder.Reverse);
 			}
 		}
 	}
