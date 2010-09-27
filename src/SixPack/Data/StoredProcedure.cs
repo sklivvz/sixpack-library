@@ -294,7 +294,7 @@ namespace SixPack.Data
 #if (DEBUG)
 			Log.Instance.AddFormat("[StoredProcedure] Created DbDataAdapter of type \"{0}\"", ret.GetType(), LogLevel.Debug);
 #endif
-			ret.SelectCommand = commandWrapper.command;
+			ret.SelectCommand = commandWrapper.DbCommand;
 			return ret;
 		}
 
@@ -359,7 +359,7 @@ namespace SixPack.Data
 				 * */
 				Log.Instance.AddFormat(
 					"[StoredProcedure] Deadlock executing {0} (Execute). Attempt {1} of {2}.",
-					Command.command.CommandText,
+					Command.DbCommand.CommandText,
 					numAttempts,
 					deadlockRetries,
 					LogLevel.Warning
@@ -380,9 +380,9 @@ namespace SixPack.Data
 		{
 			using (DbConnection conn = createDbConnection())
 			{
-				commandWrapper.command.Connection = conn;
-				commandWrapper.command.Connection.Open();
-				commandWrapper.command.Transaction = null;
+				commandWrapper.DbCommand.Connection = conn;
+				commandWrapper.DbCommand.Connection.Open();
+				commandWrapper.DbCommand.Transaction = null;
 				T result = executeMethod();
 				conn.Close();
 				return result;
@@ -398,8 +398,8 @@ namespace SixPack.Data
 		/// <returns></returns>
 		private T ExecuteInternal<T>(DbTransaction transaction, ExecuteDelegate<T> executeMethod)
 		{
-			commandWrapper.command.Connection = transaction.Connection;
-			commandWrapper.command.Transaction = transaction;
+			commandWrapper.DbCommand.Connection = transaction.Connection;
+			commandWrapper.DbCommand.Transaction = transaction;
 			return executeMethod();
 		}
 
@@ -413,7 +413,7 @@ namespace SixPack.Data
 		private T ExecuteInternal<T>(DbConnection connection, ExecuteDelegate<T> executeMethod)
 		{
 			ConnectionState previousState = connection.State;
-			commandWrapper.command.Connection = connection;
+			commandWrapper.DbCommand.Connection = connection;
 			try
 			{
 				switch (previousState)
@@ -489,7 +489,7 @@ namespace SixPack.Data
 		/// </summary>
 		private object InternalExecute()
 		{
-			return commandWrapper.command.ExecuteNonQuery();
+			return commandWrapper.DbCommand.ExecuteNonQuery();
 		}
 		#endregion
 
@@ -760,13 +760,13 @@ namespace SixPack.Data
 		/// <returns></returns>
 		protected object InternalExecuteScalar()
 		{
-			return commandWrapper.command.ExecuteScalar();
+			return commandWrapper.DbCommand.ExecuteScalar();
 		}
 		#endregion
 
 		#region GetDataSet
 		/// <summary>
-		/// Executes the stored procedure and returns the results as a DataSet, by calling <see cref="InternalGetDataSet" />..
+		/// Executes the stored procedure and returns the results as a DataSet, by calling <see cref="InternalGetDataSet" />.
 		/// Handles deadlock retries for Sql Server connections.
 		/// </summary>
 		/// <returns></returns>
@@ -779,7 +779,7 @@ namespace SixPack.Data
 		}
 
 		/// <summary>
-		/// Executes the stored procedure and returns the results as a DataSet, by calling <see cref="InternalGetDataSet" />..
+		/// Executes the stored procedure and returns the results as a DataSet, by calling <see cref="InternalGetDataSet" />.
 		/// Handles deadlock retries for Sql Server connections.
 		/// </summary>
 		/// <param name="transaction">The transaction on which the stored procedure should be executed.</param>
@@ -793,7 +793,7 @@ namespace SixPack.Data
 		}
 
 		/// <summary>
-		/// Executes the stored procedure and returns the results as a DataSet, by calling <see cref="InternalGetDataSet" />..
+		/// Executes the stored procedure and returns the results as a DataSet, by calling <see cref="InternalGetDataSet" />.
 		/// Handles deadlock retries for Sql Server connections.
 		/// </summary>
 		/// <param name="connection">The connection to be used.</param>
@@ -822,9 +822,61 @@ namespace SixPack.Data
 		}
 		#endregion
 
+		#region GetDataTable
+		/// <summary>
+		/// Executes the stored procedure and returns the results as a DataTable, by calling <see cref="InternalGetDataSet" />.
+		/// Handles deadlock retries for Sql Server connections.
+		/// </summary>
+		/// <returns></returns>
+		public DataTable GetDataTable()
+		{
+#if (DEBUG)
+			Log.Instance.AddFormat("[StoredProcedure] GetDataTable() on \"{0}\"", commandWrapper, LogLevel.Debug);
+#endif
+			return GetFirstTable(GetDataSet());
+		}
+
+		/// <summary>
+		/// Executes the stored procedure and returns the results as a DataTable, by calling <see cref="InternalGetDataSet" />.
+		/// Handles deadlock retries for Sql Server connections.
+		/// </summary>
+		/// <param name="transaction">The transaction on which the stored procedure should be executed.</param>
+		/// <returns></returns>
+		public DataTable GetDataTable(DbTransaction transaction)
+		{
+#if (DEBUG)
+			Log.Instance.AddFormat("[StoredProcedure] GetDataTable(DbTransaction) on \"{0}\"", commandWrapper, LogLevel.Debug);
+#endif
+			return GetFirstTable(GetDataSet(transaction));
+		}
+
+		/// <summary>
+		/// Executes the stored procedure and returns the results as a DataTable, by calling <see cref="InternalGetDataSet" />.
+		/// Handles deadlock retries for Sql Server connections.
+		/// </summary>
+		/// <param name="connection">The connection to be used.</param>
+		/// <returns></returns>
+		public DataTable GetDataTable(DbConnection connection)
+		{
+#if (DEBUG)
+			Log.Instance.AddFormat("[StoredProcedure] GetDataTable(DbConnection) on \"{0}\"", commandWrapper, LogLevel.Debug);
+#endif
+			return GetFirstTable(GetDataSet(connection));
+		}
+
+		/// <summary>
+		/// Returns the first table of a <see cref="DataSet"/>, or null if the <see cref="DataSet"/> is empty.
+		/// </summary>
+		/// <returns></returns>
+		private static DataTable GetFirstTable(DataSet data)
+		{
+			return data.Tables.Count > 0 ? data.Tables[0] : null;
+		}
+		#endregion
+
         #region GetList
         /// <summary>
-        /// Executes the stored procedure and returns the results as an <see cref="IList{T}"/>, by calling <see cref="InternalGetList{T}" />..
+        /// Executes the stored procedure and returns the results as an <see cref="IList{T}"/>, by calling <see cref="InternalGetList{T}" />.
         /// Handles deadlock retries for Sql Server connections.
         /// </summary>
         /// <returns></returns>
@@ -837,7 +889,7 @@ namespace SixPack.Data
         }
 
         /// <summary>
-        /// Executes the stored procedure and returns the results as an <see cref="IList{T}"/>, by calling <see cref="InternalGetList{T}" />..
+        /// Executes the stored procedure and returns the results as an <see cref="IList{T}"/>, by calling <see cref="InternalGetList{T}" />.
         /// Handles deadlock retries for Sql Server connections.
         /// </summary>
         /// <param name="transaction">The transaction on which the stored procedure should be executed.</param>
@@ -851,7 +903,7 @@ namespace SixPack.Data
         }
 
         /// <summary>
-        /// Executes the stored procedure and returns the results as an <see cref="IList{T}"/>, by calling <see cref="InternalGetList{T}" />..
+        /// Executes the stored procedure and returns the results as an <see cref="IList{T}"/>, by calling <see cref="InternalGetList{T}" />.
         /// Handles deadlock retries for Sql Server connections.
         /// </summary>
         /// <param name="connection">The connection to be used.</param>

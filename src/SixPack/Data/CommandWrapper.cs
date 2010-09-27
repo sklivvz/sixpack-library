@@ -33,7 +33,16 @@ namespace SixPack.Data
 	public class CommandWrapper : IDisposable
 	{
 		private readonly DbProviderFactory providerFactory;
-		internal DbCommand command;
+		private DbCommand command;
+
+		/// <summary>
+		/// Gets the db command.
+		/// </summary>
+		/// <value>The db command.</value>
+		public DbCommand DbCommand
+		{
+			get { return command; }
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CommandWrapper"/> class.
@@ -89,7 +98,7 @@ namespace SixPack.Data
 			{
 				if(parameter.Direction == ParameterDirection.Output)
 				{
-					outputParameters.Add(parameter.Value);
+					outputParameters.Add(parameter.Value is DBNull ? null : parameter.Value);
 				}
 			}
 
