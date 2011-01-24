@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace SixPack.Text
@@ -259,6 +260,72 @@ namespace SixPack.Text
 				return string.Format(provider, stringFormat, args.ToArray());
 			}
 		}
+		#endregion
+
+		#region DelimitWith
+		/// <summary>
+		/// Joins the specified items into a string separated by the specified separator.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="source">The source.</param>
+		/// <param name="separator">The separator.</param>
+		/// <param name="format">The item format string.</param>
+		/// <param name="prefix">The prefix.</param>
+		/// <param name="suffix">The suffix.</param>
+		/// <returns></returns>
+		public static string DelimitWith<T>(this IEnumerable<T> source, string separator = ", ", string format = null, string prefix = "", string suffix = "")
+		{
+			if (source == null)
+			{
+				throw new ArgumentNullException("source");
+			}
+
+			if (separator == null)
+			{
+				throw new ArgumentNullException("separator");
+			}
+
+			using (var enumerator = source.GetEnumerator())
+			{
+				if (enumerator.MoveNext())
+				{
+					var buffer = new StringBuilder();
+					if (prefix != null)
+					{
+						buffer.Append(prefix);
+					}
+
+					AppendItem(enumerator, buffer, format);
+
+					while (enumerator.MoveNext())
+					{
+						buffer.Append(separator);
+						AppendItem(enumerator, buffer, format);
+					}
+
+					if (suffix != null)
+					{
+						buffer.Append(suffix);
+					}
+
+					return buffer.ToString();
+				}
+				return string.Empty;
+			}
+		}
+
+		private static void AppendItem<T>(IEnumerator<T> enumerator, StringBuilder buffer, string format)
+		{
+			if (format != null)
+			{
+				buffer.AppendFormat(format, enumerator.Current);
+			}
+			else
+			{
+				buffer.Append(enumerator.Current);
+			}
+		}
+
 		#endregion
 	}
 

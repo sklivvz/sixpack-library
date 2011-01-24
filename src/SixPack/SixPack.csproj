@@ -110,6 +110,7 @@
     <Compile Include="CodeGen\SimpleUsingClause.cs" />
     <Compile Include="CodeGen\SimpleVariable.cs" />
     <Compile Include="Collections\Algorithms\BinarySearchExtensions.cs" />
+    <Compile Include="Collections\Generic\CompositeKey.cs" />
     <Compile Include="Collections\Generic\Extensions\DictionaryExtensions.cs" />
     <Compile Include="Collections\Generic\Extensions\DictionaryLookupResult.cs" />
     <Compile Include="Collections\Generic\Extensions\EnumerableExtensions.cs" />
