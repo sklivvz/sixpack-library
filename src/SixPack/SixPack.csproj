@@ -109,14 +109,22 @@
     <Compile Include="CodeGen\SimpleSetter.cs" />
     <Compile Include="CodeGen\SimpleUsingClause.cs" />
     <Compile Include="CodeGen\SimpleVariable.cs" />
+    <Compile Include="Collections\Algorithms\BinarySearchExtensions.cs" />
+    <Compile Include="Collections\Generic\Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Collections\Generic\Extensions\DictionaryLookupResult.cs" />
+    <Compile Include="Collections\Generic\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Collections\Generic\Extensions\TreeNode.cs" />
     <Compile Include="Collections\Generic\FullListOfT.cs" />
     <Compile Include="Collections\Generic\GenericComparer.cs" />
     <Compile Include="Collections\Generic\IFullListOfT.cs" />
     <Compile Include="Collections\Generic\ISetOfT.cs" />
     <Compile Include="Collections\Generic\Pair.cs" />
     <Compile Include="Collections\Generic\SetBaseOfT.cs" />
+    <Compile Include="Collections\Generic\SingletonFactory.cs" />
     <Compile Include="Collections\Generic\SortedSetOfT.cs" />
     <Compile Include="Collections\Generic\HashSetOfT.cs" />
+    <Compile Include="ComponentModel\GenericTypeConverter.cs" />
+    <Compile Include="ComponentModel\TypeConverter.cs" />
     <Compile Include="Data\CommandWrapper.cs" />
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Data\IDataLoader.cs" />
@@ -133,11 +141,14 @@
     <Compile Include="Diagnostics\TimerSample.cs" />
     <Compile Include="Drawing\CaptchaImage.cs" />
     <Compile Include="Drawing\ImageSizing.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Globalization\Portugal\FiscalCode.cs" />
     <Compile Include="Globalization\Portugal\PhoneNumber.cs" />
     <Compile Include="Globalization\Portugal\PhoneNumberType.cs" />
     <Compile Include="Globalization\Portugal\PostalCode.cs" />
     <Compile Include="Globalization\Portugal\VatCode.cs" />
+    <Compile Include="HashCode.cs" />
+    <Compile Include="HashCodeBuilder.cs" />
     <Compile Include="Net\Dns.cs" />
     <Compile Include="Net\IPAddressFormat.cs" />
     <Compile Include="Net\Mail\EmailAddress.cs" />
@@ -156,6 +167,7 @@
     <Compile Include="Text\AsciiStringTranslator.cs" />
     <Compile Include="Text\IStringTranslator.cs" />
     <Compile Include="Text\RegularExpressionPatterns.cs" />
+    <Compile Include="Text\StringExtensions.cs" />
     <Compile Include="Text\TextNormalizationType.cs" />
     <Compile Include="Text\TextSanitationMode.cs" />
     <Compile Include="Text\TextSearchOptions.cs" />
@@ -231,6 +243,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
