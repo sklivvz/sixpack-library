@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SixPack", "SixPack\SixPack.csproj", "{15BBEAE6-E198-4680-B1CB-C73BE12B359E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SixPack.Net.Mail", "SixPack.Net.Mail\SixPack.Net.Mail.csproj", "{7788DEE6-1C76-40D1-99EA-9DB403647738}"
