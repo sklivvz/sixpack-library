@@ -223,6 +223,18 @@ namespace SixPack.Data
 		}
 
 		/// <summary>
+		/// Initializes a new instance of the <see cref="StoredProcedure"/> class using the first connection string as connection.
+		/// </summary>
+		/// <param name="name">The name.</param>
+		/// <param name="connectionString">The connection string.</param>
+		/// <param name="providerName">The name of the data provider, e.g. System.Data.OleDb.</param>
+		public StoredProcedure(string name, string connectionString, string providerName)
+			: this(name, new ConnectionInfo(new ConnectionStringSettings("temp", connectionString, providerName)))
+		{
+			// Nothing to be done
+		}
+
+		/// <summary>
 		/// Gets the command.
 		/// </summary>
 		/// <value>The command.</value>
@@ -336,7 +348,7 @@ namespace SixPack.Data
 					timer.Stop();
 					Log.Instance.AddFormat(
 						"[StoredProcedure] Elapsed time for \"{0}\": {1:0} microseconds",
-						commandWrapper.command.CommandText,
+						commandWrapper.DbCommand.CommandText,
 						timer.Duration(1000),
 						LogLevel.Debug
 					);
