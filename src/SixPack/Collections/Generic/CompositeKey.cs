@@ -153,9 +153,9 @@ namespace SixPack.Collections.Generic
 		{
 			if (_descriptor != null)
 			{
-				return this
-					.Zip(_descriptor, (value, name) => string.Format("{0}: {1}", name, value))
-					.DelimitWith(prefix: "[", suffix: "]");
+			    return this
+					.Select((val, idx) => string.Format("{0}: {1}", _descriptor[idx], val))
+			        .DelimitWith(prefix: "[", suffix: "]");
 			}
 			else
 			{

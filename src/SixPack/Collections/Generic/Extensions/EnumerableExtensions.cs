@@ -73,11 +73,11 @@ namespace SixPack.Collections.Generic.Extensions
 			Action<TNode, TNode> addChildNode
 		)
 		{
-			var treeNodes = source.ToDictionary(i => getKey(i), i => Tuple.Create(getParentKey(i), createNode(i)));
+			var treeNodes = source.ToDictionary(getKey, i => new { Key = getParentKey(i), Node = createNode(i) });
 			var result = new List<TNode>();
 			foreach (var node in treeNodes.Values)
 			{
-				var parentKey = node.Item1;
+				var parentKey = node.Key;
 				if (parentKey != null)
 				{
 					var parent = treeNodes.TryGetValue(parentKey);
@@ -86,11 +86,11 @@ namespace SixPack.Collections.Generic.Extensions
 						throw new ArgumentException(string.Format("ToTree failed because an item has parentKey = [{0}] and no element with that key has been encountered yet.", parentKey), "source");
 					}
 
-					addChildNode(parent.Result.Item2, node.Item2);
+					addChildNode(parent.Result.Node, node.Node);
 				}
 				else
 				{
-					result.Add(node.Item2);
+					result.Add(node.Node);
 				}
 			}
 			return result;
