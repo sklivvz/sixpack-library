@@ -50,24 +50,65 @@ namespace SixPack.Reflection
 		public AssemblyName AssemblyName { get; private set; }
 
 		/// <summary>
-		/// Gets the full name (with namespaces) in a human-readable format.
+		/// Gets a value indicating whether the System.Type is a pointer.
+		/// </summary>
+		public bool IsPointer { get; private set; }
+
+		/// <summary>
+		/// Gets a value indicating whether the System.Type is passed by reference.
+		/// </summary>
+		public bool IsByRef { get; private set; }
+
+		/// <summary>
+		/// Gets the full name of the type, including the assembly name.
+		/// </summary>
+		public string AssemblyQualifiedName
+		{
+			get
+			{
+				return string.Concat(
+					FullName,
+					", ",
+					AssemblyName.FullName
+				);
+			}
+		}
+
+		/// <summary>
+		/// Gets the full name of the type.
 		/// </summary>
 		public string FullName
 		{
 			get
 			{
-				return FormatAsString(t => t.Namespace.DelimitWith("", "{0}.") + t.Nesting.DelimitWith("", "{0}+") + t.Name);
+				var args = TypeArguments
+					.Select(t => t.AssemblyQualifiedName)
+					.DelimitWith(",", format: "[{0}]", prefix: string.Format("`{0}[", TypeArguments.Count), suffix: "]");
+
+				return string.Concat(
+					Namespace.DelimitWith("", "{0}."),
+					Nesting.DelimitWith("", "{0}+"),
+					Name,
+					args,
+					Suffix
+				);
 			}
 		}
 
-		/// <summary>
-		/// Gets the short name (without namespaces) in a human-readable format.
-		/// </summary>
-		public string ShortName
+		private string Suffix
 		{
 			get
 			{
-				return FormatAsString(t => t.Name);
+				var result = new StringBuilder();
+				if(IsPointer)
+				{
+					result.Append('*');
+				}
+				if(IsByRef)
+				{
+					result.Append('&');
+				}
+				return result.ToString();
 			}
 		}
 
@@ -79,16 +120,11 @@ namespace SixPack.Reflection
 		/// </returns>
 		public override string ToString()
 		{
-			return ShortName;
-		}
-
-		private string FormatAsString(Func<TypeName, string> display)
-		{
 			var args = TypeArguments
-				.Select(display)
+				.Select(r => r.ToString())
 				.DelimitWith(", ", prefix: "<", suffix: ">");
 
-			return display(this) + args;
+			return Name + args + Suffix;
 		}
 
 		private TypeName()
@@ -168,7 +204,7 @@ namespace SixPack.Reflection
 				var @namespace = new List<string>();
 				while (true)
 				{
-					@namespace.Add(ReadUntil(".,+`["));
+					@namespace.Add(ReadUntil(".,+`[&*"));
 					if (_nextChar != '.')
 					{
 						break;
@@ -182,7 +218,7 @@ namespace SixPack.Reflection
 				{
 					while (true)
 					{
-						nesting.Add(ReadUntil(",+`"));
+						nesting.Add(ReadUntil(",+`&*"));
 						if (_nextChar != '+')
 						{
 							break;
@@ -236,6 +272,18 @@ namespace SixPack.Reflection
 				else
 				{
 					typeName.TypeArguments = _emptyTypes;
+				}
+
+				if(_nextChar == '*')
+				{
+					Read('*');
+					typeName.IsPointer = true;
+				}
+
+				if (_nextChar == '&')
+				{
+					Read('&');
+					typeName.IsByRef = true;
 				}
 
 				if (_nextChar == ',')
