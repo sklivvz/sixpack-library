@@ -22,7 +22,8 @@ using System.Collections.Generic;
 
 namespace SixPack.Collections.Generic
 {
-    /// <summary>
+ #if !DOTNET_3_5
+	/// <summary>
     /// Interface that represents a collection that contains unique items
     /// </summary>
     public interface ISet<T> : ICollection<T>
@@ -33,4 +34,5 @@ namespace SixPack.Collections.Generic
         /// <param name="items">The items.</param>
         void AddRange(IEnumerable<T> items);
     }
+#endif
 }

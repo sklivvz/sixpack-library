@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{15BBEAE6-E198-4680-B1CB-C73BE12B359E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SixPack</RootNamespace>
+    <AssemblyName>SixPack</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\SixPack.pfx</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <CodePage>65001</CodePage>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\net 3.5\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DOTNET_3_5 DOTNET_2_0</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\net 3.5\Debug\SixPack.XML</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SixPack</RootNamespace>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <RunWithWarnings>false</RunWithWarnings>
+    <GenerateDocumentation>true</GenerateDocumentation>
+    <NoWarn>1584</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\net 3.5\Release\</OutputPath>
+    <DefineConstants>TRACE;DOTNET_3_5 DOTNET_2_0</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\net 3.5\Release\SixPack.XML</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SixPack</RootNamespace>
+    <RunWithWarnings>false</RunWithWarnings>
+    <GenerateDocumentation>true</GenerateDocumentation>
+    <NoWarn>1584</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Banking\CreditCard.cs" />
+    <Compile Include="Banking\CreditCardTypes.cs" />
+    <Compile Include="CodeGen\AbstractClass.cs" />
+    <Compile Include="CodeGen\AbstractConstructor.cs" />
+    <Compile Include="CodeGen\AbstractField.cs" />
+    <Compile Include="CodeGen\AbstractGetter.cs" />
+    <Compile Include="CodeGen\AbstractMethod.cs" />
+    <Compile Include="CodeGen\AbstractNamespace.cs" />
+    <Compile Include="CodeGen\AbstractParameter.cs" />
+    <Compile Include="CodeGen\AbstractProperty.cs" />
+    <Compile Include="CodeGen\AbstractSetter.cs" />
+    <Compile Include="CodeGen\AbstractUsingClause.cs" />
+    <Compile Include="CodeGen\AbstractVariable.cs" />
+    <Compile Include="CodeGen\CSharpClassVisitor.cs" />
+    <Compile Include="CodeGen\DataTableClass.cs" />
+    <Compile Include="CodeGen\IAbstractAccessor.cs" />
+    <Compile Include="CodeGen\IClassElement.cs" />
+    <Compile Include="CodeGen\IClassVisitor.cs" />
+    <Compile Include="CodeGen\SimpleClass.cs" />
+    <Compile Include="CodeGen\SimpleConstructor.cs" />
+    <Compile Include="CodeGen\SimpleField.cs" />
+    <Compile Include="CodeGen\SimpleGetter.cs" />
+    <Compile Include="CodeGen\SimpleMethod.cs" />
+    <Compile Include="CodeGen\SimpleNamespace.cs" />
+    <Compile Include="CodeGen\SimpleParameter.cs" />
+    <Compile Include="CodeGen\SimpleProperty.cs" />
+    <Compile Include="CodeGen\SimpleSetter.cs" />
+    <Compile Include="CodeGen\SimpleUsingClause.cs" />
+    <Compile Include="CodeGen\SimpleVariable.cs" />
+    <Compile Include="Collections\Algorithms\BinarySearchExtensions.cs" />
+    <Compile Include="Collections\Generic\CompositeKey.cs" />
+    <Compile Include="Collections\Generic\Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Collections\Generic\Extensions\DictionaryLookupResult.cs" />
+    <Compile Include="Collections\Generic\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Collections\Generic\Extensions\TreeNode.cs" />
+    <Compile Include="Collections\Generic\FullListOfT.cs" />
+    <Compile Include="Collections\Generic\GenericComparer.cs" />
+    <Compile Include="Collections\Generic\IFullListOfT.cs" />
+    <Compile Include="Collections\Generic\ISetOfT.cs" />
+    <Compile Include="Collections\Generic\Pair.cs" />
+    <Compile Include="Collections\Generic\SingletonFactory.cs" />
+    <Compile Include="ComponentModel\GenericTypeConverter.cs" />
+    <Compile Include="ComponentModel\TypeConverter.cs" />
+    <Compile Include="Data\CommandWrapper.cs" />
+    <Compile Include="Data\DataCollection.cs" />
+    <Compile Include="Data\IDataLoader.cs" />
+    <Compile Include="Data\IDataObject.cs" />
+    <Compile Include="Data\StoredProcedure.cs" />
+    <Compile Include="Data\StoreProcedureInvokerAttribute.cs" />
+    <Compile Include="Diagnostics\ILog.cs" />
+    <Compile Include="Diagnostics\Log.cs" />
+    <Compile Include="Diagnostics\HighResolutionTimer.cs" />
+    <Compile Include="Diagnostics\LogBase.cs" />
+    <Compile Include="Diagnostics\LogLevel.cs" />
+    <Compile Include="Diagnostics\NullLog.cs" />
+    <Compile Include="Diagnostics\SafeNativeMethods.cs" />
+    <Compile Include="Diagnostics\TimerSample.cs" />
+    <Compile Include="Drawing\CaptchaImage.cs" />
+    <Compile Include="Drawing\ImageSizing.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Globalization\Portugal\FiscalCode.cs" />
+    <Compile Include="Globalization\Portugal\PhoneNumber.cs" />
+    <Compile Include="Globalization\Portugal\PhoneNumberType.cs" />
+    <Compile Include="Globalization\Portugal\PostalCode.cs" />
+    <Compile Include="Globalization\Portugal\VatCode.cs" />
+    <Compile Include="HashCode.cs" />
+    <Compile Include="HashCodeBuilder.cs" />
+    <Compile Include="Net\Dns.cs" />
+    <Compile Include="Net\IPAddressFormat.cs" />
+    <Compile Include="Net\Mail\EmailAddress.cs" />
+    <Compile Include="Net\XmlRpc.cs" />
+    <Compile Include="Net\XmlRpcRequestMethod.cs" />
+    <Compile Include="Properties\Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Security\Cryptography\Configuration\RsaSmallCodeParserSection.cs" />
+    <Compile Include="Security\Cryptography\Configuration\RsaSmallPublicKeySection.cs" />
+    <Compile Include="Security\Cryptography\RsaSmallCodeParser.cs" />
+    <Compile Include="Security\Cryptography\SecureTokenBuilder.cs" />
+    <Compile Include="Security\Cryptography\TokenType.cs" />
+    <Compile Include="Text\AsciiStringTranslator.cs" />
+    <Compile Include="Text\IStringTranslator.cs" />
+    <Compile Include="Text\RegularExpressionPatterns.cs" />
+    <Compile Include="Text\StringExtensions.cs" />
+    <Compile Include="Text\TextNormalizationType.cs" />
+    <Compile Include="Text\TextSanitationMode.cs" />
+    <Compile Include="Text\TextSearchOptions.cs" />
+    <Compile Include="Web\UI\ControlFinder.cs" />
+    <Compile Include="Xml\Serializers\SimpleSerializer.cs" />
+    <Compile Include="Xml\Xsl\XslTransformer.cs" />
+    <Compile Include="Net\Mail\MailSemanticValidationMode.cs" />
+    <Compile Include="Net\Mail\MailSyntaxValidationMode.cs" />
+    <Compile Include="Net\NetworkInformation\IpSemantics.cs" />
+    <Compile Include="Net\UnsafeNativeMethods.cs" />
+    <Compile Include="Net\Sockets\SmtpClient.cs" />
+    <Compile Include="Net\UriFormat.cs" />
+    <Compile Include="Net\UriSyntaxValidationMode.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ComponentModel\CacheController.cs" />
+    <Compile Include="ComponentModel\CachedMethodAttribute.cs" />
+    <Compile Include="ComponentModel\CachedContextProperty.cs" />
+    <Compile Include="ComponentModel\CachedSink.cs" />
+    <Compile Include="ComponentModel\CachedAttribute.cs" />
+    <Compile Include="Security\ActionLimiter.cs" />
+    <Compile Include="Security\Cryptography\BigInteger.cs" />
+    <Compile Include="Security\Cryptography\DataGenerator.cs" />
+    <Compile Include="Security\Cryptography\RsaSmall.cs" />
+    <Compile Include="Security\Cryptography\RsaSmallFullKey.cs" />
+    <Compile Include="Security\Cryptography\RsaSmallKey.cs" />
+    <Compile Include="Security\Cryptography\RsaSmallPrivateKey.cs" />
+    <Compile Include="Security\Cryptography\RsaSmallPublicKey.cs" />
+    <Compile Include="Standards\Base32.cs" />
+    <Compile Include="Standards\Mod9710.cs" />
+    <Compile Include="Text\TextUtilities.cs" />
+    <Compile Include="CodedException.cs" />
+    <Compile Include="Text\UnicodeRange.cs" />
+    <Compile Include="Text\UnicodeSemantics.cs" />
+    <Compile Include="Drawing\TangoPalette.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\SixPack.pfx">
+      <Link>SixPack.pfx</Link>
+    </None>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+    <ProjectGuid>{15BBEAE6-E198-4680-B1CB-C73BE12B359E}</ProjectGuid>
+    <RootNamespace>SixPack</RootNamespace>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <MonoDevelop.Autotools.MakefileInfo RelativeMakefileName="Makefile.am" SyncReferences="true" IsAutotoolsProject="true" RelativeConfigureInPath="..">
+          <BuildFilesVar Sync="true" Name="FILES" />
+          <DeployFilesVar />
+          <ResourcesVar Sync="true" Name="RESOURCES" />
+          <OthersVar />
+          <GacRefVar Sync="true" Name="REFERENCES" />
+          <AsmRefVar Sync="true" Name="REFERENCES" />
+          <ProjectRefVar Sync="true" Name="REFERENCES" />
+        </MonoDevelop.Autotools.MakefileInfo>
+      </Properties>
+    </MonoDevelop>
+    <VisualStudio />
+  </ProjectExtensions>
+</Project>

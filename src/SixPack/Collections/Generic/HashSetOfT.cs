@@ -22,7 +22,8 @@ using System.Collections.Generic;
 
 namespace SixPack.Collections.Generic
 {
-    /// <summary>
+#if !DOTNET_3_5
+	/// <summary>
     /// Collection that contains unique items
     /// </summary>
     /// <typeparam name="T"></typeparam>
@@ -89,4 +90,5 @@ namespace SixPack.Collections.Generic
             // Nothing to be done 
         }
     }
+#endif
 }

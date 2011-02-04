@@ -1,7 +1,7 @@
-// AssemblyInfo.cs 
+﻿// Dynamic.cs
 //
-//  Copyright (C) 2008 Fullsix Marketing Interactivo LDA
-//  Author: Marco Cecconi
+//  Copyright (C) 2011 Antoine Aubry
+//  Author: Antoine Aubry
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -18,7 +18,15 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
 
-partial class AssemblyInfoData
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace SixPack.Reflection
 {
-	public const string ProjectName = "SixPack.Web.Services";
+	//public static class Dynamic
+	//{
+	//    public  static 
+	//}
 }

@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7788DEE6-1C76-40D1-99EA-9DB403647738}</ProjectGuid>
+    <ProjectGuid>{62221209-B32D-45FC-B358-639C37BCDB5D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SixPack.Net.Mail</RootNamespace>
-    <AssemblyName>SixPack.Net.Mail</AssemblyName>
+    <RootNamespace>SixPack.Caching</RootNamespace>
+    <AssemblyName>SixPack.Caching</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\SixPack.pfx</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UpgradeBackupLocation />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -39,60 +39,51 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>bin\net 4.0\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DOTNET_4_0 DOTNET_3_5 DOTNET_2_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\SixPack.Net.Mail.XML</DocumentationFile>
+    <DocumentationFile>bin\net 4.0\Debug\SixPack.Caching.XML</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <GenerateDocumentation>true</GenerateDocumentation>
-    <RunWithWarnings>false</RunWithWarnings>
-    <EnvironmentVariables>
-      <EnvironmentVariables />
-    </EnvironmentVariables>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>bin\net 4.0\Release\</OutputPath>
+    <DefineConstants>TRACE;DOTNET_4_0 DOTNET_3_5 DOTNET_2_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\SixPack.Net.Mail.XML</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <GenerateDocumentation>true</GenerateDocumentation>
-    <RunWithWarnings>false</RunWithWarnings>
+    <DocumentationFile>bin\net 4.0\Release\SixPack.Caching.XML</DocumentationFile>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
-    <Reference Include="Interop.ADODB, Version=2.8.0.0, Culture=neutral, PublicKeyToken=4ddfd1721e1e48a0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\Interop.ADODB.dll</HintPath>
-    </Reference>
-    <Reference Include="Interop.CDO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4ddfd1721e1e48a0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\Interop.CDO.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
-      <Link>CommonAssemblyInfo.cs</Link>
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="MailMessage.cs" />
+    <Compile Include="ContentExpiredException.cs" />
+    <Compile Include="ContentNullException.cs" />
+    <Compile Include="IPrefetchCacheAgent.cs" />
+    <Compile Include="IPrefetchCacheContent.cs" />
+    <Compile Include="PrefetchCache.cs" />
+    <Compile Include="PrefetchCacheAgent.cs" />
+    <Compile Include="PrefetchCacheContent.cs" />
+    <Compile Include="PrefetchCacheController.cs" />
+    <Compile Include="PrefetchCacheOptions.cs" />
+    <Compile Include="PrefetchCacheTimer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SixPack\SixPack.csproj">
-      <Project>{15BBEAE6-E198-4680-B1CB-C73BE12B359E}</Project>
-      <Name>SixPack</Name>
-      <Private>False</Private>
-    </ProjectReference>
+    <None Include="..\SixPack.pfx">
+      <Link>SixPack.pfx</Link>
+    </None>
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -112,11 +103,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\SixPack.pfx">
-      <Link>SixPack.pfx</Link>
-    </None>
+    <ProjectReference Include="..\SixPack\SixPack.net.4.0.csproj">
+      <Project>{E3E178CC-867A-4510-8C1F-E704E848F884}</Project>
+      <Name>SixPack.net.4.0</Name>
+    </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -124,25 +116,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <GtkDesignInfo />
-        <MonoDevelop.Autotools.MakefileInfo RelativeMakefileName="Makefile.am" SyncReferences="true" IsAutotoolsProject="true" RelativeConfigureInPath="..">
-          <BuildFilesVar Sync="true" Name="FILES" />
-          <DeployFilesVar />
-          <ResourcesVar Sync="true" Name="RESOURCES" />
-          <OthersVar />
-          <GacRefVar Sync="true" Name="REFERENCES" />
-          <AsmRefVar Sync="true" Name="REFERENCES" />
-          <ProjectRefVar Sync="true" Name="REFERENCES" />
-        </MonoDevelop.Autotools.MakefileInfo>
-      </Properties>
-    </MonoDevelop>
-    <VisualStudio />
-  </ProjectExtensions>
 </Project>

@@ -23,6 +23,7 @@ using System.Collections.Generic;
 
 namespace SixPack.Collections.Generic
 {
+#if !DOTNET_3_5
     /// <summary>
     /// Collection that contains unique items
     /// </summary>
@@ -157,4 +158,5 @@ namespace SixPack.Collections.Generic
             }
         }
     }
+#endif
 }

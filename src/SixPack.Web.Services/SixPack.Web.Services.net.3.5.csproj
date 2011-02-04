@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FD22E642-F094-4B83-A5F3-9E4C5E546DC6}</ProjectGuid>
+    <ProjectGuid>{C6C6FFCE-B88B-453B-9DE1-8C8D37684260}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SixPack.Caching</RootNamespace>
-    <AssemblyName>SixPack.Caching</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <RootNamespace>SixPack.Web.Services</RootNamespace>
+    <AssemblyName>SixPack.Web.Services</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\SixPack.pfx</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -39,58 +39,58 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>bin\net 3.5\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DOTNET_3_5 DOTNET_2_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\SixPack.Caching.XML</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\net 3.5\Debug\SixPack.Web.Services.XML</DocumentationFile>
+    <GenerateDocumentation>true</GenerateDocumentation>
+    <RunWithWarnings>false</RunWithWarnings>
+    <NoWarn>1584</NoWarn>
+    <EnvironmentVariables>
+      <EnvironmentVariables />
+    </EnvironmentVariables>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>bin\net 3.5\Release\</OutputPath>
+    <DefineConstants>TRACE;DOTNET_3_5 DOTNET_2_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>bin\Release\SixPack.Caching.XML</DocumentationFile>
+    <DocumentationFile>bin\net 3.5\Release\SixPack.Web.Services.XML</DocumentationFile>
+    <GenerateDocumentation>true</GenerateDocumentation>
+    <RunWithWarnings>false</RunWithWarnings>
+    <NoWarn>1584</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
-      <Link>CommonAssemblyInfo.cs</Link>
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ContentExpiredException.cs" />
-    <Compile Include="ContentNullException.cs" />
-    <Compile Include="IPrefetchCacheAgent.cs" />
-    <Compile Include="IPrefetchCacheContent.cs" />
-    <Compile Include="PrefetchCache.cs" />
-    <Compile Include="PrefetchCacheAgent.cs" />
-    <Compile Include="PrefetchCacheContent.cs" />
-    <Compile Include="PrefetchCacheController.cs" />
-    <Compile Include="PrefetchCacheOptions.cs" />
-    <Compile Include="PrefetchCacheTimer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublishMethodAttribute.cs" />
+    <Compile Include="PublishServiceAttribute.cs" />
+    <Compile Include="ServiceResult.cs" />
+    <Compile Include="ServiceResultOfT.cs" />
+    <Compile Include="WebServiceException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\SixPack.pfx">
       <Link>SixPack.pfx</Link>
     </None>
-    <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SixPack\SixPack.csproj">
-      <Project>{15BBEAE6-E198-4680-B1CB-C73BE12B359E}</Project>
-      <Name>SixPack</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -109,7 +109,13 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\SixPack\SixPack.net.3.5.csproj">
+      <Project>{15BBEAE6-E198-4680-B1CB-C73BE12B359E}</Project>
+      <Name>SixPack.net.3.5</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -117,4 +123,25 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <GtkDesignInfo />
+        <MonoDevelop.Autotools.MakefileInfo RelativeMakefileName="Makefile.am" SyncReferences="true" IsAutotoolsProject="true" RelativeConfigureInPath="..">
+          <BuildFilesVar Sync="true" Name="FILES" />
+          <DeployFilesVar />
+          <ResourcesVar Sync="true" Name="RESOURCES" />
+          <OthersVar />
+          <GacRefVar Sync="true" Name="REFERENCES" />
+          <AsmRefVar Sync="true" Name="REFERENCES" />
+          <ProjectRefVar Sync="true" Name="REFERENCES" />
+        </MonoDevelop.Autotools.MakefileInfo>
+      </Properties>
+    </MonoDevelop>
+    <VisualStudio />
+  </ProjectExtensions>
 </Project>

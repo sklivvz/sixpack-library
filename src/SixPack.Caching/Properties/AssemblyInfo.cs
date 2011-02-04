@@ -18,16 +18,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
 
-using System;
-using System.Reflection;
-
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-
-[assembly : AssemblyTitle("SixPack.Caching")]
-#if DEBUG
-[assembly : AssemblyDescription("Caching for the SixPack library - Debug build")]
-#else
-[assembly : AssemblyDescription("Caching for the SixPack library - Release build")]
-#endif
+partial class AssemblyInfoData
+{
+	public const string ProjectName = "SixPack.Caching";
+}

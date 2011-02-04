@@ -24,19 +24,21 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
 
-#if DEBUG
-[assembly : AssemblyConfiguration("Debug")]
-#else
-[assembly : AssemblyConfiguration("Release")]
-#endif
-[assembly : AssemblyCompany("SixPack")]
-[assembly : AssemblyProduct("SixPack Library")]
-[assembly : AssemblyCopyright("Copyright © 2007, 2008, 2009")]
-[assembly : AssemblyTrademark("")]
-[assembly : AssemblyCulture("")]
-[assembly : CLSCompliant(true)]
-[assembly : ComVisible(false)]
-[assembly : NeutralResourcesLanguage("en")]
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+
+[assembly: AssemblyTitle(AssemblyInfoData.ProjectName + " - " + AssemblyInfoData.BuildDescription)]
+[assembly: AssemblyDescription(AssemblyInfoData.ProjectName)]
+[assembly: AssemblyConfiguration(AssemblyInfoData.BuildDescription)]
+[assembly: AssemblyProduct("SixPack Library")]
+[assembly: AssemblyCompany("SixPack")]
+[assembly: AssemblyCopyright("Copyright © 2007, 2008, 2009, 2010, 2011")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+[assembly: CLSCompliant(true)]
+[assembly: ComVisible(false)]
+[assembly: NeutralResourcesLanguage("en")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -48,5 +50,30 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("1.1.1.0")]
-[assembly: AssemblyFileVersion("1.1.1.0")]
+// Ensure that builds for different plaforms get different version numbers, to avoid versioning issues.
+[assembly: AssemblyVersion("1.1.2." + AssemblyInfoData.Revision)]
+[assembly: AssemblyFileVersion("1.1.2." + AssemblyInfoData.Revision)]
+
+#region AssemblyInfoData
+internal static partial class AssemblyInfoData
+{
+	public const string BuildDescription = _targetPlatform + " " + _debugMode;
+
+#if DEBUG
+	private const string _debugMode = "debug";
+#else
+	private const string _debugMode = "release";
+#endif
+
+#if DOTNET_4_0
+	private const string _targetPlatform = ".net 4.0";
+	public const string Revision = "40";
+#elif DOTNET_3_5
+	private const string _targetPlatform = ".net 3.5";
+	public const string Revision = "35";
+#elif DOTNET_2_0
+	private const string _targetPlatform = ".net 2.0";
+	public const string Revision = "20";
+#endif
+}
+#endregion

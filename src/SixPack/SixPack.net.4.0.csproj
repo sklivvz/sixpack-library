@@ -40,11 +40,11 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>bin\net 4.0\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DOTNET_4_0 DOTNET_3_5 DOTNET_2_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\SixPack.XML</DocumentationFile>
+    <DocumentationFile>bin\net 4.0\Debug\SixPack.XML</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <OutputType>Library</OutputType>
     <RootNamespace>SixPack</RootNamespace>
@@ -57,11 +57,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>bin\net 4.0\Release\</OutputPath>
+    <DefineConstants>TRACE;DOTNET_4_0 DOTNET_3_5 DOTNET_2_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\SixPack.XML</DocumentationFile>
+    <DocumentationFile>bin\net 4.0\Release\SixPack.XML</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <OutputType>Library</OutputType>
     <RootNamespace>SixPack</RootNamespace>
@@ -79,7 +79,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\CommonAssemblyInfo.cs" />
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Banking\CreditCard.cs" />
     <Compile Include="Banking\CreditCardTypes.cs" />
     <Compile Include="CodeGen\AbstractClass.cs" />
@@ -120,10 +122,7 @@
     <Compile Include="Collections\Generic\IFullListOfT.cs" />
     <Compile Include="Collections\Generic\ISetOfT.cs" />
     <Compile Include="Collections\Generic\Pair.cs" />
-    <Compile Include="Collections\Generic\SetBaseOfT.cs" />
     <Compile Include="Collections\Generic\SingletonFactory.cs" />
-    <Compile Include="Collections\Generic\SortedSetOfT.cs" />
-    <Compile Include="Collections\Generic\HashSetOfT.cs" />
     <Compile Include="ComponentModel\GenericTypeConverter.cs" />
     <Compile Include="ComponentModel\TypeConverter.cs" />
     <Compile Include="Data\CommandWrapper.cs" />
@@ -256,7 +255,7 @@
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
-    <ProjectGuid>{15BBEAE6-E198-4680-B1CB-C73BE12B359E}</ProjectGuid>
+    <ProjectGuid>{E3E178CC-867A-4510-8C1F-E704E848F884}</ProjectGuid>
     <RootNamespace>SixPack</RootNamespace>
   </PropertyGroup>
   <ProjectExtensions>

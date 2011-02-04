@@ -1,7 +1,7 @@
-// AssemblyInfo.cs 
+﻿// AssemblyInfo.cs 
 //
-//  Copyright (C) 2008 Fullsix Marketing Interactivo LDA
-//  Author: Marco Cecconi
+//  Copyright (C) 2011 Antoine Aubry
+//  Author: Antoine Aubry
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -20,5 +20,5 @@
 
 partial class AssemblyInfoData
 {
-	public const string ProjectName = "SixPack.Web.Services";
+	public const string ProjectName = "SixPack.Data.Entity";
 }
