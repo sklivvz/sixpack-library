@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CAED0F70-0FE7-43A2-ABF5-37ADA21433CE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Packager</RootNamespace>
+    <AssemblyName>Packager</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\net 4.0\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\net 4.0\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SixPack.Caching\SixPack.Caching.net.4.0.csproj">
+      <Project>{62221209-B32D-45FC-B358-639C37BCDB5D}</Project>
+      <Name>SixPack.Caching.net.4.0</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SixPack.Data.Entity\SixPack.Data.Entity.net.4.0.csproj">
+      <Project>{B19BFF1D-EC63-47B5-9BDE-C767F092BE17}</Project>
+      <Name>SixPack.Data.Entity.net.4.0</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SixPack.Net.Mail\SixPack.Net.Mail.net.4.0.csproj">
+      <Project>{B0862C63-44DE-464B-B49A-435A01D8EF9D}</Project>
+      <Name>SixPack.Net.Mail.net.4.0</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SixPack.Reflection\SixPack.Reflection.net.4.0.csproj">
+      <Project>{CCD615B1-3D93-4614-8505-7A68561F75FB}</Project>
+      <Name>SixPack.Reflection.net.4.0</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SixPack.Web.Services\SixPack.Web.Services.net.4.0.csproj">
+      <Project>{08969850-A7E6-4FFE-A9AE-DE5E0A8298A7}</Project>
+      <Name>SixPack.Web.Services.net.4.0</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SixPack\SixPack.net.4.0.csproj">
+      <Project>{E3E178CC-867A-4510-8C1F-E704E848F884}</Project>
+      <Name>SixPack.net.4.0</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

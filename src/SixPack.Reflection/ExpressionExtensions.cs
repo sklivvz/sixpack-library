@@ -53,7 +53,7 @@ namespace SixPack.Reflection
 			}
 		}
 
-		private class MemberInitVisitor<TInput, TProperty> : ExpressionVisitor
+		private sealed class MemberInitVisitor<TInput, TProperty> : ExpressionVisitor
 		{
 			private readonly MemberInfo _assignedProperty;
 			private Expression<Func<TInput, TProperty>> _assignedValue;
@@ -91,7 +91,7 @@ namespace SixPack.Reflection
 			}
 		}
 
-		private class AsMemberExpressionVisitor<TMember> : ExpressionVisitor
+		private sealed class AsMemberExpressionVisitor<TMember> : ExpressionVisitor
 			where TMember : MemberInfo
 		{
 			public TMember Member { get; private set; }
