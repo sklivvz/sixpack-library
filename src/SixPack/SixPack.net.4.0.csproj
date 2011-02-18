@@ -116,6 +116,7 @@
     <Compile Include="Collections\Generic\Extensions\DictionaryExtensions.cs" />
     <Compile Include="Collections\Generic\Extensions\DictionaryLookupResult.cs" />
     <Compile Include="Collections\Generic\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Collections\Generic\Extensions\IndexedItem.cs" />
     <Compile Include="Collections\Generic\Extensions\TreeNode.cs" />
     <Compile Include="Collections\Generic\FullListOfT.cs" />
     <Compile Include="Collections\Generic\GenericComparer.cs" />

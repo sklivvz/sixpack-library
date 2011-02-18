@@ -96,5 +96,30 @@ namespace SixPack.Collections.Generic.Extensions
 			return result;
 		}
 		#endregion
+
+		/// <summary>
+		/// Indexes the specified source.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="source">The source.</param>
+		/// <returns></returns>
+		public static IEnumerable<IndexedItem<T>> Index<T>(this IEnumerable<T> source)
+		{
+			using (var enumerator = source.GetEnumerator())
+			{
+				int itemIndex = 0;
+				if (enumerator.MoveNext())
+				{
+					var previousItem = enumerator.Current;
+					while (enumerator.MoveNext())
+					{
+						yield return new IndexedItem<T>(previousItem, itemIndex, itemIndex == 0, false);
+						++itemIndex;
+						previousItem = enumerator.Current;
+					}
+					yield return new IndexedItem<T>(previousItem, itemIndex, itemIndex == 0, true);
+				}
+			}
+		}
 	}
 }
