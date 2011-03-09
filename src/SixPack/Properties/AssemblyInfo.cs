@@ -18,16 +18,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
 
-using System;
-using System.Reflection;
-
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-
-[assembly : AssemblyTitle("SixPack")]
-#if DEBUG
-[assembly : AssemblyDescription("SixPack Library - Debug build")]
-#else
-[assembly : AssemblyDescription("SixPack Library - Release build")]
-#endif
+partial class AssemblyInfoData
+{
+	public const string ProjectName = "SixPack";
+}

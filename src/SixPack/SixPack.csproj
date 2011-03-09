@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -11,12 +11,15 @@
     <RootNamespace>SixPack</RootNamespace>
     <AssemblyName>SixPack</AssemblyName>
     <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>SixPack.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\SixPack.pfx</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <CodePage>65001</CodePage>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,11 +32,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-    <CodePage>65001</CodePage>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,6 +52,7 @@
     <RunWithWarnings>false</RunWithWarnings>
     <GenerateDocumentation>true</GenerateDocumentation>
     <NoWarn>1584</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -66,17 +68,21 @@
     <RunWithWarnings>false</RunWithWarnings>
     <GenerateDocumentation>true</GenerateDocumentation>
     <NoWarn>1584</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
+		<Reference Include="System" />
+		<Reference Include="System.Core" />
+		<Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\CommonAssemblyInfo.cs" />
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Banking\CreditCard.cs" />
     <Compile Include="Banking\CreditCardTypes.cs" />
     <Compile Include="CodeGen\AbstractClass.cs" />
@@ -106,14 +112,21 @@
     <Compile Include="CodeGen\SimpleSetter.cs" />
     <Compile Include="CodeGen\SimpleUsingClause.cs" />
     <Compile Include="CodeGen\SimpleVariable.cs" />
+    <Compile Include="Collections\Algorithms\BinarySearchExtensions.cs" />
+    <Compile Include="Collections\Generic\CompositeKey.cs" />
+    <Compile Include="Collections\Generic\Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Collections\Generic\Extensions\DictionaryLookupResult.cs" />
+    <Compile Include="Collections\Generic\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Collections\Generic\Extensions\IndexedItem.cs" />
+    <Compile Include="Collections\Generic\Extensions\TreeNode.cs" />
     <Compile Include="Collections\Generic\FullListOfT.cs" />
     <Compile Include="Collections\Generic\GenericComparer.cs" />
     <Compile Include="Collections\Generic\IFullListOfT.cs" />
-    <Compile Include="Collections\Generic\ISetOfT.cs" />
+    <Compile Include="Collections\Generic\LambdaEqualityComparer.cs" />
     <Compile Include="Collections\Generic\Pair.cs" />
-    <Compile Include="Collections\Generic\SetBaseOfT.cs" />
-    <Compile Include="Collections\Generic\SortedSetOfT.cs" />
-    <Compile Include="Collections\Generic\HashSetOfT.cs" />
+    <Compile Include="Collections\Generic\SingletonFactory.cs" />
+    <Compile Include="ComponentModel\GenericTypeConverter.cs" />
+    <Compile Include="ComponentModel\TypeConverter.cs" />
     <Compile Include="Data\CommandWrapper.cs" />
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Data\IDataLoader.cs" />
@@ -130,11 +143,14 @@
     <Compile Include="Diagnostics\TimerSample.cs" />
     <Compile Include="Drawing\CaptchaImage.cs" />
     <Compile Include="Drawing\ImageSizing.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Globalization\Portugal\FiscalCode.cs" />
     <Compile Include="Globalization\Portugal\PhoneNumber.cs" />
     <Compile Include="Globalization\Portugal\PhoneNumberType.cs" />
     <Compile Include="Globalization\Portugal\PostalCode.cs" />
     <Compile Include="Globalization\Portugal\VatCode.cs" />
+    <Compile Include="HashCode.cs" />
+    <Compile Include="HashCodeBuilder.cs" />
     <Compile Include="Net\Dns.cs" />
     <Compile Include="Net\IPAddressFormat.cs" />
     <Compile Include="Net\Mail\EmailAddress.cs" />
@@ -153,6 +169,7 @@
     <Compile Include="Text\AsciiStringTranslator.cs" />
     <Compile Include="Text\IStringTranslator.cs" />
     <Compile Include="Text\RegularExpressionPatterns.cs" />
+    <Compile Include="Text\StringExtensions.cs" />
     <Compile Include="Text\TextNormalizationType.cs" />
     <Compile Include="Text\TextSanitationMode.cs" />
     <Compile Include="Text\TextSearchOptions.cs" />
@@ -194,17 +211,35 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
     </None>
-    <None Include="SixPack.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
       <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
       <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
       <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,7 @@
-// ISetOfT.cs 
+﻿// AssemblyInfo.cs 
 //
-//  Copyright (C) 2008 Fullsix Marketing Interactivo LDA
-//  Author: Marco Cecconi
+//  Copyright (C) 2011 Antoine Aubry
+//  Author: Antoine Aubry
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -18,19 +18,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
 
-using System.Collections.Generic;
-
-namespace SixPack.Collections.Generic
+partial class AssemblyInfoData
 {
-    /// <summary>
-    /// Interface that represents a collection that contains unique items
-    /// </summary>
-    public interface ISet<T> : ICollection<T>
-    {
-        /// <summary>
-        /// Adds the specified items.
-        /// </summary>
-        /// <param name="items">The items.</param>
-        void AddRange(IEnumerable<T> items);
-    }
+	public const string ProjectName = "SixPack.Data.Entity";
 }
