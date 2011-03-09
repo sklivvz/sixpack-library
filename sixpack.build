@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project name="SixPack" default="package" basedir="." xmlns="http://nant.sf.net/release/0.85/nant.xsd">
+
+	<!-- This build file requires .NET 4.0 and nant 0.91 alpha 2 or higher -->
+	<property name="nant.settings.currentframework" value="net-4.0"/>
+
+	<property name="version" value="1.2" />
+	<property name="keyfile" value="src/SixPack.pfx" />
+
+	<loadtasks assembly="support/nantcontrib/NAnt.Contrib.Tasks.dll" />
+
+	<target name="doc">
+		<msbuild project="src/SixPack.shfbproj" target="Rebuild">
+			<property name="Configuration" value="Release" />
+		</msbuild>
+	</target>
+	
+	<target name="build">
+		
+		<msbuild project="src/SixPack.sln" target="Rebuild">
+			<property name="Configuration" value="Release" />
+			<property name="SignAssembly" value="true" />
+			<property name="AssemblyOriginatorKeyFile" value="${directory::get-current-directory()}/src/SixPack.pfx" />
+		</msbuild>
+
+	</target>
+
+	<target name="package-bin" depends="build">
+		<delete dir="tmp" failonerror="false" />
+		<mkdir dir="tmp" />
+		<copy todir="tmp" flatten="true">
+			<fileset>
+				<include name="src/SixPack/bin/Release/SixPack.dll" />
+				<include name="src/SixPack/bin/Release/SixPack.XML" />
+				<include name="src/SixPack/bin/Release/SixPack.pdb" />
+
+				<include name="src/SixPack.Caching/bin/Release/SixPack.Caching.dll" />
+				<include name="src/SixPack.Caching/bin/Release/SixPack.Caching.XML" />
+				<include name="src/SixPack.Caching/bin/Release/SixPack.Caching.pdb" />
+
+				<include name="src/SixPack.Data.Entity/bin/Release/SixPack.Data.Entity.dll" />
+				<include name="src/SixPack.Data.Entity/bin/Release/SixPack.Data.Entity.XML" />
+				<include name="src/SixPack.Data.Entity/bin/Release/SixPack.Data.Entity.pdb" />
+
+				<include name="src/SixPack.Net.Mail/bin/Release/SixPack.Net.Mail.dll" />
+				<include name="src/SixPack.Net.Mail/bin/Release/SixPack.Net.Mail.XML" />
+				<include name="src/SixPack.Net.Mail/bin/Release/SixPack.Net.Mail.pdb" />
+				<include name="src/SixPack.Net.Mail/bin/Release/Interop.ADODB.dll" />
+				<include name="src/SixPack.Net.Mail/bin/Release/Interop.CDO.dll" />
+
+				<include name="src/SixPack.Reflection/bin/Release/SixPack.Reflection.dll" />
+				<include name="src/SixPack.Reflection/bin/Release/SixPack.Reflection.XML" />
+				<include name="src/SixPack.Reflection/bin/Release/SixPack.Reflection.pdb" />
+
+				<include name="src/SixPack.Web.Services/bin/Release/SixPack.Web.Services.dll" />
+				<include name="src/SixPack.Web.Services/bin/Release/SixPack.Web.Services.XML" />
+				<include name="src/SixPack.Web.Services/bin/Release/SixPack.Web.Services.pdb" />
+			</fileset>
+		</copy>
+
+		<zip zipfile="release/${version}/SixPack-bin-${version}.zip">
+			<fileset basedir="tmp">
+				<include name="*" />
+			</fileset>
+		</zip>
+
+		<delete dir="tmp" />
+	</target>
+
+	<target name="package-src">
+		<zip zipfile="release/${version}/SixPack-src-${version}.zip">
+			<fileset basedir="src">
+				<exclude name="**/*.pfx" />
+				<exclude name="**/*.user" />
+				<exclude name="**/*.suo" />
+				<exclude name="**/password.txt" />
+				<exclude name="**/*_ReSharper*" />
+				<exclude name="**/*_ReSharper*/**" />
+				<exclude name="**/bin" />
+				<exclude name="**/bin/**" />
+				<include name="**/*" />
+			</fileset>
+		</zip>
+	</target>
+
+	<target name="package-doc" depends="doc">
+		<copy file="HelpTmp/SixPack.chm" tofile="release/${version}/SixPack-${string::replace(version, '.', '-')}.chm" overwrite="true" />
+
+		<zip zipfile="release/${version}/SixPack-doc-html-${version}.zip">
+			<fileset basedir="HelpTmp">
+				<exclude name="SixPack.chm" />
+				<include name="**/*" />
+			</fileset>
+		</zip>
+	</target>
+	
+	<target name="package" depends="package-bin, package-src, package-doc">
+	</target>
+	
+</project>

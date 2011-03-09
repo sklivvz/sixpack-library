@@ -1,6 +1,8 @@
 @ECHO OFF
 
+ECHO %PROGRAMFILES%
 
+GOTO :EOF
 
 REM %1 is the sub version number ("x" in 1.x")
 
@@ -52,6 +54,8 @@ ECHO \.svn\ >> exclusions
 ECHO \bin\ >> exclusions
 ECHO \obj\ >> exclusions
 ECHO \_Resharper >> exclusions
+ECHO \_ReSharper.SixPack >> exclusions
+ECHO *.user >> exclusions
 
 XCOPY /I /E /Q /EXCLUDE:exclusions ..\src src
 
