@@ -16,6 +16,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common Files", "Common Files", "{7FCA9884-2AF3-4176-9223-BE221885F4A8}"
 	ProjectSection(SolutionItems) = preProject
 		..\sixpack.build = ..\sixpack.build
+		..\sixpack.caching.nuspec = ..\sixpack.caching.nuspec
+		..\sixpack.data.entity.nuspec = ..\sixpack.data.entity.nuspec
+		..\sixpack.net.mail.nuspec = ..\sixpack.net.mail.nuspec
+		..\sixpack.nuspec = ..\sixpack.nuspec
+		..\sixpack.reflection.nuspec = ..\sixpack.reflection.nuspec
+		..\sixpack.web.services.nuspec = ..\sixpack.web.services.nuspec
 	EndProjectSection
 EndProject
 Global

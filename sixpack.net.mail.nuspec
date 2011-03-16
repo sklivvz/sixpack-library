@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<package> 
+  <metadata> 
+    <id>SixPack.Net.Mail</id> 
+    <version></version> 
+    <authors>Antoine Aubry, Marco Cecconi</authors>
+    <description>The SixPack rapid development library is a collection of classes for rapid development on the .NET/Mono platform. It has been built with medium to large scale sites in mind, and supports high performance requirements (thousands of concurrent users per server.)</description>
+		<summary>This package enables sending e-mail using the SixPack library.</summary>
+		<language>en-US</language>
+    <licenseUrl>http://www.gnu.org/licenses/lgpl.html</licenseUrl>
+    <projectUrl>http://code.google.com/p/sixpack-library/</projectUrl>
+		<iconUrl>http://sixpack-library.googlecode.com/files/sixpack-icon.png</iconUrl>
+		<tags>rapid development library email</tags>
+		<dependencies>
+			<dependency id="SixPack" version="" />
+		</dependencies>
+  </metadata>
+	<files>
+		<file src="..\src\SixPack.Net.Mail\bin\Release\Interop.ADODB.dll" target="lib" />
+		<file src="..\src\SixPack.Net.Mail\bin\Release\Interop.CDO.dll" target="lib" />
+		<file src="..\src\SixPack.Net.Mail\bin\Release\SixPack.Net.Mail.dll" target="lib" />
+		<file src="..\src\SixPack.Net.Mail\bin\Release\SixPack.Net.Mail.XML" target="lib" />
+		<file src="..\src\SixPack.Net.Mail\bin\Release\SixPack.Net.Mail.pdb" target="lib" />
+	</files>
+</package>

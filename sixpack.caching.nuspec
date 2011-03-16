@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<package> 
+  <metadata> 
+    <id>SixPack.Caching</id> 
+    <version></version> 
+    <authors>Antoine Aubry, Marco Cecconi</authors>
+    <description>The SixPack rapid development library is a collection of classes for rapid development on the .NET/Mono platform. It has been built with medium to large scale sites in mind, and supports high performance requirements (thousands of concurrent users per server.)</description>
+		<summary>This package adds advanced caching to the SixPack library.</summary>
+		<language>en-US</language>
+    <licenseUrl>http://www.gnu.org/licenses/lgpl.html</licenseUrl>
+    <projectUrl>http://code.google.com/p/sixpack-library/</projectUrl>
+		<iconUrl>http://sixpack-library.googlecode.com/files/sixpack-icon.png</iconUrl>
+		<tags>rapid development library caching</tags>
+		<dependencies>
+			<dependency id="SixPack" version="" />
+		</dependencies>
+  </metadata>
+	<files>
+		<file src="..\src\SixPack.Caching\bin\Release\SixPack.Caching.dll" target="lib" />
+		<file src="..\src\SixPack.Caching\bin\Release\SixPack.Caching.XML" target="lib" />
+		<file src="..\src\SixPack.Caching\bin\Release\SixPack.Caching.pdb" target="lib" />
+	</files>
+</package>

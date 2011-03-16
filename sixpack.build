@@ -7,6 +7,34 @@
 	<property name="version" value="1.2" />
 	<property name="keyfile" value="src/SixPack.pfx" />
 
+	<fileset id="binaries">
+		<include name="src/SixPack/bin/Release/SixPack.dll" />
+		<include name="src/SixPack/bin/Release/SixPack.XML" />
+		<include name="src/SixPack/bin/Release/SixPack.pdb" />
+
+		<include name="src/SixPack.Caching/bin/Release/SixPack.Caching.dll" />
+		<include name="src/SixPack.Caching/bin/Release/SixPack.Caching.XML" />
+		<include name="src/SixPack.Caching/bin/Release/SixPack.Caching.pdb" />
+
+		<include name="src/SixPack.Data.Entity/bin/Release/SixPack.Data.Entity.dll" />
+		<include name="src/SixPack.Data.Entity/bin/Release/SixPack.Data.Entity.XML" />
+		<include name="src/SixPack.Data.Entity/bin/Release/SixPack.Data.Entity.pdb" />
+
+		<include name="src/SixPack.Net.Mail/bin/Release/SixPack.Net.Mail.dll" />
+		<include name="src/SixPack.Net.Mail/bin/Release/SixPack.Net.Mail.XML" />
+		<include name="src/SixPack.Net.Mail/bin/Release/SixPack.Net.Mail.pdb" />
+		<include name="src/SixPack.Net.Mail/bin/Release/Interop.ADODB.dll" />
+		<include name="src/SixPack.Net.Mail/bin/Release/Interop.CDO.dll" />
+
+		<include name="src/SixPack.Reflection/bin/Release/SixPack.Reflection.dll" />
+		<include name="src/SixPack.Reflection/bin/Release/SixPack.Reflection.XML" />
+		<include name="src/SixPack.Reflection/bin/Release/SixPack.Reflection.pdb" />
+
+		<include name="src/SixPack.Web.Services/bin/Release/SixPack.Web.Services.dll" />
+		<include name="src/SixPack.Web.Services/bin/Release/SixPack.Web.Services.XML" />
+		<include name="src/SixPack.Web.Services/bin/Release/SixPack.Web.Services.pdb" />
+	</fileset>
+
 	<loadtasks assembly="support/nantcontrib/NAnt.Contrib.Tasks.dll" />
 
 	<target name="doc">
@@ -29,33 +57,7 @@
 		<delete dir="tmp" failonerror="false" />
 		<mkdir dir="tmp" />
 		<copy todir="tmp" flatten="true">
-			<fileset>
-				<include name="src/SixPack/bin/Release/SixPack.dll" />
-				<include name="src/SixPack/bin/Release/SixPack.XML" />
-				<include name="src/SixPack/bin/Release/SixPack.pdb" />
-
-				<include name="src/SixPack.Caching/bin/Release/SixPack.Caching.dll" />
-				<include name="src/SixPack.Caching/bin/Release/SixPack.Caching.XML" />
-				<include name="src/SixPack.Caching/bin/Release/SixPack.Caching.pdb" />
-
-				<include name="src/SixPack.Data.Entity/bin/Release/SixPack.Data.Entity.dll" />
-				<include name="src/SixPack.Data.Entity/bin/Release/SixPack.Data.Entity.XML" />
-				<include name="src/SixPack.Data.Entity/bin/Release/SixPack.Data.Entity.pdb" />
-
-				<include name="src/SixPack.Net.Mail/bin/Release/SixPack.Net.Mail.dll" />
-				<include name="src/SixPack.Net.Mail/bin/Release/SixPack.Net.Mail.XML" />
-				<include name="src/SixPack.Net.Mail/bin/Release/SixPack.Net.Mail.pdb" />
-				<include name="src/SixPack.Net.Mail/bin/Release/Interop.ADODB.dll" />
-				<include name="src/SixPack.Net.Mail/bin/Release/Interop.CDO.dll" />
-
-				<include name="src/SixPack.Reflection/bin/Release/SixPack.Reflection.dll" />
-				<include name="src/SixPack.Reflection/bin/Release/SixPack.Reflection.XML" />
-				<include name="src/SixPack.Reflection/bin/Release/SixPack.Reflection.pdb" />
-
-				<include name="src/SixPack.Web.Services/bin/Release/SixPack.Web.Services.dll" />
-				<include name="src/SixPack.Web.Services/bin/Release/SixPack.Web.Services.XML" />
-				<include name="src/SixPack.Web.Services/bin/Release/SixPack.Web.Services.pdb" />
-			</fileset>
+			<fileset refid="binaries" />
 		</copy>
 
 		<zip zipfile="release/${version}/SixPack-bin-${version}.zip">
@@ -92,6 +94,44 @@
 				<include name="**/*" />
 			</fileset>
 		</zip>
+	</target>
+
+	<target name="build-nuget-package">
+		<echo message="${path::get-file-name(nuspec-file)}" />
+		
+		<delete dir="tmp" failonerror="false" />
+		<mkdir dir="tmp" />
+
+		<copy file="${nuspec-file}" todir="tmp" />
+		<xmlpoke file="tmp/${path::get-file-name(nuspec-file)}" xpath="/package/metadata/version" value="${version}" />
+		<xmlpoke file="tmp/${path::get-file-name(nuspec-file)}" xpath="/package/metadata/dependencies/dependency/@version" value="${version}" />
+
+		<exec program="support/nuget/NuGet.exe" workingdir="tmp">
+			<arg value="pack" />
+			<arg value="${path::get-file-name(nuspec-file)}" />
+		</exec>
+
+		<copy todir="release/${version}">
+			<fileset basedir="tmp">
+				<include name="*.nupkg" />
+			</fileset>
+		</copy>
+
+		<delete dir="tmp" />
+	</target>
+
+	<!--<target name="package-nuget" depends="build">-->
+	<target name="package-nuget">
+		<foreach item="File" property="nuspec-file">
+			<in>
+				<items>
+					<include name="*.nuspec" />
+				</items>
+			</in>
+			<do>
+				<call target="build-nuget-package" />
+			</do>
+		</foreach>
 	</target>
 	
 	<target name="package" depends="package-bin, package-src, package-doc">
