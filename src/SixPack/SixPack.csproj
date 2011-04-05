@@ -71,9 +71,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-		<Reference Include="System" />
-		<Reference Include="System.Core" />
-		<Reference Include="System.Configuration" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -114,6 +114,11 @@
     <Compile Include="CodeGen\SimpleVariable.cs" />
     <Compile Include="Collections\Algorithms\BinarySearchExtensions.cs" />
     <Compile Include="Collections\Generic\CompositeKey.cs" />
+    <Compile Include="Collections\Generic\Extensions\AggregateExtensions.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AggregateExtensions.tt</DependentUpon>
+    </Compile>
     <Compile Include="Collections\Generic\Extensions\DictionaryExtensions.cs" />
     <Compile Include="Collections\Generic\Extensions\DictionaryLookupResult.cs" />
     <Compile Include="Collections\Generic\Extensions\EnumerableExtensions.cs" />
@@ -207,6 +212,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Collections\Generic\Extensions\AggregateExtensions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AggregateExtensions.cs</LastGenOutput>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
@@ -241,6 +250,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

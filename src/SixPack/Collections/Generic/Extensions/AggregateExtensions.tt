@@ -1,0 +1,92 @@
+﻿<#@ template language="C#" debug="True" hostspecific="True"
+#><#@ assembly name="System.Core.dll"
+#><#@ import namespace="System.Collections.Generic"
+#><#@ import namespace="System.Linq"
+#>
+<#
+	string[] generatedTypes = new[] { "decimal", "decimal?", "double", "double?", "long", "long?", "int", "int?", "float", "float?" };
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace SixPack.Collections.Generic.Extensions
+{
+	/// <summary/>
+	public static class AggregateExtensions
+	{
+
+<# foreach(var type in generatedTypes) { #>
+		/// <summary>
+		/// Returns the maximum value in a sequence of <#= type #> values.
+		/// </summary>
+		/// <param name="source">A sequence of <#= type #> values to determine the maximum value of.</param>
+		/// <param name="defaultValue">The default value that is returned if the sequence is empty.</param>
+		/// <returns>The maximum value in the sequence.</returns>
+		public static <#= type #> Max(this IEnumerable<<#= type #>> source, <#= type #> defaultValue)
+		{
+			return source.DefaultIfEmpty(defaultValue).Max();
+		}
+
+		/// <summary>
+		/// Returns the minumim value in a sequence of <#= type #> values.
+		/// </summary>
+		/// <param name="source">A sequence of <#= type #> values to determine the minimum value of.</param>
+		/// <param name="defaultValue">The default value that is returned if the sequence is empty.</param>
+		/// <returns>The minimum value in the sequence.</returns>
+		public static <#= type #> Min(this IEnumerable<<#= type #>> source, <#= type #> defaultValue)
+		{
+			return source.DefaultIfEmpty(defaultValue).Min();
+		}
+
+		/// <summary>
+		/// Invokes a transform function on each element of a sequence and returns the maximum <#= type #> value.
+		/// </summary>
+		/// <param name="source">A sequence of <#= type #> values to determine the maximum value of.</param>
+		/// <param name="selector">A transform function to apply to each element.</param>
+		/// <param name="defaultValue">The default value that is returned if the sequence is empty.</param>
+		/// <returns>The maximum value in the sequence.</returns>
+		public static <#= type #> Max<TSource>(this IEnumerable<TSource> source, Func<TSource, <#= type #>> selector, <#= type #> defaultValue)
+		{
+			return source.Select(selector).DefaultIfEmpty(defaultValue).Max();
+		}
+
+		/// <summary>
+		/// Invokes a transform function on each element of a sequence and returns the minimum <#= type #> value.
+		/// </summary>
+		/// <param name="source">A sequence of <#= type #> values to determine the minimum value of.</param>
+		/// <param name="selector">A transform function to apply to each element.</param>
+		/// <param name="defaultValue">The default value that is returned if the sequence is empty.</param>
+		/// <returns>The minimum value in the sequence.</returns>
+		public static <#= type #> Min<TSource>(this IEnumerable<TSource> source, Func<TSource, <#= type #>> selector, <#= type #> defaultValue)
+		{
+			return source.Select(selector).DefaultIfEmpty(defaultValue).Min();
+		}
+
+<# } #>
+		/// <summary>
+		/// Returns the maximum value in a generic sequence.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <param name="source">A sequence of values to determine the maximum value of.</param>
+		/// <param name="defaultValue">The default value that is returned if the sequence is empty.</param>
+		/// <returns>The maximum value in the sequence.</returns>
+		public static TSource Max<TSource>(this IEnumerable<TSource> source, TSource defaultValue)
+		{
+			return source.DefaultIfEmpty(defaultValue).Max();
+		}
+
+		/// <summary>
+		/// Returns the minimum value in a generic sequence.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <param name="source">A sequence of values to determine the minimum value of.</param>
+		/// <param name="defaultValue">The default value that is returned if the sequence is empty.</param>
+		/// <returns>The minimum value in the sequence.</returns>
+		public static TSource Min<TSource>(this IEnumerable<TSource> source, TSource defaultValue)
+		{
+			return source.DefaultIfEmpty(defaultValue).Min();
+		}
+
+	}
+}
