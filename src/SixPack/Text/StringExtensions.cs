@@ -260,6 +260,24 @@ namespace SixPack.Text
 		}
 		#endregion
 
+		#region FormatArgs
+		/// <summary>
+		/// Invokes String.Format with the specified parameters.
+		/// </summary>
+		public static string FormatArgs(this string format, params object[] arguments)
+		{
+			return string.Format(format, arguments);
+		}
+
+		/// <summary>
+		/// Invokes String.Format with the specified parameters.
+		/// </summary>
+		public static string FormatArgs(this string format, IFormatProvider provider, params object[] arguments)
+		{
+			return string.Format(provider, format, arguments);
+		}
+		#endregion
+
 		#region DelimitWith
 		/// <summary>
 		/// Joins the specified items into a string separated by the specified separator.
