@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web.UI;
 
 namespace SixPack.Text
 {
@@ -64,7 +65,7 @@ namespace SixPack.Text
 			return format.FormatWith(provider, new LambdaValueProvider(getArgument));
 		}
 
-		private class LambdaValueProvider : IValueProvider
+		private sealed class LambdaValueProvider : IValueProvider
 		{
 			private readonly Func<string, object> _getArgument;
 
@@ -117,18 +118,16 @@ namespace SixPack.Text
 			if (arguments == null)
 				throw new ArgumentNullException("arguments");
 
-			return format.FormatWith(provider, new ReflectionValueProvider(arguments));
+			return format.FormatWith(provider, new DataBinderValueProvider(arguments));
 		}
 
-		private class ReflectionValueProvider : IValueProvider
+		private sealed class DataBinderValueProvider : IValueProvider
 		{
 			private readonly object _value;
-			private readonly Type _type;
 
-			public ReflectionValueProvider(object value)
+			public DataBinderValueProvider(object value)
 			{
 				_value = value;
-				_type = value.GetType();
 			}
 
 			#region IValueProvider Members
@@ -137,8 +136,7 @@ namespace SixPack.Text
 			{
 				get
 				{
-					var property = _type.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-					return property.GetValue(_value, null);
+					return DataBinder.Eval(_value, name);
 				}
 			}
 
@@ -178,7 +176,7 @@ namespace SixPack.Text
 			return format.FormatWith(provider, new DictionaryValueProvider<T>(arguments));
 		}
 
-		private class DictionaryValueProvider<T> : IValueProvider
+		private sealed class DictionaryValueProvider<T> : IValueProvider
 		{
 			private readonly IDictionary<string, T> _value;
 

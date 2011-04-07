@@ -28,7 +28,6 @@ using System.Web.Configuration;
 using ADODB;
 using CDO;
 using SixPack.Diagnostics;
-using Configuration = CDO.Configuration;
 using Stream = System.IO.Stream;
 
 namespace SixPack.Net.Mail
@@ -446,7 +445,7 @@ namespace SixPack.Net.Mail
 		public void Send()
 		{
 			// Configure the mail server
-			Configuration iConfg = msg.Configuration;
+			CDO.Configuration iConfg = msg.Configuration;
 			Fields oFields = iConfg.Fields;
 			Field oField = oFields[CDOSENDUSINGMETHOD];
 			oField.Value = CDOSENDUSING;

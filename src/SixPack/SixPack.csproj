@@ -132,6 +132,7 @@
     <Compile Include="Collections\Generic\SingletonFactory.cs" />
     <Compile Include="ComponentModel\GenericTypeConverter.cs" />
     <Compile Include="ComponentModel\TypeConverter.cs" />
+    <Compile Include="Configuration\SimpleConfigurationSection.cs" />
     <Compile Include="Data\CommandWrapper.cs" />
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Data\IDataLoader.cs" />
