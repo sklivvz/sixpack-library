@@ -31,12 +31,12 @@ namespace SixPack.Reflection
 	public static class ExpressionExtensions
 	{
 		#region Visitors
-		private class ReplaceParameterVisitor : ExpressionVisitor
+		private sealed class ReplaceParameterVisitor : ExpressionVisitor
 		{
 			private readonly ParameterExpression _original;
-			private readonly ParameterExpression _replacement;
+			private readonly Expression _replacement;
 
-			public ReplaceParameterVisitor(ParameterExpression original, ParameterExpression replacement)
+			public ReplaceParameterVisitor(ParameterExpression original, Expression replacement)
 			{
 				_original = original;
 				_replacement = replacement;
@@ -115,7 +115,7 @@ namespace SixPack.Reflection
 		public static Expression ReplaceParameter(
 			this Expression expression,
 			ParameterExpression original,
-			ParameterExpression replacement
+			Expression replacement
 		)
 		{
 			var visitor = new ReplaceParameterVisitor(original, replacement);

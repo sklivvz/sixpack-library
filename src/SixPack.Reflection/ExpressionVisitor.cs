@@ -192,7 +192,7 @@ namespace SixPack.Reflection
 		/// </summary>
 		protected virtual Expression VisitConstant(ConstantExpression expression)
 		{
-			return Expression.Constant(expression.Value);
+			return Expression.Constant(expression.Value, expression.Type);
 		}
 
 		/// <summary>
