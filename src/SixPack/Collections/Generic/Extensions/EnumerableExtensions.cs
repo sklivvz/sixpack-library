@@ -121,5 +121,45 @@ namespace SixPack.Collections.Generic.Extensions
 				}
 			}
 		}
+
+		/// <summary>
+		/// Applies an accumulator function over a sequence.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to aggregate over.</param>
+		/// <param name="func">An accumulator function to be invoked on each element.</param>
+		/// <param name="valueIfEmpty">The value to return if source is empty.</param>
+		/// <returns>The final accumulator value.</returns>
+		/// <exception cref="ArgumentNullException">source or func is null.</exception>
+		public static TSource Aggregate<TSource>(this IEnumerable<TSource> source, Func<TSource, TSource, TSource> func, TSource valueIfEmpty)
+		{
+			if (source == null)
+			{
+				throw new ArgumentNullException("source");
+			}
+
+			if (func == null)
+			{
+				throw new ArgumentNullException("func");
+			}
+
+			using (var enumerator = source.GetEnumerator())
+			{
+				if (enumerator.MoveNext())
+				{
+					var accumulator = enumerator.Current;
+					while (enumerator.MoveNext())
+					{
+						accumulator = func(accumulator, enumerator.Current);
+					}
+					return accumulator;
+				}
+				else
+				{
+					return valueIfEmpty;
+				}
+			}
+		}
+
 	}
 }

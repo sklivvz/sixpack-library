@@ -194,6 +194,26 @@ namespace SixPack.Reflection
 			return (Expression<Func<TInput, TOutput>>)visitor.Visit(query);
 		}
 
+		/// <summary>
+		/// Inserts the specified expression in place of the parameter of the target expression, creating a new expression.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the new parameter.</typeparam>
+		/// <typeparam name="TParameter">The type of the original parameter.</typeparam>
+		/// <typeparam name="TResult">The type of the result.</typeparam>
+		/// <param name="targetExpression">The expression.</param>
+		/// <param name="parameterValueExpression">The parameter value.</param>
+		/// <returns></returns>
+		public static Expression<Func<TSource, TResult>> UseAsParameterOf<TSource, TParameter, TResult>(
+			this Expression<Func<TSource, TParameter>> parameterValueExpression,
+			Expression<Func<TParameter, TResult>> targetExpression
+		)
+		{
+			return (Expression<Func<TSource, TResult>>)Expression.Lambda(
+				targetExpression.Body.ReplaceParameter(targetExpression.Parameters[0], parameterValueExpression.Body),
+				parameterValueExpression.Parameters[0]
+			);
+		}
+
 		#region AsField
 		/// <summary>
 		/// Returns the field that is being referenced by the specified expression.
