@@ -1,0 +1,51 @@
+﻿<#@ template language="C#" debug="True" hostspecific="True"
+#><#@ assembly name="System.Core.dll"
+#><#@ import namespace="System.Collections.Generic"
+#><#@ import namespace="System.Linq"
+#>
+using System;
+using System.Linq.Expressions;
+using System.Reflection;
+
+namespace SixPack.Reflection
+{
+	/// <summary>
+	/// Gives access to <see cref="MethodInfo"/> from expressions. This is useful
+	/// because it allows static checking of the existence of the method.
+	/// </summary>
+	public static class MethodReference
+	{
+
+		private static MethodInfo GetMethodFromExpression(LambdaExpression method)
+		{
+			var methodCall = method.Body as MethodCallExpression;
+			if(methodCall == null)
+			{
+				throw new ArgumentException("The expression must be a method call.", "method");
+			}
+			return methodCall.Method;
+		}
+
+<# for(int i = 1; i <= 4; ++i) {
+	var argList = string.Join(", ", Enumerable.Range(1, i).Select(x => string.Format("T{0}", x)).ToArray());
+
+#>
+		/// <summary>
+		/// Gets the method referenced by the specified expression.
+		/// </summary>
+		public static MethodInfo Get<<#= argList #>>(Expression<Action<<#= argList #>>> method)
+		{
+			return GetMethodFromExpression(method);
+		}
+
+		/// <summary>
+		/// Gets the method referenced by the specified expression.
+		/// </summary>
+		public static MethodInfo Get<<#= argList #>, TResult>(Expression<Func<<#= argList #>, TResult>> method)
+		{
+			return GetMethodFromExpression(method);
+		}
+
+<# } #>
+	}
+}
