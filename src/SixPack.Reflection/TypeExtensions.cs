@@ -19,6 +19,9 @@
 //
 
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace SixPack.Reflection
 {
@@ -46,37 +49,64 @@ namespace SixPack.Reflection
 				throw new ArgumentException("The type must be a generic type definition.", "genericType");
 			}
 
-			return GetImplementationRecursive(target, genericType);
+			var implementations = new List<Type>(1);
+			GetImplementationRecursive(target, genericType, implementations, false);
+			Debug.Assert(implementations.Count <= 1);
+			return implementations.FirstOrDefault();
 		}
 
-		private static Type GetImplementationRecursive(Type target, Type genericType)
+		/// <summary>
+		/// Gets all the implementations of a generic type definition.
+		/// </summary>
+		/// <param name="target">The type whose implementation is to be retrieved.</param>
+		/// <param name="genericType">Type of the generic type that is being queried.</param>
+		/// <returns></returns>
+		/// <example>
+		/// var listType = typeof(List&lt;int%gt;);
+		/// var iListType = listType.GetImplementations(typeof(IList&lt;%gt;));
+		/// iListType.Contains(typeof(IList&lt;int%gt;));	// Expression is true
+		/// </example>
+		public static ICollection<Type> GetImplementations(this Type target, Type genericType)
+		{
+			if (!genericType.IsGenericTypeDefinition)
+			{
+				throw new ArgumentException("The type must be a generic type definition.", "genericType");
+			}
+
+			var implementations = new HashSet<Type>();
+			GetImplementationRecursive(target, genericType, implementations, true);
+			return implementations;
+		}
+
+		private static bool GetImplementationRecursive(Type target, Type genericType, ICollection<Type> results, bool findAll)
 		{
 			if (target == null || target == typeof(object))
 			{
-				return null;
+				return true;
 			}
 
 			if (target.IsGenericType && target.GetGenericTypeDefinition() == genericType)
 			{
-				return target;
+				results.Add(target);
+				return findAll;
 			}
 
 			if (genericType.IsClass)
 			{
-				return GetImplementationRecursive(target.BaseType, genericType);
+				return GetImplementationRecursive(target.BaseType, genericType, results, findAll);
 			}
 			else
 			{
 				foreach (var itf in target.GetInterfaces())
 				{
-					var implementation = GetImplementationRecursive(itf, genericType);
-					if (implementation != null)
+					var continueSearch = GetImplementationRecursive(itf, genericType, results, findAll);
+					if (!continueSearch)
 					{
-						return implementation;
+						return false;
 					}
 				}
 
-				return null;
+				return true;
 			}
 		}
 		#endregion
