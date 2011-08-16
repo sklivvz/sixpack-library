@@ -131,7 +131,7 @@ namespace SixPack.ComponentModel
 		public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
 		{
 			Func<CultureInfo, T, object> converter;
-			return _convertTo.TryGetValue(value.GetType(), out converter) ? converter(culture, (T)value) : base.ConvertTo(context, culture, value, destinationType);
+			return _convertTo.TryGetValue(destinationType, out converter) ? converter(culture, (T)value) : base.ConvertTo(context, culture, value, destinationType);
 		}
 	}
 }

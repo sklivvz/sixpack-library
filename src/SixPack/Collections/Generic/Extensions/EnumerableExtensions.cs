@@ -161,5 +161,33 @@ namespace SixPack.Collections.Generic.Extensions
 			}
 		}
 
+		/// <summary>
+		/// Generates all the combinations of <paramref name="n"/> elements of the specified sequence.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="sequence">The sequence.</param>
+		/// <param name="n">The number of items to be picked on each combination.</param>
+		/// <returns>
+		/// Returns a sequence of sequences of <paramref name="n"/> elements picked from <paramref name="sequence"/>, without repetitions.
+		/// </returns>
+		public static IEnumerable<IEnumerable<T>> Combinations<T>(IEnumerable<T> sequence, int n)
+		{
+			if (n == 0)
+			{
+				yield return Enumerable.Empty<T>();
+			}
+			else
+			{
+				var index = 0;
+				foreach (var item in sequence)
+				{
+					++index;
+					foreach (var combination in Combinations(sequence.Skip(index), n - 1))
+					{
+						yield return Enumerable.Repeat(item, 1).Concat(combination);
+					}
+				}
+			}
+		}
 	}
 }

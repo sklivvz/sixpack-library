@@ -4,7 +4,7 @@
 	<!-- This build file requires .NET 4.0 and nant 0.91 alpha 2 or higher -->
 	<property name="nant.settings.currentframework" value="net-4.0"/>
 
-	<property name="version" value="1.2.2" />
+	<property name="version" value="1.2.6" />
 	<property name="keyfile" value="src/SixPack.pfx" />
 
 	<fileset id="binaries">
@@ -43,7 +43,7 @@
 		</msbuild>
 	</target>
 	
-	<target name="build">
+	<target name="build" description="Builds the entire solution.">
 		
 		<msbuild project="src/SixPack.sln" target="Rebuild">
 			<property name="Configuration" value="Release" />
@@ -53,7 +53,7 @@
 
 	</target>
 
-	<target name="package-bin" depends="build">
+	<target name="package-bin" depends="build" description="Builds the project and creates a zip package with the binaries.">
 		<delete dir="tmp" failonerror="false" />
 		<mkdir dir="tmp" />
 		<copy todir="tmp" flatten="true">
@@ -69,7 +69,7 @@
 		<delete dir="tmp" />
 	</target>
 
-	<target name="package-src">
+	<target name="package-src" description="Creates a zip package with the source.">
 		<zip zipfile="release/${version}/SixPack-src-${version}.zip">
 			<fileset basedir="src">
 				<exclude name="**/*.pfx" />
@@ -85,7 +85,7 @@
 		</zip>
 	</target>
 
-	<target name="package-doc" depends="doc">
+	<target name="package-doc" depends="doc" description="Builds the documentation and creates a zip package with it.">
 		<copy file="HelpTmp/SixPack.chm" tofile="release/${version}/SixPack-${string::replace(version, '.', '-')}.chm" overwrite="true" />
 
 		<zip zipfile="release/${version}/SixPack-doc-html-${version}.zip">
@@ -120,7 +120,25 @@
 		<delete dir="tmp" />
 	</target>
 
-	<target name="package-nuget" depends="build">
+  <target name="publish-nuget" depends="package-nuget">
+    <foreach item="File" property="nuspec-file">
+			<in>
+				<items>
+					<include name="release/${version}/*.nupkg" />
+				</items>
+			</in>
+			<do>
+				<exec program="support/nuget/NuGet.exe" workingdir="release/${version}">
+          <arg value="push" />
+          <arg value="-source" />
+          <arg value="http://packages.nuget.org/v1/" />
+          <arg value="${path::get-file-name(nuspec-file)}" />
+        </exec>
+			</do>
+		</foreach>
+  </target>
+
+	<target name="package-nuget" depends="build" description="Builds the project and creates NuGet packages with the binaries.">
 		<foreach item="File" property="nuspec-file">
 			<in>
 				<items>
@@ -133,7 +151,7 @@
 		</foreach>
 	</target>
 	
-	<target name="package" depends="package-bin, package-src, package-doc">
+	<target name="package" depends="package-bin, package-src, package-doc, package-nuget" description="Creates source, binary, NuGet and documentation packages.">
 	</target>
 	
 </project>
