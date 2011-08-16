@@ -120,7 +120,7 @@
 		<delete dir="tmp" />
 	</target>
 
-  <target name="publish-nuget" depends="package-nuget">
+  <target name="publish-nuget" depends="package-nuget" description="Builds NuGet packages and publishes them to the NuGet repository.">
     <foreach item="File" property="nuspec-file">
 			<in>
 				<items>
