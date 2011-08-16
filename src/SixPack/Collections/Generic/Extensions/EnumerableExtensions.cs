@@ -170,7 +170,7 @@ namespace SixPack.Collections.Generic.Extensions
 		/// <returns>
 		/// Returns a sequence of sequences of <paramref name="n"/> elements picked from <paramref name="sequence"/>, without repetitions.
 		/// </returns>
-		public static IEnumerable<IEnumerable<T>> Combinations<T>(IEnumerable<T> sequence, int n)
+		public static IEnumerable<IEnumerable<T>> Combinations<T>(this IEnumerable<T> sequence, int n)
 		{
 			if (n == 0)
 			{
@@ -188,6 +188,36 @@ namespace SixPack.Collections.Generic.Extensions
 					}
 				}
 			}
+		}
+
+		/// <summary>
+		/// Appends elements to a sequence.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements in the sequence.</typeparam>
+		/// <param name="source">The sequence to which the items are to be appended.</param>
+		/// <param name="itemsToAppend">The items to append.</param>
+		/// <returns>
+		/// Returns a new sequence that will yield the elements in <paramref name="source"/>
+		/// followed by the elements in <paramref name="itemsToAppend"/>.
+		/// </returns>
+		public static IEnumerable<T> Append<T>(this IEnumerable<T> source, params T[] itemsToAppend)
+		{
+			return source.Concat(itemsToAppend);
+		}
+
+		/// <summary>
+		/// Prepends elements to a sequence.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements in the sequence.</typeparam>
+		/// <param name="source">The sequence to which the items are to be prepended.</param>
+		/// <param name="itemsToPrepend">The items to prepend.</param>
+		/// <returns>
+		/// Returns a new sequence that will yield the elements in <paramref name="itemsToPrepend"/>
+		/// followed by the elements in <paramref name="source"/>.
+		/// </returns>
+		public static IEnumerable<T> Prepend<T>(this IEnumerable<T> source, params T[] itemsToPrepend)
+		{
+			return itemsToPrepend.Concat(source);
 		}
 	}
 }
