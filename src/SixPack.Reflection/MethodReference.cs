@@ -85,5 +85,21 @@ namespace SixPack.Reflection
 			return GetMethodFromExpression(method);
 		}
 
+		/// <summary>
+		/// Gets the method referenced by the specified expression.
+		/// </summary>
+		public static MethodInfo Get(Expression<Action> method)
+		{
+			return GetMethodFromExpression(method);
+		}
+
+		/// <summary>
+		/// Gets the method referenced by the specified expression.
+		/// </summary>
+		public static MethodInfo Get<TResult>(Expression<Func<TResult>> method)
+		{
+			return GetMethodFromExpression(method);
+		}
+
 	}
 }
