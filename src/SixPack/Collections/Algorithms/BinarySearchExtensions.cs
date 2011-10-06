@@ -70,7 +70,7 @@ namespace SixPack.Collections.Algorithms
 				}
 			}
 
-			return ~middle;
+			return ~lower;
 		}
 
 		/// <summary>
