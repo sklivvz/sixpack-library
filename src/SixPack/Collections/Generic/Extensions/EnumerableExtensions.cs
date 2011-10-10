@@ -97,6 +97,18 @@ namespace SixPack.Collections.Generic.Extensions
 		}
 		#endregion
 
+		public static IEnumerable<T> TreeWalk<T>(this IEnumerable<T> root, Func<T, IEnumerable<T>> getChildren)
+		{
+			foreach (var node in root)
+			{
+				yield return node;
+				foreach (var child in getChildren(node).TreeWalk(getChildren))
+				{
+					yield return child;
+				}
+			}
+		}
+
 		/// <summary>
 		/// Indexes the specified source.
 		/// </summary>
