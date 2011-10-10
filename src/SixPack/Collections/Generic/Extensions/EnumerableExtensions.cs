@@ -97,6 +97,13 @@ namespace SixPack.Collections.Generic.Extensions
 		}
 		#endregion
 
+		/// <summary>
+		/// Enumerates every node of a tree structure using pre-order walk traversing method.
+		/// </summary>
+		/// <typeparam name="T">The type of the nodes.</typeparam>
+		/// <param name="root">A sequence containing the root nodes.</param>
+		/// <param name="getChildren">A function that returns the children of a node.</param>
+		/// <returns></returns>
 		public static IEnumerable<T> TreeWalk<T>(this IEnumerable<T> root, Func<T, IEnumerable<T>> getChildren)
 		{
 			foreach (var node in root)
