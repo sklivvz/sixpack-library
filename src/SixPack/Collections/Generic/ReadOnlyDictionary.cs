@@ -18,6 +18,11 @@ namespace SixPack.Collections.Generic
 		/// <param name="wrapped">The wrapped dictionary.</param>
 		public ReadOnlyDictionary(IDictionary<TKey, TValue> wrapped)
 		{
+			if (wrapped == null)
+			{
+				throw new ArgumentNullException("wrapped");
+			}
+
 			_wrapped = wrapped;
 		}
 
