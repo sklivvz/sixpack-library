@@ -73,6 +73,31 @@ namespace SixPack.Collections.Generic.Extensions
 			Action<TNode, TNode> addChildNode
 		)
 		{
+			if (source == null)
+			{
+				throw new ArgumentNullException("source");
+			}
+
+			if (getKey == null)
+			{
+				throw new ArgumentNullException("getKey");
+			}
+
+			if (getParentKey == null)
+			{
+				throw new ArgumentNullException("getParentKey");
+			}
+
+			if (createNode == null)
+			{
+				throw new ArgumentNullException("createNode");
+			}
+
+			if (addChildNode == null)
+			{
+				throw new ArgumentNullException("addChildNode");
+			}
+
 			var treeNodes = source.ToDictionary(getKey, i => new { Key = getParentKey(i), Node = createNode(i) });
 			var result = new List<TNode>();
 			foreach (var node in treeNodes.Values)
@@ -95,8 +120,12 @@ namespace SixPack.Collections.Generic.Extensions
 			}
 			return result;
 		}
+
+		/// <summary />
+		public delegate void AddChildNodeDelegate<TNode>(TNode parent, TNode child);
 		#endregion
 
+		#region	TreeWalk
 		/// <summary>
 		/// Enumerates every node of a tree structure using pre-order walk traversing method.
 		/// </summary>
@@ -106,15 +135,83 @@ namespace SixPack.Collections.Generic.Extensions
 		/// <returns></returns>
 		public static IEnumerable<T> TreeWalk<T>(this IEnumerable<T> root, Func<T, IEnumerable<T>> getChildren)
 		{
+			if (root == null)
+			{
+				throw new ArgumentNullException("root");
+			}
+
+			if (getChildren == null)
+			{
+				throw new ArgumentNullException("getChildren");
+			}
+
+			return TreeWalkImpl(root, getChildren);
+		}
+
+		private static IEnumerable<T> TreeWalkImpl<T>(IEnumerable<T> root, Func<T, IEnumerable<T>> getChildren)
+		{
 			foreach (var node in root)
 			{
 				yield return node;
-				foreach (var child in getChildren(node).TreeWalk(getChildren))
+				var children = getChildren(node);
+				if (children != null)
 				{
-					yield return child;
+					foreach (var child in TreeWalkImpl(children, getChildren))
+					{
+						yield return child;
+					}
 				}
 			}
 		}
+
+		/// <summary>
+		/// Enumerates every node of a tree structure using pre-order walk traversing method.
+		/// </summary>
+		/// <typeparam name="T">The type of the nodes.</typeparam>
+		/// <typeparam name="TNode">The type of the resulting nodes.</typeparam>
+		/// <param name="root">A sequence containing the root nodes.</param>
+		/// <param name="getChildren">A function that returns the children of a node.</param>
+		/// <param name="createNode">A function that takes the .</param>
+		/// <returns></returns>
+		public static IEnumerable<TNode> TreeWalk<T, TNode>(this IEnumerable<T> root, Func<T, IEnumerable<T>> getChildren, CreateNodeDelegate<T, TNode> createNode)
+		{
+			if (root == null)
+			{
+				throw new ArgumentNullException("root");
+			}
+
+			if (getChildren == null)
+			{
+				throw new ArgumentNullException("getChildren");
+			}
+
+			if (createNode == null)
+			{
+				throw new ArgumentNullException("createNode");
+			}
+
+			return TreeWalkImpl(root, getChildren, createNode, default(T));
+		}
+
+		private static IEnumerable<TNode> TreeWalkImpl<T, TNode>(IEnumerable<T> root, Func<T, IEnumerable<T>> getChildren, CreateNodeDelegate<T, TNode> createNode, T parent)
+		{
+			foreach (var node in root)
+			{
+				yield return createNode(parent, node);
+				var children = getChildren(node);
+				if (children != null)
+				{
+					foreach (var child in TreeWalkImpl(children, getChildren, createNode, node))
+					{
+						yield return child;
+					}
+				}
+			}
+		}
+
+		/// <summary />
+		public delegate TNode CreateNodeDelegate<T, TNode>(T parent, T child);
+		#endregion
 
 		/// <summary>
 		/// Indexes the specified source.
@@ -123,6 +220,16 @@ namespace SixPack.Collections.Generic.Extensions
 		/// <param name="source">The source.</param>
 		/// <returns></returns>
 		public static IEnumerable<IndexedItem<T>> Index<T>(this IEnumerable<T> source)
+		{
+			if (source == null)
+			{
+				throw new ArgumentNullException("source");
+			}
+
+			return IndexImpl(source);
+		}
+
+		private static IEnumerable<IndexedItem<T>> IndexImpl<T>(IEnumerable<T> source)
 		{
 			using (var enumerator = source.GetEnumerator())
 			{
@@ -238,5 +345,97 @@ namespace SixPack.Collections.Generic.Extensions
 		{
 			return itemsToPrepend.Concat(source);
 		}
+
+		#region Distinct
+		/// <summary>
+		/// Returns distinct elements from a sequence by extracting a key from each element and using the default equality comparer to compare values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the keys of the elements of source.</typeparam>
+		/// <param name="source">The sequence to remove duplicate elements from.</param>
+		/// <param name="keyExtractor">A function that returns the key of a given item.</param>
+		/// <returns></returns>
+		public static IEnumerable<T> Distinct<T, TKey>(this IEnumerable<T> source, Func<T, TKey> keyExtractor)
+		{
+			return source.Distinct(keyExtractor, EqualityComparer<TKey>.Default);
+		}
+
+		/// <summary>
+		/// Returns distinct elements from a sequence by extracting a key from each element and using the specified equality comparer to compare values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the keys of the elements of source.</typeparam>
+		/// <param name="source">The sequence to remove duplicate elements from.</param>
+		/// <param name="keyExtractor">A function that returns the key of a given item.</param>
+		/// <param name="comparer">An System.Collections.Generic.IEqualityComparer{TKey} to compare keys.</param>
+		/// <returns></returns>
+		public static IEnumerable<T> Distinct<T, TKey>(this IEnumerable<T> source, Func<T, TKey> keyExtractor, IEqualityComparer<TKey> comparer)
+		{
+			if (source == null)
+			{
+				throw new ArgumentNullException("source");
+			}
+
+			if (keyExtractor == null)
+			{
+				throw new ArgumentNullException("keyExtractor");
+			}
+
+			if (comparer == null)
+			{
+				throw new ArgumentNullException("comparer");
+			}
+
+			return DistinctImpl(source, keyExtractor, comparer);
+		}
+
+		private static IEnumerable<T> DistinctImpl<T, TKey>(IEnumerable<T> source, Func<T, TKey> keyExtractor, IEqualityComparer<TKey> comparer)
+		{
+			var visited = new HashSet<TKey>(comparer);
+			foreach (var item in source)
+			{
+				if (visited.Add(keyExtractor(item)))
+				{
+					yield return item;
+				}
+			}
+		}
+		#endregion
+
+		#region AddRange
+		/// <summary>
+		/// Adds all the elements from <paramref name="range"/> to <paramref name="collection"/>.
+		/// </summary>
+		/// <typeparam name="TCollection">The type of the collection.</typeparam>
+		/// <typeparam name="TElement">The type of the element.</typeparam>
+		/// <param name="collection">The collection where the elements are to be added.</param>
+		/// <param name="range">The elements to be added to the collection.</param>
+		/// <returns></returns>
+		public static TCollection AddRange<TCollection, TElement>(this TCollection collection, IEnumerable<TElement> range)
+			where TCollection : ICollection<TElement>
+		{
+			foreach (var item in range)
+			{
+				collection.Add(item);
+			}
+			return collection;
+		}
+		#endregion
+
+		#region ForAll
+		/// <summary>
+		/// Executes the specified action for each element.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="sequence">The sequence.</param>
+		/// <param name="elementProcessor">The element processor.</param>
+		public static void ForAll<T>(this IEnumerable<T> sequence, Action<T> elementProcessor)
+		{
+			foreach (var item in sequence)
+			{
+				elementProcessor(item);
+			}
+		}
+		#endregion
 	}
 }

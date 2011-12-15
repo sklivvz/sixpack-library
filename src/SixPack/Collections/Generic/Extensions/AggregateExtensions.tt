@@ -63,6 +63,73 @@ namespace SixPack.Collections.Generic.Extensions
 			return source.Select(selector).DefaultIfEmpty(defaultValue).Min();
 		}
 
+		/// <summary>
+		/// Returns the value in a sequence whose key is the greatest.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of the sequence.</typeparam>
+		/// <param name="source">A sequence of <#= type #> values to determine the maximum value of.</param>
+		/// <param name="keyExtractor">A function that extracts the key of a value.</param>
+		/// <param name="defaultValue">The default value that is returned if the sequence is empty.</param>
+		/// <returns>The maximum value in the sequence.</returns>
+		public static T MaxBy<T>(this IEnumerable<T> source, Func<T, <#= type #>> keyExtractor, T defaultValue = default(T))
+		{
+			using (var enumerator = source.GetEnumerator())
+			{
+				if (enumerator.MoveNext())
+				{
+					var bestValue = enumerator.Current;
+					var bestKey = keyExtractor(bestValue);
+
+					while (enumerator.MoveNext())
+					{
+						var currentKey = keyExtractor(enumerator.Current);
+						if (currentKey > bestKey)
+						{
+							bestValue = enumerator.Current;
+							bestKey = currentKey;
+						}
+					}
+
+					return bestValue;
+				}
+
+				return defaultValue;
+			}
+		}
+
+		/// <summary>
+		/// Returns the value in a sequence whose key is the smallest.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of the sequence.</typeparam>
+		/// <param name="source">A sequence of <#= type #> values to determine the maximum value of.</param>
+		/// <param name="keyExtractor">A function that extracts the key of a value.</param>
+		/// <param name="defaultValue">The default value that is returned if the sequence is empty.</param>
+		/// <returns>The maximum value in the sequence.</returns>
+		public static T MinBy<T>(this IEnumerable<T> source, Func<T, <#= type #>> keyExtractor, T defaultValue = default(T))
+		{
+			using (var enumerator = source.GetEnumerator())
+			{
+				if (enumerator.MoveNext())
+				{
+					var bestValue = enumerator.Current;
+					var bestKey = keyExtractor(bestValue);
+
+					while (enumerator.MoveNext())
+					{
+						var currentKey = keyExtractor(enumerator.Current);
+						if (currentKey < bestKey)
+						{
+							bestValue = enumerator.Current;
+							bestKey = currentKey;
+						}
+					}
+
+					return bestValue;
+				}
+
+				return defaultValue;
+			}
+		}
 <# } #>
 		/// <summary>
 		/// Returns the maximum value in a generic sequence.

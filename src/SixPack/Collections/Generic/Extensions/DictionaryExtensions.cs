@@ -19,6 +19,7 @@
 //
 
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace SixPack.Collections.Generic.Extensions
 {
@@ -95,6 +96,29 @@ namespace SixPack.Collections.Generic.Extensions
 				dictionary.Add(key, keyItems);
 			}
 			keyItems.Add(value);
+		}
+
+		/// <summary>
+		/// Returns a read-only wrapper of the specified dictionary.
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <returns></returns>
+		public static IDictionary<TKey, TValue> AsReadOnly<TKey, TValue>(this IDictionary<TKey, TValue> dictionary)
+		{
+			return new ReadOnlyDictionary<TKey, TValue>(dictionary);
+		}
+
+		/// <summary>
+		/// Returns a read-only wrapper of the specified list.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of the list.</typeparam>
+		/// <param name="list">The list.</param>
+		/// <returns></returns>
+		public static IList<T> AsReadOnly<T>(this IList<T> list)
+		{
+			return new ReadOnlyCollection<T>(list);
 		}
 	}
 }

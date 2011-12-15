@@ -129,6 +129,7 @@
     <Compile Include="Collections\Generic\IFullListOfT.cs" />
     <Compile Include="Collections\Generic\LambdaEqualityComparer.cs" />
     <Compile Include="Collections\Generic\Pair.cs" />
+    <Compile Include="Collections\Generic\ReadOnlyDictionary.cs" />
     <Compile Include="Collections\Generic\SingletonFactory.cs" />
     <Compile Include="ComponentModel\GenericTypeConverter.cs" />
     <Compile Include="ComponentModel\TypeConverter.cs" />
