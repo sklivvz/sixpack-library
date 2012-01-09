@@ -437,5 +437,67 @@ namespace SixPack.Collections.Generic.Extensions
 			}
 		}
 		#endregion
+
+		#region Merge
+		/// <summary>
+		/// Correlates the elements of two sequences based on matching keys simmilarly to a "full outer join" in SQL.
+		/// </summary>
+		/// <typeparam name="TOuter">The type of the outer sequence elements.</typeparam>
+		/// <typeparam name="TInner">The type of the inner sequence elements.</typeparam>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TResult">The type of the resulting sequence elements.</typeparam>
+		/// <param name="outer">The outer sequence.</param>
+		/// <param name="inner">The inner sequence.</param>
+		/// <param name="outerKeySelector">The outer key selector.</param>
+		/// <param name="innerKeySelector">The inner key selector.</param>
+		/// <param name="uniqueOuterSelector">A selector that is invoked for each element from <paramref name="outer"/> that is not present in <paramref name="inner"/>.</param>
+		/// <param name="uniqueInnerSelector">A selector that is invoked for each element from <paramref name="inner"/> that is not present in <paramref name="outer"/>.</param>
+		/// <param name="matchSelector">A selector that is invoked for each element from <paramref name="inner"/> that is also present in <paramref name="outer"/>.</param>
+		/// <param name="comparer">The comparer used for key comparisons. Defaults to EqualityComparer&lt;TKey&gt;.Default.</param>
+		/// <returns>Returns a sequence of the results of <paramref name="uniqueOuterSelector"/>, <paramref name="uniqueInnerSelector"/> and <paramref name="matchSelector"/>.</returns>
+		public static IEnumerable<TResult> OuterJoin<TOuter, TInner, TKey, TResult>(
+			this IEnumerable<TOuter> outer,
+			IEnumerable<TInner> inner,
+			Func<TOuter, TKey> outerKeySelector,
+			Func<TInner, TKey> innerKeySelector,
+			Func<TOuter, TResult> uniqueOuterSelector,
+			Func<TInner, TResult> uniqueInnerSelector,
+			Func<TOuter, TInner, TResult> matchSelector,
+			IEqualityComparer<TKey> comparer = null
+		)
+		{
+			if (comparer == null)
+			{
+				comparer = EqualityComparer<TKey>.Default;
+			}
+
+			var lookup = inner
+				.GroupBy(innerKeySelector, comparer)
+				.ToDictionary(g => g.Key, comparer);
+
+			foreach (var outerItem in outer)
+			{
+				var key = outerKeySelector(outerItem);
+				IGrouping<TKey, TInner> innerItems;
+				if (lookup.TryGetValue(key, out innerItems))
+				{
+					foreach (var innerItem in innerItems)
+					{
+						yield return matchSelector(outerItem, innerItem);
+					}
+					lookup.Remove(key);
+				}
+				else
+				{
+					yield return uniqueOuterSelector(outerItem);
+				}
+			}
+
+			foreach (var innerItem in lookup.SelectMany(g => g.Value))
+			{
+				yield return uniqueInnerSelector(innerItem);
+			}
+		}
+		#endregion
 	}
 }

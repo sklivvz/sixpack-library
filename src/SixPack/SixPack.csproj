@@ -53,6 +53,7 @@
     <GenerateDocumentation>true</GenerateDocumentation>
     <NoWarn>1584</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -151,11 +152,13 @@
     <Compile Include="Drawing\CaptchaImage.cs" />
     <Compile Include="Drawing\ImageSizing.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="EnumValueAttribute.cs" />
     <Compile Include="Globalization\Portugal\FiscalCode.cs" />
     <Compile Include="Globalization\Portugal\PhoneNumber.cs" />
     <Compile Include="Globalization\Portugal\PhoneNumberType.cs" />
     <Compile Include="Globalization\Portugal\PostalCode.cs" />
     <Compile Include="Globalization\Portugal\VatCode.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HashCode.cs" />
     <Compile Include="HashCodeBuilder.cs" />
     <Compile Include="Net\Dns.cs" />

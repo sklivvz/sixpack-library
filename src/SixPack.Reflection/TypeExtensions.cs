@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 
 namespace SixPack.Reflection
 {
@@ -108,6 +109,51 @@ namespace SixPack.Reflection
 
 				return true;
 			}
+		}
+		#endregion
+
+		private const BindingFlags DefaultBindingFlags = BindingFlags.Instance | BindingFlags.Public;
+
+		#region GetProperties
+		/// <summary>
+		/// Gets all the properties of a type except the ones that have index parameters.
+		/// </summary>
+		public static IEnumerable<PropertyInfo> GetNonIndexedProperties(this Type type, BindingFlags bindingAttr = DefaultBindingFlags)
+		{
+			if (type == null)
+			{
+				throw new ArgumentNullException("type");
+			}
+
+			return type.GetProperties(bindingAttr)
+				.Where(p => p.GetIndexParameters().Length == 0);
+		}
+
+		/// <summary>
+		/// Gets the readable properties of a type that are not indexed.
+		/// </summary>
+		public static IEnumerable<PropertyInfo> GetReadableProperties(this Type type, BindingFlags bindingAttr = DefaultBindingFlags)
+		{
+			return type.GetNonIndexedProperties(bindingAttr)
+				.Where(p => p.CanRead);
+		}
+
+		/// <summary>
+		/// Gets the writable properties of a type that are not indexed.
+		/// </summary>
+		public static IEnumerable<PropertyInfo> GetWritableProperties(this Type type, BindingFlags bindingAttr = DefaultBindingFlags)
+		{
+			return type.GetNonIndexedProperties(bindingAttr)
+				.Where(p => p.CanWrite);
+		}
+
+		/// <summary>
+		/// Gets the readable and writable properties of a type that are not indexed.
+		/// </summary>
+		public static IEnumerable<PropertyInfo> GetReadableAndWritableProperties(this Type type, BindingFlags bindingAttr = DefaultBindingFlags)
+		{
+			return type.GetNonIndexedProperties(bindingAttr)
+				.Where(p => p.CanRead && p.CanWrite);
 		}
 		#endregion
 	}

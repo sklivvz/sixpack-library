@@ -41,18 +41,17 @@ namespace SixPack
 		/// <summary>
 		/// Initializes a new instance of the <see cref="HashCodeBuilder"/> struct.
 		/// </summary>
-		/// <param name="obj">The obj.</param>
-		internal HashCodeBuilder(object obj)
-			: this(SafeGetHashCode(obj))
+		internal HashCodeBuilder(object value)
+			: this(SafeGetHashCode(value))
 		{
 		}
 
 		/// <summary>
 		/// Gets a hash code for the specified object.
 		/// </summary>
-		private static int SafeGetHashCode(object obj)
+		private static int SafeGetHashCode(object value)
 		{
-			return obj != null ? obj.GetHashCode() : 0;
+			return value != null ? value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -69,21 +68,18 @@ namespace SixPack
 		/// <summary>
 		/// Adds the hash code of the specified object.
 		/// </summary>
-		/// <param name="obj">The obj.</param>
 		/// <returns></returns>
-		public HashCodeBuilder Add(object obj)
+		public HashCodeBuilder Add(object value)
 		{
-			return Add(SafeGetHashCode(obj));
+			return Add(SafeGetHashCode(value));
 		}
 
 		/// <summary>
 		/// Adds the hash code of the specified objects.
 		/// </summary>
-		/// <param name="objects">The objects.</param>
-		/// <returns></returns>
-		public HashCodeBuilder AddRange(IEnumerable objects)
+		public HashCodeBuilder AddRange(IEnumerable values)
 		{
-			foreach (var item in objects)
+			foreach (var item in values)
 			{
 				Add(item);
 			}

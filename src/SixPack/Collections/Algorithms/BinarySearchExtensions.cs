@@ -1,6 +1,6 @@
 ﻿// BinarySearch.cs
 //
-//  Copyright (C) 2011 Antoine Aubry
+//  Copyright (C) 2011, 2012 Antoine Aubry
 //  Author: Antoine Aubry
 //
 // This library is free software; you can redistribute it and/or
@@ -51,10 +51,9 @@ namespace SixPack.Collections.Algorithms
 			int lower = 0;
 			int upper = list.Count - 1;
 
-			int middle = lower;
 			while (lower <= upper)
 			{
-				middle = lower + (upper - lower) / 2;
+				int middle = lower + (upper - lower) / 2;
 				int comparisonResult = comparer(value, list[middle]);
 				if (comparisonResult < 0)
 				{

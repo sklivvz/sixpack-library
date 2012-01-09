@@ -261,5 +261,74 @@ namespace SixPack.Reflection
 			return expression.AsProperty().Name;
 		}
 		#endregion
+
+		#region RemoveConversion
+
+		private class RemoveConversionToSelfVisitor : ExpressionVisitor
+		{
+			private readonly Type targetType;
+
+			public RemoveConversionToSelfVisitor(Type targetType)
+			{
+				this.targetType = targetType;
+			}
+
+			protected override Expression VisitUnary(UnaryExpression expression)
+		    {
+				switch (expression.NodeType)
+				{
+					case ExpressionType.Convert:
+						if (expression.Operand.Type == targetType)
+						{
+							return expression.Operand;
+						}
+						break;
+				}
+				return base.VisitUnary(expression);
+			}
+		}
+
+		/// <summary>
+		/// Removes casts from TSource to a base class or interface that are used to call a member
+		/// when TSource also defines that member.
+		/// </summary>
+		/// <example>
+		/// Given the following code and expression:
+		/// <code>
+		/// private interface IHasIdentifier
+		/// {
+		/// 	int Id { get; }
+		/// }
+		/// 
+		/// private class Entity : IHasIdentifier
+		/// {
+		/// 	public int Id { get; set; }
+		/// }
+		/// 
+		/// Expression&lt;Func&lt;Entity, int&gt;&gt; getId = entity => ((IHasIdentifier)entity).Id
+		/// </code>
+		/// 
+		/// getId.RemoveConversionToSelf() will return
+		/// <code>
+		/// getId = entity => entity.Id
+		/// </code>
+		/// </example>
+		/// <remarks>
+		/// This method is useful when working with Entity Framework and interfaces are used to
+		/// mark entities with standard properties, like the primary key.
+		/// In that case, it is common to have a generic method that uses properties from the interface
+		/// to generate queries. Because the property access expression will cast entities to the type of
+		/// the interface, the query generation fails. Removing the cast will solve the issue.
+		/// </remarks>
+		public static Expression<Func<TSource, TProperty>> RemoveConversionToSelf<TSource, TProperty>(this Expression<Func<TSource, TProperty>> expression)
+		{
+			if (expression == null)
+			{
+				throw new ArgumentNullException("expression");
+			}
+
+			return (Expression<Func<TSource, TProperty>>)new RemoveConversionToSelfVisitor(typeof(TSource)).Visit(expression);
+		}
+		#endregion
 	}
 }

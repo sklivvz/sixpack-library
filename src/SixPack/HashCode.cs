@@ -108,19 +108,19 @@ namespace SixPack
 		/// <summary>
 		/// Creates a <see cref="HashCodeBuilder"/> that can be used to generate a hash code using a fluent interface.
 		/// </summary>
-		/// <param name="obj">The object whose hash code will be the initial hash code.</param>
+		/// <param name="value">The object whose hash code will be the initial hash code.</param>
 		/// <returns></returns>
-		public static HashCodeBuilder Add(object obj)
+		public static HashCodeBuilder Add(object value)
 		{
-			return new HashCodeBuilder(obj);
+			return new HashCodeBuilder(value);
 		}
 
 		/// <summary>
 		/// Creates a <see cref="HashCodeBuilder"/> that can be used to generate a hash code using a fluent interface.
 		/// </summary>
-		public static HashCodeBuilder AddRange(IEnumerable objects)
+		public static HashCodeBuilder AddRange(IEnumerable values)
 		{
-			return new HashCodeBuilder().AddRange(objects);
+			return new HashCodeBuilder().AddRange(values);
 		}
 	}
 }
