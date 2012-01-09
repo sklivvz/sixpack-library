@@ -112,6 +112,32 @@ namespace SixPack.Reflection
 		}
 		#endregion
 
+		/// <summary>
+		/// Gets all the types that are subtypes of the specified type. A subtype is a type that either implements
+		/// a given interface or that extends a given class or interface.
+		/// </summary>
+		/// <param name="baseType">The base type.</param>
+		/// <param name="searchAssemblies">The assemblies where subtypes are to be looked for. Defaults to the assembly that contains <paramref name="baseType"/> if omitted.</param>
+		/// <returns></returns>
+		public static IEnumerable<Type> GetSubTypes(this Type baseType, params Assembly[] searchAssemblies)
+		{
+			if (searchAssemblies == null || searchAssemblies.Length == 0)
+			{
+				searchAssemblies = new[] { baseType.Assembly };
+			}
+
+			foreach (var assembly in searchAssemblies)
+			{
+				foreach (var subType in assembly.GetTypes())
+				{
+					if (baseType != subType && baseType.IsAssignableFrom(subType))
+					{
+						yield return subType;
+					}
+				}
+			}
+		}
+
 		private const BindingFlags DefaultBindingFlags = BindingFlags.Instance | BindingFlags.Public;
 
 		#region GetProperties
