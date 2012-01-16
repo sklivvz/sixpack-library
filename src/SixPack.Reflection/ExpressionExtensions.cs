@@ -1,7 +1,7 @@
 ﻿// ExpressionExtensions.cs 
 //
-//  Copyright (C) 2008 Fullsix Marketing Interactivo LDA
-//  Author: Marco Cecconi
+//  Copyright (C) 2011, 2012 Antoine Aubry
+//  Author: Antoine Aubry
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -208,7 +208,7 @@ namespace SixPack.Reflection
 			Expression<Func<TParameter, TResult>> targetExpression
 		)
 		{
-			return (Expression<Func<TSource, TResult>>)Expression.Lambda(
+			return Expression.Lambda<Func<TSource, TResult>>(
 				targetExpression.Body.ReplaceParameter(targetExpression.Parameters[0], parameterValueExpression.Body),
 				parameterValueExpression.Parameters[0]
 			);
