@@ -81,24 +81,48 @@ namespace SixPack.Collections.Generic
 		/// </summary>
 		public ITrieEnumerator<TAtom, TValue> PrefixMatch(IEnumerable<TAtom> prefix)
 		{
-			TrieNode current = root;
+			var match = Find(prefix);
+			if (match == null)
+			{
+				return new EmptyEnumerator();
+			}
+
+			return new ValuesEnumerator(new NodeEnumerator(new TrieNodeCursor(domain, match.Children, -1)));
+		}
+
+		/// <summary>
+		/// Determines whether this trie contains the specified key.
+		/// </summary>
+		/// <param name="key">The key.</param>
+		/// <returns>
+		/// 	<c>true</c> if the specified key contains key; otherwise, <c>false</c>.
+		/// </returns>
+		public bool ContainsKey(IEnumerable<TAtom> key)
+		{
+			var match = Find(key);
+			return match != null && match.Values != null && match.Values.Count > 0;
+		}
+
+		private TrieNode Find(IEnumerable<TAtom> prefix)
+		{
+			var current = root;
 
 			foreach (TAtom atom in prefix)
 			{
 				int index = domain.MapFromDomain(atom);
 				if (current.Children == null)
 				{
-					return new EmptyEnumerator();
+					return null;
 				}
 
 				current = current.Children[index];
 				if (current == null)
 				{
-					return new EmptyEnumerator();
+					return null;
 				}
 			}
 
-			return new ValuesEnumerator(new NodeEnumerator(new TrieNodeCursor(domain, current.Children, -1)));
+			return current;
 		}
 
 		/// <summary>

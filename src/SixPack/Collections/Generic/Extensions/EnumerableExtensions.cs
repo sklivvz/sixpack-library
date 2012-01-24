@@ -438,7 +438,7 @@ namespace SixPack.Collections.Generic.Extensions
 		}
 		#endregion
 
-		#region Merge
+		#region OuterJoin
 		/// <summary>
 		/// Correlates the elements of two sequences based on matching keys simmilarly to a "full outer join" in SQL.
 		/// </summary>
