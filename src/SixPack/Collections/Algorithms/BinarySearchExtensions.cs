@@ -1,4 +1,4 @@
-﻿// BinarySearch.cs
+﻿// BinarySearchExtensions.cs
 //
 //  Copyright (C) 2011, 2012 Antoine Aubry
 //  Author: Antoine Aubry

@@ -114,6 +114,7 @@
     <Compile Include="CodeGen\SimpleUsingClause.cs" />
     <Compile Include="CodeGen\SimpleVariable.cs" />
     <Compile Include="Collections\Algorithms\BinarySearchExtensions.cs" />
+    <Compile Include="Collections\Algorithms\MergeExtensions.cs" />
     <Compile Include="Collections\Generic\CompositeKey.cs" />
     <Compile Include="Collections\Generic\Extensions\AggregateExtensions.cs">
       <AutoGen>True</AutoGen>
