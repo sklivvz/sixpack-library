@@ -67,5 +67,28 @@ namespace SixPack.Collections.Algorithms
 				)
 				.ForAll(p => p());
 		}
+
+		/// <summary>
+		/// Correlates the elements of two sequences based on matching keys simmilarly to a "full outer join" in SQL.
+		/// For each results, executes an action
+		/// </summary>
+		/// <typeparam name="T">The type of the sequence elements.</typeparam>
+		/// <param name="outer">The outer sequence.</param>
+		/// <param name="inner">The inner sequence.</param>
+		/// <param name="uniqueOuterProcessor">An action that is invoked for each element from <paramref name="outer"/> that is not present in <paramref name="inner"/>.</param>
+		/// <param name="uniqueInnerProcessor">An action that is invoked for each element from <paramref name="inner"/> that is not present in <paramref name="outer"/>.</param>
+		/// <param name="matchProcessor">An action that is invoked for each element from <paramref name="inner"/> that is also present in <paramref name="outer"/>.</param>
+		/// <param name="comparer">The comparer used for key comparisons. Defaults to EqualityComparer&lt;TKey&gt;.Default.</param>
+		public static void Merge<T>(
+			this IEnumerable<T> outer,
+			IEnumerable<T> inner,
+			Action<T> uniqueOuterProcessor,
+			Action<T> uniqueInnerProcessor,
+			Action<T, T> matchProcessor,
+			IEqualityComparer<T> comparer = null
+		)
+		{
+			outer.Merge(inner, i => i, o => o, uniqueOuterProcessor, uniqueInnerProcessor, matchProcessor, comparer);
+		}
 	}
 }

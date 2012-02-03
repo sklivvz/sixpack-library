@@ -473,19 +473,19 @@ namespace SixPack.Collections.Generic.Extensions
 
 			var lookup = inner
 				.GroupBy(innerKeySelector, comparer)
-				.ToDictionary(g => g.Key, comparer);
+				.ToDictionary(g => new MergeKey<TKey>(g.Key), new MergeKeyComparer<TKey>(comparer));
 
 			foreach (var outerItem in outer)
 			{
 				var key = outerKeySelector(outerItem);
 				IGrouping<TKey, TInner> innerItems;
-				if (lookup.TryGetValue(key, out innerItems))
+				if (lookup.TryGetValue(new MergeKey<TKey>(key), out innerItems))
 				{
 					foreach (var innerItem in innerItems)
 					{
 						yield return matchSelector(outerItem, innerItem);
 					}
-					lookup.Remove(key);
+					lookup.Remove(new MergeKey<TKey>(key));
 				}
 				else
 				{
@@ -496,6 +496,38 @@ namespace SixPack.Collections.Generic.Extensions
 			foreach (var innerItem in lookup.SelectMany(g => g.Value))
 			{
 				yield return uniqueInnerSelector(innerItem);
+			}
+		}
+
+		private sealed class MergeKeyComparer<TKey> : IEqualityComparer<MergeKey<TKey>>
+		{
+			private readonly IEqualityComparer<TKey> _comparer;
+
+			public MergeKeyComparer(IEqualityComparer<TKey> comparer)
+			{
+				_comparer = comparer;
+			}
+
+			bool IEqualityComparer<MergeKey<TKey>>.Equals(MergeKey<TKey> x, MergeKey<TKey> y)
+			{
+				return ReferenceEquals(x.Key, null)
+					? ReferenceEquals(y.Key, null)
+					: !ReferenceEquals(y.Key, null) && _comparer.Equals(x.Key, y.Key);
+			}
+
+			int IEqualityComparer<MergeKey<TKey>>.GetHashCode(MergeKey<TKey> obj)
+			{
+				return ReferenceEquals(obj.Key, null) ? 0 : _comparer.GetHashCode(obj.Key);
+			}
+		}
+
+		private struct MergeKey<TKey>
+		{
+			public readonly TKey Key;
+
+			public MergeKey(TKey key)
+			{
+				Key = key;
 			}
 		}
 		#endregion
