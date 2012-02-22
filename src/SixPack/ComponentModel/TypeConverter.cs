@@ -181,6 +181,24 @@ namespace SixPack.ComponentModel
 				}
 			}
 
+			// If destination type is string, try to find a Parse or TryParse method
+			if (destinationType == typeof(string))
+			{
+				// Try with - public static T Parse(string, IFormatProvider)
+				var parseMethod = destinationType.GetMethod("Parse", BindingFlags.Public | BindingFlags.Static, null, new[] { typeof(string), typeof(IFormatProvider) }, null);
+				if (parseMethod != null)
+				{
+					return parseMethod.Invoke(null, new object[] { value, culture });
+				}
+
+				// Try with - public static T Parse(string)
+				parseMethod = destinationType.GetMethod("Parse", BindingFlags.Public | BindingFlags.Static, null, new[] { typeof(string) }, null);
+				if (parseMethod != null)
+				{
+					return parseMethod.Invoke(null, new object[] { value });
+				}
+			}
+
 			// Handle TimeSpan
 			if (destinationType == typeof(TimeSpan))
 			{
