@@ -181,8 +181,8 @@ namespace SixPack.ComponentModel
 				}
 			}
 
-			// If destination type is string, try to find a Parse or TryParse method
-			if (destinationType == typeof(string))
+			// If source type is string, try to find a Parse or TryParse method
+			if (sourceType == typeof(string))
 			{
 				// Try with - public static T Parse(string, IFormatProvider)
 				var parseMethod = destinationType.GetMethod("Parse", BindingFlags.Public | BindingFlags.Static, null, new[] { typeof(string), typeof(IFormatProvider) }, null);
