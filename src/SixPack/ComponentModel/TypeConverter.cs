@@ -1,6 +1,6 @@
 ﻿// TypeConverter.cs
 //
-//  Copyright (C) 2011 Antoine Aubry
+//  Copyright (C) 2011, 2012 Antoine Aubry
 //  Author: Antoine Aubry
 //
 // This library is free software; you can redistribute it and/or
@@ -44,10 +44,58 @@ namespace SixPack.ComponentModel
 		/// <summary>
 		/// Converts the specified value.
 		/// </summary>
+		/// <typeparam name="T">The type to which the value is to be converted.</typeparam>
+		/// <param name="value">The value to convert.</param>
+		/// <param name="provider">The provider.</param>
+		/// <returns></returns>
+		public static T ChangeType<T>(object value, IFormatProvider provider)
+		{
+			return (T)ChangeType(value, typeof(T), provider);
+		}
+
+		/// <summary>
+		/// Converts the specified value.
+		/// </summary>
+		/// <typeparam name="T">The type to which the value is to be converted.</typeparam>
+		/// <param name="value">The value to convert.</param>
+		/// <param name="culture">The culture.</param>
+		/// <returns></returns>
+		public static T ChangeType<T>(object value, CultureInfo culture)
+		{
+			return (T)ChangeType(value, typeof(T), culture);
+		}
+
+		/// <summary>
+		/// Converts the specified value using the invariant culture.
+		/// </summary>
 		/// <param name="value">The value to convert.</param>
 		/// <param name="destinationType">The type to which the value is to be converted.</param>
 		/// <returns></returns>
 		public static object ChangeType(object value, Type destinationType)
+		{
+			return ChangeType(value, destinationType, CultureInfo.InvariantCulture);
+		}
+
+		/// <summary>
+		/// Converts the specified value.
+		/// </summary>
+		/// <param name="value">The value to convert.</param>
+		/// <param name="destinationType">The type to which the value is to be converted.</param>
+		/// <param name="provider">The format provider.</param>
+		/// <returns></returns>
+		public static object ChangeType(object value, Type destinationType, IFormatProvider provider)
+		{
+			return ChangeType(value, destinationType, new CultureInfoAdapter(CultureInfo.CurrentCulture, provider));
+		}
+
+		/// <summary>
+		/// Converts the specified value.
+		/// </summary>
+		/// <param name="value">The value to convert.</param>
+		/// <param name="destinationType">The type to which the value is to be converted.</param>
+		/// <param name="culture">The culture.</param>
+		/// <returns></returns>
+		public static object ChangeType(object value, Type destinationType, CultureInfo culture)
 		{
 			// Handle null and DBNull
 			if (value == null || value is DBNull)
@@ -67,13 +115,10 @@ namespace SixPack.ComponentModel
 			if (destinationType.IsGenericType)
 			{
 				var genericTypeDefinition = destinationType.GetGenericTypeDefinition();
-
 				if (genericTypeDefinition == typeof(Nullable<>))
 				{
 					var innerType = destinationType.GetGenericArguments()[0];
-
-					var convertedValue = ChangeType(value, innerType);
-
+					var convertedValue = ChangeType(value, innerType, culture);
 					return Activator.CreateInstance(destinationType, convertedValue);
 				}
 			}
@@ -87,23 +132,27 @@ namespace SixPack.ComponentModel
 
 			// Special case for booleans to support parsing "1" and "0". This is
 			// necessary for compatibility with XML Schema.
-			if (destinationType == typeof(bool) && ("0".Equals(value) || "1".Equals(value)))
+			if (destinationType == typeof(bool))
 			{
-				return "1".Equals(value);
+				if ("0".Equals(value))
+					return false;
+
+				if ("1".Equals(value))
+					return true;
 			}
 
 			// Try with the source type's converter
 			var sourceConverter = TypeDescriptor.GetConverter(value);
 			if (sourceConverter != null && sourceConverter.CanConvertTo(destinationType))
 			{
-				return sourceConverter.ConvertTo(null, CultureInfo.InvariantCulture, value, destinationType);
+				return sourceConverter.ConvertTo(null, culture, value, destinationType);
 			}
 
 			// Try with the destination type's converter
 			var destinationConverter = TypeDescriptor.GetConverter(destinationType);
 			if (destinationConverter != null && destinationConverter.CanConvertFrom(sourceType))
 			{
-				return destinationConverter.ConvertFrom(null, CultureInfo.InvariantCulture, value);
+				return destinationConverter.ConvertFrom(null, culture, value);
 			}
 
 			// Try to find a casting operator in the source or destination type
@@ -135,11 +184,27 @@ namespace SixPack.ComponentModel
 			// Handle TimeSpan
 			if (destinationType == typeof(TimeSpan))
 			{
-				return TimeSpan.Parse(value.ToString());
+				return TimeSpan.Parse((string)ChangeType(value, typeof(string), CultureInfo.InvariantCulture));
 			}
 
 			// Default to the Convert class
 			return Convert.ChangeType(value, destinationType, CultureInfo.InvariantCulture);
+		}
+
+		private class CultureInfoAdapter : CultureInfo
+		{
+			private readonly IFormatProvider _provider;
+
+			public CultureInfoAdapter(CultureInfo baseCulture, IFormatProvider provider)
+				: base(baseCulture.LCID)
+			{
+				_provider = provider;
+			}
+
+			public override object GetFormat(Type formatType)
+			{
+				return _provider.GetFormat(formatType);
+			}
 		}
 
 		/// <summary>

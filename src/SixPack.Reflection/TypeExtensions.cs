@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using SixPack.Text;
 
 namespace SixPack.Reflection
 {
@@ -182,5 +183,35 @@ namespace SixPack.Reflection
 				.Where(p => p.CanRead && p.CanWrite);
 		}
 		#endregion
+
+		/// <summary>
+		/// Creates a <see cref="Func{TSource, TProperty}"/> that reads from the specified property.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the source.</typeparam>
+		/// <typeparam name="TProperty">The type of the property.</typeparam>
+		/// <param name="type">The type.</param>
+		/// <param name="propertyName">Name of the property.</param>
+		/// <param name="bindingAttr">The binding attr.</param>
+		/// <returns></returns>
+		public static Func<TSource, TProperty> GetReadPropertyAccessor<TSource, TProperty>(this Type type, string propertyName, BindingFlags bindingAttr = BindingFlags.Instance | BindingFlags.Public | BindingFlags.IgnoreCase)
+		{
+			if (type == null)
+			{
+				throw new ArgumentNullException("type");
+			}
+
+			if (string.IsNullOrEmpty(propertyName))
+			{
+				throw new ArgumentNullException("propertyName");
+			}
+
+			var property = type.GetProperty(propertyName, bindingAttr);
+			if (property == null)
+			{
+				throw new ArgumentException("Property {0} not found on type {1}".FormatArgs(propertyName, type.FullName));
+			}
+
+			return property.GetReadAccessor<TSource, TProperty>();
+		}
 	}
 }
