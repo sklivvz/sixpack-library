@@ -330,5 +330,18 @@ namespace SixPack.Reflection
 			return (Expression<Func<TSource, TProperty>>)new RemoveConversionToSelfVisitor(typeof(TSource)).Visit(expression);
 		}
 		#endregion
+
+		#region MakeSetter
+		/// <summary>
+		/// Converts an expression that reads from a property into an expression that writes to that property.
+		/// </summary>
+		/// <param name="getter"></param>
+		/// <returns></returns>
+		public static Action<TParent, TProperty> MakePropertySetter<TParent, TProperty>(this Expression<Func<TParent, TProperty>> getter)
+		{
+			var setter = getter.AsProperty().GetSetMethod();
+			return (Action<TParent, TProperty>)Delegate.CreateDelegate(typeof(Action<TParent, TProperty>), setter);
+		}
+		#endregion
 	}
 }

@@ -98,5 +98,17 @@ namespace SixPack.Reflection.Tests
 			visitor.Visit(convertedExpression);
 			Assert.AreEqual(1, visitor.Count);
 		}
+
+		[TestMethod]
+		public void MakeSetterFromGetter()
+		{
+			Expression<Func<Entity, int>> baseExpression = e => e.Id;
+
+			var setter = baseExpression.MakePropertySetter();
+
+			var entity = new Entity { Id = 1 };
+			setter(entity, 2);
+			Assert.AreEqual(2, entity.Id);
+		}
 	}
 }
