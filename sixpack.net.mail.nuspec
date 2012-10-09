@@ -16,10 +16,16 @@
 		</dependencies>
   </metadata>
 	<files>
-		<file src="..\src\SixPack.Net.Mail\bin\Release\Interop.ADODB.dll" target="lib" />
-		<file src="..\src\SixPack.Net.Mail\bin\Release\Interop.CDO.dll" target="lib" />
-		<file src="..\src\SixPack.Net.Mail\bin\Release\SixPack.Net.Mail.dll" target="lib" />
-		<file src="..\src\SixPack.Net.Mail\bin\Release\SixPack.Net.Mail.XML" target="lib" />
-		<file src="..\src\SixPack.Net.Mail\bin\Release\SixPack.Net.Mail.pdb" target="lib" />
+		<file src="..\src\SixPack.Net.Mail\bin\Net35\Interop.ADODB.dll" target="lib\net35" />
+		<file src="..\src\SixPack.Net.Mail\bin\Net35\Interop.CDO.dll" target="lib\net35" />
+		<file src="..\src\SixPack.Net.Mail\bin\Net35\SixPack.Net.Mail.dll" target="lib\net35" />
+		<file src="..\src\SixPack.Net.Mail\bin\Net35\SixPack.Net.Mail.XML" target="lib\net35" />
+		<file src="..\src\SixPack.Net.Mail\bin\Net35\SixPack.Net.Mail.pdb" target="lib\net35" />
+
+		<file src="..\src\SixPack.Net.Mail\bin\Net40\Interop.ADODB.dll" target="lib\net40" />
+		<file src="..\src\SixPack.Net.Mail\bin\Net40\Interop.CDO.dll" target="lib\net40" />
+		<file src="..\src\SixPack.Net.Mail\bin\Net40\SixPack.Net.Mail.dll" target="lib\net40" />
+		<file src="..\src\SixPack.Net.Mail\bin\Net40\SixPack.Net.Mail.XML" target="lib\net40" />
+		<file src="..\src\SixPack.Net.Mail\bin\Net40\SixPack.Net.Mail.pdb" target="lib\net40" />
 	</files>
 </package>

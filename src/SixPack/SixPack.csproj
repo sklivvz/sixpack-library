@@ -18,7 +18,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <CodePage>65001</CodePage>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -55,21 +55,31 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Net35|AnyCPU'">
+    <OutputPath>bin\Net35\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\SixPack.XML</DocumentationFile>
+    <DocumentationFile>bin\Net35\SixPack.XML</DocumentationFile>
+    <Optimize>true</Optimize>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <OutputType>Library</OutputType>
-    <RootNamespace>SixPack</RootNamespace>
-    <RunWithWarnings>false</RunWithWarnings>
-    <GenerateDocumentation>true</GenerateDocumentation>
     <NoWarn>1584</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Net40|AnyCPU'">
+    <OutputPath>bin\Net40\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Net40\SixPack.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>1584</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -158,6 +168,11 @@
     <Compile Include="Drawing\ImageSizing.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="EnumValueAttribute.cs" />
+    <Compile Include="Func.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Func.Generated.tt</DependentUpon>
+    </Compile>
     <Compile Include="Globalization\Portugal\FiscalCode.cs" />
     <Compile Include="Globalization\Portugal\PhoneNumber.cs" />
     <Compile Include="Globalization\Portugal\PhoneNumberType.cs" />
@@ -225,6 +240,10 @@
     <None Include="Collections\Generic\Extensions\AggregateExtensions.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AggregateExtensions.cs</LastGenOutput>
+    </None>
+    <None Include="Func.Generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Func.Generated.cs</LastGenOutput>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

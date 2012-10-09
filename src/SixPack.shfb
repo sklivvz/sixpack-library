@@ -1,9 +1,9 @@
 ﻿<project schemaVersion="1.6.0.7">
     <assemblies>
-        <assembly assemblyPath=".\SixPack.Caching\bin\Release\SixPack.Caching.dll" xmlCommentsPath=".\SixPack.Caching\bin\Release\SixPack.Caching.xml" commentsOnly="False" />
-        <assembly assemblyPath=".\SixPack\bin\Release\SixPack.dll" xmlCommentsPath=".\SixPack\bin\Release\SixPack.xml" commentsOnly="False" />
-        <assembly assemblyPath=".\SixPack.Net.Mail\bin\Release\SixPack.Net.Mail.dll" xmlCommentsPath=".\SixPack.Net.Mail\bin\Release\SixPack.Net.Mail.XML" commentsOnly="False" />
-        <assembly assemblyPath=".\SixPack.Web.Services\bin\Release\SixPack.Web.Services.dll" xmlCommentsPath=".\SixPack.Web.Services\bin\Release\SixPack.Web.Services.xml" commentsOnly="False" />
+        <assembly assemblyPath=".\SixPack.Caching\bin\Net40\SixPack.Caching.dll" xmlCommentsPath=".\SixPack.Caching\bin\Net40\SixPack.Caching.xml" commentsOnly="False" />
+        <assembly assemblyPath=".\SixPack\bin\Net40\SixPack.dll" xmlCommentsPath=".\SixPack\bin\Net40\SixPack.xml" commentsOnly="False" />
+        <assembly assemblyPath=".\SixPack.Net.Mail\bin\Net40\SixPack.Net.Mail.dll" xmlCommentsPath=".\SixPack.Net.Mail\bin\Net40\SixPack.Net.Mail.XML" commentsOnly="False" />
+        <assembly assemblyPath=".\SixPack.Web.Services\bin\Net40\SixPack.Web.Services.dll" xmlCommentsPath=".\SixPack.Web.Services\bin\Net40\SixPack.Web.Services.xml" commentsOnly="False" />
     </assemblies>
     <namespaceSummaries>
         <namespaceSummaryItem name="" isDocumented="False" />
@@ -23,8 +23,8 @@ In a disconnected scenario such as the Internet, ADO.NET provides the tools to r
         <namespaceSummaryItem name="SixPack.Web.Services" isDocumented="True">This namespace consists of the classes that enable you to generate XML Web services using the wserv application..</namespaceSummaryItem>
     </namespaceSummaries>
     <dependencies>
-        <dependencyItem depPath=".\SixPack.Net.Mail\bin\Release\Interop.ADODB.dll" />
-        <dependencyItem depPath=".\SixPack.Net.Mail\bin\Release\Interop.CDO.dll" />
+        <dependencyItem depPath=".\SixPack.Net.Mail\bin\Net40\Interop.ADODB.dll" />
+        <dependencyItem depPath=".\SixPack.Net.Mail\bin\Net40\Interop.CDO.dll" />
     </dependencies>
     <ProjectSummary>The SixPack Common Runtime is a common set of classes build to streamline the development of websites. The Namespaces are strucured in a similar manner to the .NET System hierarchy for ease of use.</ProjectSummary>
     <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace, TypeParameter</MissingTags>

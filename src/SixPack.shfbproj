@@ -21,20 +21,19 @@
     <RootNamespaceContainer>False</RootNamespaceContainer>
     <HelpFileFormat>HtmlHelp1, Website</HelpFileFormat>
     <DocumentationSources>
-      <DocumentationSource sourceFile="SixPack.Caching\SixPack.Caching.csproj" />
-      <DocumentationSource sourceFile="SixPack\SixPack.csproj" />
-      <DocumentationSource sourceFile="SixPack.Data.Entity\SixPack.Data.Entity.csproj" />
-      <DocumentationSource sourceFile="SixPack.Net.Mail\SixPack.Net.Mail.csproj" />
-      <DocumentationSource sourceFile="SixPack.Reflection\SixPack.Reflection.csproj" />
-      <DocumentationSource sourceFile="SixPack.Web.Services\SixPack.Web.Services.csproj" />
-    </DocumentationSources>
+      <DocumentationSource sourceFile="SixPack.Caching\SixPack.Caching.csproj" configuration="Net40" platform="AnyCPU" />
+<DocumentationSource sourceFile="SixPack\SixPack.csproj" configuration="Net40" platform="AnyCPU" />
+<DocumentationSource sourceFile="SixPack.Data.Entity\SixPack.Data.Entity.csproj" configuration="Net40" platform="AnyCPU" />
+<DocumentationSource sourceFile="SixPack.Net.Mail\SixPack.Net.Mail.csproj" configuration="Net40" platform="AnyCPU" />
+<DocumentationSource sourceFile="SixPack.Reflection\SixPack.Reflection.csproj" configuration="Net40" platform="AnyCPU" />
+<DocumentationSource sourceFile="SixPack.Web.Services\SixPack.Web.Services.csproj" configuration="Net40" platform="AnyCPU" /></DocumentationSources>
     <Preliminary>False</Preliminary>
   </PropertyGroup>
   <!-- There are no properties for these two groups but they need to appear in
        order for Visual Studio to perform the build. -->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Net40|AnyCPU' ">
   </PropertyGroup>
   <!-- Import the SHFB build targets -->
   <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />

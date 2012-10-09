@@ -16,8 +16,12 @@
 		</dependencies>
   </metadata>
 	<files>
-		<file src="..\src\SixPack.Reflection\bin\Release\SixPack.Reflection.dll" target="lib" />
-		<file src="..\src\SixPack.Reflection\bin\Release\SixPack.Reflection.XML" target="lib" />
-		<file src="..\src\SixPack.Reflection\bin\Release\SixPack.Reflection.pdb" target="lib" />
+		<file src="..\src\SixPack.Reflection\bin\Net35\SixPack.Reflection.dll" target="lib\net35" />
+		<file src="..\src\SixPack.Reflection\bin\Net35\SixPack.Reflection.XML" target="lib\net35" />
+		<file src="..\src\SixPack.Reflection\bin\Net35\SixPack.Reflection.pdb" target="lib\net35" />
+
+		<file src="..\src\SixPack.Reflection\bin\Net40\SixPack.Reflection.dll" target="lib\net40" />
+		<file src="..\src\SixPack.Reflection\bin\Net40\SixPack.Reflection.XML" target="lib\net40" />
+		<file src="..\src\SixPack.Reflection\bin\Net40\SixPack.Reflection.pdb" target="lib\net40" />
 	</files>
 </package>

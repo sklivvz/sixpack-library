@@ -4,35 +4,63 @@
 	<!-- This build file requires .NET 4.0 and nant 0.91 alpha 2 or higher -->
 	<property name="nant.settings.currentframework" value="net-4.0"/>
 
-	<property name="version" value="1.2.36" />
+	<property name="version" value="1.2.38" />
 	<property name="keyfile" value="src/SixPack.pfx" />
 
-	<fileset id="binaries">
-		<include name="src/SixPack/bin/Release/SixPack.dll" />
-		<include name="src/SixPack/bin/Release/SixPack.XML" />
-		<include name="src/SixPack/bin/Release/SixPack.pdb" />
+	<fileset id="binaries-net-35">
+		<include name="src/SixPack/bin/Net35/SixPack.dll" />
+		<include name="src/SixPack/bin/Net35/SixPack.XML" />
+		<include name="src/SixPack/bin/Net35/SixPack.pdb" />
 
-		<include name="src/SixPack.Caching/bin/Release/SixPack.Caching.dll" />
-		<include name="src/SixPack.Caching/bin/Release/SixPack.Caching.XML" />
-		<include name="src/SixPack.Caching/bin/Release/SixPack.Caching.pdb" />
+		<include name="src/SixPack.Caching/bin/Net35/SixPack.Caching.dll" />
+		<include name="src/SixPack.Caching/bin/Net35/SixPack.Caching.XML" />
+		<include name="src/SixPack.Caching/bin/Net35/SixPack.Caching.pdb" />
 
-		<include name="src/SixPack.Data.Entity/bin/Release/SixPack.Data.Entity.dll" />
-		<include name="src/SixPack.Data.Entity/bin/Release/SixPack.Data.Entity.XML" />
-		<include name="src/SixPack.Data.Entity/bin/Release/SixPack.Data.Entity.pdb" />
+		<include name="src/SixPack.Data.Entity/bin/Net35/SixPack.Data.Entity.dll" />
+		<include name="src/SixPack.Data.Entity/bin/Net35/SixPack.Data.Entity.XML" />
+		<include name="src/SixPack.Data.Entity/bin/Net35/SixPack.Data.Entity.pdb" />
 
-		<include name="src/SixPack.Net.Mail/bin/Release/SixPack.Net.Mail.dll" />
-		<include name="src/SixPack.Net.Mail/bin/Release/SixPack.Net.Mail.XML" />
-		<include name="src/SixPack.Net.Mail/bin/Release/SixPack.Net.Mail.pdb" />
-		<include name="src/SixPack.Net.Mail/bin/Release/Interop.ADODB.dll" />
-		<include name="src/SixPack.Net.Mail/bin/Release/Interop.CDO.dll" />
+		<include name="src/SixPack.Net.Mail/bin/Net35/SixPack.Net.Mail.dll" />
+		<include name="src/SixPack.Net.Mail/bin/Net35/SixPack.Net.Mail.XML" />
+		<include name="src/SixPack.Net.Mail/bin/Net35/SixPack.Net.Mail.pdb" />
+		<include name="src/SixPack.Net.Mail/bin/Net35/Interop.ADODB.dll" />
+		<include name="src/SixPack.Net.Mail/bin/Net35/Interop.CDO.dll" />
 
-		<include name="src/SixPack.Reflection/bin/Release/SixPack.Reflection.dll" />
-		<include name="src/SixPack.Reflection/bin/Release/SixPack.Reflection.XML" />
-		<include name="src/SixPack.Reflection/bin/Release/SixPack.Reflection.pdb" />
+		<include name="src/SixPack.Reflection/bin/Net35/SixPack.Reflection.dll" />
+		<include name="src/SixPack.Reflection/bin/Net35/SixPack.Reflection.XML" />
+		<include name="src/SixPack.Reflection/bin/Net35/SixPack.Reflection.pdb" />
 
-		<include name="src/SixPack.Web.Services/bin/Release/SixPack.Web.Services.dll" />
-		<include name="src/SixPack.Web.Services/bin/Release/SixPack.Web.Services.XML" />
-		<include name="src/SixPack.Web.Services/bin/Release/SixPack.Web.Services.pdb" />
+		<include name="src/SixPack.Web.Services/bin/Net35/SixPack.Web.Services.dll" />
+		<include name="src/SixPack.Web.Services/bin/Net35/SixPack.Web.Services.XML" />
+		<include name="src/SixPack.Web.Services/bin/Net35/SixPack.Web.Services.pdb" />
+	</fileset>
+
+	<fileset id="binaries-net-40">
+		<include name="src/SixPack/bin/Net40/SixPack.dll" />
+		<include name="src/SixPack/bin/Net40/SixPack.XML" />
+		<include name="src/SixPack/bin/Net40/SixPack.pdb" />
+
+		<include name="src/SixPack.Caching/bin/Net40/SixPack.Caching.dll" />
+		<include name="src/SixPack.Caching/bin/Net40/SixPack.Caching.XML" />
+		<include name="src/SixPack.Caching/bin/Net40/SixPack.Caching.pdb" />
+
+		<include name="src/SixPack.Data.Entity/bin/Net40/SixPack.Data.Entity.dll" />
+		<include name="src/SixPack.Data.Entity/bin/Net40/SixPack.Data.Entity.XML" />
+		<include name="src/SixPack.Data.Entity/bin/Net40/SixPack.Data.Entity.pdb" />
+
+		<include name="src/SixPack.Net.Mail/bin/Net40/SixPack.Net.Mail.dll" />
+		<include name="src/SixPack.Net.Mail/bin/Net40/SixPack.Net.Mail.XML" />
+		<include name="src/SixPack.Net.Mail/bin/Net40/SixPack.Net.Mail.pdb" />
+		<include name="src/SixPack.Net.Mail/bin/Net40/Interop.ADODB.dll" />
+		<include name="src/SixPack.Net.Mail/bin/Net40/Interop.CDO.dll" />
+
+		<include name="src/SixPack.Reflection/bin/Net40/SixPack.Reflection.dll" />
+		<include name="src/SixPack.Reflection/bin/Net40/SixPack.Reflection.XML" />
+		<include name="src/SixPack.Reflection/bin/Net40/SixPack.Reflection.pdb" />
+
+		<include name="src/SixPack.Web.Services/bin/Net40/SixPack.Web.Services.dll" />
+		<include name="src/SixPack.Web.Services/bin/Net40/SixPack.Web.Services.XML" />
+		<include name="src/SixPack.Web.Services/bin/Net40/SixPack.Web.Services.pdb" />
 	</fileset>
 
 	<loadtasks assembly="support/nantcontrib/NAnt.Contrib.Tasks.dll" />
@@ -42,25 +70,54 @@
 			<property name="Configuration" value="Release" />
 		</msbuild>
 	</target>
+
+	<target name="build" depends="build-net-35, build-net-40">
+	</target>
 	
-	<target name="build" description="Builds the entire solution.">
+	<target name="build-net-35" description="Builds the entire solution.">
 		
 		<msbuild project="src/SixPack.sln" target="Rebuild">
-			<property name="Configuration" value="Release" />
+			<property name="Configuration" value="Net35" />
 			<property name="SignAssembly" value="true" />
 			<property name="AssemblyOriginatorKeyFile" value="${directory::get-current-directory()}/src/SixPack.pfx" />
 		</msbuild>
 
 	</target>
 
-	<target name="package-bin" depends="build" description="Builds the project and creates a zip package with the binaries.">
+	<target name="build-net-40" description="Builds the entire solution.">
+
+		<msbuild project="src/SixPack.sln" target="Rebuild">
+			<property name="Configuration" value="Net40" />
+			<property name="SignAssembly" value="true" />
+			<property name="AssemblyOriginatorKeyFile" value="${directory::get-current-directory()}/src/SixPack.pfx" />
+		</msbuild>
+
+	</target>
+
+	<target name="package-bin-net-35" depends="build-net-35" description="Builds the project and creates a zip package with the binaries.">
 		<delete dir="tmp" failonerror="false" />
 		<mkdir dir="tmp" />
 		<copy todir="tmp" flatten="true">
-			<fileset refid="binaries" />
+			<fileset refid="binaries-net-35" />
 		</copy>
 
-		<zip zipfile="release/${version}/SixPack-bin-${version}.zip">
+		<zip zipfile="release/${version}/SixPack-bin-35-${version}.zip">
+			<fileset basedir="tmp">
+				<include name="*" />
+			</fileset>
+		</zip>
+
+		<delete dir="tmp" />
+	</target>
+
+	<target name="package-bin-net-40" depends="build-net-40" description="Builds the project and creates a zip package with the binaries.">
+		<delete dir="tmp" failonerror="false" />
+		<mkdir dir="tmp" />
+		<copy todir="tmp" flatten="true">
+			<fileset refid="binaries-net-40" />
+		</copy>
+
+		<zip zipfile="release/${version}/SixPack-bin-40-${version}.zip">
 			<fileset basedir="tmp">
 				<include name="*" />
 			</fileset>
@@ -151,7 +208,7 @@
 		</foreach>
 	</target>
 	
-	<target name="package" depends="package-bin, package-src, package-doc, package-nuget" description="Creates source, binary, NuGet and documentation packages.">
+	<target name="package" depends="package-bin-net-35, package-bin-net-40, package-src, package-doc, package-nuget" description="Creates source, binary, NuGet and documentation packages.">
 	</target>
 	
 </project>

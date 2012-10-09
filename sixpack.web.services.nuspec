@@ -16,8 +16,12 @@
 		</dependencies>
   </metadata>
 	<files>
-		<file src="..\src\SixPack.Web.Services\bin\Release\SixPack.Web.Services.dll" target="lib" />
-		<file src="..\src\SixPack.Web.Services\bin\Release\SixPack.Web.Services.XML" target="lib" />
-		<file src="..\src\SixPack.Web.Services\bin\Release\SixPack.Web.Services.pdb" target="lib" />
+		<file src="..\src\SixPack.Web.Services\bin\Net35\SixPack.Web.Services.dll" target="lib\net35" />
+		<file src="..\src\SixPack.Web.Services\bin\Net35\SixPack.Web.Services.XML" target="lib\net35" />
+		<file src="..\src\SixPack.Web.Services\bin\Net35\SixPack.Web.Services.pdb" target="lib\net35" />
+
+		<file src="..\src\SixPack.Web.Services\bin\Net40\SixPack.Web.Services.dll" target="lib\net40" />
+		<file src="..\src\SixPack.Web.Services\bin\Net40\SixPack.Web.Services.XML" target="lib\net40" />
+		<file src="..\src\SixPack.Web.Services\bin\Net40\SixPack.Web.Services.pdb" target="lib\net40" />
 	</files>
 </package>

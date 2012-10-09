@@ -13,8 +13,12 @@
 		<tags>rapid development library</tags>
 	</metadata>
 	<files>
-		<file src="..\src\SixPack\bin\Release\SixPack.dll" target="lib" />
-		<file src="..\src\SixPack\bin\Release\SixPack.XML" target="lib" />
-		<file src="..\src\SixPack\bin\Release\SixPack.pdb" target="lib" />
+		<file src="..\src\SixPack\bin\Net35\SixPack.dll" target="lib\net35" />
+		<file src="..\src\SixPack\bin\Net35\SixPack.XML" target="lib\net35" />
+		<file src="..\src\SixPack\bin\Net35\SixPack.pdb" target="lib\net35" />
+
+		<file src="..\src\SixPack\bin\Net40\SixPack.dll" target="lib\net40" />
+		<file src="..\src\SixPack\bin\Net40\SixPack.XML" target="lib\net40" />
+		<file src="..\src\SixPack\bin\Net40\SixPack.pdb" target="lib\net40" />
 	</files>
 </package>

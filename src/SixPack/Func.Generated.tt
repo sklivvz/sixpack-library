@@ -1,0 +1,35 @@
+﻿<#@ template language="C#" debug="True" hostspecific="True"
+#><#@ assembly name="System.Core.dll"
+#><#@ import namespace="System.Collections.Generic"
+#><#@ import namespace="System.Linq"
+#><#
+const int maxArgs = 8;
+#>
+using System;
+
+namespace SixPack
+{
+	/// <summary>
+	/// Provides a syntax to declare variables of type Func&lt;...&gt; that return anonymous types.
+	/// </summary>
+	public static class Func
+	{
+	
+<# for(int i = 0; i <= maxArgs; ++i) {
+	 var argList = string.Join("", Enumerable.Range(1, i).Select(x => string.Format("T{0}, ", x)).ToArray());
+#>
+<#= i > 4 ? "#if NET_40" : "" #>
+		/// <summary>
+		/// Provides a syntax to declare variables of type Func&lt;<#= argList #>TResult&gt; that return anonymous types.
+		/// </summary>
+		public static Func<<#= argList #>TResult> CreateAnonymous<<#= argList #>TResult>(Func<<#= argList #>TResult> func)
+		{
+			return func;
+		}
+<#= i > 4 ? "#endif" : "" #>
+
+<#
+   }
+#>
+	}
+}

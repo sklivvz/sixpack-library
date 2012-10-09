@@ -16,8 +16,12 @@
 		</dependencies>
   </metadata>
 	<files>
-		<file src="..\src\SixPack.Data.Entity\bin\Release\SixPack.Data.Entity.dll" target="lib" />
-		<file src="..\src\SixPack.Data.Entity\bin\Release\SixPack.Data.Entity.XML" target="lib" />
-		<file src="..\src\SixPack.Data.Entity\bin\Release\SixPack.Data.Entity.pdb" target="lib" />
+		<file src="..\src\SixPack.Data.Entity\bin\Net35\SixPack.Data.Entity.dll" target="lib\net35" />
+		<file src="..\src\SixPack.Data.Entity\bin\Net35\SixPack.Data.Entity.XML" target="lib\net35" />
+		<file src="..\src\SixPack.Data.Entity\bin\Net35\SixPack.Data.Entity.pdb" target="lib\net35" />
+
+		<file src="..\src\SixPack.Data.Entity\bin\Net40\SixPack.Data.Entity.dll" target="lib\net40" />
+		<file src="..\src\SixPack.Data.Entity\bin\Net40\SixPack.Data.Entity.XML" target="lib\net40" />
+		<file src="..\src\SixPack.Data.Entity\bin\Net40\SixPack.Data.Entity.pdb" target="lib\net40" />
 	</files>
 </package>
