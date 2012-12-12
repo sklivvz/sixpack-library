@@ -8,6 +8,7 @@ namespace SixPack.Collections.Generic
 	/// </summary>
 	/// <typeparam name="TKey">The type of the key.</typeparam>
 	/// <typeparam name="TValue">The type of the value.</typeparam>
+	[Serializable]
 	public sealed class ReadOnlyDictionary<TKey, TValue> : IDictionary<TKey, TValue>
 	{
 		private readonly IDictionary<TKey, TValue> _wrapped;
