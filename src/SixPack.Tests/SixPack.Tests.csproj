@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="EnumerableExtensionsTests.cs" />
     <Compile Include="EnumsTests.cs" />
+    <Compile Include="TypeConverterTests.cs" />
     <Compile Include="MergeExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrieTests.cs" />

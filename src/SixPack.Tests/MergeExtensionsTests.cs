@@ -71,5 +71,37 @@ namespace SixPack.Tests
 			Assert.IsTrue(pairs.Contains("dog"));
 			Assert.IsTrue(pairs.Contains("free"));
 		}
+
+		[TestMethod]
+		public void SimpleMergeUsingFluentSyntaxSucceeds()
+		{
+			var lengths = new[] { 1, 3, 4, 6 };
+			var words = new[] { "car", "dog", "free", "sixpack" };
+
+			var uniqueLengths = new HashSet<int>();
+			var uniqueWords = new HashSet<string>();
+			var pairs = new HashSet<Tuple<int, string>>();
+
+			lengths.Merge(words, m => m
+				.OuterKey(l => l)
+				.InnerKey(w => w.Length)
+				.WhenNotMatchedByInner(l => uniqueLengths.Add(l))
+				.WhenNotMatchedByOuter(w => uniqueWords.Add(w))
+				.WhenMatched((l, w) => pairs.Add(Tuple.Create(l, w)))
+			);
+
+			Assert.AreEqual(2, uniqueLengths.Count);
+			Assert.IsTrue(uniqueLengths.Contains(1));
+			Assert.IsTrue(uniqueLengths.Contains(6));
+
+			Assert.AreEqual(1, uniqueWords.Count);
+			Assert.IsTrue(uniqueWords.Contains("sixpack"));
+
+			Assert.AreEqual(3, pairs.Count);
+			Assert.IsTrue(pairs.Contains(Tuple.Create(3, "car")));
+			Assert.IsTrue(pairs.Contains(Tuple.Create(3, "dog")));
+			Assert.IsTrue(pairs.Contains(Tuple.Create(4, "free")));
+		}
+
 	}
 }

@@ -422,22 +422,6 @@ namespace SixPack.Collections.Generic.Extensions
 		}
 		#endregion
 
-		#region ForAll
-		/// <summary>
-		/// Executes the specified action for each element.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="sequence">The sequence.</param>
-		/// <param name="elementProcessor">The element processor.</param>
-		public static void ForAll<T>(this IEnumerable<T> sequence, Action<T> elementProcessor)
-		{
-			foreach (var item in sequence)
-			{
-				elementProcessor(item);
-			}
-		}
-		#endregion
-
 		#region OuterJoin
 		/// <summary>
 		/// Correlates the elements of two sequences based on matching keys simmilarly to a "full outer join" in SQL.

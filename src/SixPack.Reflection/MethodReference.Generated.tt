@@ -1,0 +1,104 @@
+﻿<#@ template language="C#" debug="True" hostspecific="True"
+#><#@ assembly name="System.Core.dll"
+#><#@ import namespace="System.Collections.Generic"
+#><#@ import namespace="System.Linq"
+#><#
+const int maxArgs = 4;
+#>
+using System;
+using System.Linq.Expressions;
+using System.Reflection;
+
+namespace SixPack.Reflection
+{
+	/// <summary>
+	/// Gives access to <see cref="MethodInfo"/> from expressions. This is useful
+	/// because it allows static checking of the existence of the method.
+	/// </summary>
+	partial class MethodReference
+	{
+
+		private static MethodInfo GetMethodFromExpression(LambdaExpression method)
+		{
+			var methodCall = method.Body as MethodCallExpression;
+			if(methodCall == null)
+			{
+				throw new ArgumentException("The expression must be a method call.", "method");
+			}
+			return methodCall.Method;
+		}
+
+<# for(int i = 1; i <= maxArgs; ++i) {
+	var argList = string.Join(", ", Enumerable.Range(1, i).Select(x => string.Format("T{0}", x)).ToArray());
+
+#>
+		/// <summary>
+		/// Gets the method referenced by the specified expression.
+		/// </summary>
+		public static MethodInfo Get<<#= argList #>>(Expression<Action<<#= argList #>>> method)
+		{
+			return GetMethodFromExpression(method);
+		}
+
+		/// <summary>
+		/// Gets the method referenced by the specified expression.
+		/// </summary>
+		public static MethodInfo Get<<#= argList #>, TResult>(Expression<Func<<#= argList #>, TResult>> method)
+		{
+			return GetMethodFromExpression(method);
+		}
+
+<# } #>
+		/// <summary>
+		/// Gets the method referenced by the specified expression.
+		/// </summary>
+		public static MethodInfo Get(Expression<Action> method)
+		{
+			return GetMethodFromExpression(method);
+		}
+
+		/// <summary>
+		/// Gets the method referenced by the specified expression.
+		/// </summary>
+		public static MethodInfo Get<TResult>(Expression<Func<TResult>> method)
+		{
+			return GetMethodFromExpression(method);
+		}
+
+	}
+
+  public static class __MethodReferenceHelpers
+  {
+<# for(int i = 0; i <= maxArgs; ++i) {
+	var argList = string.Join(", ", Enumerable.Range(1, i).Select(x => string.Format("T{0}", x)).ToArray());
+
+#>
+		public sealed class GenericMethodInvokerBuilder<#= i #><<#= argList #>>
+		{
+			public GenericMethodInvokerBuilder<#= i + 1 #><T1, object> WithDynamicTypeArgument()
+			{
+				return new GenericMethodInvokerBuilder<#= i + 1 #><T1, object>();
+			}
+
+			public GenericMethodInvokerBuilder<#= i + 1 #><T1, TArgument> WithTypeArgument<TArgument>()
+			{
+				return new GenericMethodInvokerBuilder<#= i + 1 #><T1, TArgument>();
+			}
+
+			public Func<T1, TResult> InvokesStaticMethod<TResult>(Expression<Func<T1, TResult>> methodToInvoke)
+			{
+				var method = GetMethodFromExpression(methodToInvoke).GetGenericMethodDefinition();
+				if (!method.IsStatic)
+				{
+					throw new ArgumentException(string.Format("Method '{0}' is not static.", method.Name));
+				}
+
+				return (T1 a1) => (TResult)method
+					.MakeGenericMethod(typeof(T1))
+					.Invoke(null, new object[] { a1 });
+			}
+		}
+
+<# } #>
+  }
+}

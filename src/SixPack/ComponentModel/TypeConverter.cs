@@ -21,6 +21,7 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 
 namespace SixPack.ComponentModel
@@ -30,6 +31,24 @@ namespace SixPack.ComponentModel
 	/// </summary>
 	public static class TypeConverter
 	{
+		/// <summary>
+		/// Registers a <see cref="System.ComponentModel.TypeConverter"/> dynamically.
+		/// </summary>
+		/// <typeparam name="TConvertible">The type to which the coverter should be associated.</typeparam>
+		/// <typeparam name="TConverter">The type of the converter.</typeparam>
+		public static void RegisterTypeConverter<TConvertible, TConverter>()
+			where TConverter : System.ComponentModel.TypeConverter
+		{
+			var alreadyRegistered = TypeDescriptor.GetAttributes(typeof(TConvertible))
+				.OfType<TypeConverterAttribute>()
+				.Any(a => a.ConverterTypeName == typeof(TConverter).AssemblyQualifiedName);
+
+			if (!alreadyRegistered)
+			{
+				TypeDescriptor.AddAttributes(typeof(TConvertible), new TypeConverterAttribute(typeof(TConverter)));
+			}
+		}
+
 		/// <summary>
 		/// Converts the specified value.
 		/// </summary>

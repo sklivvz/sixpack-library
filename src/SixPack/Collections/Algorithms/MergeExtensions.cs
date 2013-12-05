@@ -90,5 +90,177 @@ namespace SixPack.Collections.Algorithms
 		{
 			outer.Merge(inner, i => i, o => o, uniqueOuterProcessor, uniqueInnerProcessor, matchProcessor, comparer);
 		}
+
+		/// <summary>
+		/// Correlates the elements of two sequences based on matching keys simmilarly to a "full outer join" in SQL.
+		/// For each results, executes an action
+		/// </summary>
+		/// <typeparam name="TOuter">The type of the outer sequence elements.</typeparam>
+		/// <typeparam name="TInner">The type of the inner sequence elements.</typeparam>
+		/// <param name="outer">The outer sequence.</param>
+		/// <param name="inner">The inner sequence.</param>
+		/// <param name="merge">The merge specification.</param>
+		public static void Merge<TOuter, TInner>(this IEnumerable<TOuter> outer, IEnumerable<TInner> inner, Func<IMergeSyntax<TOuter, TInner>, IMergeSyntaxEnd> merge)
+		{
+			var syntax = new MergeSyntax<TOuter, TInner, object>();
+			var executor = (IMergeExecutor<TOuter, TInner>)merge(syntax);
+			executor.Execute(outer, inner);
+		}
+
+		/// <summary>
+		/// Correlates the elements of two sequences based on matching keys simmilarly to a "full outer join" in SQL.
+		/// For each results, executes an action
+		/// </summary>
+		/// <typeparam name="T">The type of the sequence elements.</typeparam>
+		/// <param name="outer">The outer sequence.</param>
+		/// <param name="inner">The inner sequence.</param>
+		/// <param name="merge">The merge specification.</param>
+		public static void Merge<T>(this IEnumerable<T> outer, IEnumerable<T> inner, Func<IMergeSyntax<T>, IMergeSyntaxEnd> merge)
+		{
+			var syntax = new MergeSyntax<T>();
+			var executor = (IMergeExecutor<T, T>)merge(syntax);
+			executor.Execute(outer, inner);
+		}
+
+		private class MergeSyntax<TOuter, TInner, TKey>
+			: IMergeSyntax<TOuter, TInner>
+			, IMergeOuterSyntax<TOuter, TInner, TKey>
+			, IMergeOuterInnerSyntax<TOuter, TInner, TKey>
+			, IMergeSyntaxEnd
+			, IMergeExecutor<TOuter, TInner>
+		{
+			private Func<TOuter, TKey> _outerKeySelector;
+			private Func<TInner, TKey> _innerKeySelector;
+			private IEqualityComparer<TKey> _comparer;
+			private Action<TOuter> _uniqueOuterProcessor;
+			private Action<TInner> _uniqueInnerProcessor;
+			private Action<TOuter, TInner> _matchProcessor;
+
+			public IMergeOuterSyntax<TOuter, TInner, TActualKey> OuterKey<TActualKey>(Func<TOuter, TActualKey> outerKeySelector)
+			{
+				return new MergeSyntax<TOuter, TInner, TActualKey>() { _outerKeySelector = outerKeySelector };
+			}
+
+			public IMergeOuterInnerSyntax<TOuter, TInner, TKey> InnerKey(Func<TInner, TKey> innerKeySelector)
+			{
+				_innerKeySelector = innerKeySelector;
+				return this;
+			}
+
+			public IMergeOuterInnerUsingComparerSyntax<TOuter, TInner, TKey> UsingComparer(IEqualityComparer<TKey> comparer)
+			{
+				_comparer = comparer;
+				return this;
+			}
+
+			public IMergeWhenNotMatchedByInnerSyntax<TOuter, TInner, TKey> WhenNotMatchedByInner(Action<TOuter> uniqueOuterProcessor)
+			{
+				_uniqueOuterProcessor = uniqueOuterProcessor;
+				return this;
+			}
+
+			public IMergeWhenNotMatchedByOuterSyntax<TOuter, TInner, TKey> WhenNotMatchedByOuter(Action<TInner> uniqueInnerProcessor)
+			{
+				_uniqueInnerProcessor = uniqueInnerProcessor;
+				return this;
+			}
+
+			public IMergeSyntaxEnd WhenMatched(Action<TOuter, TInner> matchProcessor)
+			{
+				_matchProcessor = matchProcessor;
+				return this;
+			}
+
+			public void Execute(IEnumerable<TOuter> outer, IEnumerable<TInner> inner)
+			{
+				outer.Merge(
+					inner,
+					_outerKeySelector,
+					_innerKeySelector,
+					_uniqueOuterProcessor ?? new Action<TOuter>(o => { }),
+					_uniqueInnerProcessor ?? new Action<TInner>(i => { }),
+					_matchProcessor ?? new Action<TOuter, TInner>((o, i) => { })
+				);
+			}
+		}
+
+		private sealed class MergeSyntax<T> : MergeSyntax<T, T, T>, IMergeSyntax<T>
+		{
+			public MergeSyntax()
+			{
+				OuterKey(o => o);
+				InnerKey(o => o);
+			}
+		}
+
+		/// <summary />
+		public interface IMergeSyntax<T> : IMergeSyntax<T, T>, IMergeOuterInnerSyntax<T, T, T>
+		{
+		}
+
+		/// <summary />
+		public interface IMergeSyntax<TOuter, TInner>
+		{
+			/// <summary>
+			/// Specifies the outer key selector.
+			/// </summary>
+			/// <typeparam name="TKey">The type of the key.</typeparam>
+			IMergeOuterSyntax<TOuter, TInner, TKey> OuterKey<TKey>(Func<TOuter, TKey> outerKeySelector);
+		}
+
+		/// <summary />
+		public interface IMergeOuterSyntax<TOuter, TInner, TKey>
+		{
+			/// <summary>
+			/// Specifies the inner key selector.
+			/// </summary>
+			IMergeOuterInnerSyntax<TOuter, TInner, TKey> InnerKey(Func<TInner, TKey> innerKeySelector);
+		}
+
+		/// <summary />
+		public interface IMergeOuterInnerSyntax<TOuter, TInner, TKey> : IMergeOuterInnerUsingComparerSyntax<TOuter, TInner, TKey>
+		{
+			/// <summary>
+			/// Specifies the comparer used for key comparisons. Defaults to EqualityComparer&lt;TKey&gt;.Default.
+			/// </summary>
+			IMergeOuterInnerUsingComparerSyntax<TOuter, TInner, TKey> UsingComparer(IEqualityComparer<TKey> comparer);
+		}
+
+		/// <summary />
+		public interface IMergeOuterInnerUsingComparerSyntax<TOuter, TInner, TKey> : IMergeWhenNotMatchedByInnerSyntax<TOuter, TInner, TKey>
+		{
+			/// <summary>
+			/// Specifies an action that is invoked for each element from outer that is not present in inner.
+			/// </summary>
+			IMergeWhenNotMatchedByInnerSyntax<TOuter, TInner, TKey> WhenNotMatchedByInner(Action<TOuter> uniqueOuterProcessor);
+		}
+
+		/// <summary />
+		public interface IMergeWhenNotMatchedByInnerSyntax<TOuter, TInner, TKey> : IMergeWhenNotMatchedByOuterSyntax<TOuter, TInner, TKey>
+		{
+			/// <summary>
+			/// Specifies an action that is invoked for each element from inner that is not present in outer.
+			/// </summary>
+			IMergeWhenNotMatchedByOuterSyntax<TOuter, TInner, TKey> WhenNotMatchedByOuter(Action<TInner> uniqueInnerProcessor);
+		}
+
+		/// <summary />
+		public interface IMergeWhenNotMatchedByOuterSyntax<TOuter, TInner, TKey> : IMergeSyntaxEnd
+		{
+			/// <summary>
+			/// Specifies an action that is invoked for each element from inner that is also present in outer.
+			/// </summary>
+			IMergeSyntaxEnd WhenMatched(Action<TOuter, TInner> matchProcessor);
+		}
+
+		/// <summary />
+		public interface IMergeSyntaxEnd
+		{
+		}
+
+		private interface IMergeExecutor<TOuter, TInner>
+		{
+			void Execute(IEnumerable<TOuter> outer, IEnumerable<TInner> inner);
+		}
 	}
 }

@@ -1,0 +1,101 @@
+﻿<#@ template language="C#" debug="True" hostspecific="True"
+#><#@ assembly name="System.Core.dll"
+#><#@ import namespace="System.Collections.Generic"
+#><#@ import namespace="System.Linq"
+#>
+// EnumerableTupleExtensions.cs
+//
+//  Copyright (C) 2013 Antoine Aubry
+//  Author: Antoine Aubry
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
+//
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace SixPack.Collections.Generic.Extensions
+{
+	/// <summary>
+	/// Extension methods for sequences.
+	/// </summary>
+    public static class EnumerableTupleExtensions
+    {
+		#if NET_40
+
+<# for(var i = 2; i <= 7; ++i) {
+		var allT = string.Join(", ", Enumerable.Range(1, i).Select(t => "T" + t));
+		var someT = string.Join(", ", Enumerable.Range(1, i - 1).Select(t => "T" + t));
+		var allItems = string.Join(", ", Enumerable.Range(1, i).Select(t => "item.Item" + t));
+		var someItems = string.Join(", ", Enumerable.Range(1, i - 1).Select(t => "item.Item" + t));
+		var allEnums = string.Join(", ", Enumerable.Range(1, i).Select(t => string.Format("IEnumerable<T{0}> sequence{0}", t)));
+		#>
+		/// <summary>
+		/// Executes the specified action for each element.
+		/// </summary>
+		public static void ForAll<<#= allT #>>(this IEnumerable<Tuple<<#= allT #>>> sequence, Action<<#= allT #>> elementProcessor)
+		{
+			foreach (var item in sequence)
+			{
+				elementProcessor(<#= allItems #>);
+			}
+		}
+
+		/// <summary>
+		/// performs a projection on a sequence.
+		/// </summary>
+		public static IEnumerable<TResult> Select<<#= allT #>, TResult>(this IEnumerable<Tuple<<#= allT #>>> sequence, Func<<#= allT #>, TResult> selector)
+		{
+			foreach (var item in sequence)
+			{
+				yield return selector(<#= allItems #>);
+			}
+		}
+<# if(i > 2) { #>
+
+		/// <summary>
+		/// Creates a new sequence of tuples containing the corresponding elements of two sequences.
+		/// </summary>
+		public static IEnumerable<Tuple<<#= allT #>>> Zip<<#= allT #>>(this IEnumerable<Tuple<<#= someT #>>> first, IEnumerable<T<#= i #>> second)
+		{
+			return first.Zip(second, (item, last) => Tuple.Create(<#= someItems #>, last));
+		}
+<# } #>
+
+<# } #>
+
+		/// <summary>
+		/// Creates a new sequence of tuples containing the corresponding elements of two sequences.
+		/// </summary>
+		public static IEnumerable<Tuple<T1, T2>> Zip<T1, T2>(this IEnumerable<T1> first, IEnumerable<T2> second)
+		{
+			return first.Zip(second, (f, s) => Tuple.Create(f, s));
+		}
+
+		#endif
+
+		/// <summary>
+		/// Executes the specified action for each element.
+		/// </summary>
+		public static void ForAll<T1>(this IEnumerable<T1> sequence, Action<T1> elementProcessor)
+		{
+			foreach (var item in sequence)
+			{
+				elementProcessor(item);
+			}
+		}
+	}
+}
