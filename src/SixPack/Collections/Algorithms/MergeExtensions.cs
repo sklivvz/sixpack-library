@@ -107,21 +107,6 @@ namespace SixPack.Collections.Algorithms
 			executor.Execute(outer, inner);
 		}
 
-		/// <summary>
-		/// Correlates the elements of two sequences based on matching keys simmilarly to a "full outer join" in SQL.
-		/// For each results, executes an action
-		/// </summary>
-		/// <typeparam name="T">The type of the sequence elements.</typeparam>
-		/// <param name="outer">The outer sequence.</param>
-		/// <param name="inner">The inner sequence.</param>
-		/// <param name="merge">The merge specification.</param>
-		public static void Merge<T>(this IEnumerable<T> outer, IEnumerable<T> inner, Func<IMergeSyntax<T>, IMergeSyntaxEnd> merge)
-		{
-			var syntax = new MergeSyntax<T>();
-			var executor = (IMergeExecutor<T, T>)merge(syntax);
-			executor.Execute(outer, inner);
-		}
-
 		private class MergeSyntax<TOuter, TInner, TKey>
 			: IMergeSyntax<TOuter, TInner>
 			, IMergeOuterSyntax<TOuter, TInner, TKey>
@@ -182,20 +167,6 @@ namespace SixPack.Collections.Algorithms
 					_matchProcessor ?? new Action<TOuter, TInner>((o, i) => { })
 				);
 			}
-		}
-
-		private sealed class MergeSyntax<T> : MergeSyntax<T, T, T>, IMergeSyntax<T>
-		{
-			public MergeSyntax()
-			{
-				OuterKey(o => o);
-				InnerKey(o => o);
-			}
-		}
-
-		/// <summary />
-		public interface IMergeSyntax<T> : IMergeSyntax<T, T>, IMergeOuterInnerSyntax<T, T, T>
-		{
 		}
 
 		/// <summary />
