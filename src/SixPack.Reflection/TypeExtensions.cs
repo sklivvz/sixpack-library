@@ -18,12 +18,12 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
 
+using SixPack.Text;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using SixPack.Text;
 
 namespace SixPack.Reflection
 {
@@ -212,6 +212,16 @@ namespace SixPack.Reflection
 			}
 
 			return property.GetReadAccessor<TSource, TProperty>();
+		}
+
+		/// <summary>
+		/// Gets a value indicating whether the specified type can have a null value.
+		/// A type is considered nullable if it is a reference type or if it is Nullable{T}.
+		/// </summary>
+		public static bool IsNullable(this Type type)
+		{
+			return type.IsClass
+				|| (type.IsValueType && type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>));
 		}
 	}
 }

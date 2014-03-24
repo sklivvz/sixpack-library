@@ -110,5 +110,49 @@ namespace SixPack.Reflection.Tests
 			setter(entity, 2);
 			Assert.AreEqual(2, entity.Id);
 		}
+
+		[TestMethod]
+		public void AddNullChecks_InsertsNullChecksBetweenMemberAccesses()
+		{
+			Expression<Func<Tuple<string>, int>> sut = a => a.Item1.Length;
+
+			var result = sut.AddNullChecks(-1);
+			Console.WriteLine(result);
+
+			var compiled = result.Compile();
+
+			Assert.AreEqual(-1, compiled(null));
+			Assert.AreEqual(-1, compiled(new Tuple<string>(null)));
+			Assert.AreEqual(3, compiled(new Tuple<string>("abc")));
+		}
+
+		[TestMethod]
+		public void AddNullChecks_InsertsCoalesceAtEnd()
+		{
+			Expression<Func<Tuple<string>, string>> sut = a => a.Item1;
+
+			var result = sut.AddNullChecks("def");
+			Console.WriteLine(result);
+
+			var compiled = result.Compile();
+
+			Assert.AreEqual("abc", compiled(new Tuple<string>("abc")));
+			Assert.AreEqual("def", compiled(new Tuple<string>(null)));
+		}
+
+		[TestMethod]
+		public void AddNullChecks_InsertsNullChecksBetweenMethodCalls()
+		{
+			Expression<Func<Tuple<object>, int>> sut = a => a.Item1.ToString().Length;
+
+			var result = sut.AddNullChecks(-1);
+			Console.WriteLine(result);
+
+			var compiled = result.Compile();
+
+			Assert.AreEqual(-1, compiled(null));
+			Assert.AreEqual(-1, compiled(new Tuple<object>(null)));
+			Assert.AreEqual(3, compiled(new Tuple<object>("abc")));
+		}
 	}
 }

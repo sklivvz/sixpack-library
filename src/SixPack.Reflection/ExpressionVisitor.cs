@@ -6,6 +6,7 @@ using SixPack.Collections.Generic;
 
 namespace SixPack.Reflection
 {
+#if NET_35
 	/// <summary>
 	/// Drop-in replacement for the .NET 4.0 ExpressionVisitor class.
 	/// </summary>
@@ -336,4 +337,5 @@ namespace SixPack.Reflection
 			return Expression.TypeIs(expr, expression.TypeOperand);
 		}
 	}
+#endif
 }

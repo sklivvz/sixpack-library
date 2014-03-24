@@ -19,6 +19,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -91,8 +92,7 @@ namespace SixPack.Reflection
 			}
 		}
 
-		private sealed class AsMemberExpressionVisitor<TMember> : ExpressionVisitor
-			where TMember : MemberInfo
+		private sealed class AsMemberExpressionVisitor<TMember> : ExpressionVisitor where TMember : MemberInfo
 		{
 			public TMember Member { get; private set; }
 
@@ -100,6 +100,34 @@ namespace SixPack.Reflection
 			{
 				Member = (TMember)node.Member;
 				return node;
+			}
+		}
+
+		private sealed class NullableAccessorCollectorVisitor : ExpressionVisitor
+		{
+			private readonly List<Expression> _nullableAccessors = new List<Expression>();
+
+			public IEnumerable<Expression> NullableAccessors { get { return _nullableAccessors; } }
+
+			protected override Expression VisitMember(MemberExpression node)
+			{
+				if (node.Expression.Type.IsNullable())
+				{
+					_nullableAccessors.Add(node.Expression);
+				}
+
+				return base.VisitMember(node);
+			}
+
+			protected override Expression VisitMethodCall(MethodCallExpression node)
+			{
+				var thisArg = node.Object ?? node.Arguments[0];
+				if (thisArg.Type.IsNullable())
+				{
+					_nullableAccessors.Add(thisArg);
+				}
+
+				return base.VisitMethodCall(node);
 			}
 		}
 		#endregion
@@ -273,18 +301,22 @@ namespace SixPack.Reflection
 				this.targetType = targetType;
 			}
 
-			protected override Expression VisitUnary(UnaryExpression expression)
-		    {
-				switch (expression.NodeType)
+			protected override Expression VisitMember(MemberExpression node)
+			{
+				if (node.Expression.NodeType == ExpressionType.Convert)
 				{
-					case ExpressionType.Convert:
-						if (expression.Operand.Type == targetType)
+					var cast = (UnaryExpression)node.Expression;
+					if (cast.Operand.Type == targetType)
+					{
+						var targetMember = targetType.GetMember(node.Member.Name, BindingFlags.Public | BindingFlags.Instance).FirstOrDefault();
+						if (targetMember != null && targetMember.MemberType == node.Member.MemberType)
 						{
-							return expression.Operand;
+							var result = Expression.MakeMemberAccess(cast.Operand, targetMember);
+							return Visit(result);
 						}
-						break;
+					}
 				}
-				return base.VisitUnary(expression);
+				return base.VisitMember(node);
 			}
 		}
 
@@ -343,5 +375,112 @@ namespace SixPack.Reflection
 			return (Action<TParent, TProperty>)Delegate.CreateDelegate(typeof(Action<TParent, TProperty>), setter);
 		}
 		#endregion
+
+		/// <summary>
+		/// Returns an expression that evaluates to default(type)
+		/// </summary>
+		/// <param name="type"></param>
+		/// <returns></returns>
+		public static Expression Default(Type type)
+		{
+#if NET_35
+			return type.IsClass
+				? Expression.Constant(null, type)
+				: Expression.Constant(Activator.CreateInstance(type), type);
+#endif
+#if NET_40
+			return Expression.Default(type);
+#endif
+		}
+
+		/// <summary>
+		/// Produces a new expression that will return a default value if any member access is made on a null reference.
+		/// </summary>
+		/// <example>
+		/// This will covert the following expression:
+		/// 
+		///		a => a.Access.Nested().Members
+		/// 
+		/// to this:
+		/// 
+		///		a => a != null
+		///			? a.Access != null
+		///				? a.Access.Nested() != null
+		///					? a.Access.Nested().Members ?? defaultValue
+		///					: defaultValue
+		///				: defaultValue
+		///			: defaultValue
+		/// 
+		/// </example>
+		public static Expression<TDelegate> AddNullChecks<TDelegate>(this Expression<TDelegate> expression, Expression defaultValue)
+		{
+			var visitor = new NullableAccessorCollectorVisitor();
+			visitor.Visit(expression);
+
+			var result = visitor.NullableAccessors
+				.Aggregate(expression.Body, (res, acc) => Expression.Condition(
+					Expression.NotEqual(acc, Default(acc.Type)),
+					res,
+					defaultValue
+				));
+
+			if (result.Type.IsNullable())
+			{
+				result = Expression.Coalesce(result, defaultValue);
+			}
+
+			return Expression.Lambda<TDelegate>(
+				result,
+				expression.Parameters
+			);
+		}
+
+		/// <summary>
+		/// Produces a new expression that will return a default value if any member access is made on a null reference.
+		/// </summary>
+		/// <example>
+		/// This will covert the following expression:
+		/// 
+		///		a => a.Access.Nested().Members
+		/// 
+		/// to this:
+		/// 
+		///		a => a != null
+		///			? a.Access != null
+		///				? a.Access.Nested() != null
+		///					? a.Access.Nested().Members ?? defaultValue
+		///					: defaultValue
+		///				: defaultValue
+		///			: defaultValue
+		/// 
+		/// </example>
+		public static Expression<TDelegate> AddNullChecks<TDelegate>(this Expression<TDelegate> expression, object defaultValue)
+		{
+			return AddNullChecks(expression, Expression.Constant(defaultValue, expression.Body.Type));
+		}
+
+		/// <summary>
+		/// Produces a new expression that will return a default value if any member access is made on a null reference.
+		/// </summary>
+		/// <example>
+		/// This will covert the following expression:
+		/// 
+		///		a => a.Access.Nested().Members
+		/// 
+		/// to this:
+		/// 
+		///		a => a != null
+		///			? a.Access != null
+		///				? a.Access.Nested() != null
+		///					? a.Access.Nested().Members ?? defaultValue
+		///					: defaultValue
+		///				: defaultValue
+		///			: defaultValue
+		/// 
+		/// </example>
+		public static Expression<TDelegate> AddNullChecks<TDelegate>(this Expression<TDelegate> expression)
+		{
+			return AddNullChecks(expression, Default(expression.Body.Type));
+		}
 	}
 }
