@@ -29,7 +29,7 @@ namespace SixPack.Reflection
 	/// <summary>
 	/// Estension methods that add functionality to expressions.
 	/// </summary>
-	public static class ExpressionExtensions
+	public static partial class ExpressionExtensions
 	{
 		#region Visitors
 		private sealed class ReplaceParameterVisitor : ExpressionVisitor
@@ -47,11 +47,14 @@ namespace SixPack.Reflection
 			{
 				if (node == _original)
 				{
+					WasReplaced = true;
 					return _replacement;
 				}
 
 				return base.VisitParameter(node);
 			}
+
+			public bool WasReplaced { get; private set; }
 		}
 
 		private sealed class MemberInitVisitor<TInput, TProperty> : ExpressionVisitor
@@ -151,6 +154,28 @@ namespace SixPack.Reflection
 		}
 
 		/// <summary>
+		/// Returns a new expression where references to the specified parameter
+		/// have been replaced by references to another one.
+		/// </summary>
+		/// <param name="expression">The expression.</param>
+		/// <param name="original">The original parameter.</param>
+		/// <param name="replacement">The replacement parameter.</param>
+		/// <param name="wasReplaced">Indicates whether the <paramref name="original"/> has been replaced at least once.</param>
+		/// <returns></returns>
+		public static Expression ReplaceParameter(
+			this Expression expression,
+			ParameterExpression original,
+			Expression replacement,
+			out bool wasReplaced
+		)
+		{
+			var visitor = new ReplaceParameterVisitor(original, replacement);
+			var result = visitor.Visit(expression);
+			wasReplaced = visitor.WasReplaced;
+			return result;
+		}
+
+		/// <summary>
 		/// Returns a new expression where references to the first parameter
 		/// have been replaced by references to another one.
 		/// </summary>
@@ -164,6 +189,24 @@ namespace SixPack.Reflection
 		)
 		{
 			return (Expression<TDelegate>)expression.ReplaceParameter(expression.Parameters.Single(), replacement);
+		}
+
+		/// <summary>
+		/// Returns a new expression where references to the first parameter
+		/// have been replaced by references to another one.
+		/// </summary>
+		/// <typeparam name="TDelegate">The type of the delegate.</typeparam>
+		/// <param name="expression">The expression.</param>
+		/// <param name="replacement">The replacement parameter.</param>
+		/// <param name="wasReplaced">Indicates whether the parameter has been replaced at least once.</param>
+		/// <returns></returns>
+		public static Expression<TDelegate> ReplaceParameter<TDelegate>(
+			this Expression<TDelegate> expression,
+			ParameterExpression replacement,
+			out bool wasReplaced
+		)
+		{
+			return (Expression<TDelegate>)expression.ReplaceParameter(expression.Parameters.Single(), replacement, out wasReplaced);
 		}
 
 		/// <summary>

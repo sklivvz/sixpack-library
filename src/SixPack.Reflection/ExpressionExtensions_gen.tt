@@ -1,0 +1,66 @@
+﻿<#@ template language="C#" debug="True" hostspecific="True"
+#><#@ assembly name="System.Core.dll"
+#><#@ import namespace="System.Collections.Generic"
+#><#@ import namespace="System.Linq"
+#>
+using System;
+using System.Linq.Expressions;
+
+namespace SixPack.Reflection
+{
+  partial class ExpressionExtensions
+  {
+    /// <summary>
+    /// Replaces the first parameter of the specified lambda expression with another expression.
+    /// </summary>
+    public static Expression<Action> RemoveFirstParameter<T0>(this Expression<Action<T0>> expression, Expression replacement)
+    {
+      return Expression.Lambda<Action>(
+        expression.Body.ReplaceParameter(expression.Parameters[0], replacement),
+        new ParameterExpression[] {
+        }
+      );
+    }
+
+    <# for(var i = 0; i < 16; ++i) {
+      var funcArgList = string.Join("", Enumerable.Range(1, i).Select(x => string.Format("T{0}, ", x))); #>
+
+<#= (i == 4 ? "#if NET_40" : "") #>
+    /// <summary>
+    /// Replaces the first parameter of the specified lambda expression with another expression.
+    /// </summary>
+    public static Expression<Func<<#= funcArgList #>TResult>> RemoveFirstParameter<T0, <#= funcArgList #>TResult>(this Expression<Func<T0, <#= funcArgList #>TResult>> expression, Expression replacement)
+    {
+      return Expression.Lambda<Func<<#= funcArgList #>TResult>>(
+        expression.Body.ReplaceParameter(expression.Parameters[0], replacement),
+        new ParameterExpression[] {
+        <# for(var j = 1; j <= i; ++j) { #>
+        expression.Parameters[<#= j #>],
+        <# } #>}
+      );
+    }
+    <# } #>
+#endif
+    <# for(var i = 1; i < 16; ++i) {
+      var actionArgList = string.Join(", ", Enumerable.Range(0, i).Select(x => string.Format("T{0}", x + 1))); #>
+
+<#= (i == 4 ? "#if NET_40" : "") #>
+    /// <summary>
+    /// Replaces the first parameter of the specified lambda expression with another expression.
+    /// </summary>
+    public static Expression<Action<<#= actionArgList #>>> RemoveFirstParameter<T0, <#= actionArgList #>>(this Expression<Action<T0, <#= actionArgList #>>> expression, Expression replacement)
+    {
+      return Expression.Lambda<Action<<#= actionArgList #>>>(
+        expression.Body.ReplaceParameter(expression.Parameters[0], replacement),
+        new ParameterExpression[] {
+        <# for(var j = 0; j <= i; ++j) { #>
+        expression.Parameters[<#= j #>],
+        <# } #>}
+      );
+    }
+
+    <# } #>
+#endif
+
+  }
+}

@@ -515,5 +515,11 @@ namespace SixPack.Collections.Generic.Extensions
 			}
 		}
 		#endregion
+
+		/// <summary />
+		public static IEnumerable<T> EmptyIfNull<T>(this IEnumerable<T> sequence)
+		{
+			return sequence ?? Enumerable.Empty<T>();
+		}
 	}
 }

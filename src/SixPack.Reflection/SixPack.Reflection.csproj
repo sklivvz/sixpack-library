@@ -66,6 +66,11 @@
     </Compile>
     <Compile Include="Dynamic.cs" />
     <Compile Include="ExpressionExtensions.cs" />
+    <Compile Include="ExpressionExtensions_gen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExpressionExtensions_gen.tt</DependentUpon>
+    </Compile>
     <Compile Include="ExpressionVisitor.cs" />
     <Compile Include="MethodInfoExtensions.cs" />
     <Compile Include="MethodReference.cs">
@@ -89,6 +94,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ExpressionExtensions_gen.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ExpressionExtensions_gen.cs</LastGenOutput>
+    </None>
     <None Include="MethodReference.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MethodReference.cs</LastGenOutput>
