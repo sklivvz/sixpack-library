@@ -39,6 +39,21 @@ namespace SixPack.Reflection
         <# } #>}
       );
     }
+
+
+    /// <summary>
+    /// Replaces the first parameter of the specified lambda expression with another expression.
+    /// </summary>
+    public static Expression<Func<<#= funcArgList #>TResult>> RemoveFirstParameter<T0, <#= funcArgList #>TResult>(this Expression<Func<T0, <#= funcArgList #>TResult>> expression, T0 replacement)
+    {
+      return Expression.Lambda<Func<<#= funcArgList #>TResult>>(
+        expression.Body.ReplaceParameter(expression.Parameters[0], Expression.Constant(replacement, typeof(T0))),
+        new ParameterExpression[] {
+        <# for(var j = 1; j <= i; ++j) { #>
+        expression.Parameters[<#= j #>],
+        <# } #>}
+      );
+    }
     <# } #>
 #endif
     <# for(var i = 1; i < 16; ++i) {
@@ -52,6 +67,21 @@ namespace SixPack.Reflection
     {
       return Expression.Lambda<Action<<#= actionArgList #>>>(
         expression.Body.ReplaceParameter(expression.Parameters[0], replacement),
+        new ParameterExpression[] {
+        <# for(var j = 0; j <= i; ++j) { #>
+        expression.Parameters[<#= j #>],
+        <# } #>}
+      );
+    }
+
+
+    /// <summary>
+    /// Replaces the first parameter of the specified lambda expression with another expression.
+    /// </summary>
+    public static Expression<Action<<#= actionArgList #>>> RemoveFirstParameter<T0, <#= actionArgList #>>(this Expression<Action<T0, <#= actionArgList #>>> expression, T0 replacement)
+    {
+      return Expression.Lambda<Action<<#= actionArgList #>>>(
+        expression.Body.ReplaceParameter(expression.Parameters[0], Expression.Constant(replacement, typeof(T0))),
         new ParameterExpression[] {
         <# for(var j = 0; j <= i; ++j) { #>
         expression.Parameters[<#= j #>],
