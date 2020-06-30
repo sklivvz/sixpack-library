@@ -430,8 +430,7 @@ namespace SixPack.Reflection
 			return type.IsClass
 				? Expression.Constant(null, type)
 				: Expression.Constant(Activator.CreateInstance(type), type);
-#endif
-#if NET_40
+#else
 			return Expression.Default(type);
 #endif
 		}

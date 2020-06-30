@@ -6,7 +6,6 @@ using System.IO;
 using System.Security.Authentication;
 using System.Text.RegularExpressions;
 using SixPack.Text;
-using System.Web.UI;
 
 namespace SixPack.Security.Cryptography
 {
@@ -87,6 +86,7 @@ namespace SixPack.Security.Cryptography
 			return result;
 		}
 
+#if !NETSTANDARD2_0
 		/// <summary>
 		/// Makes a token with the specified data.
 		/// </summary>
@@ -124,7 +124,7 @@ namespace SixPack.Security.Cryptography
 		{
 			using (StringWriter encodedData = new StringWriter(CultureInfo.InvariantCulture))
 			{
-				LosFormatter serializer = new LosFormatter();
+				var serializer = new System.Web.UI.LosFormatter();
 				serializer.Serialize(encodedData, data);
 
 				byte[] serializedData = Convert.FromBase64String(encodedData.ToString());
@@ -143,12 +143,13 @@ namespace SixPack.Security.Cryptography
 			byte[] bytes = DecodeBytes(token, out dataLength);
 
 			string base64Bytes = Convert.ToBase64String(bytes, 0, dataLength);
-			LosFormatter serializer = new LosFormatter();
+			var serializer = new System.Web.UI.LosFormatter();
 			using (var data = new StringReader(base64Bytes))
 			{
 				return serializer.Deserialize(data);
 			}
 		}
+#endif
 
 		/// <summary>
 		/// Makes a token with the specified data.

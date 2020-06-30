@@ -23,7 +23,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Web.UI;
 
 namespace SixPack.Text
 {
@@ -89,6 +88,7 @@ namespace SixPack.Text
 		#endregion
 
 		#region FormatWith object
+#if !NETSTANDARD2_0
 		/// <summary>
 		/// Formats a string with named placeholders.
 		/// Example:
@@ -130,18 +130,19 @@ namespace SixPack.Text
 				_value = value;
 			}
 
-			#region IValueProvider Members
+		#region IValueProvider Members
 
 			object IValueProvider.this[string name]
 			{
 				get
 				{
-					return DataBinder.Eval(_value, name);
+					return System.Web.UI.DataBinder.Eval(_value, name);
 				}
 			}
 
-			#endregion
+		#endregion
 		}
+#endif
 		#endregion
 
 		#region FormatWith dictionary

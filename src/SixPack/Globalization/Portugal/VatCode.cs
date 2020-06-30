@@ -17,21 +17,19 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
 
-using System;
 using System.Text.RegularExpressions;
-using SixPack.Properties;
 
 namespace SixPack.Globalization.Portugal
 {
-	/// <summary>
-	/// Validates portuguese postal codes
-	/// </summary>
-	public static class VatCode
+    /// <summary>
+    /// Validates portuguese postal codes
+    /// </summary>
+    public static class VatCode
 	{
 		/// <summary>
 		/// Regex expression to validate a Portuguese Postal Code
 		/// </summary>
-		private static readonly Regex vatCodePattern = new Regex(Settings.Default.Globalization_Portugal_VatCode_VatCodePattern, RegexOptions.Compiled);
+		private static readonly Regex vatCodePattern = new Regex(@"^(PT){0,1}[0-9]{9}$", RegexOptions.Compiled);
 
 		/// <summary>
 		/// Determines whether the specified VAT code is valid.

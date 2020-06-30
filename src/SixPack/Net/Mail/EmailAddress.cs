@@ -18,21 +18,20 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
 
+using SixPack.Net.Sockets;
 using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Net;
 using System.Security.Permissions;
 using System.Text.RegularExpressions;
-using System.Globalization;
-using SixPack.Diagnostics;
-using SixPack.Net.Sockets;
 
 namespace SixPack.Net.Mail
 {
-	/// <summary>
-	/// Validates an email address
-	/// </summary>
-	public static class EmailAddress
+    /// <summary>
+    /// Validates an email address
+    /// </summary>
+    public static class EmailAddress
 	{
 		/// <summary>
 		/// Determines whether the specified email address is valid.
@@ -300,9 +299,8 @@ namespace SixPack.Net.Mail
 			{
 				mx = Dns.GetResolvedMXRecords(server);
 			}
-			catch (Win32Exception w32e)
+			catch (Win32Exception)
 			{
-				Log.Instance.HandleException(w32e, LogLevel.Debug);
 				return false;
 			}
 			if (mx.Length == 0)
@@ -338,9 +336,8 @@ namespace SixPack.Net.Mail
 			{
 				mx = Dns.GetResolvedMXRecords(server);
 			}
-			catch (Win32Exception w32e)
+			catch (Win32Exception)
 			{
-				Log.Instance.HandleException(w32e, LogLevel.Debug);
 				return false;
 			}
 			if (mx.Length == 0)
@@ -370,9 +367,8 @@ namespace SixPack.Net.Mail
 			{
 				mx = Dns.GetResolvedMXRecords(server);
 			}
-			catch (Win32Exception w32e)
+			catch (Win32Exception)
 			{
-				Log.Instance.HandleException(w32e, LogLevel.Debug);
 				return false;
 			}
 			return (mx.Length > 0);

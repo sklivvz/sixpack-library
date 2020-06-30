@@ -18,21 +18,19 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
 
-using System;
 using System.Text.RegularExpressions;
-using SixPack.Properties;
 
 namespace SixPack.Globalization.Portugal
 {
-	/// <summary>
-	/// Validates portuguese postal codes
-	/// </summary>
-	public static class PostalCode
+    /// <summary>
+    /// Validates portuguese postal codes
+    /// </summary>
+    public static class PostalCode
 	{
 		/// <summary>
 		/// Regex expression to validate a Portuguese Postal Code
 		/// </summary>
-		private static readonly Regex postalCodePattern = new Regex(Settings.Default.Globalization_Portugal_PostalCode_PostalCodePattern, RegexOptions.Compiled);
+		private static readonly Regex postalCodePattern = new Regex(@"^\d{4}-\d{3}$", RegexOptions.Compiled);
 
 		/// <summary>
 		/// Determines whether the specified postal code is valid.

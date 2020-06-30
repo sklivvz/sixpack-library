@@ -18,25 +18,23 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
 
-using System;
 using System.Text.RegularExpressions;
-using SixPack.Properties;
 
 namespace SixPack.Globalization.Portugal
 {
-	/// <summary>
-	/// Validates portuguese phone numbers
-	/// </summary>
-	public static class PhoneNumber
+    /// <summary>
+    /// Validates portuguese phone numbers
+    /// </summary>
+    public static class PhoneNumber
 	{
-		private static readonly Regex internationalPhonePattern = new Regex(Settings.Default.Globalization_Portugal_PhoneNumber_PhonePattern_International, RegexOptions.Compiled);
-		private static readonly Regex shortPhonePattern = new Regex(Settings.Default.Globalization_Portugal_PhoneNumber_PhonePattern_ShortNumber, RegexOptions.Compiled);
-		private static readonly Regex fixedPhonePattern = new Regex(Settings.Default.Globalization_Portugal_PhoneNumber_PhonePattern_FixedService, RegexOptions.Compiled);
-		private static readonly Regex nomadicPhonePattern = new Regex(Settings.Default.Globalization_Portugal_PhoneNumber_PhonePattern_NomadicService, RegexOptions.Compiled);
-		private static readonly Regex audioTextPhonePattern = new Regex(Settings.Default.Globalization_Portugal_PhoneNumber_PhonePattern_AudioText, RegexOptions.Compiled);
-		private static readonly Regex privatePhonePattern = new Regex(Settings.Default.Globalization_Portugal_PhoneNumber_PhonePattern_PrivateVoiceNetwork, RegexOptions.Compiled);
-		private static readonly Regex freePhonePattern = new Regex(Settings.Default.Globalization_Portugal_PhoneNumber_PhonePattern_FreeServices, RegexOptions.Compiled);
-		private static readonly Regex mobilePhonePattern = new Regex(Settings.Default.Globalization_Portugal_PhoneNumber_PhonePattern_MobileCommunicationServices, RegexOptions.Compiled);
+		private static readonly Regex internationalPhonePattern = new Regex(@"^(\+|00)\d+$", RegexOptions.Compiled);
+		private static readonly Regex shortPhonePattern = new Regex(@"^1\d+$", RegexOptions.Compiled);
+		private static readonly Regex fixedPhonePattern = new Regex(@"^2[1-9]\d{7,}$", RegexOptions.Compiled);
+		private static readonly Regex nomadicPhonePattern = new Regex(@"^3\d$+", RegexOptions.Compiled);
+		private static readonly Regex audioTextPhonePattern = new Regex(@"^6\d+$", RegexOptions.Compiled);
+		private static readonly Regex privatePhonePattern = new Regex(@"^7\d+$", RegexOptions.Compiled);
+		private static readonly Regex freePhonePattern = new Regex(@"^8\d+$", RegexOptions.Compiled);
+		private static readonly Regex mobilePhonePattern = new Regex(@"^9[1263]\d{7,}$", RegexOptions.Compiled);
 
 		/// <summary>
 		/// Gets the type of the specified phone number.

@@ -18,21 +18,19 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
 //
 
-using System;
 using System.Text.RegularExpressions;
-using SixPack.Properties;
 
 namespace SixPack.Globalization.Portugal
 {
-	/// <summary>
-	/// Validates portuguese postal codes
-	/// </summary>
-	public static class FiscalCode
+    /// <summary>
+    /// Validates portuguese postal codes
+    /// </summary>
+    public static class FiscalCode
 	{
 		/// <summary>
 		/// Regex expression to validate a Portuguese Postal Code
 		/// </summary>
-		private static readonly Regex fiscalCodePattern = new Regex(Settings.Default.Globalization_Portugal_FiscalCode_FiscalCodePattern, RegexOptions.Compiled);
+		private static readonly Regex fiscalCodePattern = new Regex(@"^\d{9}$", RegexOptions.Compiled);
 
 		/// <summary>
 		/// Determines whether the specified fiscal code is valid.

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net35;net40</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>The SixPack rapid development library is a collection of classes for rapid development on the .NET/Mono platform. It has been built with medium to large scale sites in mind, and supports high performance requirements (thousands of concurrent users per server.)</Description>
     <Authors>Antoine Aubry, Marco Cecconi</Authors>
@@ -9,7 +9,7 @@
     <PackageLicenseExpression>LGPL-2.1-or-later</PackageLicenseExpression>
     <PackageIcon>sixpack-icon.png</PackageIcon>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageId>SixPack</PackageId>
+    <PackageId>SixPack.Slim</PackageId>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>SixPack.pfx</AssemblyOriginatorKeyFile>
@@ -17,19 +17,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  
-  <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs" Link="Properties\CommonAssemblyInfo.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\SixPack\**\*.cs" />
+    <Compile Remove="..\SixPack\obj\**\*.cs" />
+    <Compile Remove="..\SixPack\ComponentModel\Cache*.cs" />
+    <Compile Remove="..\SixPack\Security\Cryptography\Configuration\*.cs" />
+    <Compile Remove="..\SixPack\Security\ActionLimiter*.cs" />
+    <Compile Remove="..\SixPack\Web\**\*.cs" />
+    <Compile Remove="..\SixPack\Drawing\**\*.cs" />
+    <Compile Remove="..\SixPack\Data\**\*.cs" />
+    <Compile Remove="..\SixPack\Diagnostics\**\*.cs" />
+    <Compile Remove="..\SixPack\Configuration\**\*.cs" />
+    <Compile Remove="..\SixPack\CodedException.cs" />
+  </ItemGroup>
+  
   <ItemGroup>
     <None Include="..\..\sixpack-icon.png">
       <Pack>True</Pack>
