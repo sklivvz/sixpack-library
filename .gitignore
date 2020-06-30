@@ -1,0 +1,4 @@
+**/obj/
+/src/.vs
+**/bin/
+*.user
